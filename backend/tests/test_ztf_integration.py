@@ -2,7 +2,8 @@ import os
 
 import pytest
 
-from app.services.ztf_service import fetch_hardcoded_ztf_metadata
+from app.models.observation import Observation
+from app.services.ztf_service import fetch_hardcoded_ztf_observations
 
 
 pytestmark = [
@@ -15,15 +16,7 @@ pytestmark = [
 
 
 def test_live_irsa_query_returns_ztf_observation() -> None:
-    rows = fetch_hardcoded_ztf_metadata()
+    observations = fetch_hardcoded_ztf_observations()
 
-    assert rows
-    assert {
-        "obsdate",
-        "field",
-        "filtercode",
-        "ccdid",
-        "qid",
-        "pid",
-        "filefracday",
-    } <= rows[0].keys()
+    assert observations
+    assert isinstance(observations[0], Observation)
