@@ -1,4 +1,7 @@
+astropy
 fastapi
 httpx
+numpy
+pandas
 pytest
 uvicorn[standard]
