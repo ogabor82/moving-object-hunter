@@ -1,15 +1,19 @@
 import csv
 from collections.abc import Mapping
 from datetime import datetime
-from io import StringIO
+from io import BytesIO, StringIO
 
 import httpx
+from astropy.io import fits
 
 from app.models.observation import Observation
 
 
 ZTF_SCIENCE_METADATA_URL = (
     "https://irsa.ipac.caltech.edu/ibe/search/ztf/products/sci"
+)
+ZTF_SCIENCE_DATA_BASE_URL = (
+    "https://irsa.ipac.caltech.edu/ibe/data/ztf/products/sci"
 )
 
 # Fixed POC target documented by IRSA as having ZTF science coverage.
@@ -109,3 +113,66 @@ def fetch_hardcoded_ztf_observations(
     """Fetch and map the fixed AS-003 query to domain observations."""
     rows = fetch_hardcoded_ztf_metadata(client)
     return [map_ztf_metadata_to_observation(row) for row in rows]
+
+
+def build_science_image_url(observation: Observation) -> str:
+    """Build the IRSA archive URL for an Observation's primary science image."""
+    file_frac_day = observation.file_frac_day
+    if len(file_frac_day) != 14 or not file_frac_day.isdigit():
+        raise ZTFServiceError(
+            "Cannot build ZTF science image URL: file_frac_day must contain "
+            "14 digits."
+        )
+
+    year = file_frac_day[:4]
+    month_day = file_frac_day[4:8]
+    fractional_day = file_frac_day[8:]
+    filename = (
+        f"ztf_{file_frac_day}_{observation.field:06d}_"
+        f"{observation.filter_code}_c{observation.ccd_id:02d}_"
+        f"o_q{observation.quadrant_id}_sciimg.fits"
+    )
+    return (
+        f"{ZTF_SCIENCE_DATA_BASE_URL}/{year}/{month_day}/"
+        f"{fractional_day}/{filename}"
+    )
+
+
+def fetch_science_image(
+    observation: Observation,
+    client: httpx.Client | None = None,
+) -> bytes:
+    """Download and minimally validate a ZTF single-exposure science FITS image."""
+    image_url = build_science_image_url(observation)
+    request = client.get if client is not None else httpx.get
+
+    try:
+        response = request(image_url, timeout=120.0)
+    except httpx.HTTPError as exc:
+        raise ZTFServiceError(f"ZTF science image request failed: {exc}") from exc
+
+    if not response.is_success:
+        raise ZTFServiceError(
+            f"ZTF science image request failed with HTTP {response.status_code}."
+        )
+
+    payload = response.content
+    if not payload:
+        raise ZTFServiceError("ZTF science image response was empty.")
+    if not payload.startswith(b"SIMPLE  ="):
+        raise ZTFServiceError("ZTF science image response is not a FITS file.")
+
+    try:
+        with fits.open(BytesIO(payload), memmap=False) as hdul:
+            hdul.verify("exception")
+            if not hdul or hdul[0].data is None:
+                raise ZTFServiceError(
+                    "ZTF science image FITS contains no primary image data."
+                )
+            hdul[0].data.shape
+    except (OSError, ValueError) as exc:
+        raise ZTFServiceError(
+            f"ZTF science image response is not a valid FITS file: {exc}"
+        ) from exc
+
+    return payload
