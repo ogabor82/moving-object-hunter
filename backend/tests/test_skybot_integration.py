@@ -23,6 +23,7 @@ from app.services.ztf_service import (
     find_observation_sequence,
 )
 from app.validation.data import load_field_data
+from app.validation.end_to_end import load_canonical_fields, run_end_to_end
 from app.validation.evaluate import evaluate_field
 from app.validation.models import TargetSelectionRule, ValidationField
 from app.validation.runner import REFERENCE_CONFIG
@@ -129,3 +130,21 @@ def test_live_validation_poc_field_recovers_control_1995_dh() -> None:
     outcomes = {outcome.designation: outcome for outcome in result.targets}
     assert outcomes["48606"].recovered
     assert outcomes["285862"].detected_frames == 2
+
+
+@pytest.mark.skipif(
+    os.getenv("RUN_ZTF_INTEGRATION") != "1",
+    reason="Also set RUN_ZTF_INTEGRATION=1 to query the live IRSA service.",
+)
+def test_live_end_to_end_identifies_canonical_targets_in_field_c() -> None:
+    [field] = [
+        field
+        for field in load_canonical_fields()
+        if field.field_id.startswith("C-2018-10-06")
+    ]
+
+    report = run_end_to_end([field])
+
+    assert report.misidentified == 0
+    assert report.correctly_identified >= 1
+    assert report.passed

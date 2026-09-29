@@ -8,6 +8,7 @@ import httpx
 from pydantic import BaseModel
 
 from app.models.identification import IdentificationStatus
+from app.models.pipeline_config import EXPERIMENTAL_DEFAULT_CONFIG
 from app.models.tracklet import TrackletStatus
 from app.validation.data import FieldData, load_field_data
 from app.validation.evaluate import evaluate_field
@@ -23,15 +24,8 @@ from app.validation.models import (
 from app.validation.selection import select_targets
 
 
-# Reference point of the sweep: the illustrative values used in AS-017..021.
-# It is NOT a validated default.
-REFERENCE_CONFIG = PipelineConfig(
-    stationary_tolerance_arcsec=1.5,
-    max_rate_arcsec_per_min=1.0,
-    search_radius_arcsec=2.0,
-    max_residual_arcsec=0.5,
-    match_radius_arcsec=2.0,
-)
+# Reference point of the sweep: the experimental defaults (not calibrated).
+REFERENCE_CONFIG = EXPERIMENTAL_DEFAULT_CONFIG
 SWEEP_GRID: dict[str, list[float]] = {
     "stationary_tolerance_arcsec": [0.5, 1.0, 1.5, 2.0, 3.0],
     "max_rate_arcsec_per_min": [0.5, 0.75, 1.0, 1.5, 2.0],

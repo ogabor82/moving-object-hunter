@@ -3,6 +3,7 @@ from pydantic import BaseModel, Field
 from app.models.identification import IdentificationStatus
 from app.models.known_object import KnownObjectField
 from app.models.observation import Observation
+from app.models.pipeline_config import PipelineConfig
 from app.models.tracklet import TrackletStatus
 
 
@@ -65,16 +66,6 @@ class ValidationTarget(BaseModel):
     predicted_rate_arcsec_per_min: float
     predicted_position_angle_deg: float
     predicted_positions: list[tuple[float, float]]
-
-
-class PipelineConfig(BaseModel):
-    """All tunable pipeline thresholds of one validation run."""
-
-    stationary_tolerance_arcsec: float = Field(gt=0)
-    max_rate_arcsec_per_min: float = Field(gt=0)
-    search_radius_arcsec: float = Field(gt=0)
-    max_residual_arcsec: float = Field(gt=0)
-    match_radius_arcsec: float = Field(gt=0)
 
 
 class TargetOutcome(BaseModel):

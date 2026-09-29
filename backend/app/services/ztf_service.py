@@ -171,6 +171,48 @@ def fetch_hardcoded_ztf_observations(
     return [map_ztf_metadata_to_observation(row) for row in rows]
 
 
+def fetch_observations(
+    product_ids: list[int],
+    client: httpx.Client | None = None,
+) -> list[Observation]:
+    """Fetch the Observations of the given ZTF product ids, in time order.
+
+    Raises ZTFServiceError if IRSA has no metadata for any of the ids.
+    """
+    if not product_ids:
+        raise ValueError("At least one product id is required.")
+    params = {
+        "WHERE": "pid IN (" + ",".join(str(int(pid)) for pid in product_ids) + ")",
+        "COLUMNS": ",".join(METADATA_COLUMNS),
+        "ct": "csv",
+    }
+    request = client.get if client is not None else httpx.get
+
+    try:
+        response = request(ZTF_SCIENCE_METADATA_URL, params=params, timeout=30.0)
+    except httpx.HTTPError as exc:
+        raise ZTFServiceError(f"IRSA ZTF metadata request failed: {exc}") from exc
+
+    if not response.is_success:
+        raise ZTFServiceError(
+            f"IRSA ZTF metadata request failed with HTTP {response.status_code}."
+        )
+
+    observations = [
+        map_ztf_metadata_to_observation(row)
+        for row in csv.DictReader(StringIO(response.text))
+    ]
+    missing = sorted(
+        set(product_ids) - {observation.product_id for observation in observations}
+    )
+    if missing:
+        raise ZTFServiceError(f"IRSA returned no metadata for pid(s) {missing}.")
+    return sorted(
+        observations,
+        key=lambda observation: (observation.observed_at, observation.product_id),
+    )
+
+
 def find_observation_sequence(
     ra_degrees: float,
     dec_degrees: float,

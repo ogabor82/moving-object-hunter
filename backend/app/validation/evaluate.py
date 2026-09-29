@@ -5,13 +5,12 @@ from collections.abc import Sequence
 
 from app.models.frame_sources import FrameSources
 from app.models.identification import (
-    IdentificationConfig,
     IdentificationStatus,
     TrackletIdentification,
 )
 from app.models.known_object import KnownObjectField
-from app.models.matching import CandidateFrame, StationaryMatchingConfig
-from app.models.tracklet import Tracklet, TrackletBuildConfig, TrackletStatus
+from app.models.matching import CandidateFrame
+from app.models.tracklet import Tracklet, TrackletStatus
 from app.services.astrometry import find_pairs_within
 from app.services.identification_service import match_tracklets_to_known_objects
 from app.services.matching_service import (
@@ -48,21 +47,9 @@ def evaluate_field(
     best match.
     """
     candidates = extract_moving_candidates(
-        match_stationary_sources(
-            frames,
-            StationaryMatchingConfig(
-                stationary_tolerance_arcsec=config.stationary_tolerance_arcsec
-            ),
-        )
+        match_stationary_sources(frames, config.stationary_matching())
     )
-    tracklets = build_tracklets(
-        candidates,
-        TrackletBuildConfig(
-            max_rate_arcsec_per_min=config.max_rate_arcsec_per_min,
-            search_radius_arcsec=config.search_radius_arcsec,
-            max_residual_arcsec=config.max_residual_arcsec,
-        ),
-    ).tracklets
+    tracklets = build_tracklets(candidates, config.tracklet_build()).tracklets
     fields_by_product_id = {
         frame.observation.product_id: field
         for frame, field in zip(frames, skybot_fields)
@@ -70,7 +57,7 @@ def evaluate_field(
     identifications = match_tracklets_to_known_objects(
         tracklets,
         fields_by_product_id,
-        IdentificationConfig(match_radius_arcsec=config.match_radius_arcsec),
+        config.identification(),
     ).identifications
 
     target_designations = {target.designation for target in targets}
