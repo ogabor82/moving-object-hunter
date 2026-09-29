@@ -172,9 +172,11 @@ def test_transient_error_flag_is_retried_then_succeeds() -> None:
 def test_server_error_is_retried_up_to_max_attempts() -> None:
     handler, calls = counting_handler([httpx.Response(503, text="down")])
 
-    with pytest.raises(SkyBoTServiceError, match="HTTP 503"):
+    with pytest.raises(SkyBoTServiceError, match="HTTP 503") as error:
         query_with(handler)
     assert len(calls) == 3
+    assert type(error.value) is SkyBoTServiceError
+    assert "after 3 attempt(s)" in str(error.value)
 
 
 def test_bad_request_is_not_retried() -> None:

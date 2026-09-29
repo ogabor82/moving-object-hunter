@@ -93,9 +93,11 @@ def query_skybot_cone(
     for attempt in range(1, max_attempts + 1):
         try:
             return _query_once(request, params, timeout_seconds)
-        except _TransientSkyBoTError:
+        except _TransientSkyBoTError as exc:
             if attempt == max_attempts:
-                raise
+                raise SkyBoTServiceError(
+                    f"{exc} (after {max_attempts} attempt(s))"
+                ) from exc
             time.sleep(retry_delay_seconds)
     raise AssertionError("unreachable")
 
