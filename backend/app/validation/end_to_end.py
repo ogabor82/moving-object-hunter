@@ -16,13 +16,14 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 import httpx
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 
 from app.models.identification import (
     IdentificationDiagnostics,
     IdentificationStatus,
     TrackletIdentification,
 )
+from app.models.known_object import KnownObjectField
 from app.models.pipeline_config import EXPERIMENTAL_DEFAULT_CONFIG, PipelineConfig
 from app.models.tracklet import Tracklet, TrackletBuildDiagnostics
 from app.services.astrometry import angular_distance_arcsec
@@ -45,6 +46,10 @@ class CanonicalField(BaseModel):
     field_id: str
     product_ids: list[int]
     targets: list[ValidationTarget]
+    skybot_snapshot: list[KnownObjectField] = Field(
+        default_factory=list,
+        description="AS-022 SkyBoT predictions per frame, in product_ids order",
+    )
 
 
 class TargetEndToEnd(BaseModel):
@@ -91,6 +96,7 @@ def load_canonical_fields(report_path: Path = AS022_REPORT) -> list[CanonicalFie
                     field_id=snapshot.field.field_id,
                     product_ids=[o.product_id for o in snapshot.observations],
                     targets=targets,
+                    skybot_snapshot=snapshot.skybot_fields,
                 )
             )
     return fields

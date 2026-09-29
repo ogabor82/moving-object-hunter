@@ -23,6 +23,7 @@ from app.services.ztf_service import (
     find_observation_sequence,
 )
 from app.validation.data import load_field_data
+from app.validation.acceptance import run_acceptance
 from app.validation.end_to_end import load_canonical_fields, run_end_to_end
 from app.validation.evaluate import evaluate_field
 from app.validation.models import TargetSelectionRule, ValidationField
@@ -148,3 +149,20 @@ def test_live_end_to_end_identifies_canonical_targets_in_field_c() -> None:
     assert report.misidentified == 0
     assert report.correctly_identified >= 1
     assert report.passed
+
+
+@pytest.mark.skipif(
+    os.getenv("RUN_ZTF_INTEGRATION") != "1",
+    reason="Also set RUN_ZTF_INTEGRATION=1 to query the live IRSA service.",
+)
+def test_live_scientific_acceptance_field_c_with_frozen_skybot() -> None:
+    [field] = [
+        field
+        for field in load_canonical_fields()
+        if field.field_id.startswith("C-2018-10-06")
+    ]
+
+    report = run_acceptance([field], regression_floor=5)
+
+    assert report.passed, report.verdict_reason
+    assert report.passed_targets == 5

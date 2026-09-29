@@ -54,4 +54,29 @@ target as best match.
 - SkyBoT ephemerides change as orbits are updated (the SkyBoT database is
   updated daily). The JSON keeps the exact predictions used, but a re-run
   queries SkyBoT again and may differ slightly (sub-arcsec for well-known
-  orbits). A replay-from-snapshot mode was not built for AS-022.
+  orbits). The AS-024 acceptance replays these frozen predictions by
+  default.
+
+## AS-023 end-to-end run
+
+`python -m app.validation.end_to_end --out-json validation/results/as023_end_to_end.json --out-md validation/results/as023_end_to_end.md`
+
+Runs the production path live (IRSA metadata by product id → PSF catalogs
+→ stationary matching → tracklets → live SkyBoT `identify_tracklets`) on
+the 21 canonical primary targets. PASS when at least one target is
+identified correctly and none is misidentified. Exit code 0 = PASS.
+
+## AS-024 scientific acceptance
+
+`python -m app.validation.acceptance --out-json validation/results/as024_acceptance.json --out-md validation/results/as024_acceptance.md [--live-skybot]`
+
+Per target, levels from 05 – Scientific Validation: A software, B geometric
+(tracklet at the predicted positions, ≥ 3 detections, accepted fit),
+C astrometric (every detection ≤ 1.0" from the frozen prediction,
+|rate − predicted| ≤ 0.02"/min, |PA − predicted| ≤ 2°), D identification
+(KNOWN with the target's designation). Tolerances and their derivation are
+in `app/validation/acceptance.py`. Suite PASS: no misidentified target, no
+identified target outside tolerance, and ≥ 16 passing targets (AS-022
+regression floor, not a scientific requirement). By default SkyBoT is
+replayed from the AS-022 snapshot so PASS/FAIL does not drift with the
+SkyBoT database. Exit code 0 = PASS.
