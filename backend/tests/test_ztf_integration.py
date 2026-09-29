@@ -3,7 +3,9 @@ from io import BytesIO
 
 import pytest
 from astropy.io import fits
+from fastapi.testclient import TestClient
 
+from app.main import app
 from app.models.matching import StationaryMatchingConfig
 from app.models.observation import Observation
 from app.models.tracklet import TrackletBuildConfig
@@ -127,3 +129,24 @@ def test_live_irsa_sequence_to_tracklets_pipeline() -> None:
     assert result.diagnostics.frame_count == len(observations)
     assert result.diagnostics.tracklet_count == len(result.tracklets)
     assert all(len(tracklet.detections) >= 3 for tracklet in result.tracklets)
+
+
+def test_live_observation_search_endpoint() -> None:
+    client = TestClient(app)
+
+    response = client.get(
+        "/api/observations/search",
+        params={
+            "ra": HARDCODED_RA_DEGREES,
+            "dec": HARDCODED_DEC_DEGREES,
+            "radius_deg": 0.05,
+            "start_time": "2018-04-11T00:00:00Z",
+            "end_time": "2018-04-12T00:00:00Z",
+        },
+    )
+
+    assert response.status_code == 200
+    body = response.json()
+    assert body["count"] >= 3
+    times = [o["observed_at"] for o in body["observations"]]
+    assert times == sorted(times)

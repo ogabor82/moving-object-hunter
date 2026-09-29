@@ -88,10 +88,14 @@ def fetch_ztf_metadata(
     start_jd: float,
     end_jd: float,
     client: httpx.Client | None = None,
+    size_degrees: float | None = None,
 ) -> list[dict[str, str]]:
-    """Fetch metadata of all ZTF science exposures covering a sky position.
+    """Fetch metadata of ZTF science exposures at a sky position.
 
-    The time window is [start_jd, end_jd) in Julian Date.
+    The time window is [start_jd, end_jd) in Julian Date. Without
+    `size_degrees` the exposures covering the position are returned; with
+    it, those overlapping a box of that full width (IRSA IBE SIZE, degrees,
+    INTERSECT=OVERLAPS) centred on the position.
     """
     params = {
         "POS": f"{ra_degrees},{dec_degrees}",
@@ -99,6 +103,9 @@ def fetch_ztf_metadata(
         "COLUMNS": ",".join(METADATA_COLUMNS),
         "ct": "csv",
     }
+    if size_degrees is not None:
+        params["SIZE"] = f"{size_degrees}"
+        params["INTERSECT"] = "OVERLAPS"
     request = client.get if client is not None else httpx.get
 
     try:
@@ -209,6 +216,43 @@ def fetch_observations(
         raise ZTFServiceError(f"IRSA returned no metadata for pid(s) {missing}.")
     return sorted(
         observations,
+        key=lambda observation: (observation.observed_at, observation.product_id),
+    )
+
+
+def search_observations(
+    ra_degrees: float,
+    dec_degrees: float,
+    radius_degrees: float,
+    start_jd: float,
+    end_jd: float,
+    client: httpx.Client | None = None,
+) -> list[Observation]:
+    """Time-ordered ZTF observations near a position in [start_jd, end_jd).
+
+    IRSA IBE searches rectangular regions, so the query uses the box of
+    side 2 * radius that circumscribes the requested circle; exposures that
+    only touch the box corners outside the circle can be included.
+    """
+    if not 0.0 <= ra_degrees < 360.0:
+        raise ValueError("ra_degrees must be in [0, 360).")
+    if not -90.0 <= dec_degrees <= 90.0:
+        raise ValueError("dec_degrees must be in [-90, 90].")
+    if radius_degrees <= 0:
+        raise ValueError("radius_degrees must be positive.")
+    if not start_jd < end_jd:
+        raise ValueError("start_jd must be earlier than end_jd.")
+
+    rows = fetch_ztf_metadata(
+        ra_degrees,
+        dec_degrees,
+        start_jd,
+        end_jd,
+        client,
+        size_degrees=2 * radius_degrees,
+    )
+    return sorted(
+        (map_ztf_metadata_to_observation(row) for row in rows),
         key=lambda observation: (observation.observed_at, observation.product_id),
     )
 
