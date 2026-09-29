@@ -46,6 +46,11 @@ QUERY = {
 }
 
 
+@pytest.fixture(autouse=True)
+def no_retry_delay(monkeypatch: pytest.MonkeyPatch) -> None:
+    monkeypatch.setattr("app.services.skybot_service.time.sleep", lambda _: None)
+
+
 def query_with(handler) -> list:
     with httpx.Client(transport=httpx.MockTransport(handler)) as client:
         return query_skybot_cone(**QUERY, client=client)
@@ -142,3 +147,46 @@ def test_invalid_query_is_rejected_before_calling_skybot(override: dict) -> None
     with httpx.Client(transport=httpx.MockTransport(handler)) as client:
         with pytest.raises(ValueError):
             query_skybot_cone(**{**QUERY, **override}, client=client)
+
+
+def counting_handler(responses: list):
+    calls = []
+
+    def handler(request: httpx.Request) -> httpx.Response:
+        calls.append(request)
+        return responses[min(len(calls), len(responses)) - 1]
+
+    return handler, calls
+
+
+def test_transient_error_flag_is_retried_then_succeeds() -> None:
+    crash = httpx.Response(200, json={"flag": -1, "message": "SIGBUS"})
+    handler, calls = counting_handler(
+        [crash, httpx.Response(200, json=SKYBOT_ROWS)]
+    )
+
+    assert query_with(handler) == SKYBOT_ROWS
+    assert len(calls) == 2
+
+
+def test_server_error_is_retried_up_to_max_attempts() -> None:
+    handler, calls = counting_handler([httpx.Response(503, text="down")])
+
+    with pytest.raises(SkyBoTServiceError, match="HTTP 503"):
+        query_with(handler)
+    assert len(calls) == 3
+
+
+def test_bad_request_is_not_retried() -> None:
+    handler, calls = counting_handler(
+        [httpx.Response(400, json={"flag": -1, "message": "Bad request"})]
+    )
+
+    with pytest.raises(SkyBoTServiceError, match="HTTP 400"):
+        query_with(handler)
+    assert len(calls) == 1
+
+
+def test_max_attempts_must_be_positive() -> None:
+    with pytest.raises(ValueError, match="max_attempts"):
+        query_skybot_cone(**QUERY, max_attempts=0)

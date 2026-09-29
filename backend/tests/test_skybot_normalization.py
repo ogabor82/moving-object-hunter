@@ -11,6 +11,11 @@ from app.services.skybot_service import (
 from tests.test_skybot_query import QUERY, SKYBOT_ROWS
 
 
+@pytest.fixture(autouse=True)
+def no_retry_delay(monkeypatch: pytest.MonkeyPatch) -> None:
+    monkeypatch.setattr("app.services.skybot_service.time.sleep", lambda _: None)
+
+
 def test_numbered_object_is_normalized() -> None:
     [numbered, _], rejected = normalize_skybot_rows(SKYBOT_ROWS)
 

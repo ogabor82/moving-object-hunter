@@ -14,9 +14,12 @@ https://ssp.imcce.fr/webservices/skybot/api/conesearch/
 
 Observed service behaviour (live, 2026-09): no objects -> HTTP 204 with an
 empty body; bad request -> HTTP 400 with {"flag": -1, ...}; some server
-errors -> HTTP 200 with {"flag": -1, ...}. Only a JSON list is a result.
+errors -> HTTP 200 with {"flag": -1, ...}, intermittently for queries that
+succeed on retry. Only a JSON list is a result.
 """
 
+import time
+from collections.abc import Callable
 from typing import Any
 
 import astropy.units as u
@@ -46,6 +49,10 @@ class SkyBoTServiceError(RuntimeError):
     """Raised when SkyBoT cannot answer; never means "no known objects"."""
 
 
+class _TransientSkyBoTError(SkyBoTServiceError):
+    """A SkyBoT failure worth retrying."""
+
+
 def query_skybot_cone(
     ra_degrees: float,
     dec_degrees: float,
@@ -54,13 +61,19 @@ def query_skybot_cone(
     observer: str = ZTF_OBSERVATORY_CODE,
     client: httpx.Client | None = None,
     timeout_seconds: float = 120.0,
+    max_attempts: int = 3,
+    retry_delay_seconds: float = 2.0,
 ) -> list[dict[str, Any]]:
     """Return SkyBoT's raw known-object rows for a field at an epoch.
 
     An empty list means SkyBoT answered that no known object is in the
     field. Any failure (timeout, HTTP error, SkyBoT error flag, unexpected
-    payload) raises SkyBoTServiceError.
+    payload) raises SkyBoTServiceError. Transient failures (timeouts,
+    connection errors, HTTP 5xx, error flag on HTTP 200) are retried up to
+    `max_attempts` times in total.
     """
+    if max_attempts < 1:
+        raise ValueError("max_attempts must be at least 1.")
     _validate_query(ra_degrees, dec_degrees, radius_degrees, epoch_jd_utc)
     params = {
         "-ep": f"{epoch_jd_utc:.8f}",
@@ -77,19 +90,39 @@ def query_skybot_cone(
     }
     request = client.get if client is not None else httpx.get
 
+    for attempt in range(1, max_attempts + 1):
+        try:
+            return _query_once(request, params, timeout_seconds)
+        except _TransientSkyBoTError:
+            if attempt == max_attempts:
+                raise
+            time.sleep(retry_delay_seconds)
+    raise AssertionError("unreachable")
+
+
+def _query_once(
+    request: Callable[..., httpx.Response],
+    params: dict[str, str],
+    timeout_seconds: float,
+) -> list[dict[str, Any]]:
     try:
         response = request(
             SKYBOT_CONESEARCH_URL, params=params, timeout=timeout_seconds
         )
     except httpx.TimeoutException as exc:
-        raise SkyBoTServiceError(f"SkyBoT request timed out: {exc}") from exc
+        raise _TransientSkyBoTError(f"SkyBoT request timed out: {exc}") from exc
     except httpx.HTTPError as exc:
-        raise SkyBoTServiceError(f"SkyBoT request failed: {exc}") from exc
+        raise _TransientSkyBoTError(f"SkyBoT request failed: {exc}") from exc
 
     if response.status_code == 204:
         return []
     if response.status_code != 200:
-        raise SkyBoTServiceError(
+        error_type = (
+            _TransientSkyBoTError
+            if response.status_code >= 500
+            else SkyBoTServiceError
+        )
+        raise error_type(
             f"SkyBoT request failed with HTTP {response.status_code}: "
             f"{_error_message(response)}"
         )
@@ -100,7 +133,9 @@ def query_skybot_cone(
         raise SkyBoTServiceError("SkyBoT response is not valid JSON.") from exc
 
     if isinstance(payload, dict):
-        raise SkyBoTServiceError(
+        # Observed live: intermittent server crashes (e.g. SIGBUS) reported
+        # as HTTP 200 with flag -1; the same query succeeds on retry.
+        raise _TransientSkyBoTError(
             "SkyBoT reported an error: "
             f"{str(payload.get('message', payload))[:300]}"
         )
