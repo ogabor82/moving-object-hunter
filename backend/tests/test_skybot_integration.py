@@ -3,7 +3,9 @@ import os
 from pathlib import Path
 
 import pytest
+from fastapi.testclient import TestClient
 
+from app.main import app
 from app.models.identification import IdentificationConfig, IdentificationStatus
 from app.models.matching import StationaryMatchingConfig
 from app.models.tracklet import TrackletBuildConfig
@@ -166,3 +168,28 @@ def test_live_scientific_acceptance_field_c_with_frozen_skybot() -> None:
 
     assert report.passed, report.verdict_reason
     assert report.passed_targets == 5
+
+
+@pytest.mark.skipif(
+    os.getenv("RUN_ZTF_INTEGRATION") != "1",
+    reason="Also set RUN_ZTF_INTEGRATION=1 to query the live IRSA service.",
+)
+def test_live_api_build_then_identify_1995_dh() -> None:
+    client = TestClient(app)
+    build = client.post(
+        "/api/tracklets/build",
+        json={"observation_ids": [465423434215, 465467854215, 465495204215]},
+    ).json()
+
+    results = [
+        client.post(f"/api/tracklets/{t['tracklet_id']}/identify").json()
+        for t in build["tracklets"]
+        if t["status"] == "tracklet_built"
+    ]
+
+    known = [
+        r["identification"]["best_match"]["designation"]
+        for r in results
+        if r["identification"]["status"] == "known"
+    ]
+    assert "48606" in known

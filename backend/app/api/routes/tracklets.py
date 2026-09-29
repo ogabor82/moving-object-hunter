@@ -5,11 +5,15 @@ from pydantic import BaseModel, Field, field_validator
 
 from app.api.errors import ApiError, ErrorResponse
 from app.api.tracklet_store import TrackletStore, get_tracklet_store
+from app.models.identification import IdentificationConfig, TrackletIdentification
+from app.models.known_object import KnownObjectField
 from app.models.observation import Observation
 from app.models.pipeline_config import EXPERIMENTAL_DEFAULT_CONFIG, PipelineConfig
 from app.models.tracklet import Tracklet, TrackletBuildDiagnostics
 from app.services.catalog_service import CatalogNormalizationError
+from app.services.identification_service import identify_tracklets
 from app.services.pipeline_service import build_tracklets_from_observations
+from app.services.skybot_service import SkyBoTServiceError
 from app.services.ztf_service import (
     InsufficientFramesError,
     ObservationNotFoundError,
@@ -104,4 +108,65 @@ def build(
         candidate_counts=[frame.candidate_count for frame in result.candidate_frames],
         diagnostics=result.build.diagnostics,
         tracklets=tracklets,
+    )
+
+
+class IdentifyRequest(BaseModel):
+    match_radius_arcsec: float | None = Field(
+        default=None,
+        gt=0,
+        description="Defaults to the match radius of the build's config",
+    )
+
+
+class IdentifyResponse(BaseModel):
+    tracklet_id: str
+    config: IdentificationConfig
+    identification: TrackletIdentification
+    skybot_fields: list[KnownObjectField]
+
+
+@router.post(
+    "/{tracklet_id}/identify",
+    response_model=IdentifyResponse,
+    responses={404: {"model": ErrorResponse}, 502: {"model": ErrorResponse}},
+)
+def identify(
+    tracklet_id: str,
+    request: IdentifyRequest | None = None,
+    store: TrackletStore = Depends(get_tracklet_store),
+) -> IdentifyResponse:
+    """Identify one built tracklet against SkyBoT (live, one query per frame).
+
+    Status is known / unknown / ambiguous (05 – Scientific Validation);
+    unknown is not a discovery. A SkyBoT failure is a 502, never unknown.
+    """
+    stored = store.get(tracklet_id)
+    if stored is None:
+        raise ApiError(
+            404,
+            "TRACKLET_NOT_FOUND",
+            f"Tracklet {tracklet_id} is not known (built tracklets are kept "
+            "in memory for the most recent builds only).",
+        )
+    radius = (
+        request.match_radius_arcsec
+        if request is not None and request.match_radius_arcsec is not None
+        else stored.config.match_radius_arcsec
+    )
+    config = IdentificationConfig(match_radius_arcsec=radius)
+
+    try:
+        result = identify_tracklets([stored.tracklet], stored.observations, config)
+    except SkyBoTServiceError as exc:
+        raise ApiError(502, "SKYBOT_LOOKUP_FAILED", str(exc)) from exc
+    except ValueError as exc:
+        raise ApiError(400, "IDENTIFICATION_FAILED", str(exc)) from exc
+
+    [identification] = result.identifications
+    return IdentifyResponse(
+        tracklet_id=tracklet_id,
+        config=config,
+        identification=identification,
+        skybot_fields=result.fields,
     )
