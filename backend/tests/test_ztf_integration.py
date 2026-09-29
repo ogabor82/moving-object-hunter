@@ -7,9 +7,14 @@ from astropy.io import fits
 from app.models.observation import Observation
 from app.services.catalog_service import normalize_psf_catalog
 from app.services.ztf_service import (
+    HARDCODED_DEC_DEGREES,
+    HARDCODED_END_JD,
+    HARDCODED_RA_DEGREES,
+    HARDCODED_START_JD,
     fetch_hardcoded_ztf_observations,
     fetch_psf_catalog,
     fetch_science_image,
+    find_observation_sequence,
 )
 
 
@@ -55,3 +60,16 @@ def test_live_irsa_full_observation_normalization() -> None:
     assert len(result.detections) + len(result.rejected_rows) == len(
         catalog.rows
     )
+
+
+def test_live_irsa_observation_sequence() -> None:
+    observations = find_observation_sequence(
+        HARDCODED_RA_DEGREES,
+        HARDCODED_DEC_DEGREES,
+        HARDCODED_START_JD,
+        HARDCODED_END_JD,
+    )
+
+    assert len(observations) >= 3
+    times = [observation.observed_at for observation in observations]
+    assert times == sorted(times)

@@ -37,6 +37,8 @@ METADATA_COLUMNS = (
     "imgtypecode",
 )
 MAX_RESULTS = 10
+# Minimum frames for a tracklet sequence (04 – Baby Steps, AS-010).
+MIN_SEQUENCE_FRAMES = 3
 
 SCIENCE_IMAGE_SUFFIX = "sciimg.fits"
 PSF_CATALOG_SUFFIX = "psfcat.fits"
@@ -63,6 +65,10 @@ class ZTFServiceError(RuntimeError):
     """Raised when the IRSA ZTF metadata query cannot be completed."""
 
 
+class InsufficientFramesError(ZTFServiceError):
+    """Raised when a sky position has too few observations for a sequence."""
+
+
 class ZTFMetadataMappingError(ValueError):
     """Raised when a ZTF metadata row cannot be mapped to an Observation."""
 
@@ -75,15 +81,20 @@ class ZTFPSFCatalog:
     magnitude_zero_point: float | None
 
 
-def fetch_hardcoded_ztf_metadata(
+def fetch_ztf_metadata(
+    ra_degrees: float,
+    dec_degrees: float,
+    start_jd: float,
+    end_jd: float,
     client: httpx.Client | None = None,
 ) -> list[dict[str, str]]:
-    """Fetch the first metadata rows for the fixed AS-003 sky/time window."""
+    """Fetch metadata of all ZTF science exposures covering a sky position.
+
+    The time window is [start_jd, end_jd) in Julian Date.
+    """
     params = {
-        "POS": f"{HARDCODED_RA_DEGREES},{HARDCODED_DEC_DEGREES}",
-        "WHERE": (
-            f"obsjd >= {HARDCODED_START_JD} AND obsjd < {HARDCODED_END_JD}"
-        ),
+        "POS": f"{ra_degrees},{dec_degrees}",
+        "WHERE": f"obsjd >= {start_jd} AND obsjd < {end_jd}",
         "COLUMNS": ",".join(METADATA_COLUMNS),
         "ct": "csv",
     }
@@ -100,7 +111,21 @@ def fetch_hardcoded_ztf_metadata(
         )
 
     rows = csv.DictReader(StringIO(response.text))
-    return [dict(row) for row in rows][:MAX_RESULTS]
+    return [dict(row) for row in rows]
+
+
+def fetch_hardcoded_ztf_metadata(
+    client: httpx.Client | None = None,
+) -> list[dict[str, str]]:
+    """Fetch the first metadata rows for the fixed AS-003 sky/time window."""
+    rows = fetch_ztf_metadata(
+        HARDCODED_RA_DEGREES,
+        HARDCODED_DEC_DEGREES,
+        HARDCODED_START_JD,
+        HARDCODED_END_JD,
+        client,
+    )
+    return rows[:MAX_RESULTS]
 
 
 def map_ztf_metadata_to_observation(raw: Mapping[str, str]) -> Observation:
@@ -142,6 +167,35 @@ def fetch_hardcoded_ztf_observations(
     """Fetch and map the fixed AS-003 query to domain observations."""
     rows = fetch_hardcoded_ztf_metadata(client)
     return [map_ztf_metadata_to_observation(row) for row in rows]
+
+
+def find_observation_sequence(
+    ra_degrees: float,
+    dec_degrees: float,
+    start_jd: float,
+    end_jd: float,
+    min_frames: int = MIN_SEQUENCE_FRAMES,
+    client: httpx.Client | None = None,
+) -> list[Observation]:
+    """Find the time-ordered ZTF observations covering one sky position.
+
+    Raises InsufficientFramesError when fewer than `min_frames` exist.
+    """
+    if not start_jd < end_jd:
+        raise ValueError("start_jd must be earlier than end_jd.")
+
+    rows = fetch_ztf_metadata(ra_degrees, dec_degrees, start_jd, end_jd, client)
+    observations = sorted(
+        (map_ztf_metadata_to_observation(row) for row in rows),
+        key=lambda observation: (observation.observed_at, observation.product_id),
+    )
+    if len(observations) < min_frames:
+        raise InsufficientFramesError(
+            f"Found {len(observations)} ZTF observation(s) at "
+            f"RA={ra_degrees}, Dec={dec_degrees}; at least {min_frames} "
+            "are required."
+        )
+    return observations
 
 
 def _build_science_product_url(observation: Observation, suffix: str) -> str:
