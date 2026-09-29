@@ -5,6 +5,7 @@ import numpy
 
 from app.models.frame_sources import FrameSources
 from app.models.matching import (
+    CandidateFrame,
     FrameMatchResult,
     StationaryMatchingConfig,
     StationaryMatchResult,
@@ -62,3 +63,20 @@ def match_stationary_sources(
             for frame, flags in zip(frames, matched)
         ],
     )
+
+
+def extract_moving_candidates(
+    match_result: StationaryMatchResult,
+) -> list[CandidateFrame]:
+    """Per-frame moving-source candidates: sources left after matching.
+
+    No quality filtering (flags, SNR, shape) is applied here; that is a
+    separate, not yet decided science step.
+    """
+    return [
+        CandidateFrame(
+            observation=frame.observation,
+            candidates=frame.unmatched,
+        )
+        for frame in match_result.frames
+    ]

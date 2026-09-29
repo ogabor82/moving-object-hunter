@@ -1,4 +1,4 @@
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, computed_field
 
 from app.models.observation import Observation
 from app.models.source_detection import SourceDetection
@@ -27,3 +27,15 @@ class StationaryMatchResult(BaseModel):
 
     config: StationaryMatchingConfig
     frames: list[FrameMatchResult]
+
+
+class CandidateFrame(BaseModel):
+    """Moving-source candidates of one frame, i.e. its unmatched sources."""
+
+    observation: Observation
+    candidates: list[SourceDetection]
+
+    @computed_field
+    @property
+    def candidate_count(self) -> int:
+        return len(self.candidates)
