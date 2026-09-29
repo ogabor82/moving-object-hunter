@@ -5,6 +5,7 @@ import pytest
 from astropy.io import fits
 
 from app.models.observation import Observation
+from app.services.catalog_service import normalize_psf_catalog
 from app.services.ztf_service import (
     fetch_hardcoded_ztf_observations,
     fetch_psf_catalog,
@@ -42,3 +43,15 @@ def test_live_irsa_psf_catalog_retrieval() -> None:
 
     assert len(catalog.rows) > 0
     assert catalog.magnitude_zero_point is not None
+
+
+def test_live_irsa_full_observation_normalization() -> None:
+    observation = fetch_hardcoded_ztf_observations()[0]
+    catalog = fetch_psf_catalog(observation)
+
+    result = normalize_psf_catalog(observation, catalog)
+
+    assert result.detections
+    assert len(result.detections) + len(result.rejected_rows) == len(
+        catalog.rows
+    )
