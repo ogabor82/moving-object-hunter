@@ -2,7 +2,7 @@ import os
 
 import pytest
 
-from app.services.skybot_service import query_skybot_cone
+from app.services.skybot_service import query_known_objects, query_skybot_cone
 
 
 pytestmark = [
@@ -28,3 +28,11 @@ def test_live_skybot_cone_search_returns_known_objects() -> None:
 
     assert rows
     assert "2001 HM48" in {row["Name"] for row in rows}
+
+
+def test_live_skybot_rows_normalize_without_rejections() -> None:
+    field = query_known_objects(**POC_FIELD)
+
+    assert field.objects
+    assert field.rejected_rows == []
+    assert "285862" in {ephemeris.designation for ephemeris in field.objects}

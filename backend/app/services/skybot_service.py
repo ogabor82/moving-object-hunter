@@ -19,7 +19,16 @@ errors -> HTTP 200 with {"flag": -1, ...}. Only a JSON list is a result.
 
 from typing import Any
 
+import astropy.units as u
 import httpx
+from astropy.coordinates import Angle
+from pydantic import ValidationError
+
+from app.models.known_object import (
+    KnownObjectEphemeris,
+    KnownObjectField,
+    RejectedSkyBoTRow,
+)
 
 
 SKYBOT_CONESEARCH_URL = "https://ssp.imcce.fr/webservices/skybot/api/conesearch.php"
@@ -130,3 +139,98 @@ def _error_message(response: httpx.Response) -> str:
     if isinstance(payload, dict) and "message" in payload:
         return str(payload["message"])[:300]
     return response.text[:300]
+
+
+def normalize_skybot_rows(
+    rows: list[dict[str, Any]],
+) -> tuple[list[KnownObjectEphemeris], list[RejectedSkyBoTRow]]:
+    """Map raw SkyBoT JSON rows to KnownObjectEphemeris.
+
+    Field names follow the live JSON response ("RA (hms)", "DEC (dms)"),
+    which differs from the documented "RA (hour)"/"DEC (deg)". Rows that
+    cannot be parsed are returned as rejected instead of failing the field.
+    """
+    objects: list[KnownObjectEphemeris] = []
+    rejected: list[RejectedSkyBoTRow] = []
+    for index, row in enumerate(rows):
+        try:
+            objects.append(_normalize_row(row))
+        except ValidationError as exc:
+            rejected.append(
+                RejectedSkyBoTRow(
+                    row_index=index,
+                    reason="; ".join(
+                        f"{'.'.join(str(part) for part in error['loc'])}: "
+                        f"{error['msg']}"
+                        for error in exc.errors()
+                    ),
+                )
+            )
+        except (KeyError, TypeError, ValueError) as exc:
+            rejected.append(
+                RejectedSkyBoTRow(row_index=index, reason=f"unreadable row: {exc!r}")
+            )
+    return objects, rejected
+
+
+def query_known_objects(
+    ra_degrees: float,
+    dec_degrees: float,
+    radius_degrees: float,
+    epoch_jd_utc: float,
+    observer: str = ZTF_OBSERVATORY_CODE,
+    client: httpx.Client | None = None,
+) -> KnownObjectField:
+    """Query SkyBoT and return the normalized known objects of the field."""
+    rows = query_skybot_cone(
+        ra_degrees,
+        dec_degrees,
+        radius_degrees,
+        epoch_jd_utc,
+        observer=observer,
+        client=client,
+    )
+    objects, rejected = normalize_skybot_rows(rows)
+    return KnownObjectField(
+        epoch_jd_utc=epoch_jd_utc,
+        field_ra=ra_degrees,
+        field_dec=dec_degrees,
+        field_radius_degrees=radius_degrees,
+        observer=observer,
+        objects=objects,
+        rejected_rows=rejected,
+    )
+
+
+def _normalize_row(row: dict[str, Any]) -> KnownObjectEphemeris:
+    number = _parse_number(row.get("Num"))
+    name = str(row["Name"]).strip()
+    return KnownObjectEphemeris(
+        designation=str(number) if number is not None else name,
+        number=number,
+        name=name,
+        object_class=str(row["Class"]),
+        predicted_ra=float(
+            Angle(row["RA (hms)"], unit=u.hourangle).wrap_at(360 * u.deg).deg
+        ),
+        predicted_dec=float(Angle(row["DEC (dms)"], unit=u.deg).deg),
+        v_magnitude=_optional_float(row.get("VMag (mag)")),
+        position_error_arcsec=float(row["Err (arcsec)"]),
+        distance_from_field_center_arcsec=float(row["d (arcsec)"]),
+        motion_ra_cos_dec_arcsec_per_hour=float(row["dRA (arcsec/h)"]),
+        motion_dec_arcsec_per_hour=float(row["dDEC (arcsec/h)"]),
+        observer_distance_au=_optional_float(row.get("dg (ua)")),
+        heliocentric_distance_au=_optional_float(row.get("dh (ua)")),
+    )
+
+
+def _parse_number(value: Any) -> int | None:
+    if value is None or str(value).strip() in ("", "-"):
+        return None
+    return int(value)
+
+
+def _optional_float(value: Any) -> float | None:
+    if value is None or str(value).strip() in ("", "-"):
+        return None
+    return float(value)
