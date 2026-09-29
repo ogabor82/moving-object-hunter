@@ -5,7 +5,10 @@ import pytest
 from astropy.io import fits
 
 from app.models.observation import Observation
-from app.services.catalog_service import normalize_psf_catalog
+from app.services.catalog_service import (
+    load_frame_sources,
+    normalize_psf_catalog,
+)
 from app.services.ztf_service import (
     HARDCODED_DEC_DEGREES,
     HARDCODED_END_JD,
@@ -73,3 +76,17 @@ def test_live_irsa_observation_sequence() -> None:
     assert len(observations) >= 3
     times = [observation.observed_at for observation in observations]
     assert times == sorted(times)
+
+
+def test_live_irsa_multi_frame_source_loading() -> None:
+    observations = find_observation_sequence(
+        HARDCODED_RA_DEGREES,
+        HARDCODED_DEC_DEGREES,
+        HARDCODED_START_JD,
+        HARDCODED_END_JD,
+    )
+
+    frames = load_frame_sources(observations)
+
+    assert len(frames) == len(observations)
+    assert all(frame.source_count > 0 for frame in frames)

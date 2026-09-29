@@ -1,11 +1,13 @@
-from collections.abc import Mapping
+from collections.abc import Mapping, Sequence
 from dataclasses import dataclass
 
+import httpx
 from pydantic import ValidationError
 
+from app.models.frame_sources import FrameSources
 from app.models.observation import Observation
 from app.models.source_detection import SourceDetection
-from app.services.ztf_service import ZTFPSFCatalog
+from app.services.ztf_service import ZTFPSFCatalog, fetch_psf_catalog
 
 
 # ZTF PSF catalog flag value for sources on/near an image edge
@@ -64,6 +66,29 @@ def normalize_psf_catalog(
             )
 
     return CatalogNormalizationResult(detections, rejected_rows)
+
+
+def load_frame_sources(
+    observations: Sequence[Observation],
+    client: httpx.Client | None = None,
+) -> list[FrameSources]:
+    """Fetch and normalize the PSF catalog of every observation, in order.
+
+    A frame whose catalog cannot be fetched or normalized fails the load.
+    """
+    frames = []
+    for observation in observations:
+        result = normalize_psf_catalog(
+            observation, fetch_psf_catalog(observation, client)
+        )
+        frames.append(
+            FrameSources(
+                observation=observation,
+                detections=result.detections,
+                rejected_row_count=len(result.rejected_rows),
+            )
+        )
+    return frames
 
 
 def _map_psf_row(
