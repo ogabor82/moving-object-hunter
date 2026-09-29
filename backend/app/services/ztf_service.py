@@ -70,6 +70,10 @@ class InsufficientFramesError(ZTFServiceError):
     """Raised when a sky position has too few observations for a sequence."""
 
 
+class ObservationNotFoundError(ZTFServiceError):
+    """Raised when IRSA has no metadata for requested product ids."""
+
+
 class ZTFMetadataMappingError(ValueError):
     """Raised when a ZTF metadata row cannot be mapped to an Observation."""
 
@@ -213,7 +217,9 @@ def fetch_observations(
         set(product_ids) - {observation.product_id for observation in observations}
     )
     if missing:
-        raise ZTFServiceError(f"IRSA returned no metadata for pid(s) {missing}.")
+        raise ObservationNotFoundError(
+            f"IRSA returned no metadata for pid(s) {missing}."
+        )
     return sorted(
         observations,
         key=lambda observation: (observation.observed_at, observation.product_id),

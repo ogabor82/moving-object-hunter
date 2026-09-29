@@ -150,3 +150,18 @@ def test_live_observation_search_endpoint() -> None:
     assert body["count"] >= 3
     times = [o["observed_at"] for o in body["observations"]]
     assert times == sorted(times)
+
+
+def test_live_tracklet_build_endpoint() -> None:
+    client = TestClient(app)
+
+    response = client.post(
+        "/api/tracklets/build",
+        json={"observation_ids": [465423434215, 465467854215, 465495204215]},
+    )
+
+    assert response.status_code == 200
+    body = response.json()
+    assert body["source_counts"] == [13455, 12553, 8678]
+    assert body["diagnostics"]["tracklet_count"] == len(body["tracklets"]) > 0
+    assert all(t["tracklet_id"].startswith(body["build_id"]) for t in body["tracklets"])
