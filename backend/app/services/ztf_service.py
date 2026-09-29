@@ -6,7 +6,6 @@ from io import BytesIO, StringIO
 
 import httpx
 from astropy.io import fits
-from astropy.table import Table
 
 from app.models.observation import Observation
 
@@ -235,29 +234,41 @@ def read_psf_catalog(payload: bytes) -> ZTFPSFCatalog:
     """Parse a ZTF PSF-fit catalog FITS payload into rows and zero point."""
     try:
         with fits.open(BytesIO(payload), memmap=False) as hdul:
-            if PSF_CATALOG_EXTENSION not in hdul:
+            catalog_hdu = (
+                hdul[PSF_CATALOG_EXTENSION]
+                if PSF_CATALOG_EXTENSION in hdul
+                else None
+            )
+            if not isinstance(catalog_hdu, fits.BinTableHDU):
                 raise ZTFServiceError(
                     "ZTF PSF catalog FITS has no "
                     f"{PSF_CATALOG_EXTENSION} extension."
                 )
-            table = Table.read(hdul[PSF_CATALOG_EXTENSION])
+            missing_columns = [
+                name
+                for name in PSF_CATALOG_COLUMNS
+                if name not in catalog_hdu.columns.names
+            ]
+            if missing_columns:
+                raise ZTFServiceError(
+                    "ZTF PSF catalog is missing column(s): "
+                    + ", ".join(missing_columns)
+                )
+            columns = {
+                name: catalog_hdu.data[name].tolist()
+                if catalog_hdu.data is not None
+                else []
+                for name in PSF_CATALOG_COLUMNS
+            }
             magzp = hdul[0].header.get("MAGZP")
     except (OSError, ValueError) as exc:
         raise ZTFServiceError(
             f"ZTF PSF catalog response is not a valid FITS file: {exc}"
         ) from exc
 
-    missing_columns = [
-        name for name in PSF_CATALOG_COLUMNS if name not in table.colnames
-    ]
-    if missing_columns:
-        raise ZTFServiceError(
-            "ZTF PSF catalog is missing column(s): " + ", ".join(missing_columns)
-        )
-
     rows = [
-        {name: row[name].item() for name in PSF_CATALOG_COLUMNS}
-        for row in table
+        dict(zip(PSF_CATALOG_COLUMNS, values))
+        for values in zip(*columns.values())
     ]
     return ZTFPSFCatalog(
         rows=rows,
