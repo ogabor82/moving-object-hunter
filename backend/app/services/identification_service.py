@@ -3,7 +3,7 @@ from collections.abc import Mapping, Sequence
 import astropy.units as u
 import httpx
 import numpy
-from astropy.coordinates import SkyCoord
+from astropy.coordinates import SkyCoord, angular_separation
 from astropy.time import Time
 
 from app.models.identification import (
@@ -19,7 +19,6 @@ from app.models.known_object import KnownObjectEphemeris, KnownObjectField
 from app.models.observation import Observation
 from app.models.source_detection import SourceDetection
 from app.models.tracklet import Tracklet
-from app.services.astrometry import angular_distance_arcsec
 from app.services.skybot_service import ZTF_OBSERVATORY_CODE, query_known_objects
 
 
@@ -120,11 +119,7 @@ def _identify(
         )
 
     candidates = sorted(
-        (
-            match
-            for match in _candidate_matches(tracklet, fields)
-            if match.max_residual_arcsec <= match_radius_arcsec
-        ),
+        _candidate_matches(tracklet, fields, match_radius_arcsec),
         key=lambda match: (match.max_residual_arcsec, match.rms_residual_arcsec),
     )
 
@@ -166,8 +161,13 @@ def _identify(
 def _candidate_matches(
     tracklet: Tracklet,
     fields: Mapping[int, KnownObjectField],
+    match_radius_arcsec: float,
 ) -> list[KnownObjectMatch]:
-    """One match per known object present in every detection's frame."""
+    """Known objects in every detection's frame and within the radius of each.
+
+    Residuals of all common objects are computed at once with numpy; model
+    objects are built only for the (few) matches.
+    """
     per_frame = [
         {
             ephemeris.designation: ephemeris
@@ -175,16 +175,35 @@ def _candidate_matches(
         }
         for item in tracklet.detections
     ]
-    common = set.intersection(*(set(frame) for frame in per_frame))
+    common = sorted(set.intersection(*(set(frame) for frame in per_frame)))
+    if not common:
+        return []
+
+    # residual_table[detection, object] in arcsec.
+    residual_table = numpy.array(
+        [
+            _separations_arcsec(
+                item.detection,
+                [frame[designation] for designation in common],
+            )
+            for item, frame in zip(tracklet.detections, per_frame)
+        ]
+    )
+    within = numpy.flatnonzero(
+        residual_table.max(axis=0) <= match_radius_arcsec
+    )
 
     matches = []
-    for designation in sorted(common):
+    for column in within:
+        designation = common[column]
         ephemerides = [frame[designation] for frame in per_frame]
+        values = residual_table[:, column]
         residuals = [
-            _residual(item.detection, ephemeris, fields)
-            for item, ephemeris in zip(tracklet.detections, ephemerides)
+            _residual(item.detection, ephemeris, fields, float(value))
+            for item, ephemeris, value in zip(
+                tracklet.detections, ephemerides, values
+            )
         ]
-        values = numpy.array([residual.residual_arcsec for residual in residuals])
         reference = ephemerides[0]
         matches.append(
             KnownObjectMatch(
@@ -203,10 +222,29 @@ def _candidate_matches(
     return matches
 
 
+def _separations_arcsec(
+    detection: SourceDetection,
+    ephemerides: Sequence[KnownObjectEphemeris],
+) -> numpy.ndarray:
+    """Great-circle distances (Vincenty) from a detection to predictions."""
+    return (
+        numpy.rad2deg(
+            angular_separation(
+                numpy.deg2rad(detection.ra),
+                numpy.deg2rad(detection.dec),
+                numpy.deg2rad([e.predicted_ra for e in ephemerides]),
+                numpy.deg2rad([e.predicted_dec for e in ephemerides]),
+            )
+        )
+        * 3600.0
+    )
+
+
 def _residual(
     detection: SourceDetection,
     ephemeris: KnownObjectEphemeris,
     fields: Mapping[int, KnownObjectField],
+    residual_arcsec: float,
 ) -> DetectionResidual:
     return DetectionResidual(
         observation_product_id=detection.observation_product_id,
@@ -215,12 +253,7 @@ def _residual(
         observed_dec=detection.dec,
         predicted_ra=ephemeris.predicted_ra,
         predicted_dec=ephemeris.predicted_dec,
-        residual_arcsec=angular_distance_arcsec(
-            detection.ra,
-            detection.dec,
-            ephemeris.predicted_ra,
-            ephemeris.predicted_dec,
-        ),
+        residual_arcsec=residual_arcsec,
     )
 
 
