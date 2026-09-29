@@ -35,6 +35,7 @@ METADATA_COLUMNS = (
     "pid",
     "filefracday",
     "imgtypecode",
+    "exptime",
 )
 MAX_RESULTS = 10
 # Minimum frames for a tracklet sequence (04 – Baby Steps, AS-010).
@@ -154,6 +155,7 @@ def map_ztf_metadata_to_observation(raw: Mapping[str, str]) -> Observation:
             ccd_id=raw["ccdid"],
             quadrant_id=raw["qid"],
             file_frac_day=raw["filefracday"],
+            exposure_seconds=raw.get("exptime") or None,
         )
     except (TypeError, ValueError) as exc:
         raise ZTFMetadataMappingError(

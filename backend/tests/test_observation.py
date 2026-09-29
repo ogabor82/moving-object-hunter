@@ -20,6 +20,7 @@ RAW_METADATA_ROW = {
     "pid": "465467854215",
     "filefracday": "20180411467847",
     "imgtypecode": "o",
+    "exptime": "30.000",
 }
 
 
@@ -34,6 +35,7 @@ def test_valid_ztf_row_maps_to_observation() -> None:
         ccd_id=11,
         quadrant_id=3,
         file_frac_day="20180411467847",
+        exposure_seconds=30.0,
     )
 
 
@@ -69,4 +71,24 @@ def test_observation_is_json_serializable() -> None:
         "ccd_id": 11,
         "quadrant_id": 3,
         "file_frac_day": "20180411467847",
+        "exposure_seconds": 30.0,
     }
+
+
+def test_mid_exposure_is_half_the_exposure_after_start() -> None:
+    observation = map_ztf_metadata_to_observation(RAW_METADATA_ROW)
+
+    assert observation.mid_exposure_at == datetime(
+        2018, 4, 11, 11, 13, 58, tzinfo=timezone.utc
+    )
+
+
+def test_missing_exposure_time_is_allowed_but_has_no_mid_exposure() -> None:
+    raw = dict(RAW_METADATA_ROW)
+    raw.pop("exptime")
+
+    observation = map_ztf_metadata_to_observation(raw)
+
+    assert observation.exposure_seconds is None
+    with pytest.raises(ValueError, match="exposure_seconds"):
+        observation.mid_exposure_at
