@@ -180,16 +180,17 @@ def test_live_api_build_then_identify_1995_dh() -> None:
         "/api/tracklets/build",
         json={"observation_ids": [465423434215, 465467854215, 465495204215]},
     ).json()
+    # 1995 DH is the accepted-fit tracklet with the highest minimum SNR in
+    # this field (Phase D); identifying only it keeps SkyBoT calls to 3.
+    brightest = max(
+        (t for t in build["tracklets"] if t["status"] == "tracklet_built"),
+        key=lambda t: min(d["detection"]["snr"] for d in t["detections"]),
+    )
 
-    results = [
-        client.post(f"/api/tracklets/{t['tracklet_id']}/identify").json()
-        for t in build["tracklets"]
-        if t["status"] == "tracklet_built"
-    ]
+    response = client.post(f"/api/tracklets/{brightest['tracklet_id']}/identify")
 
-    known = [
-        r["identification"]["best_match"]["designation"]
-        for r in results
-        if r["identification"]["status"] == "known"
-    ]
-    assert "48606" in known
+    assert response.status_code == 200, response.json()
+    identification = response.json()["identification"]
+    assert identification["status"] == "known"
+    assert identification["best_match"]["designation"] == "48606"
+    assert identification["best_match"]["max_residual_arcsec"] < 1.0
