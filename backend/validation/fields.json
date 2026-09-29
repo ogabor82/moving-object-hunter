@@ -1,0 +1,46 @@
+[
+  {
+    "field_id": "POC-2018-04-11-535-c11-q3",
+    "description": "POC field; 3 zr frames 10:09-11:53 UTC; ~60 deg east of opposition.",
+    "product_ids": [
+      465423434215,
+      465467854215,
+      465495204215
+    ],
+    "selection_note": "Existing AS-003 POC sequence (IRSA API documentation example position); all frames of the quadrant-night. Controls: 48606 (1995 DH), identified in Phase D; 285862 (2001 HM48), detected in 2 of 3 frames in Phase D.",
+    "control_designations": [
+      "48606",
+      "285862"
+    ]
+  },
+  {
+    "field_id": "B-2019-01-25-565-c13-q3",
+    "description": "Near opposition (Jan 2019); frames g, r, r over 75 min.",
+    "product_ids": [
+      754204845015,
+      754226595015,
+      754256675015
+    ],
+    "selection_note": "First quadrant-night with >= 3 exposures found by an IRSA POS search at (112.0, +21.5) for 2019-01; all frames of the quadrant-night."
+  },
+  {
+    "field_id": "C-2018-10-06-448-c9-q3",
+    "description": "At opposition (Oct 2018); frames r, i, g over 69 min.",
+    "product_ids": [
+      643291653415,
+      643328593415,
+      643339443415
+    ],
+    "selection_note": "Only quadrant-night with >= 3 exposures found by an IRSA POS search at (15.0, +5.0) for 2018-10; all frames of the quadrant-night."
+  },
+  {
+    "field_id": "D-2019-06-02-281-c16-q3",
+    "description": "Crowded low-galactic-latitude field near opposition (Jun 2019); 3 zr frames over 92 min.",
+    "product_ids": [
+      882334526215,
+      882366576215,
+      882398636215
+    ],
+    "selection_note": "IRSA POS search at (262.0, -22.0) for 2019-06 found one high-cadence quadrant-night (143 zr frames); pre-registered rule: first, middle (index 71) and last frame."
+  }
+]

@@ -1,4 +1,6 @@
+import json
 import os
+from pathlib import Path
 
 import pytest
 
@@ -20,6 +22,11 @@ from app.services.ztf_service import (
     HARDCODED_START_JD,
     find_observation_sequence,
 )
+from app.validation.data import load_field_data
+from app.validation.evaluate import evaluate_field
+from app.validation.models import TargetSelectionRule, ValidationField
+from app.validation.runner import REFERENCE_CONFIG
+from app.validation.selection import select_targets
 
 
 pytestmark = [
@@ -95,3 +102,30 @@ def test_live_pipeline_identifies_known_asteroid_1995_dh() -> None:
         identification.best_match.designation for identification in known
     }
     assert result.diagnostics.tracklet_count == len(tracklets)
+
+
+@pytest.mark.skipif(
+    os.getenv("RUN_ZTF_INTEGRATION") != "1",
+    reason="Also set RUN_ZTF_INTEGRATION=1 to query the live IRSA service.",
+)
+def test_live_validation_poc_field_recovers_control_1995_dh() -> None:
+    fields = json.loads(
+        (Path(__file__).parents[1] / "validation" / "fields.json").read_text()
+    )
+    field = ValidationField.model_validate(fields[0])
+    data = load_field_data(field)
+    targets = select_targets(
+        field.field_id,
+        data.frame_metadata,
+        data.skybot_fields,
+        TargetSelectionRule(),
+        frozenset(field.control_designations),
+    )
+
+    result = evaluate_field(
+        field.field_id, data.frames, data.skybot_fields, targets, REFERENCE_CONFIG
+    )
+
+    outcomes = {outcome.designation: outcome for outcome in result.targets}
+    assert outcomes["48606"].recovered
+    assert outcomes["285862"].detected_frames == 2
