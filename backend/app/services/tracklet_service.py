@@ -1,5 +1,7 @@
+import math
 from collections import Counter
 from collections.abc import Sequence
+from dataclasses import dataclass
 from itertools import combinations
 
 import astropy.units as u
@@ -13,12 +15,23 @@ from app.models.tracklet import (
     TrackletBuildDiagnostics,
     TrackletBuildResult,
     TrackletDetection,
+    TrackletStatus,
 )
 from app.services.astrometry import find_pairs_within
 
 
 # Seed pairs are extended in chunks to bound memory use.
 SEED_CHUNK_SIZE = 200_000
+
+
+@dataclass(frozen=True)
+class TrackletFit:
+    """Constant-rate linear motion fit of a tracklet's detections."""
+
+    angular_velocity_arcsec_per_min: float
+    position_angle_deg: float
+    rms_residual_arcsec: float
+    max_residual_arcsec: float
 
 
 def build_tracklets(
@@ -88,15 +101,16 @@ def build_tracklets(
     maximal.sort(key=lambda members: (members[0][0], members[0][1], members))
 
     tracklets = [
-        Tracklet(
-            tracklet_id=f"trk-{number:04d}",
-            detections=[
+        _make_tracklet(
+            f"trk-{number:04d}",
+            [
                 TrackletDetection(
                     time=times[frame_index],
                     detection=frames[frame_index].candidates[candidate_index],
                 )
                 for frame_index, candidate_index in members
             ],
+            config.max_residual_arcsec,
         )
         for number, members in enumerate(maximal, start=1)
     ]
@@ -114,9 +128,81 @@ def build_tracklets(
             subsets_removed=len(unique) - len(maximal),
             ambiguous_extensions=ambiguous_extensions,
             tracklet_count=len(tracklets),
+            rejected_tracklet_count=sum(
+                1
+                for tracklet in tracklets
+                if tracklet.status is TrackletStatus.REJECTED
+            ),
             detections_in_multiple_tracklets=sum(
                 1 for count in usage.values() if count > 1
             ),
+        ),
+    )
+
+
+def fit_tracklet_motion(detections: Sequence[TrackletDetection]) -> TrackletFit:
+    """Least-squares constant-rate fit in offsets around detection 0.
+
+    Offsets are Astropy SkyOffsetFrame coordinates centred on the first
+    detection (east, north in arcsec; flat to well below 0.01 arcsec over
+    tracklet scales of arcminutes). East(t) and north(t) are fitted with
+    straight lines; residuals are distances from the fitted positions.
+    """
+    if len(detections) < 3:
+        raise ValueError("A tracklet fit needs at least three detections.")
+
+    coords = SkyCoord(
+        [item.detection.ra for item in detections] * u.deg,
+        [item.detection.dec for item in detections] * u.deg,
+    )
+    offsets = coords.transform_to(coords[0].skyoffset_frame())
+    east = offsets.lon.wrap_at(180 * u.deg).to_value(u.arcsec)
+    north = offsets.lat.to_value(u.arcsec)
+    minutes = numpy.array(
+        [
+            (item.time - detections[0].time).total_seconds() / 60.0
+            for item in detections
+        ]
+    )
+
+    east_rate, east_start = numpy.polyfit(minutes, east, 1)
+    north_rate, north_start = numpy.polyfit(minutes, north, 1)
+    residuals = numpy.hypot(
+        east - (east_start + east_rate * minutes),
+        north - (north_start + north_rate * minutes),
+    )
+    position_angle = math.degrees(math.atan2(east_rate, north_rate)) % 360.0
+
+    return TrackletFit(
+        angular_velocity_arcsec_per_min=float(math.hypot(east_rate, north_rate)),
+        position_angle_deg=0.0 if position_angle >= 360.0 else position_angle,
+        rms_residual_arcsec=float(numpy.sqrt(numpy.mean(residuals**2))),
+        max_residual_arcsec=float(residuals.max()),
+    )
+
+
+def _make_tracklet(
+    tracklet_id: str,
+    detections: list[TrackletDetection],
+    max_residual_arcsec: float,
+) -> Tracklet:
+    fit = fit_tracklet_motion(detections)
+    is_poor_fit = fit.max_residual_arcsec > max_residual_arcsec
+    return Tracklet(
+        tracklet_id=tracklet_id,
+        detections=detections,
+        angular_velocity_arcsec_per_min=fit.angular_velocity_arcsec_per_min,
+        position_angle_deg=fit.position_angle_deg,
+        fit_rms_residual_arcsec=fit.rms_residual_arcsec,
+        fit_max_residual_arcsec=fit.max_residual_arcsec,
+        status=(
+            TrackletStatus.REJECTED if is_poor_fit else TrackletStatus.TRACKLET_BUILT
+        ),
+        status_reason=(
+            f"max fit residual {fit.max_residual_arcsec:.2f} arcsec exceeds "
+            f"{max_residual_arcsec} arcsec"
+            if is_poor_fit
+            else None
         ),
     )
 

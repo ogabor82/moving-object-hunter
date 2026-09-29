@@ -11,7 +11,11 @@ from app.services.tracklet_service import build_tracklets
 from tests.synthetic_frames import ARCSEC, make_frame
 
 
-CONFIG = TrackletBuildConfig(max_rate_arcsec_per_min=5.0, search_radius_arcsec=2.0)
+CONFIG = TrackletBuildConfig(
+    max_rate_arcsec_per_min=5.0,
+    search_radius_arcsec=2.0,
+    max_residual_arcsec=1.0,
+)
 
 
 def candidate_frames(
@@ -261,11 +265,26 @@ def test_result_is_json_serializable() -> None:
 @pytest.mark.parametrize(
     "fields",
     [
-        {"max_rate_arcsec_per_min": 0.0, "search_radius_arcsec": 1.0},
-        {"max_rate_arcsec_per_min": 1.0, "search_radius_arcsec": 0.0},
+        {
+            "max_rate_arcsec_per_min": 0.0,
+            "search_radius_arcsec": 1.0,
+            "max_residual_arcsec": 1.0,
+        },
+        {
+            "max_rate_arcsec_per_min": 1.0,
+            "search_radius_arcsec": 0.0,
+            "max_residual_arcsec": 1.0,
+        },
         {
             "max_rate_arcsec_per_min": 1.0,
             "search_radius_arcsec": 1.0,
+            "max_residual_arcsec": 0.0,
+        },
+        {"max_rate_arcsec_per_min": 1.0, "search_radius_arcsec": 1.0},
+        {
+            "max_rate_arcsec_per_min": 1.0,
+            "search_radius_arcsec": 1.0,
+            "max_residual_arcsec": 1.0,
             "min_detections": 2,
         },
     ],
