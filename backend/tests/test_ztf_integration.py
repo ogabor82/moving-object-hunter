@@ -7,6 +7,7 @@ from astropy.io import fits
 from app.models.observation import Observation
 from app.services.ztf_service import (
     fetch_hardcoded_ztf_observations,
+    fetch_psf_catalog,
     fetch_science_image,
 )
 
@@ -32,3 +33,12 @@ def test_live_irsa_query_and_science_image_retrieval() -> None:
     with fits.open(BytesIO(payload)) as hdul:
         assert hdul[0].data is not None
         assert len(hdul[0].data.shape) == 2
+
+
+def test_live_irsa_psf_catalog_retrieval() -> None:
+    observations = fetch_hardcoded_ztf_observations()
+
+    catalog = fetch_psf_catalog(observations[0])
+
+    assert len(catalog.rows) > 0
+    assert catalog.magnitude_zero_point is not None

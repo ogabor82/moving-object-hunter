@@ -1,10 +1,12 @@
 import csv
 from collections.abc import Mapping
+from dataclasses import dataclass
 from datetime import datetime
 from io import BytesIO, StringIO
 
 import httpx
 from astropy.io import fits
+from astropy.table import Table
 
 from app.models.observation import Observation
 
@@ -37,6 +39,26 @@ METADATA_COLUMNS = (
 )
 MAX_RESULTS = 10
 
+SCIENCE_IMAGE_SUFFIX = "sciimg.fits"
+PSF_CATALOG_SUFFIX = "psfcat.fits"
+PSF_CATALOG_EXTENSION = "PSF_CATALOG"
+# Column definitions: ZSDS Explanatory Supplement, section 10.6.
+PSF_CATALOG_COLUMNS = (
+    "sourceid",
+    "xpos",
+    "ypos",
+    "ra",
+    "dec",
+    "flux",
+    "sigflux",
+    "mag",
+    "sigmag",
+    "snr",
+    "chi",
+    "sharp",
+    "flags",
+)
+
 
 class ZTFServiceError(RuntimeError):
     """Raised when the IRSA ZTF metadata query cannot be completed."""
@@ -44,6 +66,14 @@ class ZTFServiceError(RuntimeError):
 
 class ZTFMetadataMappingError(ValueError):
     """Raised when a ZTF metadata row cannot be mapped to an Observation."""
+
+
+@dataclass(frozen=True)
+class ZTFPSFCatalog:
+    """Raw ZTF PSF-fit catalog rows with the header photometric zero point."""
+
+    rows: list[dict[str, float | int]]
+    magnitude_zero_point: float | None
 
 
 def fetch_hardcoded_ztf_metadata(
@@ -115,12 +145,12 @@ def fetch_hardcoded_ztf_observations(
     return [map_ztf_metadata_to_observation(row) for row in rows]
 
 
-def build_science_image_url(observation: Observation) -> str:
-    """Build the IRSA archive URL for an Observation's primary science image."""
+def _build_science_product_url(observation: Observation, suffix: str) -> str:
+    """Build the IRSA archive URL for one science-exposure product file."""
     file_frac_day = observation.file_frac_day
     if len(file_frac_day) != 14 or not file_frac_day.isdigit():
         raise ZTFServiceError(
-            "Cannot build ZTF science image URL: file_frac_day must contain "
+            "Cannot build ZTF science product URL: file_frac_day must contain "
             "14 digits."
         )
 
@@ -130,7 +160,7 @@ def build_science_image_url(observation: Observation) -> str:
     filename = (
         f"ztf_{file_frac_day}_{observation.field:06d}_"
         f"{observation.filter_code}_c{observation.ccd_id:02d}_"
-        f"o_q{observation.quadrant_id}_sciimg.fits"
+        f"o_q{observation.quadrant_id}_{suffix}"
     )
     return (
         f"{ZTF_SCIENCE_DATA_BASE_URL}/{year}/{month_day}/"
@@ -138,29 +168,52 @@ def build_science_image_url(observation: Observation) -> str:
     )
 
 
+def build_science_image_url(observation: Observation) -> str:
+    """Build the IRSA archive URL for an Observation's primary science image."""
+    return _build_science_product_url(observation, SCIENCE_IMAGE_SUFFIX)
+
+
+def build_psf_catalog_url(observation: Observation) -> str:
+    """Build the IRSA archive URL for an Observation's PSF-fit source catalog."""
+    return _build_science_product_url(observation, PSF_CATALOG_SUFFIX)
+
+
+def _download_fits_product(
+    url: str,
+    label: str,
+    client: httpx.Client | None,
+) -> bytes:
+    """Download one ZTF FITS product and check that it looks like FITS."""
+    request = client.get if client is not None else httpx.get
+
+    try:
+        response = request(url, timeout=120.0)
+    except httpx.HTTPError as exc:
+        raise ZTFServiceError(f"{label} request failed: {exc}") from exc
+
+    if not response.is_success:
+        raise ZTFServiceError(
+            f"{label} request failed with HTTP {response.status_code}."
+        )
+
+    payload = response.content
+    if not payload:
+        raise ZTFServiceError(f"{label} response was empty.")
+    if not payload.startswith(b"SIMPLE  ="):
+        raise ZTFServiceError(f"{label} response is not a FITS file.")
+    return payload
+
+
 def fetch_science_image(
     observation: Observation,
     client: httpx.Client | None = None,
 ) -> bytes:
     """Download and minimally validate a ZTF single-exposure science FITS image."""
-    image_url = build_science_image_url(observation)
-    request = client.get if client is not None else httpx.get
-
-    try:
-        response = request(image_url, timeout=120.0)
-    except httpx.HTTPError as exc:
-        raise ZTFServiceError(f"ZTF science image request failed: {exc}") from exc
-
-    if not response.is_success:
-        raise ZTFServiceError(
-            f"ZTF science image request failed with HTTP {response.status_code}."
-        )
-
-    payload = response.content
-    if not payload:
-        raise ZTFServiceError("ZTF science image response was empty.")
-    if not payload.startswith(b"SIMPLE  ="):
-        raise ZTFServiceError("ZTF science image response is not a FITS file.")
+    payload = _download_fits_product(
+        build_science_image_url(observation),
+        "ZTF science image",
+        client,
+    )
 
     try:
         with fits.open(BytesIO(payload), memmap=False) as hdul:
@@ -176,3 +229,50 @@ def fetch_science_image(
         ) from exc
 
     return payload
+
+
+def read_psf_catalog(payload: bytes) -> ZTFPSFCatalog:
+    """Parse a ZTF PSF-fit catalog FITS payload into rows and zero point."""
+    try:
+        with fits.open(BytesIO(payload), memmap=False) as hdul:
+            if PSF_CATALOG_EXTENSION not in hdul:
+                raise ZTFServiceError(
+                    "ZTF PSF catalog FITS has no "
+                    f"{PSF_CATALOG_EXTENSION} extension."
+                )
+            table = Table.read(hdul[PSF_CATALOG_EXTENSION])
+            magzp = hdul[0].header.get("MAGZP")
+    except (OSError, ValueError) as exc:
+        raise ZTFServiceError(
+            f"ZTF PSF catalog response is not a valid FITS file: {exc}"
+        ) from exc
+
+    missing_columns = [
+        name for name in PSF_CATALOG_COLUMNS if name not in table.colnames
+    ]
+    if missing_columns:
+        raise ZTFServiceError(
+            "ZTF PSF catalog is missing column(s): " + ", ".join(missing_columns)
+        )
+
+    rows = [
+        {name: row[name].item() for name in PSF_CATALOG_COLUMNS}
+        for row in table
+    ]
+    return ZTFPSFCatalog(
+        rows=rows,
+        magnitude_zero_point=float(magzp) if magzp is not None else None,
+    )
+
+
+def fetch_psf_catalog(
+    observation: Observation,
+    client: httpx.Client | None = None,
+) -> ZTFPSFCatalog:
+    """Download and read the ZTF PSF-fit source catalog of an Observation."""
+    payload = _download_fits_product(
+        build_psf_catalog_url(observation),
+        "ZTF PSF catalog",
+        client,
+    )
+    return read_psf_catalog(payload)
