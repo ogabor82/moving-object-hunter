@@ -139,6 +139,7 @@ button:disabled {
 
 .blink-header {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   align-items: flex-end;
   gap: 1rem;
@@ -260,4 +261,109 @@ button:disabled {
 .hint {
   margin: 0.6rem 0 0;
   font-size: 12px;
+}
+
+.workspace {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+  align-items: flex-start;
+}
+
+.panel {
+  width: 22rem;
+  font-size: 12px;
+  border: 1px solid var(--border);
+  background: var(--panel);
+  padding: 0.25rem 0.8rem 0.6rem;
+}
+
+.panel h3 {
+  display: flex;
+  justify-content: space-between;
+  margin: 0.6rem 0 0.4rem;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.panel p {
+  margin: 0.3rem 0;
+}
+
+.toggle {
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+.toggle input {
+  accent-color: #ffb547;
+  vertical-align: middle;
+}
+
+.track-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+  margin: 0.3rem 0;
+}
+
+.facts {
+  display: grid;
+  grid-template-columns: 6rem 1fr;
+  gap: 0.1rem 0.5rem;
+  margin: 0.4rem 0;
+}
+
+.facts dt {
+  color: var(--muted);
+}
+
+.facts dd {
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+
+.detections {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 0.3rem;
+}
+
+.detections th,
+.detections td {
+  padding: 0.1rem 0.25rem;
+  text-align: right;
+  border-bottom: 1px solid var(--border);
+}
+
+.detections th {
+  color: var(--muted);
+  font-weight: normal;
+}
+
+.badge {
+  display: inline-block;
+  padding: 0 0.4rem;
+  border: 1px solid currentColor;
+  border-radius: 3px;
+  text-transform: uppercase;
+}
+
+.badge.known {
+  color: var(--accent);
+}
+
+.badge.unknown {
+  color: var(--muted);
+}
+
+.badge.ambiguous {
+  color: #ffb547;
+}
+
+.workspace > .blink {
+  width: 540px;
+  flex-shrink: 0;
 }

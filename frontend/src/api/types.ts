@@ -213,3 +213,23 @@ export interface FrameCutoutResponse {
   stretch: { method: 'zscale_linear'; vmin: number; vmax: number }
   pixels_base64: string
 }
+
+export interface SkyPosition {
+  ra: number
+  dec: number
+}
+
+/** Display pixel: 0-based (column, row) of the cutout, pixel centres at integers. */
+export interface DisplayPoint {
+  x: number
+  y: number
+}
+
+export interface ProjectResponse {
+  product_id: number
+  width: number
+  height: number
+  center_x: number
+  center_y: number
+  points: (DisplayPoint | null)[]
+}

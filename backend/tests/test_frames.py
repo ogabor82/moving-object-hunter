@@ -378,3 +378,116 @@ def test_unrenderable_cache_entry_is_refetched(monkeypatch, isolated_caches) -> 
     assert irsa.cutout_calls == 1
     cached = isolated_caches.get(LIVE_OBSERVATION.product_id, *CENTER, 90.0)
     assert cached is not None and cached.payload == CUTOUT
+
+
+# AS-030 overlay: sky positions → display pixels of the shown cutout.
+
+STAR = (CENTER[0], CENTER[1] + 5 * SCALE)  # the synthetic star, 5" north
+
+
+def rotated_cd(degrees: float) -> list[list[float]]:
+    """East-left/north-up in FITS, rotated by a few degrees (like ZTF)."""
+    c, s = numpy.cos(numpy.radians(degrees)), numpy.sin(numpy.radians(degrees))
+    return (numpy.array([[-SCALE, 0.0], [0.0, SCALE]]) @ [[c, -s], [s, c]]).tolist()
+
+
+PROJECTION_CASES = {**ORIENTATIONS, "rotated_1.4deg": rotated_cd(1.4)}
+
+
+@pytest.mark.parametrize("cd", PROJECTION_CASES.values(), ids=PROJECTION_CASES.keys())
+def test_projection_lands_on_the_displayed_source(cd) -> None:
+    frame = render_cutout(make_cutout(cd), *CENTER)
+    pixels = image(frame)
+    row, column = numpy.unravel_index(pixels.argmax(), pixels.shape)
+
+    columns, rows = frame.world_to_display_many([STAR[0], CENTER[0]], [STAR[1], CENTER[1]])
+
+    # The star's sky position falls on its brightest display pixel ...
+    assert (columns[0], rows[0]) == pytest.approx((column, row), abs=0.6)
+    # ... and the cutout centre on the reported alignment centre.
+    assert (columns[1], rows[1]) == pytest.approx(
+        (frame.center_x, frame.center_y), abs=1e-6
+    )
+    assert frame.world_to_display(*STAR) == pytest.approx(
+        (columns[0], rows[0]), abs=1e-9
+    )
+
+
+def test_projection_follows_north_up_east_left() -> None:
+    frame = render_cutout(make_cutout(ORIENTATIONS["transposed"], size=41), *CENTER)
+    east_ra = CENTER[0] + 4 * SCALE / numpy.cos(numpy.radians(CENTER[1]))
+    columns, rows = frame.world_to_display_many(
+        [CENTER[0], east_ra], [CENTER[1] + 4 * SCALE, CENTER[1]]
+    )
+
+    assert (columns[0], rows[0]) == pytest.approx(
+        (frame.center_x, frame.center_y - 4), abs=0.05
+    )  # north: up
+    assert (columns[1], rows[1]) == pytest.approx(
+        (frame.center_x - 4, frame.center_y), abs=0.05
+    )  # east: left
+
+
+def project_body(params, positions):
+    return {
+        **params,
+        "size_arcsec": 90.0,
+        "positions": [{"ra": ra, "dec": dec} for ra, dec in positions],
+    }
+
+
+@pytest.mark.parametrize("name", ORIENTATIONS)
+def test_project_endpoint_matches_cutout_endpoint(monkeypatch, name) -> None:
+    irsa = Irsa(monkeypatch, cutout=make_cutout(ORIENTATIONS[name]))
+    cutout_body = client.get("/api/frames/cutout", params=FROZEN_PARAMS).json()
+    irsa.outage()
+
+    response = client.post(
+        "/api/frames/project", json=project_body(FROZEN_PARAMS, [STAR, CENTER])
+    )
+
+    assert response.status_code == 200
+    assert response.headers["X-Cutout-Cache"] == "hit"
+    assert irsa.cutout_calls == 1  # no second download for the overlay
+    body = response.json()
+    pixels = numpy.frombuffer(
+        base64.b64decode(cutout_body["pixels_base64"]), dtype=numpy.uint8
+    ).reshape(cutout_body["height"], cutout_body["width"])
+    row, column = numpy.unravel_index(pixels.argmax(), pixels.shape)
+    star, centre = body["points"]
+    assert (star["x"], star["y"]) == pytest.approx((column, row), abs=0.6)
+    assert (centre["x"], centre["y"]) == pytest.approx(
+        (cutout_body["center_x"], cutout_body["center_y"])
+    )
+    for key in ("width", "height", "center_x", "center_y"):
+        assert body[key] == cutout_body[key]
+
+
+def test_project_endpoint_uncached_during_outage_is_an_error(monkeypatch) -> None:
+    Irsa(monkeypatch).outage()
+
+    response = client.post(
+        "/api/frames/project", json=project_body(PARAMS, [STAR])
+    )
+
+    assert response.status_code == 502
+    assert response.json()["error"]["code"] == "ZTF_METADATA_FAILED"
+
+
+@pytest.mark.parametrize(
+    "override",
+    [{"positions": [{"ra": 360.0, "dec": 0.0}]}, {"size_arcsec": 301}, {"dec": 91}],
+)
+def test_project_endpoint_validates_input(override) -> None:
+    body = {**project_body(PARAMS, [STAR]), **override}
+
+    assert client.post("/api/frames/project", json=body).status_code == 422
+
+
+def test_project_endpoint_accepts_no_positions(monkeypatch) -> None:
+    Irsa(monkeypatch)
+
+    response = client.post("/api/frames/project", json=project_body(PARAMS, []))
+
+    assert response.status_code == 200
+    assert response.json()["points"] == []

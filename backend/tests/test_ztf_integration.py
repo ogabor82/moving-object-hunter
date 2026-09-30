@@ -12,6 +12,7 @@ from app.main import app
 from app.models.matching import StationaryMatchingConfig
 from app.models.observation import Observation
 from app.models.tracklet import TrackletBuildConfig
+from app.services.astrometry import angular_distance_arcsec
 from app.services.catalog_service import (
     load_frame_sources,
     normalize_psf_catalog,
@@ -230,3 +231,77 @@ def test_live_blink_frames_show_1995_dh_moving(monkeypatch, tmp_path) -> None:
         warm = client.get("/api/frames/cutout", params=response.request.url.params)
         assert warm.headers["X-Cutout-Cache"] == "hit"
         assert warm.json() == response.json()
+
+
+def test_live_overlay_marks_1995_dh_on_every_frame(monkeypatch, tmp_path) -> None:
+    """AS-030: the pipeline's 1995 DH tracklet, projected onto the preset's
+    real cutouts by /api/frames/project, sits on the bright moving source,
+    and moves north like the frozen SkyBoT prediction."""
+    preset = next(p for p in load_blink_presets() if p.designation == "48606")
+    report = ValidationReport.model_validate_json(AS022_REPORT.read_text())
+    target = next(
+        t for s in report.snapshots for t in s.targets if t.designation == "48606"
+    )
+    cache = CutoutCache(tmp_path)
+    monkeypatch.setitem(
+        app.dependency_overrides, frames_route.get_cutout_cache, lambda: cache
+    )
+    client = TestClient(app)
+    build = client.post(
+        "/api/tracklets/build", json={"observation_ids": preset.product_ids}
+    )
+    assert build.status_code == 200, build.json()
+    tracklets = build.json()["tracklets"]
+    # The tracklet whose detections lie on the frozen prediction (< 2").
+    [dh] = [
+        t
+        for t in tracklets
+        if all(
+            angular_distance_arcsec(
+                d["detection"]["ra"], d["detection"]["dec"], ra, dec
+            )
+            < 2.0
+            for d, (ra, dec) in zip(t["detections"], target.predicted_positions)
+        )
+    ]
+    assert [d["detection"]["observation_product_id"] for d in dh["detections"]] == (
+        preset.product_ids
+    )
+
+    shown = []
+    for epoch, product_id in enumerate(preset.product_ids):
+        params = {
+            "product_id": product_id,
+            "ra": preset.center_ra,
+            "dec": preset.center_dec,
+            "size_arcsec": preset.size_arcsec,
+        }
+        body = client.get("/api/frames/cutout", params=params).json()
+        projected = client.post(
+            "/api/frames/project",
+            json={
+                **params,
+                "positions": [
+                    {"ra": d["detection"]["ra"], "dec": d["detection"]["dec"]}
+                    for d in dh["detections"]
+                ],
+            },
+        )
+        assert projected.status_code == 200
+        assert projected.headers["X-Cutout-Cache"] == "hit"
+        point = projected.json()["points"][epoch]
+        pixels = numpy.frombuffer(
+            base64.b64decode(body["pixels_base64"]), dtype=numpy.uint8
+        ).reshape(body["height"], body["width"])
+        c, r = int(round(point["x"])), int(round(point["y"]))
+        # Same criterion as the AS-029 blink test (the source saturates).
+        assert pixels[r - 1 : r + 2, c - 1 : c + 2].max() > numpy.percentile(
+            pixels, 95
+        )
+        shown.append((point["x"], point["y"]))
+
+    # North up: y decreases; the fitted position angle agrees (~347 deg).
+    assert shown[0][1] - shown[2][1] > 20
+    assert dh["position_angle_deg"] == pytest.approx(
+        target.predicted_position_angle_deg, abs=2.0
+    )

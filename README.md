@@ -26,7 +26,8 @@ python3 -m venv .venv
 
 API: `GET /api/health`, `GET /api/observations/search`,
 `POST /api/tracklets/build`, `POST /api/tracklets/{tracklet_id}/identify`,
-`GET /api/frames/presets`, `GET /api/frames/cutout`
+`GET /api/frames/presets`, `GET /api/frames/cutout`,
+`POST /api/frames/project`
 (interactive docs at http://127.0.0.1:8000/docs). The pipeline endpoints
 call IRSA and SkyBoT live; a tracklet build downloads one PSF catalog per
 frame and can take from seconds to a few minutes.
@@ -59,6 +60,19 @@ sequences blink even while IRSA is down; the `X-Cutout-Cache` response
 header says `hit` or `miss`. An uncached cutout during an IRSA outage is
 still an error (502). The browser keeps loaded frames in memory for the
 session.
+
+Tracklet overlay (AS-030): **Build tracklets** runs the existing pipeline
+(`POST /api/tracklets/build`, live IRSA PSF catalogs, experimental default
+config) on the sequence's frames; the detections of every tracklet are
+projected onto each shown cutout by `POST /api/frames/project` (same WCS and
+flips as the displayed pixels, from the cached cutout). The panel lists the
+tracklets lying inside the field of view (built ones first, nearest the
+centre selected by default), with speed, position angle and fit residuals,
+and identifies the selected one with `POST /api/tracklets/{id}/identify`
+(live SkyBoT: known / unknown / ambiguous with per-detection residuals; a
+SkyBoT failure is shown as an error, never as unknown). The overlay marks
+this epoch's detection with an open crosshair, the other epochs with rings,
+and the motion with a dashed arrow; toggle it with `o`.
 
 ## Tests
 

@@ -5,6 +5,8 @@ import type {
   FrameCutoutResponse,
   HealthResponse,
   IdentifyResponse,
+  ProjectResponse,
+  SkyPosition,
   ObservationSearchParams,
   ObservationSearchResponse,
   TrackletBuildRequest,
@@ -124,4 +126,16 @@ export function getFrameCutout(
     size_arcsec: String(params.size_arcsec),
   })
   return request<FrameCutoutResponse>(`/frames/cutout?${query}`, { signal })
+}
+
+/** Display pixels of sky positions on the cutout shown for `params`. */
+export function projectPositions(
+  params: FrameCutoutParams,
+  positions: SkyPosition[],
+): Promise<ProjectResponse> {
+  return request<ProjectResponse>('/frames/project', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ ...params, positions }),
+  })
 }

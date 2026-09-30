@@ -8,6 +8,7 @@ from app.models.pipeline_config import EXPERIMENTAL_DEFAULT_CONFIG
 from app.services import pipeline_service
 from app.services.catalog_service import CatalogNormalizationError
 from app.services.ztf_service import ObservationNotFoundError, ZTFServiceError
+from app.validation.presets import load_frozen_observations
 from tests.test_validation_tooling import (
     PRODUCT_IDS,
     STAR_A,
@@ -183,3 +184,43 @@ def test_store_evicts_oldest_build() -> None:
     assert store.get("b.x") is not None
     assert store.get("c.x") is not None
     assert store.get("missing") is None
+
+
+def test_build_of_frozen_sequence_needs_no_metadata_lookup(
+    store, frames, monkeypatch
+) -> None:
+    frozen = load_frozen_observations()
+    poc_ids = [465495204215, 465423434215, 465467854215]  # 1995 DH, unordered
+
+    def metadata_down(ids):
+        raise ZTFServiceError("IRSA ZTF metadata request failed: HTTP 504")
+
+    monkeypatch.setattr(route, "fetch_observations", metadata_down)
+    seen = []
+    monkeypatch.setattr(
+        pipeline_service,
+        "load_frame_sources",
+        lambda observations, client: seen.append(observations) or frames,
+    )
+
+    response = client.post("/api/tracklets/build", json={"observation_ids": poc_ids})
+
+    assert response.status_code == 200
+    assert seen == [[frozen[pid] for pid in sorted(poc_ids)]]  # time order
+    assert [o["product_id"] for o in response.json()["observations"]] == sorted(poc_ids)
+
+
+def test_build_of_mixed_sequence_uses_irsa_metadata(store, frames, monkeypatch) -> None:
+    calls = []
+    monkeypatch.setattr(
+        route,
+        "fetch_observations",
+        lambda ids: calls.append(ids) or [frame.observation for frame in frames],
+    )
+
+    client.post(
+        "/api/tracklets/build",
+        json={"observation_ids": [465423434215, 465467854215, 999]},
+    )
+
+    assert calls == [[465423434215, 465467854215, 999]]

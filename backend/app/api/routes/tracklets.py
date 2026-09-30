@@ -21,6 +21,7 @@ from app.services.ztf_service import (
     ZTFServiceError,
     fetch_observations,
 )
+from app.validation.presets import load_frozen_observations
 
 
 router = APIRouter(prefix="/tracklets", tags=["tracklets"])
@@ -77,7 +78,7 @@ def build(
     POST /api/tracklets/{tracklet_id}/identify while the build is kept.
     """
     try:
-        observations = fetch_observations(request.observation_ids)
+        observations = _observations(request.observation_ids)
     except ObservationNotFoundError as exc:
         raise ApiError(404, "NO_ZTF_OBSERVATIONS", str(exc)) from exc
     except (ZTFServiceError, ZTFMetadataMappingError) as exc:
@@ -109,6 +110,18 @@ def build(
         diagnostics=result.build.diagnostics,
         tracklets=tracklets,
     )
+
+
+def _observations(product_ids: list[int]) -> list[Observation]:
+    """Frozen validation metadata when every frame has it, else IRSA
+    (same order as fetch_observations: time, then product id)."""
+    frozen = load_frozen_observations()
+    if all(pid in frozen for pid in product_ids):
+        return sorted(
+            (frozen[pid] for pid in product_ids),
+            key=lambda observation: (observation.observed_at, observation.product_id),
+        )
+    return fetch_observations(product_ids)
 
 
 class IdentifyRequest(BaseModel):

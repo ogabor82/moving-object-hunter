@@ -1,4 +1,5 @@
 import { getFrameCutout } from './client'
+import { SessionCache } from './sessionCache'
 import type { FrameCutoutParams, FrameCutoutResponse } from './types'
 
 /** A cutout plus its decoded bitmap, ready to draw. */
@@ -7,12 +8,10 @@ export interface LoadedFrame {
   bitmap: HTMLCanvasElement
 }
 
-// Session cache: every cutout is requested at most once per page load.
-// Failed requests are dropped so that a retry asks the backend again.
-const pending = new Map<string, Promise<LoadedFrame>>()
-const loaded = new Map<string, LoadedFrame>()
+// Every cutout is requested at most once per page load.
+const frames = new SessionCache<LoadedFrame>()
 
-function frameKey(params: FrameCutoutParams): string {
+export function frameKey(params: FrameCutoutParams): string {
   return [params.product_id, params.ra, params.dec, params.size_arcsec].join('|')
 }
 
@@ -35,7 +34,7 @@ function toBitmap(frame: FrameCutoutResponse): HTMLCanvasElement {
 
 /** An already loaded frame, without any request. */
 export function cachedFrame(params: FrameCutoutParams): LoadedFrame | undefined {
-  return loaded.get(frameKey(params))
+  return frames.get(frameKey(params))
 }
 
 /**
@@ -44,19 +43,7 @@ export function cachedFrame(params: FrameCutoutParams): LoadedFrame | undefined 
  * the background and warm the cache.
  */
 export function loadFrame(params: FrameCutoutParams): Promise<LoadedFrame> {
-  const key = frameKey(params)
-  const done = loaded.get(key)
-  if (done) return Promise.resolve(done)
-  let request = pending.get(key)
-  if (!request) {
-    request = getFrameCutout(params)
-      .then((data) => {
-        const frame = { data, bitmap: toBitmap(data) }
-        loaded.set(key, frame)
-        return frame
-      })
-      .finally(() => pending.delete(key))
-    pending.set(key, request)
-  }
-  return request
+  return frames.load(frameKey(params), () =>
+    getFrameCutout(params).then((data) => ({ data, bitmap: toBitmap(data) })),
+  )
 }

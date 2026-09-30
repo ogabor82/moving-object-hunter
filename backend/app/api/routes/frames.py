@@ -1,8 +1,9 @@
 import base64
+import math
 from functools import lru_cache
 
 from fastapi import APIRouter, Depends, Query, Response
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 
 from app.api.errors import ApiError, ErrorResponse
 from app.models.observation import Observation
@@ -31,6 +32,8 @@ from app.validation.presets import (
 router = APIRouter(prefix="/frames", tags=["frames"])
 
 MAX_CUTOUT_ARCSEC = 300.0
+# Bounds one projection request (a crowded-field build has ~17k detections).
+MAX_PROJECTED_POSITIONS = 50_000
 CACHE_HEADER = "X-Cutout-Cache"
 
 
@@ -110,6 +113,89 @@ def cutout(
     metadata comes from the frozen validation data or IRSA, the cutout from
     IRSA, and it is cached once it has rendered successfully.
     """
+    observation, frame, hit = _load_frame(product_id, ra, dec, size_arcsec, cache)
+    response.headers[CACHE_HEADER] = "hit" if hit else "miss"
+    return _response(observation, ra, dec, size_arcsec, frame)
+
+
+class SkyPosition(BaseModel):
+    ra: float = Field(ge=0.0, lt=360.0)
+    dec: float = Field(ge=-90.0, le=90.0)
+
+
+class ProjectRequest(BaseModel):
+    product_id: int
+    ra: float = Field(ge=0.0, lt=360.0, description="Cutout centre RA [deg]")
+    dec: float = Field(ge=-90.0, le=90.0, description="Cutout centre Dec [deg]")
+    size_arcsec: float = Field(default=90.0, gt=0.0, le=MAX_CUTOUT_ARCSEC)
+    positions: list[SkyPosition] = Field(max_length=MAX_PROJECTED_POSITIONS)
+
+
+class DisplayPoint(BaseModel):
+    x: float
+    y: float
+
+
+class ProjectResponse(BaseModel):
+    """Display pixels of sky positions on one cutout (null if not finite).
+
+    Same convention as `FrameCutoutResponse.center_x/center_y`: 0-based
+    display (column, row), pixel centres at integers, north up / east left.
+    """
+
+    product_id: int
+    width: int
+    height: int
+    center_x: float
+    center_y: float
+    points: list[DisplayPoint | None]
+
+
+@router.post(
+    "/project",
+    response_model=ProjectResponse,
+    responses={404: {"model": ErrorResponse}, 502: {"model": ErrorResponse}},
+)
+def project(
+    request: ProjectRequest,
+    response: Response,
+    cache: CutoutCache = Depends(get_cutout_cache),
+) -> ProjectResponse:
+    """Project sky positions (e.g. tracklet detections) onto a cutout.
+
+    Uses the WCS and orientation of exactly the cutout the viewer shows
+    (same cache entry, so no IRSA call once the frame is loaded).
+    """
+    _, frame, hit = _load_frame(
+        request.product_id, request.ra, request.dec, request.size_arcsec, cache
+    )
+    response.headers[CACHE_HEADER] = "hit" if hit else "miss"
+    columns, rows = frame.world_to_display_many(
+        [p.ra for p in request.positions], [p.dec for p in request.positions]
+    )
+    return ProjectResponse(
+        product_id=request.product_id,
+        width=frame.width,
+        height=frame.height,
+        center_x=frame.center_x,
+        center_y=frame.center_y,
+        points=[
+            DisplayPoint(x=float(x), y=float(y))
+            if math.isfinite(x) and math.isfinite(y)
+            else None
+            for x, y in zip(columns.tolist(), rows.tolist())
+        ],
+    )
+
+
+def _load_frame(
+    product_id: int,
+    ra: float,
+    dec: float,
+    size_arcsec: float,
+    cache: CutoutCache,
+) -> tuple[Observation, RenderedFrame, bool]:
+    """Rendered cutout from the cache or IRSA, and whether it was a hit."""
     cached = cache.get(product_id, ra, dec, size_arcsec)
     if cached is not None:
         try:
@@ -117,8 +203,7 @@ def cutout(
         except ImageRenderError:
             cache.discard(product_id, ra, dec, size_arcsec)
         else:
-            response.headers[CACHE_HEADER] = "hit"
-            return _response(cached.observation, ra, dec, size_arcsec, frame)
+            return cached.observation, frame, True
 
     try:
         observation = _observation(product_id)
@@ -134,8 +219,7 @@ def cutout(
         raise ApiError(502, "IMAGE_DOWNLOAD_FAILED", str(exc)) from exc
 
     cache.put(observation, ra, dec, size_arcsec, payload)
-    response.headers[CACHE_HEADER] = "miss"
-    return _response(observation, ra, dec, size_arcsec, frame)
+    return observation, frame, False
 
 
 def _response(

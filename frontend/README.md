@@ -3,7 +3,10 @@
 React + Vite + TypeScript frontend with a typed client for the backend API
 (`src/api/`). AS-029: a blink comparator for real ZTF frame cutouts of the
 frozen validation sequences (`src/components/BlinkComparator.tsx`), plus
-the backend connection status.
+the backend connection status. AS-030: tracklet + identification overlay
+and summary panel (`src/components/trackletOverlay.ts`, `TrackletPanel.tsx`);
+builds, projections, identifications and frames are memoised for the page
+session (`src/api/*Cache.ts`).
 
 ```
 npm install

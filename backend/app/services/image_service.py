@@ -16,8 +16,10 @@ The transformation is display-only and never changes the science data:
 """
 
 import math
+from collections.abc import Sequence
 from dataclasses import dataclass
 from io import BytesIO
+from typing import Any
 
 import numpy
 from astropy.io import fits
@@ -60,10 +62,22 @@ class RenderedFrame:
 
     def world_to_display(self, ra: float, dec: float) -> tuple[float, float]:
         """Display (column, row) of a sky position, 0-based, fractional."""
-        x, y = self._wcs.world_to_pixel_values(ra, dec)
+        columns, rows = self.world_to_display_many([ra], [dec])
+        return float(columns[0]), float(rows[0])
+
+    def world_to_display_many(
+        self, ra: Sequence[float], dec: Sequence[float]
+    ) -> tuple[numpy.ndarray, numpy.ndarray]:
+        """Display (columns, rows) of sky positions: the same WCS and
+        transpose/flips as the displayed pixels (0-based, pixel centres at
+        integers)."""
+        x, y = self._wcs.world_to_pixel_values(
+            numpy.asarray(ra, dtype=numpy.float64),
+            numpy.asarray(dec, dtype=numpy.float64),
+        )
         return _to_display(
-            float(x),
-            float(y),
+            numpy.asarray(x),
+            numpy.asarray(y),
             self._source_shape,
             self._transpose,
             self._flip_rows,
@@ -183,14 +197,17 @@ def _orientation(
 
 
 def _to_display(
-    x: float,
-    y: float,
+    x: Any,
+    y: Any,
     shape: tuple[int, int],
     transpose: bool,
     flip_rows: bool,
     flip_columns: bool,
-) -> tuple[float, float]:
-    """Map FITS array (x=column, y=row, 0-based) to display (column, row)."""
+) -> tuple[Any, Any]:
+    """Map FITS array (x=column, y=row, 0-based) to display (column, row).
+
+    Works elementwise on floats or numpy arrays.
+    """
     rows, columns = shape
     column, row = x, y
     if transpose:
