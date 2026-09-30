@@ -49,6 +49,17 @@ Display transform (backend `app/services/image_service.py`): per-frame
 ZScale + linear 8-bit stretch, north up / east left by flips only (no
 resampling); frames are aligned on the requested sky centre (≤ 0.5 px).
 
+Frame loading (AS-029.1): the frames of the frozen validation sequences
+take their IRSA metadata from the frozen AS-022 report, so they need no
+IRSA metadata lookup. Every cutout that downloaded and rendered is kept as
+raw FITS in a local disk cache (`backend/.cache/cutouts/`, override with
+`MOH_CUTOUT_CACHE_DIR`; git-ignored, safe to delete). A cached cutout is
+rendered by the same code as a fresh one and needs no IRSA call, so cached
+sequences blink even while IRSA is down; the `X-Cutout-Cache` response
+header says `hit` or `miss`. An uncached cutout during an IRSA outage is
+still an error (502). The browser keeps loaded frames in memory for the
+session.
+
 ## Tests
 
 ```

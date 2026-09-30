@@ -12,13 +12,14 @@ from fastapi.testclient import TestClient
 from app.api.routes import frames as route
 from app.main import app
 from app.models.observation import Observation
+from app.services.cutout_cache import CutoutCache
 from app.services.image_service import ImageRenderError, render_cutout
 from app.services.ztf_service import (
     ObservationNotFoundError,
     ZTFServiceError,
     fetch_science_cutout,
 )
-from app.validation.presets import load_blink_presets
+from app.validation.presets import load_blink_presets, load_frozen_observations
 
 
 SCALE = 1.0 / 3600  # 1 arcsec per pixel
@@ -33,6 +34,8 @@ OBSERVATION = Observation(
     file_frac_day="20180411423368",
     exposure_seconds=30.0,
 )
+# A frame outside the frozen validation data: needs an IRSA metadata lookup.
+LIVE_OBSERVATION = OBSERVATION.model_copy(update={"product_id": 123456789})
 
 
 def make_cutout(cd: list[list[float]], size: int = 21, nan: bool = False) -> bytes:
@@ -151,28 +154,65 @@ def test_presets_come_from_frozen_validation_data() -> None:
     assert dh.center_dec == pytest.approx(12.678, abs=0.01)
 
 
+def test_frozen_observations_cover_every_preset_frame() -> None:
+    frozen = load_frozen_observations()
+
+    assert {pid for p in load_blink_presets() for pid in p.product_ids} <= set(frozen)
+    assert frozen[OBSERVATION.product_id] == OBSERVATION
+
+
 client = TestClient(app)
 
 
 @pytest.fixture(autouse=True)
-def clear_observation_cache():
-    route._observation.cache_clear()
-    yield
-    route._observation.cache_clear()
+def isolated_caches(tmp_path):
+    route._irsa_observation.cache_clear()
+    cache = CutoutCache(tmp_path / "cutouts")
+    app.dependency_overrides[route.get_cutout_cache] = lambda: cache
+    yield cache
+    app.dependency_overrides.pop(route.get_cutout_cache, None)
+    route._irsa_observation.cache_clear()
 
 
-PARAMS = {"product_id": 465423434215, "ra": CENTER[0], "dec": CENTER[1]}
+PARAMS = {"product_id": LIVE_OBSERVATION.product_id, "ra": CENTER[0], "dec": CENTER[1]}
+FROZEN_PARAMS = {**PARAMS, "product_id": OBSERVATION.product_id}
+CUTOUT = make_cutout(ORIENTATIONS["east_left_north_up_in_fits"])
+
+
+class Irsa:
+    """Stand-in for the two IRSA calls of the route, counting requests."""
+
+    def __init__(self, monkeypatch, metadata=None, cutout=None) -> None:
+        self.metadata_calls = 0
+        self.cutout_calls = 0
+        self.metadata = metadata
+        self.cutout = cutout
+        monkeypatch.setattr(route, "fetch_observations", self.fetch_observations)
+        monkeypatch.setattr(route, "fetch_science_cutout", self.fetch_science_cutout)
+
+    def fetch_observations(self, ids):
+        self.metadata_calls += 1
+        if isinstance(self.metadata, Exception):
+            raise self.metadata
+        return [LIVE_OBSERVATION.model_copy(update={"product_id": ids[0]})]
+
+    def fetch_science_cutout(self, observation, ra, dec, size):
+        self.cutout_calls += 1
+        if isinstance(self.cutout, Exception):
+            raise self.cutout
+        return self.cutout if self.cutout is not None else CUTOUT
+
+    def outage(self) -> None:
+        self.metadata = ZTFServiceError("IRSA ZTF metadata request failed: timeout")
+        self.cutout = ZTFServiceError("ZTF science image cutout request failed")
+
+    @property
+    def calls(self) -> int:
+        return self.metadata_calls + self.cutout_calls
 
 
 def test_cutout_endpoint_returns_display_image(monkeypatch) -> None:
-    monkeypatch.setattr(route, "fetch_observations", lambda ids: [OBSERVATION])
-    monkeypatch.setattr(
-        route,
-        "fetch_science_cutout",
-        lambda observation, ra, dec, size: make_cutout(
-            ORIENTATIONS["east_left_north_up_in_fits"]
-        ),
-    )
+    Irsa(monkeypatch)
 
     response = client.get("/api/frames/cutout", params=PARAMS)
 
@@ -184,7 +224,7 @@ def test_cutout_endpoint_returns_display_image(monkeypatch) -> None:
     assert body["size_arcsec"] == 90.0
     pixels = base64.b64decode(body["pixels_base64"])
     assert len(pixels) == body["width"] * body["height"] == 21 * 21
-    assert body["observation"]["product_id"] == 465423434215
+    assert body["observation"]["product_id"] == LIVE_OBSERVATION.product_id
 
 
 @pytest.mark.parametrize(
@@ -211,12 +251,7 @@ def test_cutout_endpoint_returns_display_image(monkeypatch) -> None:
     ],
 )
 def test_cutout_endpoint_errors(monkeypatch, target, exception, status, code) -> None:
-    monkeypatch.setattr(route, "fetch_observations", lambda ids: [OBSERVATION])
-
-    def failing(*args, **kwargs):
-        raise exception
-
-    monkeypatch.setattr(route, target, failing)
+    Irsa(monkeypatch, **{"metadata" if target == "fetch_observations" else "cutout": exception})
 
     response = client.get("/api/frames/cutout", params=PARAMS)
 
@@ -238,3 +273,108 @@ def test_presets_endpoint() -> None:
 
     assert response.status_code == 200
     assert any(p["designation"] == "48606" for p in response.json())
+
+
+def test_frozen_frame_needs_no_metadata_lookup(monkeypatch) -> None:
+    irsa = Irsa(monkeypatch, metadata=ZTFServiceError("HTTP 504"))
+
+    response = client.get("/api/frames/cutout", params=FROZEN_PARAMS)
+
+    assert response.status_code == 200
+    assert irsa.metadata_calls == 0
+    assert irsa.cutout_calls == 1
+    assert response.json()["observation"] == OBSERVATION.model_dump(mode="json")
+
+
+def test_live_frame_metadata_is_looked_up_once(monkeypatch) -> None:
+    irsa = Irsa(monkeypatch)
+
+    for size in (60, 90):
+        client.get("/api/frames/cutout", params={**PARAMS, "size_arcsec": size})
+
+    assert irsa.metadata_calls == 1
+    assert irsa.cutout_calls == 2
+
+
+@pytest.mark.parametrize("params", [PARAMS, FROZEN_PARAMS], ids=["live", "frozen"])
+def test_cache_hit_needs_no_irsa_and_matches_miss(monkeypatch, params) -> None:
+    irsa = Irsa(monkeypatch)
+
+    cold = client.get("/api/frames/cutout", params=params)
+    calls_after_cold = irsa.calls
+    irsa.outage()
+    warm = client.get("/api/frames/cutout", params=params)
+
+    assert cold.status_code == warm.status_code == 200
+    assert cold.headers["X-Cutout-Cache"] == "miss"
+    assert warm.headers["X-Cutout-Cache"] == "hit"
+    assert irsa.cutout_calls == 1
+    assert irsa.calls == calls_after_cold  # no IRSA request on the hit
+    assert warm.json() == cold.json()  # identical FITS → display result
+
+
+def test_cache_key_covers_every_cutout_parameter(monkeypatch) -> None:
+    irsa = Irsa(monkeypatch)
+    variants = [
+        PARAMS,
+        FROZEN_PARAMS,
+        {**PARAMS, "ra": CENTER[0] + 1e-6},
+        {**PARAMS, "dec": CENTER[1] + 1e-6},
+        {**PARAMS, "size_arcsec": 60},
+    ]
+
+    for params in variants:
+        response = client.get("/api/frames/cutout", params=params)
+        assert response.headers["X-Cutout-Cache"] == "miss"
+    # Same values, different spelling: same cutout.
+    same = client.get(
+        "/api/frames/cutout",
+        params={**PARAMS, "ra": "120.000", "dec": "1e1", "size_arcsec": "90"},
+    )
+
+    assert irsa.cutout_calls == len(variants)
+    assert same.headers["X-Cutout-Cache"] == "hit"
+
+
+@pytest.mark.parametrize("params", [PARAMS, FROZEN_PARAMS], ids=["live", "frozen"])
+def test_cache_miss_during_outage_is_an_explicit_error(monkeypatch, params) -> None:
+    irsa = Irsa(monkeypatch)
+    irsa.outage()
+
+    response = client.get("/api/frames/cutout", params=params)
+
+    assert response.status_code == 502
+    expected = "ZTF_METADATA_FAILED" if params is PARAMS else "IMAGE_DOWNLOAD_FAILED"
+    assert response.json()["error"]["code"] == expected
+    # Nothing was cached: the next request goes to IRSA again.
+    irsa.metadata = irsa.cutout = None
+    retry = client.get("/api/frames/cutout", params=params)
+    assert retry.headers["X-Cutout-Cache"] == "miss"
+
+
+def test_unrenderable_cutout_is_not_cached(monkeypatch) -> None:
+    irsa = Irsa(monkeypatch, cutout=b"SIMPLE  = T but not a real FITS file")
+
+    first = client.get("/api/frames/cutout", params=PARAMS)
+    irsa.cutout = None
+    second = client.get("/api/frames/cutout", params=PARAMS)
+
+    assert first.status_code == 502
+    assert first.json()["error"]["code"] == "IMAGE_DOWNLOAD_FAILED"
+    assert second.headers["X-Cutout-Cache"] == "miss"
+    assert irsa.cutout_calls == 2
+
+
+def test_unrenderable_cache_entry_is_refetched(monkeypatch, isolated_caches) -> None:
+    irsa = Irsa(monkeypatch)
+    isolated_caches.put(
+        LIVE_OBSERVATION, CENTER[0], CENTER[1], 90.0, b"SIMPLE  = T corrupted"
+    )
+
+    response = client.get("/api/frames/cutout", params=PARAMS)
+
+    assert response.status_code == 200
+    assert response.headers["X-Cutout-Cache"] == "miss"
+    assert irsa.cutout_calls == 1
+    cached = isolated_caches.get(LIVE_OBSERVATION.product_id, *CENTER, 90.0)
+    assert cached is not None and cached.payload == CUTOUT

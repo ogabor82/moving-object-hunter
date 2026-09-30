@@ -2,15 +2,20 @@
 
 One preset per canonical primary target and POC control: the frozen frame
 sequence (product ids) and a cutout centred on the mean of the target's
-frozen SkyBoT predictions, large enough to contain its whole track.
+frozen SkyBoT predictions, large enough to contain its whole track. The
+same report holds the IRSA metadata of every frozen frame, so those frames
+need no metadata lookup (`load_frozen_observations`).
 """
 
 import math
+from collections.abc import Mapping
 from functools import lru_cache
 from pathlib import Path
+from types import MappingProxyType
 
 from pydantic import BaseModel
 
+from app.models.observation import Observation
 from app.services.astrometry import angular_distance_arcsec
 from app.validation.runner import ValidationReport
 
@@ -83,9 +88,27 @@ def presets_from_report(report: ValidationReport) -> list[BlinkPreset]:
 
 
 @lru_cache(maxsize=1)
+def _load_report(report_path: Path) -> ValidationReport:
+    return ValidationReport.model_validate_json(report_path.read_text())
+
+
+@lru_cache(maxsize=1)
 def load_blink_presets(report_path: Path = AS022_REPORT) -> tuple[BlinkPreset, ...]:
-    report = ValidationReport.model_validate_json(report_path.read_text())
-    return tuple(presets_from_report(report))
+    return tuple(presets_from_report(_load_report(report_path)))
+
+
+@lru_cache(maxsize=1)
+def load_frozen_observations(
+    report_path: Path = AS022_REPORT,
+) -> Mapping[int, Observation]:
+    """IRSA metadata of the frozen validation frames, by product id."""
+    return MappingProxyType(
+        {
+            observation.product_id: observation
+            for snapshot in _load_report(report_path).snapshots
+            for observation in snapshot.observations
+        }
+    )
 
 
 def _mean_position(positions: list[tuple[float, float]]) -> tuple[float, float]:

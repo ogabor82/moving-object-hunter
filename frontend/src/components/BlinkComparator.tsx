@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
-import { ApiError, getFrameCutout } from '../api/client'
-import type { BlinkPreset, FrameCutoutResponse } from '../api/types'
+import { ApiError } from '../api/client'
+import { cachedFrame, loadFrame } from '../api/frameCache'
+import type { BlinkPreset, FrameCutoutParams, FrameCutoutResponse } from '../api/types'
 
 type FrameState =
   | { status: 'loading' }
@@ -13,21 +14,21 @@ const MAX_INTERVAL_MS = 2000
 const DEFAULT_INTERVAL_MS = 600
 const SCALE_BAR_ARCSEC = 10
 
-/** Grey 8-bit pixels (row 0 = north) → an offscreen canvas at native size. */
-function toBitmap(frame: FrameCutoutResponse): HTMLCanvasElement {
-  const bytes = Uint8Array.from(atob(frame.pixels_base64), (c) => c.charCodeAt(0))
-  const rgba = new Uint8ClampedArray(frame.width * frame.height * 4)
-  for (let i = 0; i < bytes.length; i++) {
-    rgba[i * 4] = bytes[i]
-    rgba[i * 4 + 1] = bytes[i]
-    rgba[i * 4 + 2] = bytes[i]
-    rgba[i * 4 + 3] = 255
-  }
-  const canvas = document.createElement('canvas')
-  canvas.width = frame.width
-  canvas.height = frame.height
-  canvas.getContext('2d')?.putImageData(new ImageData(rgba, frame.width, frame.height), 0, 0)
-  return canvas
+function frameParams(preset: BlinkPreset): FrameCutoutParams[] {
+  return preset.product_ids.map((productId) => ({
+    product_id: productId,
+    ra: preset.center_ra,
+    dec: preset.center_dec,
+    size_arcsec: preset.size_arcsec,
+  }))
+}
+
+/** Frames already loaded this session are ready at once, the rest loading. */
+function initialStates(preset: BlinkPreset): FrameState[] {
+  return frameParams(preset).map((params) => {
+    const frame = cachedFrame(params)
+    return frame ? { status: 'ready', ...frame } : { status: 'loading' }
+  })
 }
 
 function utcTime(iso: string, offsetSeconds = 0): string {
@@ -40,42 +41,41 @@ function describeError(error: unknown): string {
 }
 
 export default function BlinkComparator({ preset }: { preset: BlinkPreset }) {
-  const [frames, setFrames] = useState<FrameState[]>(() =>
-    preset.product_ids.map(() => ({ status: 'loading' })),
-  )
+  const [frames, setFrames] = useState<FrameState[]>(() => initialStates(preset))
   const [index, setIndex] = useState(0)
   const [playing, setPlaying] = useState(false)
   const [intervalMs, setIntervalMs] = useState(DEFAULT_INTERVAL_MS)
   const [reloadToken, setReloadToken] = useState(0)
   const canvasRef = useRef<HTMLCanvasElement>(null)
 
-  // Fetch every frame of the preset in parallel; each resolves on its own.
+  // Load every frame of the preset in parallel; each resolves on its own.
+  // Frames loaded earlier in the session come from memory, not the network.
   useEffect(() => {
-    const controller = new AbortController()
-    preset.product_ids.forEach((productId, frameIndex) => {
-      getFrameCutout(
-        {
-          product_id: productId,
-          ra: preset.center_ra,
-          dec: preset.center_dec,
-          size_arcsec: preset.size_arcsec,
-        },
-        controller.signal,
-      )
-        .then((data) => ({ status: 'ready' as const, data, bitmap: toBitmap(data) }))
-        .catch((error: unknown) => ({
-          status: 'error' as const,
-          message: describeError(error),
-        }))
+    let active = true
+    frameParams(preset).forEach((params, frameIndex) => {
+      loadFrame(params)
+        .then((frame): FrameState => ({ status: 'ready', ...frame }))
+        .catch(
+          (error: unknown): FrameState => ({ status: 'error', message: describeError(error) }),
+        )
         .then((state) => {
-          if (controller.signal.aborted) return
+          if (!active) return
           setFrames((current) =>
             current.map((frame, i) => (i === frameIndex ? state : frame)),
           )
         })
     })
-    return () => controller.abort()
+    return () => {
+      active = false
+    }
   }, [preset, reloadToken])
+
+  const retry = () => {
+    setFrames((current) =>
+      current.map((frame) => (frame.status === 'error' ? { status: 'loading' } : frame)),
+    )
+    setReloadToken((token) => token + 1)
+  }
 
   const readyIndices = useMemo(
     () => frames.flatMap((frame, i) => (frame.status === 'ready' ? [i] : [])),
@@ -194,12 +194,12 @@ export default function BlinkComparator({ preset }: { preset: BlinkPreset }) {
           <span>← E</span>
         </div>
         {current?.status === 'loading' && (
-          <div className="overlay center">Loading frame {index + 1} from IRSA…</div>
+          <div className="overlay center">Loading frame {index + 1}…</div>
         )}
         {current?.status === 'error' && (
           <div className="overlay center error" data-testid="frame-error">
             Frame {index + 1} failed — {current.message}
-            <button type="button" onClick={() => setReloadToken((t) => t + 1)}>
+            <button type="button" onClick={retry}>
               Retry
             </button>
           </div>

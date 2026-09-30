@@ -7,6 +7,7 @@ import pytest
 from astropy.io import fits
 from fastapi.testclient import TestClient
 
+from app.api.routes import frames as frames_route
 from app.main import app
 from app.models.matching import StationaryMatchingConfig
 from app.models.observation import Observation
@@ -20,6 +21,7 @@ from app.services.matching_service import (
     match_stationary_sources,
 )
 from app.services.tracklet_service import build_tracklets
+from app.services.cutout_cache import CutoutCache
 from app.services.ztf_service import (
     HARDCODED_DEC_DEGREES,
     HARDCODED_END_JD,
@@ -171,16 +173,22 @@ def test_live_tracklet_build_endpoint() -> None:
     assert all(t["tracklet_id"].startswith(body["build_id"]) for t in body["tracklets"])
 
 
-def test_live_blink_frames_show_1995_dh_moving() -> None:
+def test_live_blink_frames_show_1995_dh_moving(monkeypatch, tmp_path) -> None:
     """Real ZTF cutouts of the 1995 DH preset: a bright source sits at the
-    frozen SkyBoT prediction in every frame, and it moves between frames."""
+    frozen SkyBoT prediction in every frame, and it moves between frames.
+    A second load comes from the cutout cache, identical and without IRSA."""
     preset = next(p for p in load_blink_presets() if p.designation == "48606")
     report = ValidationReport.model_validate_json(AS022_REPORT.read_text())
     target = next(
         t for s in report.snapshots for t in s.targets if t.designation == "48606"
     )
+    cache = CutoutCache(tmp_path)  # cold: never a developer's warm cache
+    monkeypatch.setitem(
+        app.dependency_overrides, frames_route.get_cutout_cache, lambda: cache
+    )
     client = TestClient(app)
     positions = []
+    cold = []
     for product_id, (ra, dec) in zip(preset.product_ids, target.predicted_positions):
         response = client.get(
             "/api/frames/cutout",
@@ -192,6 +200,8 @@ def test_live_blink_frames_show_1995_dh_moving() -> None:
             },
         )
         assert response.status_code == 200, response.json()
+        assert response.headers["X-Cutout-Cache"] == "miss"
+        cold.append(response)
         body = response.json()
         pixels = numpy.frombuffer(
             base64.b64decode(body["pixels_base64"]), dtype=numpy.uint8
@@ -210,3 +220,13 @@ def test_live_blink_frames_show_1995_dh_moving() -> None:
     # Moves north (up) and slightly west (right) by several pixels per frame.
     assert positions[0][1] - positions[2][1] > 20
     assert positions[2][0] > positions[0][0]
+
+    def irsa_down(*args, **kwargs):
+        raise AssertionError("warm load must not call IRSA")
+
+    monkeypatch.setattr(frames_route, "fetch_observations", irsa_down)
+    monkeypatch.setattr(frames_route, "fetch_science_cutout", irsa_down)
+    for response in cold:
+        warm = client.get("/api/frames/cutout", params=response.request.url.params)
+        assert warm.headers["X-Cutout-Cache"] == "hit"
+        assert warm.json() == response.json()

@@ -1,15 +1,17 @@
 import base64
 from functools import lru_cache
 
-from fastapi import APIRouter, Query
+from fastapi import APIRouter, Depends, Query, Response
 from pydantic import BaseModel
 
 from app.api.errors import ApiError, ErrorResponse
 from app.models.observation import Observation
+from app.services.cutout_cache import CutoutCache, default_cutout_cache
 from app.services.image_service import (
     ORIENTATION,
     STRETCH_METHOD,
     ImageRenderError,
+    RenderedFrame,
     render_cutout,
 )
 from app.services.ztf_service import (
@@ -19,22 +21,37 @@ from app.services.ztf_service import (
     fetch_observations,
     fetch_science_cutout,
 )
-from app.validation.presets import BlinkPreset, load_blink_presets
+from app.validation.presets import (
+    BlinkPreset,
+    load_blink_presets,
+    load_frozen_observations,
+)
 
 
 router = APIRouter(prefix="/frames", tags=["frames"])
 
 MAX_CUTOUT_ARCSEC = 300.0
+CACHE_HEADER = "X-Cutout-Cache"
 
 
 @lru_cache(maxsize=256)
-def _observation(product_id: int) -> Observation:
+def _irsa_observation(product_id: int) -> Observation:
     """IRSA metadata of one frame; archival, so safe to cache per process.
 
     Failures are not cached (lru_cache does not store exceptions).
     """
     [observation] = fetch_observations([product_id])
     return observation
+
+
+def _observation(product_id: int) -> Observation:
+    """Frozen validation metadata if the frame has it, else IRSA."""
+    frozen = load_frozen_observations().get(product_id)
+    return frozen if frozen is not None else _irsa_observation(product_id)
+
+
+def get_cutout_cache() -> CutoutCache:
+    return default_cutout_cache()
 
 
 class Stretch(BaseModel):
@@ -79,12 +96,30 @@ def presets() -> list[BlinkPreset]:
     responses={404: {"model": ErrorResponse}, 502: {"model": ErrorResponse}},
 )
 def cutout(
+    response: Response,
     product_id: int = Query(description="ZTF science product id (pid)"),
     ra: float = Query(ge=0.0, lt=360.0, description="Cutout centre RA [deg]"),
     dec: float = Query(ge=-90.0, le=90.0, description="Cutout centre Dec [deg]"),
     size_arcsec: float = Query(default=90.0, gt=0.0, le=MAX_CUTOUT_ARCSEC),
+    cache: CutoutCache = Depends(get_cutout_cache),
 ) -> FrameCutoutResponse:
-    """Square cutout of one ZTF science frame, stretched for display."""
+    """Square cutout of one ZTF science frame, stretched for display.
+
+    Served from the local cutout cache when possible (no IRSA call; the
+    `X-Cutout-Cache` header says `hit` or `miss`). On a miss the frame
+    metadata comes from the frozen validation data or IRSA, the cutout from
+    IRSA, and it is cached once it has rendered successfully.
+    """
+    cached = cache.get(product_id, ra, dec, size_arcsec)
+    if cached is not None:
+        try:
+            frame = render_cutout(cached.payload, ra, dec)
+        except ImageRenderError:
+            cache.discard(product_id, ra, dec, size_arcsec)
+        else:
+            response.headers[CACHE_HEADER] = "hit"
+            return _response(cached.observation, ra, dec, size_arcsec, frame)
+
     try:
         observation = _observation(product_id)
     except ObservationNotFoundError as exc:
@@ -98,6 +133,18 @@ def cutout(
     except (ZTFServiceError, ImageRenderError) as exc:
         raise ApiError(502, "IMAGE_DOWNLOAD_FAILED", str(exc)) from exc
 
+    cache.put(observation, ra, dec, size_arcsec, payload)
+    response.headers[CACHE_HEADER] = "miss"
+    return _response(observation, ra, dec, size_arcsec, frame)
+
+
+def _response(
+    observation: Observation,
+    ra: float,
+    dec: float,
+    size_arcsec: float,
+    frame: RenderedFrame,
+) -> FrameCutoutResponse:
     return FrameCutoutResponse(
         observation=observation,
         ra=ra,
