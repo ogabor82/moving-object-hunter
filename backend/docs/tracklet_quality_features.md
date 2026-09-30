@@ -34,6 +34,18 @@ function; ties resolve in detection time order).
 exceed `max_residual_arcsec` by definition, so fit residuals of the two
 statuses are not comparable.
 
+## Mask semantics (checked in AS-032)
+
+ZSDS Explanatory Supplement v5.0 §10.6: the PSF-catalog `flags` is the
+bitwise OR of the science-image mask (§10.3) over a 5×5 pixel box centred on
+the source. "Masked" here therefore means *some mask bit is set near the
+source*, not that the detection itself is bad: bit 12 (halo from bright
+source) marks a whole circular region around a Tycho-2 star with V ≤ 6.5,
+and bit 8 (saturated) is set when a saturated pixel of a neighbour falls in
+the box. Bits 1 and 11 (pixels containing an extracted source) would also
+count as masked, but they do not occur in the AS-022 catalogs. See
+`validation/results/as032/` for the per-bit evidence.
+
 ## Where upstream data is lost
 
 - **`sharp`** (and `chi`) are read from the ZTF PSF catalog

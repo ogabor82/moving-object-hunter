@@ -159,8 +159,12 @@ def field_records(
     snapshot: FieldSnapshot,
     catalogs: CatalogFrames,
     config: PipelineConfig,
+    keep_all_tracklets: bool = False,
 ) -> tuple[list[QualityRecord], list[int], float]:
-    """Build, identify (frozen SkyBoT) and extract features for one field."""
+    """Build, identify (frozen SkyBoT) and extract features for one field.
+
+    Records keep their Tracklet unless UNKNOWN (all with keep_all_tracklets).
+    """
     started = time.perf_counter()
     pipeline = build_tracklets_from_frames(catalogs.frames, config)
     build_seconds = time.perf_counter() - started
@@ -199,7 +203,11 @@ def field_records(
                 features=extract_quality_features(
                     tracklet, catalogs.sharp_by_source_id
                 ),
-                tracklet=tracklet if population is not UNKNOWN else None,
+                tracklet=(
+                    tracklet
+                    if keep_all_tracklets or population is not UNKNOWN
+                    else None
+                ),
             )
         )
     candidate_counts = [frame.candidate_count for frame in pipeline.candidate_frames]

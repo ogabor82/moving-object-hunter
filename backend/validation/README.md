@@ -95,3 +95,17 @@ of identified tracklets (`--all-records` adds the ~6000 UNKNOWN ones,
 ~5 MB). Descriptive only — no score, rank or threshold. Interpretation and
 selection effects: `results/as031_findings.md`. Needs IRSA; ~2 min, ~5 GB
 peak memory (crowded field D).
+
+## AS-032 masked-tracklet investigation
+
+`python -m app.validation.masked --out-dir validation/results/as032`
+
+Fields B and D only. Puts every tracklet in context (per-detection ZTF
+mask bits with their ZSDS §10.3 meaning, distance to the field's
+bit-12 halo star, shared detections, AS-031 features), draws a
+deterministic stratified sample (SHA-256 of field and tracklet id) and
+renders E1|E2|E3 strips through `/api/frames/cutout` + `/api/frames/project`
+(GAB-100 cache, AS-030 projection). `visual_review.json` holds the visual
+labels (written by hand, merged into the generated report). Evidence
+only — no filter, score, rank or threshold. Interpretation:
+`results/as032/as032_findings.md`. Needs IRSA; ~1.5 min.

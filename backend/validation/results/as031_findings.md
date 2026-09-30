@@ -59,13 +59,15 @@ reference (test `test_1995_dh_tracklet_fit_and_identification_match_as022`).
    simple consistency measure across brightness, and 10 of the 16 targets
    are in the mixed-filter fields B and C (see bias section).
 4. **Field B unknowns** differ from all other groups: 68 of 88 have all
-   three detections masked (mask unions 4353 and 4097, i.e. bits 0 and 12,
-   with or without bit 8), higher min SNR (6.8 vs 3.9 for the other B
+   three detections masked (65 with mask unions 4353 or 4097, i.e. bits 0
+   and 12 with or without bit 8; 3 with bit 8 only), higher min SNR (6.8 vs 3.9 for the other B
    unknowns), large magnitude ranges (partly the zg/zr filter change) and
    positive `sharp` (median max 0.58 vs 0.24). Their position angles are spread over all directions, so they
    are not one straight streak.
 5. **Crowded D unknowns** (833 built, 4792 rejected): 197 built tracklets
-   have all three detections masked, mostly bit 12. Position angles are
+   have all three detections flagged (masked or on the image edge); 177 of
+   them have all three masked, mostly bit 12. (Corrected in AS-032: this
+   line first said "masked" for all 197.) Position angles are
    close to uniform. Built and rejected D unknowns have almost the same
    SNR, magnitude and sharp distributions; they differ in fit residual,
    which is the rejection criterion itself.

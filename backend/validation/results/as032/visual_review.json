@@ -1,0 +1,354 @@
+[
+ {
+  "field_id": "B-2019-01-25-565-c13-q3",
+  "tracklet_id": "trk-0282",
+  "same_source_all_epochs": "no",
+  "source_visible_each_epoch": "no,no,no",
+  "context": "saturated-star bleed column (outside halo)",
+  "notes": "Markers sit on the edges of the vertical bleed column below a saturated star and on its core; no compact source at any crosshair; the structure is identical in all three frames."
+ },
+ {
+  "field_id": "B-2019-01-25-565-c13-q3",
+  "tracklet_id": "trk-0239",
+  "same_source_all_epochs": "no",
+  "source_visible_each_epoch": "no,no,no",
+  "context": "horizontal linear feature near halo star",
+  "notes": "Detections lie along a bright horizontal linear feature (bit 0 set) that is present at the same place in all frames, i.e. stationary; no point source at the crosshairs."
+ },
+ {
+  "field_id": "B-2019-01-25-565-c13-q3",
+  "tracklet_id": "trk-0142",
+  "same_source_all_epochs": "no",
+  "source_visible_each_epoch": "no,no,no",
+  "context": "halo glow / diffraction spikes",
+  "notes": "Crosshairs on smooth glow and spikes of the saturated halo star; nothing compact at any marker."
+ },
+ {
+  "field_id": "B-2019-01-25-565-c13-q3",
+  "tracklet_id": "trk-0459",
+  "same_source_all_epochs": "no",
+  "source_visible_each_epoch": "no,no,no",
+  "context": "saturated core + bleed column",
+  "notes": "Markers in the diffuse glow beside the saturated core and bleed column; empty at all crosshairs."
+ },
+ {
+  "field_id": "B-2019-01-25-565-c13-q3",
+  "tracklet_id": "trk-0226",
+  "same_source_all_epochs": "no",
+  "source_visible_each_epoch": "no,no,no",
+  "context": "bleed column / spike / glow",
+  "notes": "E1 on bleed-column edge, E2 next to a diffraction spike, E3 in glow; three different stationary structures linked into one line."
+ },
+ {
+  "field_id": "B-2019-01-25-565-c13-q3",
+  "tracklet_id": "trk-0298",
+  "same_source_all_epochs": "no",
+  "source_visible_each_epoch": "no,no,no",
+  "context": "bleed column and spikes",
+  "notes": "Detections along the bleed column and spike base of the saturated star; no moving source."
+ },
+ {
+  "field_id": "B-2019-01-25-565-c13-q3",
+  "tracklet_id": "trk-0079",
+  "same_source_all_epochs": "no",
+  "source_visible_each_epoch": "no,no,no",
+  "context": "glow + bleed column",
+  "notes": "E1/E2 in glow right of the saturated star, E3 on the bleed column."
+ },
+ {
+  "field_id": "B-2019-01-25-565-c13-q3",
+  "tracklet_id": "trk-0216",
+  "same_source_all_epochs": "no",
+  "source_visible_each_epoch": "no,no,no",
+  "context": "bleed column",
+  "notes": "All three crosshairs on the vertical bleed column; the 'motion' follows the column."
+ },
+ {
+  "field_id": "B-2019-01-25-565-c13-q3",
+  "tracklet_id": "trk-0329",
+  "same_source_all_epochs": "no",
+  "source_visible_each_epoch": "no,no,no",
+  "context": "saturated star glow / bleed",
+  "notes": "Beside a saturated star; E3 detection on the start of a bleed column (bit 8), E1/E2 in glow."
+ },
+ {
+  "field_id": "B-2019-01-25-565-c13-q3",
+  "tracklet_id": "trk-0098",
+  "same_source_all_epochs": "no",
+  "source_visible_each_epoch": "no,no,no",
+  "context": "bleed column + diagonal streak",
+  "notes": "E1/E2 on empty sky, E3 on a bleed column edge (bit 8); a diagonal linear feature crosses the cutout."
+ },
+ {
+  "field_id": "B-2019-01-25-565-c13-q3",
+  "tracklet_id": "trk-0419",
+  "same_source_all_epochs": "no",
+  "source_visible_each_epoch": "no,no,no",
+  "context": "faint diagonal linear feature (unmasked)",
+  "notes": "Detections lie along a faint diagonal line (spike or streak) that is present in all frames; not flagged in the catalog."
+ },
+ {
+  "field_id": "B-2019-01-25-565-c13-q3",
+  "tracklet_id": "trk-0102",
+  "same_source_all_epochs": "no",
+  "source_visible_each_epoch": "no,no,no",
+  "context": "edge of bright-star glow with spikes (unmasked)",
+  "notes": "Markers on the outer glow and spike lines of a bright star; no mask bit set."
+ },
+ {
+  "field_id": "B-2019-01-25-565-c13-q3",
+  "tracklet_id": "trk-0146",
+  "same_source_all_epochs": "unclear",
+  "source_visible_each_epoch": "unclear,no,no",
+  "context": "clean sky",
+  "notes": "E1 crosshair near a faint blob next to a star; no source visible at E2/E3 crosshairs at this stretch."
+ },
+ {
+  "field_id": "B-2019-01-25-565-c13-q3",
+  "tracklet_id": "trk-0006",
+  "same_source_all_epochs": "yes",
+  "source_visible_each_epoch": "faint,yes,faint",
+  "context": "clean sky",
+  "notes": "144741; faint point source at each crosshair, clearest in E2; rings empty."
+ },
+ {
+  "field_id": "B-2019-01-25-565-c13-q3",
+  "tracklet_id": "trk-0014",
+  "same_source_all_epochs": "yes",
+  "source_visible_each_epoch": "faint,faint,faint",
+  "context": "clean sky",
+  "notes": "2018 YG5; faint point source at each crosshair."
+ },
+ {
+  "field_id": "B-2019-01-25-565-c13-q3",
+  "tracklet_id": "trk-0031",
+  "same_source_all_epochs": "unclear",
+  "source_visible_each_epoch": "faint,yes,faint",
+  "context": "next to a small star group",
+  "notes": "647852; E2 crosshair on a point source beside a star group; E1/E3 faint."
+ },
+ {
+  "field_id": "B-2019-01-25-565-c13-q3",
+  "tracklet_id": "trk-0034",
+  "same_source_all_epochs": "yes",
+  "source_visible_each_epoch": "yes,yes,yes",
+  "context": "clean sky",
+  "notes": "126232; clear point source at each crosshair, absent at the other epochs' rings."
+ },
+ {
+  "field_id": "B-2019-01-25-565-c13-q3",
+  "tracklet_id": "trk-0038",
+  "same_source_all_epochs": "yes",
+  "source_visible_each_epoch": "faint,yes,yes",
+  "context": "clean sky",
+  "notes": "140570; point source at crosshairs, E1 faint."
+ },
+ {
+  "field_id": "B-2019-01-25-565-c13-q3",
+  "tracklet_id": "trk-0039",
+  "same_source_all_epochs": "yes",
+  "source_visible_each_epoch": "yes,yes,yes",
+  "context": "clean sky",
+  "notes": "43029; bright point source moving across the cutout."
+ },
+ {
+  "field_id": "B-2019-01-25-565-c13-q3",
+  "tracklet_id": "trk-0040",
+  "same_source_all_epochs": "yes",
+  "source_visible_each_epoch": "yes,yes,yes",
+  "context": "clean sky",
+  "notes": "93745; clear point source at each crosshair."
+ },
+ {
+  "field_id": "B-2019-01-25-565-c13-q3",
+  "tracklet_id": "trk-0144",
+  "same_source_all_epochs": "unclear",
+  "source_visible_each_epoch": "unclear,faint,unclear",
+  "context": "near a bright star",
+  "notes": "255879 (min SNR 3.9); faint at E2, not clearly visible at E1/E3 at this stretch."
+ },
+ {
+  "field_id": "B-2019-01-25-565-c13-q3",
+  "tracklet_id": "trk-0405",
+  "same_source_all_epochs": "yes",
+  "source_visible_each_epoch": "yes,yes,faint",
+  "context": "clean sky",
+  "notes": "204140; point source at each crosshair, rings empty."
+ },
+ {
+  "field_id": "D-2019-06-02-281-c16-q3",
+  "tracklet_id": "trk-2332",
+  "same_source_all_epochs": "no",
+  "source_visible_each_epoch": "no,no,no",
+  "context": "saturated-star bleed column (outside halo)",
+  "notes": "E1 on the saturated core, E2/E3 on the vertical bleed column; stationary structure."
+ },
+ {
+  "field_id": "D-2019-06-02-281-c16-q3",
+  "tracklet_id": "trk-4946",
+  "same_source_all_epochs": "no",
+  "source_visible_each_epoch": "no,no,no",
+  "context": "saturated-star bleed column (outside halo)",
+  "notes": "All crosshairs on the bleed column above a saturated star."
+ },
+ {
+  "field_id": "D-2019-06-02-281-c16-q3",
+  "tracklet_id": "trk-5113",
+  "same_source_all_epochs": "no",
+  "source_visible_each_epoch": "no,no,no",
+  "context": "inside halo: blotchy halo texture",
+  "notes": "Crosshairs on the mottled halo light; no compact source that moves between frames."
+ },
+ {
+  "field_id": "D-2019-06-02-281-c16-q3",
+  "tracklet_id": "trk-2252",
+  "same_source_all_epochs": "no",
+  "source_visible_each_epoch": "no,no,no",
+  "context": "inside halo: blotchy halo texture",
+  "notes": "As trk-5113."
+ },
+ {
+  "field_id": "D-2019-06-02-281-c16-q3",
+  "tracklet_id": "trk-5122",
+  "same_source_all_epochs": "unclear",
+  "source_visible_each_epoch": "no,no,unclear",
+  "context": "halo outskirts",
+  "notes": "E1/E2 on halo texture; E3 crosshair near a faint dot."
+ },
+ {
+  "field_id": "D-2019-06-02-281-c16-q3",
+  "tracklet_id": "trk-3150",
+  "same_source_all_epochs": "no",
+  "source_visible_each_epoch": "no,no,no",
+  "context": "inside halo: blotchy halo texture",
+  "notes": "Crosshairs on halo texture or empty halo glow."
+ },
+ {
+  "field_id": "D-2019-06-02-281-c16-q3",
+  "tracklet_id": "trk-5272",
+  "same_source_all_epochs": "no",
+  "source_visible_each_epoch": "no,no,no",
+  "context": "inside halo: blotchy halo texture",
+  "notes": "Crosshairs on empty halo glow at the halo edge."
+ },
+ {
+  "field_id": "D-2019-06-02-281-c16-q3",
+  "tracklet_id": "trk-0143",
+  "same_source_all_epochs": "no",
+  "source_visible_each_epoch": "no,no,no",
+  "context": "inside halo: blotchy halo texture",
+  "notes": "Crosshairs on halo glow/texture; nothing compact."
+ },
+ {
+  "field_id": "D-2019-06-02-281-c16-q3",
+  "tracklet_id": "trk-3110",
+  "same_source_all_epochs": "no",
+  "source_visible_each_epoch": "no,no,no",
+  "context": "halo edge",
+  "notes": "E1 at the halo boundary, E2/E3 inside the halo; no compact source."
+ },
+ {
+  "field_id": "D-2019-06-02-281-c16-q3",
+  "tracklet_id": "trk-2212",
+  "same_source_all_epochs": "no",
+  "source_visible_each_epoch": "no,no,no",
+  "context": "inside halo: blotchy halo texture",
+  "notes": "All crosshairs on halo texture (bit 12 on E2/E3 only; E1 just outside the flagged box)."
+ },
+ {
+  "field_id": "D-2019-06-02-281-c16-q3",
+  "tracklet_id": "trk-0883",
+  "same_source_all_epochs": "unclear",
+  "source_visible_each_epoch": "unclear,unclear,unclear",
+  "context": "crowded star field",
+  "notes": "Crosshairs among many faint sources; cannot tell whether one object moves or three unrelated faint sources were linked."
+ },
+ {
+  "field_id": "D-2019-06-02-281-c16-q3",
+  "tracklet_id": "trk-3761",
+  "same_source_all_epochs": "unclear",
+  "source_visible_each_epoch": "unclear,faint,unclear",
+  "context": "crowded star field",
+  "notes": "As trk-0883."
+ },
+ {
+  "field_id": "D-2019-06-02-281-c16-q3",
+  "tracklet_id": "trk-2629",
+  "same_source_all_epochs": "unclear",
+  "source_visible_each_epoch": "unclear,faint,unclear",
+  "context": "crowded star field",
+  "notes": "E2 crosshair on a faint source next to a star; E1/E3 unclear."
+ },
+ {
+  "field_id": "D-2019-06-02-281-c16-q3",
+  "tracklet_id": "trk-0501",
+  "same_source_all_epochs": "yes",
+  "source_visible_each_epoch": "yes,yes,yes",
+  "context": "crowded star field",
+  "notes": "135898; point source at each crosshair, rings empty."
+ },
+ {
+  "field_id": "D-2019-06-02-281-c16-q3",
+  "tracklet_id": "trk-0838",
+  "same_source_all_epochs": "yes",
+  "source_visible_each_epoch": "faint,yes,faint",
+  "context": "crowded star field",
+  "notes": "22969; source visible at crosshairs, faint in E1/E3."
+ },
+ {
+  "field_id": "D-2019-06-02-281-c16-q3",
+  "tracklet_id": "trk-0923",
+  "same_source_all_epochs": "yes",
+  "source_visible_each_epoch": "yes,yes,yes",
+  "context": "crowded star field",
+  "notes": "227423; source at each crosshair."
+ },
+ {
+  "field_id": "D-2019-06-02-281-c16-q3",
+  "tracklet_id": "trk-0981",
+  "same_source_all_epochs": "yes",
+  "source_visible_each_epoch": "yes,yes,yes",
+  "context": "crowded star field",
+  "notes": "186803; clear source; a satellite streak crosses E3 away from the marker (detection unflagged)."
+ },
+ {
+  "field_id": "D-2019-06-02-281-c16-q3",
+  "tracklet_id": "trk-1667",
+  "same_source_all_epochs": "unclear",
+  "source_visible_each_epoch": "faint,faint,faint",
+  "context": "crowded star field",
+  "notes": "158780; faint, hard to separate from neighbours at this stretch."
+ },
+ {
+  "field_id": "D-2019-06-02-281-c16-q3",
+  "tracklet_id": "trk-2102",
+  "same_source_all_epochs": "yes",
+  "source_visible_each_epoch": "yes,yes,yes",
+  "context": "halo edge (bit 12 on E3)",
+  "notes": "80429; clear point source in all frames although E3 carries the halo bit (359\" from the star, halo radius 367\")."
+ },
+ {
+  "field_id": "D-2019-06-02-281-c16-q3",
+  "tracklet_id": "trk-2868",
+  "same_source_all_epochs": "yes",
+  "source_visible_each_epoch": "faint,yes,faint",
+  "context": "crowded star field",
+  "notes": "427554; source at crosshairs among crowding."
+ },
+ {
+  "field_id": "D-2019-06-02-281-c16-q3",
+  "tracklet_id": "trk-3309",
+  "same_source_all_epochs": "yes",
+  "source_visible_each_epoch": "yes,yes,yes",
+  "context": "crowded star field",
+  "notes": "7172; bright point source at each crosshair."
+ },
+ {
+  "field_id": "D-2019-06-02-281-c16-q3",
+  "tracklet_id": "trk-5291",
+  "same_source_all_epochs": "yes",
+  "source_visible_each_epoch": "yes,yes,faint",
+  "context": "crowded star field",
+  "notes": "284501; source at each crosshair, E3 faint."
+ }
+]

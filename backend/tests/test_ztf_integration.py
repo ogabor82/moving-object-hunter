@@ -323,3 +323,28 @@ def test_live_quality_features_of_1995_dh_are_reproducible() -> None:
     assert record == expected
     [committed_field] = [f for f in committed.fields if f.field_id == expected.field_id]
     assert report.fields[0].tracklet_count == committed_field.tracklet_count
+
+
+def test_live_masked_tracklet_evidence_reproduces_field_b() -> None:
+    """AS-032: a fresh run on field B (live archival catalogs, frozen
+    SkyBoT) reproduces the committed halo geometry and group counts."""
+    from app.validation.data import load_catalog_frames
+    from app.validation.masked import (
+        HALO_STARS,
+        MaskEvidenceReport,
+        _load_with_bit_counts,
+        field_evidence,
+    )
+
+    field_id = "B-2019-01-25-565-c13-q3"
+    committed = MaskEvidenceReport.model_validate_json(
+        (AS022_REPORT.parent / "as032" / "as032_masked_tracklets.json").read_text()
+    )
+    [expected] = [f for f in committed.fields if f.field_id == field_id]
+    report = ValidationReport.model_validate_json(AS022_REPORT.read_text())
+    [snapshot] = [s for s in report.snapshots if s.field.field_id == field_id]
+
+    catalogs, rows_per_bit = _load_with_bit_counts(snapshot, load_catalog_frames)
+    evidence, _ = field_evidence(snapshot, catalogs, HALO_STARS[field_id], rows_per_bit)
+
+    assert evidence == expected
