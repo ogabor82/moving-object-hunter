@@ -109,3 +109,22 @@ renders E1|E2|E3 strips through `/api/frames/cutout` + `/api/frames/project`
 labels (written by hand, merged into the generated report). Evidence
 only — no filter, score, rank or threshold. Interpretation:
 `results/as032/as032_findings.md`. Needs IRSA; ~1.5 min.
+
+## AS-033 bright-star contamination on independent fields
+
+```
+python -m app.validation.bright_stars select --out validation/results/as033/as033_fields.json
+python -m app.validation.bright_stars evidence --fields validation/results/as033/as033_fields.json --out-dir validation/results/as033 [--all-records]
+```
+
+`select` applies the pre-registered field rule (Tycho-2 V <= 6.5 stars in
+the ecliptic band, SHA-256 order; earliest ZTF quadrant-night with >= 3
+exposures and archived products; first/middle/last exposure). `evidence`
+runs B and D (frozen SkyBoT) and the selected fields (SkyBoT replayed from
+`as033_skybot.json` when present), measures each tracklet's great-circle
+separation from the nearest V <= 6.5 Tycho-2 star, and reports
+area-normalised densities, mask composition and quality features in
+fixed radial bins (0-10' in 2' steps, 10-15', >= 15' control), plus a
+hash-ordered visual sample. Evidence only — no filter, radius, score,
+rank or threshold. Interpretation: `results/as033/as033_findings.md`.
+Needs IRSA and VizieR; ~4 min, ~5.5 GB peak memory (field D).

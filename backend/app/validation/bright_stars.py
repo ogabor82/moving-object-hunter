@@ -50,7 +50,12 @@ from app.models.pipeline_config import EXPERIMENTAL_DEFAULT_CONFIG
 from app.models.tracklet import Tracklet, TrackletStatus
 from app.services.astrometry import angular_distance_arcsec
 from app.services.ztf_service import fetch_ztf_metadata
-from app.validation.data import CatalogFrames, load_catalog_frames, load_field_data
+from app.validation.data import (
+    CatalogFrames,
+    fetch_frame_metadata,
+    load_catalog_frames,
+    query_skybot_fields,
+)
 from app.validation.masked import (
     VisualReview,
     _mean,
@@ -147,7 +152,11 @@ def parse_tycho_tsv(text: str) -> list[TychoStar]:
         if mean_ra is not None and mean_dec is not None:
             ra, dec, source = mean_ra, mean_dec, "mean J2000"
         else:
-            ra, dec, source = number("RA(ICRS)"), number("DE(ICRS)"), "observed ~J1991.25"
+            ra, dec, source = (
+                number("RA(ICRS)"),
+                number("DE(ICRS)"),
+                "observed ~J1991.25",
+            )
         if ra is None or dec is None:
             continue
         vt, bt = number("VTmag"), number("BTmag")
@@ -204,7 +213,9 @@ def selection_order(stars: Sequence[TychoStar]) -> list[TychoStar]:
     ]
     return sorted(
         eligible,
-        key=lambda s: hashlib.sha256(f"{SELECTION_SALT}:{s.tycho_id}".encode()).hexdigest(),
+        key=lambda s: hashlib.sha256(
+            f"{SELECTION_SALT}:{s.tycho_id}".encode()
+        ).hexdigest(),
     )
 
 
@@ -236,7 +247,10 @@ def products_available(pids_rows: Sequence[dict[str, str]], client=None) -> bool
     head = client.head if client is not None else httpx.head
     for row in pids_rows:
         observation = map_ztf_metadata_to_observation(row)
-        for url in (build_psf_catalog_url(observation), build_science_image_url(observation)):
+        for url in (
+            build_psf_catalog_url(observation),
+            build_science_image_url(observation),
+        ):
             if head(url, timeout=60.0).status_code != 200:
                 return False
     return True
@@ -273,7 +287,9 @@ def select_fields(
     ordered = selection_order(stars)
     reference_pids = {
         pid
-        for s in ValidationReport.model_validate_json(AS022_REPORT.read_text()).snapshots
+        for s in ValidationReport.model_validate_json(
+            AS022_REPORT.read_text()
+        ).snapshots
         for pid in (o.product_id for o in s.observations)
     }
     fields: list[SelectedField] = []
@@ -287,7 +303,9 @@ def select_fields(
                 star.ra, star.dec, SELECTION_START_JD, SELECTION_END_JD, client
             )
         except Exception as exc:  # recorded, the rule moves to the next star
-            log.append(SelectionLog(star=star.tycho_id, outcome=f"metadata error: {exc}"))
+            log.append(
+                SelectionLog(star=star.tycho_id, outcome=f"metadata error: {exc}")
+            )
             continue
         sequence = pick_sequence(rows)
         if sequence is None:
@@ -300,7 +318,9 @@ def select_fields(
             continue
         pids = [int(r["pid"]) for r in sequence]
         if set(pids) & reference_pids:
-            log.append(SelectionLog(star=star.tycho_id, outcome="overlaps AS-022 field"))
+            log.append(
+                SelectionLog(star=star.tycho_id, outcome="overlaps AS-022 field")
+            )
             continue
         if not available(sequence, client):
             log.append(
@@ -353,7 +373,11 @@ def bin_index(separation_arcsec: float | None) -> int | None:
 
 def bin_label(index: int) -> str:
     low, high = BIN_EDGES[index], BIN_EDGES[index + 1]
-    return f"{low / 60:.0f}'-{high / 60:.0f}'" if math.isfinite(high) else f">={low / 60:.0f}'"
+    return (
+        f"{low / 60:.0f}'-{high / 60:.0f}'"
+        if math.isfinite(high)
+        else f">={low / 60:.0f}'"
+    )
 
 
 def nearest_star(
@@ -389,16 +413,24 @@ def _gnomonic_inverse(xi, eta, ra0, dec0):
 def _gnomonic(ra, dec, ra0, dec0):
     ra, dec = numpy.radians(ra), numpy.radians(dec)
     ra0r, dec0r = math.radians(ra0), math.radians(dec0)
-    cos_c = numpy.sin(dec0r) * numpy.sin(dec) + numpy.cos(dec0r) * numpy.cos(dec) * numpy.cos(ra - ra0r)
+    cos_c = numpy.sin(dec0r) * numpy.sin(dec) + numpy.cos(dec0r) * numpy.cos(
+        dec
+    ) * numpy.cos(ra - ra0r)
     xi = numpy.cos(dec) * numpy.sin(ra - ra0r) / cos_c
-    eta = (numpy.cos(dec0r) * numpy.sin(dec) - numpy.sin(dec0r) * numpy.cos(dec) * numpy.cos(ra - ra0r)) / cos_c
+    eta = (
+        numpy.cos(dec0r) * numpy.sin(dec)
+        - numpy.sin(dec0r) * numpy.cos(dec) * numpy.cos(ra - ra0r)
+    ) / cos_c
     return xi, eta
 
 
 def _separation_arcsec(ra1, dec1, ra2, dec2):
     """Vectorised haversine great-circle distance [arcsec]."""
     ra1, dec1, ra2, dec2 = (numpy.radians(v) for v in (ra1, dec1, ra2, dec2))
-    h = numpy.sin((dec2 - dec1) / 2) ** 2 + numpy.cos(dec1) * numpy.cos(dec2) * numpy.sin((ra2 - ra1) / 2) ** 2
+    h = (
+        numpy.sin((dec2 - dec1) / 2) ** 2
+        + numpy.cos(dec1) * numpy.cos(dec2) * numpy.sin((ra2 - ra1) / 2) ** 2
+    )
     return numpy.degrees(2 * numpy.arcsin(numpy.sqrt(numpy.clip(h, 0, 1)))) * 3600.0
 
 
@@ -412,11 +444,18 @@ def bin_areas(
     cell's great-circle distance to the nearest star decides its bin."""
     ra0, dec0 = _mean(list(corners))
     xi, eta = _gnomonic(
-        numpy.array([c[0] for c in corners]), numpy.array([c[1] for c in corners]), ra0, dec0
+        numpy.array([c[0] for c in corners]),
+        numpy.array([c[1] for c in corners]),
+        ra0,
+        dec0,
     )
     polygon = numpy.column_stack([xi, eta])
     centre = polygon.mean(axis=0)
-    polygon = polygon[numpy.argsort(numpy.arctan2(polygon[:, 1] - centre[1], polygon[:, 0] - centre[0]))]
+    polygon = polygon[
+        numpy.argsort(
+            numpy.arctan2(polygon[:, 1] - centre[1], polygon[:, 0] - centre[0])
+        )
+    ]
     xs = numpy.linspace(polygon[:, 0].min(), polygon[:, 0].max(), grid)
     ys = numpy.linspace(polygon[:, 1].min(), polygon[:, 1].max(), grid)
     gx, gy = numpy.meshgrid(xs, ys)
@@ -453,6 +492,7 @@ class TrackletProximity(BaseModel):
     nearest_star: str | None
     radial_bin: int | None
     mask_state: str  # unmasked | partially_masked | all_masked
+    mask_bits_union: int
     halo_bit_all: bool
     min_snr: float
     sharp_max: float | None
@@ -475,6 +515,7 @@ class RadialBin(BaseModel):
     unknown_built_density: float | None
     unknown_built_by_mask: dict[str, int]
     unknown_built_halo_bit_all: int
+    unknown_built_per_mask_bit: dict[int, int]
     unknown_rejected: int
     known_built: int
     known_built_density: float | None
@@ -539,7 +580,9 @@ def summary(values: Sequence[float | None]) -> Summary:
     if len(present) == 1:
         return Summary(count=1, median=present[0], p25=present[0], p75=present[0])
     q = statistics.quantiles(present, n=4, method="inclusive")
-    return Summary(count=len(present), median=statistics.median(present), p25=q[0], p75=q[2])
+    return Summary(
+        count=len(present), median=statistics.median(present), p25=q[0], p75=q[2]
+    )
 
 
 def mask_state(masked: int, count: int) -> str:
@@ -554,9 +597,15 @@ def radial_bins(
     bins = []
     for index, area in enumerate(areas):
         members = [t for t in tracklets if t.radial_bin == index]
-        built = [t for t in members if t.tracklet_status is TrackletStatus.TRACKLET_BUILT]
-        unknown = [t for t in built if t.identification_status is IdentificationStatus.UNKNOWN]
-        known = [t for t in built if t.identification_status is IdentificationStatus.KNOWN]
+        built = [
+            t for t in members if t.tracklet_status is TrackletStatus.TRACKLET_BUILT
+        ]
+        unknown = [
+            t for t in built if t.identification_status is IdentificationStatus.UNKNOWN
+        ]
+        known = [
+            t for t in built if t.identification_status is IdentificationStatus.KNOWN
+        ]
         rejected = [
             t
             for t in members
@@ -571,12 +620,19 @@ def radial_bins(
                 high_arcsec=high if math.isfinite(high) else None,
                 area_arcmin2=round(area, 3),
                 unknown_built=len(unknown),
-                unknown_built_density=round(len(unknown) / area, 5) if area > 0 else None,
+                unknown_built_density=(
+                    round(len(unknown) / area, 5) if area > 0 else None
+                ),
                 unknown_built_by_mask={
                     state: sum(t.mask_state == state for t in unknown)
                     for state in ("unmasked", "partially_masked", "all_masked")
                 },
                 unknown_built_halo_bit_all=sum(t.halo_bit_all for t in unknown),
+                unknown_built_per_mask_bit={
+                    bit: n
+                    for bit in range(16)
+                    if (n := sum(t.mask_bits_union >> bit & 1 for t in unknown))
+                },
                 unknown_rejected=len(rejected),
                 known_built=len(known),
                 known_built_density=round(len(known) / area, 5) if area > 0 else None,
@@ -616,7 +672,9 @@ def field_radial(
     )
     tracklets = []
     for record in records:
-        positions = [(i.detection.ra, i.detection.dec) for i in record.tracklet.detections]
+        positions = [
+            (i.detection.ra, i.detection.dec) for i in record.tracklet.detections
+        ]
         ra, dec = _mean(positions)
         separation, star_id = nearest_star(ra, dec, stars)
         f = record.features
@@ -633,6 +691,7 @@ def field_radial(
                 nearest_star=star_id,
                 radial_bin=bin_index(separation),
                 mask_state=mask_state(f.masked_detection_count, f.detection_count),
+                mask_bits_union=f.mask_bits_union,
                 halo_bit_all=all(
                     i.detection.mask_bits >> 12 & 1 for i in record.tracklet.detections
                 ),
@@ -667,21 +726,26 @@ def field_stars(
         client,
     )
     selected = sorted(bright(stars), key=lambda s: s.tycho_id)
-    inside = [
-        s.tycho_id
-        for s in selected
-        if _point_in_footprint(s.ra, s.dec, corners)
-    ]
+    inside = [s.tycho_id for s in selected if _point_in_footprint(s.ra, s.dec, corners)]
     return url, selected, inside
 
 
 def _point_in_footprint(ra, dec, corners) -> bool:
     ra0, dec0 = _mean(list(corners))
-    xi, eta = _gnomonic(numpy.array([c[0] for c in corners]), numpy.array([c[1] for c in corners]), ra0, dec0)
+    xi, eta = _gnomonic(
+        numpy.array([c[0] for c in corners]),
+        numpy.array([c[1] for c in corners]),
+        ra0,
+        dec0,
+    )
     px, py = _gnomonic(numpy.array([ra]), numpy.array([dec]), ra0, dec0)
     polygon = numpy.column_stack([xi, eta])
     centre = polygon.mean(axis=0)
-    polygon = polygon[numpy.argsort(numpy.arctan2(polygon[:, 1] - centre[1], polygon[:, 0] - centre[0]))]
+    polygon = polygon[
+        numpy.argsort(
+            numpy.arctan2(polygon[:, 1] - centre[1], polygon[:, 0] - centre[0])
+        )
+    ]
     inside = False
     for k in range(len(polygon)):
         x1, y1 = polygon[k]
@@ -707,9 +771,14 @@ def conditions_of(
     return FieldConditions(
         role=role,
         skybot_mode=skybot_mode,
-        ccd_quadrant=f"field {observations[0].field} c{observations[0].ccd_id} q{observations[0].quadrant_id}",
+        ccd_quadrant=(
+            f"field {observations[0].field} c{observations[0].ccd_id} "
+            f"q{observations[0].quadrant_id}"
+        ),
         filters=[o.filter_code for o in observations],
-        minutes_from_first=[round((o.observed_at - t0).total_seconds() / 60, 2) for o in observations],
+        minutes_from_first=[
+            round((o.observed_at - t0).total_seconds() / 60, 2) for o in observations
+        ],
         sources_per_frame=[frame.source_count for frame in catalogs.frames],
         maglimit_per_frame=[m.maglimit for m in metadata],
         seeing_arcsec_per_frame=[m.seeing_arcsec for m in metadata],
@@ -722,12 +791,11 @@ def conditions_of(
 
 def load_fields(
     selection: FieldSelection,
+    skybot_snapshot: dict[str, list[KnownObjectField]] | None = None,
     client: httpx.Client | None = None,
     progress: Callable[[str], None] = lambda message: None,
 ):
     """(snapshot, catalogs, stars, conditions) for B, D and the new fields."""
-    from app.validation.data import fetch_frame_metadata, query_skybot_fields
-
     report = ValidationReport.model_validate_json(AS022_REPORT.read_text())
     snapshots = {s.field.field_id: s for s in report.snapshots}
     for field_id in REFERENCE_FIELDS:
@@ -736,15 +804,27 @@ def load_fields(
         catalogs = load_catalog_frames(snapshot.observations, client)
         url, stars, inside = field_stars(snapshot.frame_metadata, client)
         yield snapshot, catalogs, stars, conditions_of(
-            "reference", "AS-022 snapshot", snapshot.observations,
-            snapshot.frame_metadata, catalogs, url, stars, inside,
+            "reference",
+            "AS-022 snapshot",
+            snapshot.observations,
+            snapshot.frame_metadata,
+            catalogs,
+            url,
+            stars,
+            inside,
         )
     for selected in selection.fields:
         field = selected.field
         progress(f"{field.field_id}: metadata, catalogs, SkyBoT")
         observations, metadata = fetch_frame_metadata(field.product_ids, client)
         catalogs = load_catalog_frames(observations, client)
-        skybot = query_skybot_fields(observations, metadata, client)
+        stored = (skybot_snapshot or {}).get(field.field_id)
+        skybot = (
+            stored
+            if stored is not None
+            else query_skybot_fields(observations, metadata, client)
+        )
+        mode = "replayed from as033_skybot.json" if stored is not None else "live"
         snapshot = FieldSnapshot(
             field=field,
             observations=observations,
@@ -755,8 +835,14 @@ def load_fields(
         )
         url, stars, inside = field_stars(metadata, client)
         yield snapshot, catalogs, stars, conditions_of(
-            "new", "live (stored in as033_skybot.json)", observations, metadata,
-            catalogs, url, stars, inside,
+            "new",
+            mode,
+            observations,
+            metadata,
+            catalogs,
+            url,
+            stars,
+            inside,
         )
 
 
@@ -766,9 +852,17 @@ def visual_sample(field: FieldRadial) -> list[tuple[str, TrackletProximity]]:
     def ordered(items):
         return sorted(items, key=lambda t: sample_key(t.field_id, t.tracklet_id))
 
-    built = [t for t in field.tracklets if t.tracklet_status is TrackletStatus.TRACKLET_BUILT]
-    unknown = [t for t in built if t.identification_status is IdentificationStatus.UNKNOWN]
-    near = [t for t in unknown if t.separation_arcsec is not None and t.separation_arcsec < NEAR_EDGE]
+    built = [
+        t for t in field.tracklets if t.tracklet_status is TrackletStatus.TRACKLET_BUILT
+    ]
+    unknown = [
+        t for t in built if t.identification_status is IdentificationStatus.UNKNOWN
+    ]
+    near = [
+        t
+        for t in unknown
+        if t.separation_arcsec is not None and t.separation_arcsec < NEAR_EDGE
+    ]
     far = [t for t in unknown if t.radial_bin == CONTROL_BIN]
     known = [t for t in built if t.identification_status is IdentificationStatus.KNOWN]
     return (
@@ -781,6 +875,7 @@ def visual_sample(field: FieldRadial) -> list[tuple[str, TrackletProximity]]:
 def run_evidence(
     selection: FieldSelection,
     out_dir: Path,
+    skybot_snapshot: dict[str, list[KnownObjectField]] | None = None,
     progress: Callable[[str], None] = lambda message: None,
 ) -> tuple[BrightStarReport, dict[str, list[KnownObjectField]]]:
     from fastapi.testclient import TestClient
@@ -790,7 +885,9 @@ def run_evidence(
     client = TestClient(app)
     fields, strips, skybot = [], [], {}
     (out_dir / "strips").mkdir(parents=True, exist_ok=True)
-    for snapshot, catalogs, stars, conditions in load_fields(selection, progress=progress):
+    for snapshot, catalogs, stars, conditions in load_fields(
+        selection, skybot_snapshot, progress=progress
+    ):
         progress(f"{snapshot.field.field_id}: pipeline + radial evidence")
         radial, details = field_radial(snapshot, catalogs, stars, conditions)
         fields.append(radial)
@@ -804,16 +901,27 @@ def run_evidence(
             positions = [(i.detection.ra, i.detection.dec) for i in detections]
             center, size = strip_geometry(positions)
             strip = render_strip(
-                client, product_ids, center, size, positions,
+                client,
+                product_ids,
+                center,
+                size,
+                positions,
                 [epochs[i.detection.observation_product_id] for i in detections],
             )
-            name = f"{snapshot.field.field_id.split('-')[0]}_{group}_{t.tracklet_id}.png"
+            name = (
+                f"{snapshot.field.field_id.split('-')[0]}_{group}_{t.tracklet_id}.png"
+            )
             write_png(out_dir / "strips" / name, strip)
             strips.append(
                 SampledStrip(
-                    field_id=t.field_id, tracklet_id=t.tracklet_id, group=group,
-                    image=f"strips/{name}", separation_arcsec=t.separation_arcsec,
-                    mask_state=t.mask_state, min_snr=t.min_snr, sharp_max=t.sharp_max,
+                    field_id=t.field_id,
+                    tracklet_id=t.tracklet_id,
+                    group=group,
+                    image=f"strips/{name}",
+                    separation_arcsec=t.separation_arcsec,
+                    mask_state=t.mask_state,
+                    min_snr=t.min_snr,
+                    sharp_max=t.sharp_max,
                     fit_rms_residual_arcsec=t.fit_rms_residual_arcsec,
                 )
             )
@@ -828,6 +936,29 @@ def run_evidence(
             strips=strips,
         ),
         skybot,
+    )
+
+
+def compact(report: BrightStarReport) -> BrightStarReport:
+    """Keep KNOWN and visually sampled tracklet records only; the bins
+    always summarise every tracklet."""
+    sampled = {(s.field_id, s.tracklet_id) for s in report.strips}
+    return report.model_copy(
+        update={
+            "fields": [
+                f.model_copy(
+                    update={
+                        "tracklets": [
+                            t
+                            for t in f.tracklets
+                            if t.identification_status is IdentificationStatus.KNOWN
+                            or (t.field_id, t.tracklet_id) in sampled
+                        ]
+                    }
+                )
+                for f in report.fields
+            ]
+        }
     )
 
 
@@ -852,13 +983,15 @@ def render_markdown(report: BrightStarReport, reviews: Sequence) -> str:
         "## Fields",
         "",
         "| field | role | CCD/quadrant | filters | minutes | sources/frame | maglimit "
-        "| seeing (\") | bright stars (V) in cone | inside footprint | near/control "
+        '| seeing (") | bright stars (V) in cone | inside footprint | near/control '
         "UNKNOWN density |",
         "|---|---|---|---|---|---|---|---|---|---|---|",
     ]
     for field in report.fields:
         c = field.conditions
-        stars = ", ".join(f"{s.tycho_id} ({s.v_mag:.2f})" for s in c.bright_stars) or "none"
+        stars = (
+            ", ".join(f"{s.tycho_id} ({s.v_mag:.2f})" for s in c.bright_stars) or "none"
+        )
         lines.append(
             f"| {field.field_id} | {c.role} | {c.ccd_quadrant} | {'/'.join(c.filters)} "
             f"| {'/'.join(f'{m:.0f}' for m in c.minutes_from_first)} "
@@ -876,10 +1009,11 @@ def render_markdown(report: BrightStarReport, reviews: Sequence) -> str:
             f"Tracklets with no bright star in the cone: {field.tracklets_without_star}.",
             "",
             "| separation | area (arcmin²) | UNKNOWN built | density /arcmin² "
-            "| unmasked / partial / all-masked | bit 12 on all | UNKNOWN rejected "
+            "| unmasked / partial / all-masked | bit 12 on all | tracklets per mask bit "
+            "| UNKNOWN rejected "
             "| KNOWN built | KNOWN density | UNKNOWN min SNR | UNKNOWN sharp max "
-            "| UNKNOWN fit rms (\") | KNOWN min SNR | KNOWN sharp max | KNOWN fit rms (\") |",
-            "|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|",
+            '| UNKNOWN fit rms (") | KNOWN min SNR | KNOWN sharp max | KNOWN fit rms (") |',
+            "|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|",
         ]
         for b in field.bins:
             m = b.unknown_built_by_mask
@@ -887,7 +1021,9 @@ def render_markdown(report: BrightStarReport, reviews: Sequence) -> str:
                 f"| {b.label} | {b.area_arcmin2:.1f} | {b.unknown_built} "
                 f"| {f(b.unknown_built_density, 4)} "
                 f"| {m['unmasked']} / {m['partially_masked']} / {m['all_masked']} "
-                f"| {b.unknown_built_halo_bit_all} | {b.unknown_rejected} | {b.known_built} "
+                f"| {b.unknown_built_halo_bit_all} "
+                f"| {', '.join(f'{k}: {v}' for k, v in b.unknown_built_per_mask_bit.items()) or '–'} "
+                f"| {b.unknown_rejected} | {b.known_built} "
                 f"| {f(b.known_built_density, 4)} | {q(b.unknown_min_snr, 1)} "
                 f"| {q(b.unknown_sharp_max)} | {q(b.unknown_fit_rms, 3)} "
                 f"| {q(b.known_min_snr, 1)} | {q(b.known_sharp_max)} | {q(b.known_fit_rms, 3)} |"
@@ -901,7 +1037,7 @@ def render_markdown(report: BrightStarReport, reviews: Sequence) -> str:
         f"bright star, {VISUAL_FAR} built UNKNOWN beyond {BIN_EDGES[CONTROL_BIN] / 60:.0f}', "
         f"{VISUAL_KNOWN} built KNOWN; SHA-256 order. Strips as in AS-032.",
         "",
-        "| field | tracklet | group | separation (\") | mask | min SNR | sharp max "
+        '| field | tracklet | group | separation (") | mask | min SNR | sharp max '
         "| fit rms | same source? | context | image |",
         "|---|---|---|---|---|---|---|---|---|---|---|",
     ]
@@ -925,6 +1061,12 @@ def main() -> None:
     evidence = commands.add_parser("evidence", help="radial evidence + strips")
     evidence.add_argument("--fields", type=Path, required=True)
     evidence.add_argument("--out-dir", type=Path, required=True)
+    evidence.add_argument(
+        "--all-records",
+        action="store_true",
+        help="keep every tracklet's proximity record (~13 MB); by default only "
+        "KNOWN and visually sampled tracklets are written",
+    )
     args = parser.parse_args()
 
     if args.command == "select":
@@ -934,9 +1076,20 @@ def main() -> None:
         print(f"wrote {args.out}")
     else:
         selection = FieldSelection.model_validate_json(args.fields.read_text())
-        report, skybot = run_evidence(
-            selection, args.out_dir, progress=lambda m: print(m, flush=True)
+        skybot_path = args.out_dir / "as033_skybot.json"
+        snapshot = (
+            {
+                field_id: [KnownObjectField.model_validate(f) for f in fields]
+                for field_id, fields in json.loads(skybot_path.read_text()).items()
+            }
+            if skybot_path.exists()
+            else None
         )
+        report, skybot = run_evidence(
+            selection, args.out_dir, snapshot, progress=lambda m: print(m, flush=True)
+        )
+        if not args.all_records:
+            report = compact(report)
         (args.out_dir / "as033_bright_stars.json").write_text(
             report.model_dump_json() + "\n"
         )
@@ -948,7 +1101,10 @@ def main() -> None:
         )
         review_path = args.out_dir / "visual_review.json"
         reviews = (
-            [VisualReview.model_validate(r) for r in json.loads(review_path.read_text())]
+            [
+                VisualReview.model_validate(r)
+                for r in json.loads(review_path.read_text())
+            ]
             if review_path.exists()
             else []
         )

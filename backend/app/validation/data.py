@@ -64,8 +64,24 @@ def load_field_data(
     """Fetch metadata, PSF catalogs and per-frame SkyBoT predictions."""
     observations, metadata = fetch_frame_metadata(field.product_ids, client)
     catalogs = load_catalog_frames(observations, client)
+    skybot_fields = query_skybot_fields(observations, metadata, client)
+    return FieldData(
+        field=field,
+        observations=observations,
+        frame_metadata=metadata,
+        frames=catalogs.frames,
+        sharp_by_source_id=catalogs.sharp_by_source_id,
+        skybot_fields=skybot_fields,
+    )
 
-    skybot_fields = [
+
+def query_skybot_fields(
+    observations: list[Observation],
+    metadata: list[FrameMetadata],
+    client: httpx.Client | None = None,
+) -> list[KnownObjectField]:
+    """SkyBoT predictions over each whole quadrant at mid-exposure."""
+    return [
         query_known_objects(
             frame.center_ra,
             frame.center_dec,
@@ -76,14 +92,6 @@ def load_field_data(
         )
         for observation, frame in zip(observations, metadata)
     ]
-    return FieldData(
-        field=field,
-        observations=observations,
-        frame_metadata=metadata,
-        frames=catalogs.frames,
-        sharp_by_source_id=catalogs.sharp_by_source_id,
-        skybot_fields=skybot_fields,
-    )
 
 
 @dataclass(frozen=True)

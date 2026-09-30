@@ -1,0 +1,250 @@
+[
+ {
+  "field_id": "S1-2018-09-19-508-c10-q4",
+  "tracklet_id": "trk-0261",
+  "same_source_all_epochs": "no",
+  "source_visible_each_epoch": "no,no,no",
+  "context": "bright-star glow / spikes / bleed",
+  "notes": "Markers on the glow, a diffraction spike and the core of TYC 676-1224-1; structure identical in all frames."
+ },
+ {
+  "field_id": "S1-2018-09-19-508-c10-q4",
+  "tracklet_id": "trk-0274",
+  "same_source_all_epochs": "no",
+  "source_visible_each_epoch": "no,no,no",
+  "context": "bleed column / glow",
+  "notes": "Crosshairs beside the bleed column and in the glow of the star."
+ },
+ {
+  "field_id": "S1-2018-09-19-508-c10-q4",
+  "tracklet_id": "trk-0243",
+  "same_source_all_epochs": "no",
+  "source_visible_each_epoch": "no,no,no",
+  "context": "bright-star glow / spikes",
+  "notes": "Markers on spike and glow around the saturated core."
+ },
+ {
+  "field_id": "S1-2018-09-19-508-c10-q4",
+  "tracklet_id": "trk-0270",
+  "same_source_all_epochs": "no",
+  "source_visible_each_epoch": "no,no,no",
+  "context": "bright-star glow / bleed",
+  "notes": "Markers in the glow left of the bleed column."
+ },
+ {
+  "field_id": "S1-2018-09-19-508-c10-q4",
+  "tracklet_id": "trk-0026",
+  "same_source_all_epochs": "unclear",
+  "source_visible_each_epoch": "no,no,no",
+  "context": "clean sky (6' from the star)",
+  "notes": "Nothing visible at the crosshairs at this stretch (min SNR 3.1); not a bright-star structure."
+ },
+ {
+  "field_id": "S1-2018-09-19-508-c10-q4",
+  "tracklet_id": "trk-0192",
+  "same_source_all_epochs": "no",
+  "source_visible_each_epoch": "no,no,no",
+  "context": "bright-star core / spikes",
+  "notes": "Markers on the horizontal spike and next to the core."
+ },
+ {
+  "field_id": "S1-2018-09-19-508-c10-q4",
+  "tracklet_id": "trk-0060",
+  "same_source_all_epochs": "no",
+  "source_visible_each_epoch": "no,no,no",
+  "context": "another saturated star (control region)",
+  "notes": "Markers in the glow and on the bleed column of a fainter saturated star (not in the V <= 6.5 set) >15' from the bright star."
+ },
+ {
+  "field_id": "S1-2018-09-19-508-c10-q4",
+  "tracklet_id": "trk-0174",
+  "same_source_all_epochs": "no",
+  "source_visible_each_epoch": "no,no,no",
+  "context": "another saturated star core (control region)",
+  "notes": "All three detections inside the saturated core of a fainter star; the 'motion' is within the core."
+ },
+ {
+  "field_id": "S1-2018-09-19-508-c10-q4",
+  "tracklet_id": "trk-0027",
+  "same_source_all_epochs": "yes",
+  "source_visible_each_epoch": "yes,yes,faint",
+  "context": "clean sky",
+  "notes": "KNOWN; point source at each crosshair."
+ },
+ {
+  "field_id": "S1-2018-09-19-508-c10-q4",
+  "tracklet_id": "trk-0037",
+  "same_source_all_epochs": "yes",
+  "source_visible_each_epoch": "yes,yes,faint",
+  "context": "clean sky",
+  "notes": "KNOWN; faint point source at each crosshair."
+ },
+ {
+  "field_id": "S2-2018-09-27-509-c14-q4",
+  "tracklet_id": "trk-0105",
+  "same_source_all_epochs": "no",
+  "source_visible_each_epoch": "no,no,no",
+  "context": "long bleed column",
+  "notes": "All crosshairs on the vertical bleed column of the bright star (95-213\" from it)."
+ },
+ {
+  "field_id": "S2-2018-09-27-509-c14-q4",
+  "tracklet_id": "trk-0415",
+  "same_source_all_epochs": "no",
+  "source_visible_each_epoch": "no,no,no",
+  "context": "bleed column + spikes",
+  "notes": "Detections along the bleed column; spikes visible."
+ },
+ {
+  "field_id": "S2-2018-09-27-509-c14-q4",
+  "tracklet_id": "trk-0448",
+  "same_source_all_epochs": "no",
+  "source_visible_each_epoch": "no,no,no",
+  "context": "bleed column",
+  "notes": "All crosshairs on the bleed column."
+ },
+ {
+  "field_id": "S2-2018-09-27-509-c14-q4",
+  "tracklet_id": "trk-0444",
+  "same_source_all_epochs": "no",
+  "source_visible_each_epoch": "no,no,no",
+  "context": "bleed column",
+  "notes": "All crosshairs on the bleed column."
+ },
+ {
+  "field_id": "S2-2018-09-27-509-c14-q4",
+  "tracklet_id": "trk-0481",
+  "same_source_all_epochs": "no",
+  "source_visible_each_epoch": "no,no,no",
+  "context": "spikes / bleed / glow",
+  "notes": "Markers on spike lines and bleed column edge."
+ },
+ {
+  "field_id": "S2-2018-09-27-509-c14-q4",
+  "tracklet_id": "trk-0245",
+  "same_source_all_epochs": "no",
+  "source_visible_each_epoch": "no,no,no",
+  "context": "bleed column",
+  "notes": "All crosshairs on the bleed column."
+ },
+ {
+  "field_id": "S2-2018-09-27-509-c14-q4",
+  "tracklet_id": "trk-0020",
+  "same_source_all_epochs": "unclear",
+  "source_visible_each_epoch": "no,no,unclear",
+  "context": "clean sky; E3 next to a galaxy/star",
+  "notes": "No source at E1/E2 crosshairs; E3 next to an extended source."
+ },
+ {
+  "field_id": "S2-2018-09-27-509-c14-q4",
+  "tracklet_id": "trk-0001",
+  "same_source_all_epochs": "unclear",
+  "source_visible_each_epoch": "no,no,no",
+  "context": "clean sky",
+  "notes": "Nothing visible at the crosshairs (min SNR 3.1)."
+ },
+ {
+  "field_id": "S2-2018-09-27-509-c14-q4",
+  "tracklet_id": "trk-0030",
+  "same_source_all_epochs": "yes",
+  "source_visible_each_epoch": "yes,yes,yes",
+  "context": "clean sky",
+  "notes": "KNOWN; clear point source at each crosshair."
+ },
+ {
+  "field_id": "S3-2019-07-01-335-c7-q1",
+  "tracklet_id": "trk-0323",
+  "same_source_all_epochs": "no",
+  "source_visible_each_epoch": "no,no,no",
+  "context": "glow of a saturated star (4' from the bright star)",
+  "notes": "E1/E2 on the glow of a nearby saturated star, E3 on empty sky."
+ },
+ {
+  "field_id": "S3-2019-07-01-335-c7-q1",
+  "tracklet_id": "trk-0252",
+  "same_source_all_epochs": "no",
+  "source_visible_each_epoch": "no,no,no",
+  "context": "linear streak / glow",
+  "notes": "Detections along a bright diagonal linear feature present in all frames."
+ },
+ {
+  "field_id": "S4-2018-11-07-615-c5-q3",
+  "tracklet_id": "trk-13016",
+  "same_source_all_epochs": "no",
+  "source_visible_each_epoch": "no,no,no",
+  "context": "bleed column / core of the bright star",
+  "notes": "Markers beside the huge bleed column and the core of TYC 1916-2156-1."
+ },
+ {
+  "field_id": "S4-2018-11-07-615-c5-q3",
+  "tracklet_id": "trk-6254",
+  "same_source_all_epochs": "no",
+  "source_visible_each_epoch": "no,no,no",
+  "context": "bright-star glow / spikes",
+  "notes": "Markers on glow and spikes; nothing compact."
+ },
+ {
+  "field_id": "S4-2018-11-07-615-c5-q3",
+  "tracklet_id": "trk-2209",
+  "same_source_all_epochs": "no",
+  "source_visible_each_epoch": "no,no,no",
+  "context": "bright-star core, spikes, halo rings",
+  "notes": "Markers on the core edge, a spike and concentric halo rings."
+ },
+ {
+  "field_id": "S4-2018-11-07-615-c5-q3",
+  "tracklet_id": "trk-7573",
+  "same_source_all_epochs": "no",
+  "source_visible_each_epoch": "no,no,no",
+  "context": "next to bleed column",
+  "notes": "Markers on dark sky next to the bleed column (zscale dominated by the column)."
+ },
+ {
+  "field_id": "S4-2018-11-07-615-c5-q3",
+  "tracklet_id": "trk-14724",
+  "same_source_all_epochs": "no",
+  "source_visible_each_epoch": "no,no,no",
+  "context": "diffuse glow / spike",
+  "notes": "Markers on diffuse glow structure and near a spike."
+ },
+ {
+  "field_id": "S4-2018-11-07-615-c5-q3",
+  "tracklet_id": "trk-4258",
+  "same_source_all_epochs": "no",
+  "source_visible_each_epoch": "no,no,no",
+  "context": "glow / spikes",
+  "notes": "Markers on the glow and spike region."
+ },
+ {
+  "field_id": "S4-2018-11-07-615-c5-q3",
+  "tracklet_id": "trk-14449",
+  "same_source_all_epochs": "no",
+  "source_visible_each_epoch": "no,no,no",
+  "context": "bleed column of another star (control region)",
+  "notes": "All crosshairs on the bleed column of a fainter saturated star 32' from the bright star."
+ },
+ {
+  "field_id": "S4-2018-11-07-615-c5-q3",
+  "tracklet_id": "trk-0731",
+  "same_source_all_epochs": "no",
+  "source_visible_each_epoch": "no,no,no",
+  "context": "broad diffuse vertical band (control region)",
+  "notes": "Markers on a wide, smooth vertical light band present in all frames; mask bits include 6 (ghost from charge spillage)."
+ },
+ {
+  "field_id": "S4-2018-11-07-615-c5-q3",
+  "tracklet_id": "trk-5013",
+  "same_source_all_epochs": "yes",
+  "source_visible_each_epoch": "yes,yes,yes",
+  "context": "clean sky",
+  "notes": "KNOWN; point source at each crosshair."
+ },
+ {
+  "field_id": "S4-2018-11-07-615-c5-q3",
+  "tracklet_id": "trk-6895",
+  "same_source_all_epochs": "yes",
+  "source_visible_each_epoch": "yes,yes,yes",
+  "context": "clean sky",
+  "notes": "KNOWN; faint point source at each crosshair."
+ }
+]

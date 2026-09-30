@@ -348,3 +348,42 @@ def test_live_masked_tracklet_evidence_reproduces_field_b() -> None:
     evidence, _ = field_evidence(snapshot, catalogs, HALO_STARS[field_id], rows_per_bit)
 
     assert evidence == expected
+
+
+def test_live_bright_star_evidence_reproduces_field_s1() -> None:
+    """AS-033: a fresh run of new field S1 (live IRSA catalogs + VizieR
+    Tycho-2, SkyBoT replayed from the committed snapshot) reproduces the
+    committed radial evidence."""
+    import json
+
+    from app.models.known_object import KnownObjectField
+    from app.validation.bright_stars import (
+        BrightStarReport,
+        FieldSelection,
+        field_radial,
+        load_fields,
+    )
+
+    as033 = AS022_REPORT.parent / "as033"
+    selection = FieldSelection.model_validate_json(
+        (as033 / "as033_fields.json").read_text()
+    )
+    selection = selection.model_copy(update={"fields": selection.fields[:1]})
+    snapshot = {
+        field_id: [KnownObjectField.model_validate(f) for f in fields]
+        for field_id, fields in json.loads(
+            (as033 / "as033_skybot.json").read_text()
+        ).items()
+    }
+    committed = BrightStarReport.model_validate_json(
+        (as033 / "as033_bright_stars.json").read_text()
+    )
+    [expected] = [f for f in committed.fields if f.field_id.startswith("S1-")]
+
+    loaded = list(load_fields(selection, snapshot))
+    field, catalogs, stars, conditions = loaded[-1]
+    radial, _ = field_radial(field, catalogs, stars, conditions)
+
+    assert radial.bins == expected.bins
+    assert radial.near_to_control_density_ratio == expected.near_to_control_density_ratio
+    assert radial.conditions == expected.conditions
