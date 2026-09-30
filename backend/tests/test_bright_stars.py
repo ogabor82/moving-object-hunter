@@ -104,11 +104,16 @@ def test_select_fields_logs_skips_and_stops_at_quota(monkeypatch) -> None:
         base = int(ra * 1000)
         return [row(base + k, 100 + k / 10, "2019-01-01") for k in range(3)]
 
+    def available(rows, client):
+        return int(rows[0]["pid"]) != 30000  # star 3's products are missing
+
     first = select_fields(
-        metadata=metadata, tycho=lambda params, client: ("url", stars)
+        metadata=metadata, tycho=lambda params, client: ("url", stars),
+        available=available,
     )
     again = select_fields(
-        metadata=metadata, tycho=lambda params, client: ("url", list(reversed(stars)))
+        metadata=metadata, tycho=lambda params, client: ("url", list(reversed(stars))),
+        available=available,
     )
 
     assert len(first.fields) == 2
@@ -118,5 +123,8 @@ def test_select_fields_logs_skips_and_stops_at_quota(monkeypatch) -> None:
     assert all(len(f.field.product_ids) == 3 for f in first.fields)
     outcomes = [entry.outcome for entry in first.log]
     assert sum(o.startswith("selected") for o in outcomes) == 2
-    assert all(o.startswith(("selected", "no quadrant-night")) for o in outcomes)
+    assert all(
+        o.startswith(("selected", "no quadrant-night", "products missing"))
+        for o in outcomes
+    )
     assert first.rule == bright_stars.SELECTION_RULE

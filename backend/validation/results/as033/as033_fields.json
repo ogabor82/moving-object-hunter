@@ -1,6 +1,6 @@
 {
- "generated_at": "2026-09-30T20:53:12.009176Z",
- "rule": "Tycho-2 stars with V <= 6.5, Dec >= -25 deg, |ecliptic latitude| <= 10 deg, ordered by SHA-256('AS-033:<Tycho id>'). For each star in turn, the IRSA ZTF science metadata covering the star's position between 2018-03-17 and 2021-01-01 is grouped by (field, CCD, quadrant, UTC date); the earliest group with >= 3 exposures is taken, and its first, middle ((n-1)//2) and last exposure form the sequence (the AS-022 rule). Stars without such a group are skipped and logged. The first 4 stars that yield a sequence are used. No pipeline output, source count or UNKNOWN count is looked at.",
+ "generated_at": "2026-09-30T21:05:48.802620Z",
+ "rule": "Tycho-2 stars with V <= 6.5, Dec >= -25 deg, |ecliptic latitude| <= 10 deg, ordered by SHA-256('AS-033:<Tycho id>'). For each star in turn, the IRSA ZTF science metadata covering the star's position between 2018-03-17 and 2021-01-01 is grouped by (field, CCD, quadrant, UTC date); the earliest group with >= 3 exposures is taken, and its first, middle ((n-1)//2) and last exposure form the sequence (the AS-022 rule). Stars without such a group are skipped and logged. The first 4 stars that yield a sequence are used. No pipeline output, source count or UNKNOWN count is looked at. Amendment 1 (2026-09-30, before any evidence output existed): a sequence qualifies only if the PSF catalog and science image of all three exposures exist in the IRSA archive (HTTP HEAD 200); otherwise the star is skipped and logged. Reason: IRSA metadata listed an exposure (pid 579341801615) whose products return 404.",
  "tycho_query": "https://vizier.cds.unistra.fr/viz-bin/asu-tsv?-source=I%2F259%2Ftyc2&-out=TYC1%2CTYC2%2CTYC3%2CRAmdeg%2CDEmdeg%2CRA%28ICRS%29%2CDE%28ICRS%29%2CBTmag%2CVTmag&-out.max=unlimited&VTmag=%3C7.0&DE%28ICRS%29=%3E-26.0",
  "eligible_stars": 1254,
  "fields": [
@@ -13,7 +13,7 @@
      626497953915,
      626526633915
     ],
-    "selection_note": "Tycho-2 stars with V <= 6.5, Dec >= -25 deg, |ecliptic latitude| <= 10 deg, ordered by SHA-256('AS-033:<Tycho id>'). For each star in turn, the IRSA ZTF science metadata covering the star's position between 2018-03-17 and 2021-01-01 is grouped by (field, CCD, quadrant, UTC date); the earliest group with >= 3 exposures is taken, and its first, middle ((n-1)//2) and last exposure form the sequence (the AS-022 rule). Stars without such a group are skipped and logged. The first 4 stars that yield a sequence are used. No pipeline output, source count or UNKNOWN count is looked at.",
+    "selection_note": "Tycho-2 stars with V <= 6.5, Dec >= -25 deg, |ecliptic latitude| <= 10 deg, ordered by SHA-256('AS-033:<Tycho id>'). For each star in turn, the IRSA ZTF science metadata covering the star's position between 2018-03-17 and 2021-01-01 is grouped by (field, CCD, quadrant, UTC date); the earliest group with >= 3 exposures is taken, and its first, middle ((n-1)//2) and last exposure form the sequence (the AS-022 rule). Stars without such a group are skipped and logged. The first 4 stars that yield a sequence are used. No pipeline output, source count or UNKNOWN count is looked at. Amendment 1 (2026-09-30, before any evidence output existed): a sequence qualifies only if the PSF catalog and science image of all three exposures exist in the IRSA archive (HTTP HEAD 200); otherwise the star is skipped and logged. Reason: IRSA metadata listed an exposure (pid 579341801615) whose products return 404.",
     "control_designations": []
    },
    "selection_star": {
@@ -40,7 +40,7 @@
      634459815515,
      634499005515
     ],
-    "selection_note": "Tycho-2 stars with V <= 6.5, Dec >= -25 deg, |ecliptic latitude| <= 10 deg, ordered by SHA-256('AS-033:<Tycho id>'). For each star in turn, the IRSA ZTF science metadata covering the star's position between 2018-03-17 and 2021-01-01 is grouped by (field, CCD, quadrant, UTC date); the earliest group with >= 3 exposures is taken, and its first, middle ((n-1)//2) and last exposure form the sequence (the AS-022 rule). Stars without such a group are skipped and logged. The first 4 stars that yield a sequence are used. No pipeline output, source count or UNKNOWN count is looked at.",
+    "selection_note": "Tycho-2 stars with V <= 6.5, Dec >= -25 deg, |ecliptic latitude| <= 10 deg, ordered by SHA-256('AS-033:<Tycho id>'). For each star in turn, the IRSA ZTF science metadata covering the star's position between 2018-03-17 and 2021-01-01 is grouped by (field, CCD, quadrant, UTC date); the earliest group with >= 3 exposures is taken, and its first, middle ((n-1)//2) and last exposure form the sequence (the AS-022 rule). Stars without such a group are skipped and logged. The first 4 stars that yield a sequence are used. No pipeline output, source count or UNKNOWN count is looked at. Amendment 1 (2026-09-30, before any evidence output existed): a sequence qualifies only if the PSF catalog and science image of all three exposures exist in the IRSA archive (HTTP HEAD 200); otherwise the star is skipped and logged. Reason: IRSA metadata listed an exposure (pid 579341801615) whose products return 404.",
     "control_designations": []
    },
    "selection_star": {
@@ -67,7 +67,7 @@
      911296892415,
      911336412415
     ],
-    "selection_note": "Tycho-2 stars with V <= 6.5, Dec >= -25 deg, |ecliptic latitude| <= 10 deg, ordered by SHA-256('AS-033:<Tycho id>'). For each star in turn, the IRSA ZTF science metadata covering the star's position between 2018-03-17 and 2021-01-01 is grouped by (field, CCD, quadrant, UTC date); the earliest group with >= 3 exposures is taken, and its first, middle ((n-1)//2) and last exposure form the sequence (the AS-022 rule). Stars without such a group are skipped and logged. The first 4 stars that yield a sequence are used. No pipeline output, source count or UNKNOWN count is looked at.",
+    "selection_note": "Tycho-2 stars with V <= 6.5, Dec >= -25 deg, |ecliptic latitude| <= 10 deg, ordered by SHA-256('AS-033:<Tycho id>'). For each star in turn, the IRSA ZTF science metadata covering the star's position between 2018-03-17 and 2021-01-01 is grouped by (field, CCD, quadrant, UTC date); the earliest group with >= 3 exposures is taken, and its first, middle ((n-1)//2) and last exposure form the sequence (the AS-022 rule). Stars without such a group are skipped and logged. The first 4 stars that yield a sequence are used. No pipeline output, source count or UNKNOWN count is looked at. Amendment 1 (2026-09-30, before any evidence output existed): a sequence qualifies only if the PSF catalog and science image of all three exposures exist in the IRSA archive (HTTP HEAD 200); otherwise the star is skipped and logged. Reason: IRSA metadata listed an exposure (pid 579341801615) whose products return 404.",
     "control_designations": []
    },
    "selection_star": {
@@ -87,29 +87,29 @@
   },
   {
    "field": {
-    "field_id": "S4-2018-08-03-446-c5-q1",
-    "description": "AS-033 field around TYC 5256-186-1 (V 5.95)",
+    "field_id": "S4-2018-11-07-615-c5-q3",
+    "description": "AS-033 field around TYC 1916-2156-1 (V 3.56)",
     "product_ids": [
-     579341801615,
-     579427841615,
-     579461311615
+     675388211815,
+     675453921815,
+     675505501815
     ],
-    "selection_note": "Tycho-2 stars with V <= 6.5, Dec >= -25 deg, |ecliptic latitude| <= 10 deg, ordered by SHA-256('AS-033:<Tycho id>'). For each star in turn, the IRSA ZTF science metadata covering the star's position between 2018-03-17 and 2021-01-01 is grouped by (field, CCD, quadrant, UTC date); the earliest group with >= 3 exposures is taken, and its first, middle ((n-1)//2) and last exposure form the sequence (the AS-022 rule). Stars without such a group are skipped and logged. The first 4 stars that yield a sequence are used. No pipeline output, source count or UNKNOWN count is looked at.",
+    "selection_note": "Tycho-2 stars with V <= 6.5, Dec >= -25 deg, |ecliptic latitude| <= 10 deg, ordered by SHA-256('AS-033:<Tycho id>'). For each star in turn, the IRSA ZTF science metadata covering the star's position between 2018-03-17 and 2021-01-01 is grouped by (field, CCD, quadrant, UTC date); the earliest group with >= 3 exposures is taken, and its first, middle ((n-1)//2) and last exposure form the sequence (the AS-022 rule). Stars without such a group are skipped and logged. The first 4 stars that yield a sequence are used. No pipeline output, source count or UNKNOWN count is looked at. Amendment 1 (2026-09-30, before any evidence output existed): a sequence qualifies only if the PSF catalog and science image of all three exposures exist in the IRSA archive (HTTP HEAD 200); otherwise the star is skipped and logged. Reason: IRSA metadata listed an exposure (pid 579341801615) whose products return 404.",
     "control_designations": []
    },
    "selection_star": {
-    "tycho_id": "TYC 5256-186-1",
-    "ra": 358.23152143,
-    "dec": -3.155485,
-    "vt_mag": 6.06,
-    "bt_mag": 7.324,
-    "v_mag": 5.9462399999999995,
+    "tycho_id": "TYC 1916-2156-1",
+    "ra": 116.11187744,
+    "dec": 24.39799681,
+    "vt_mag": 3.662,
+    "bt_mag": 4.741,
+    "v_mag": 3.56489,
     "position_source": "mean J2000"
    },
    "filters": [
     "zr",
-    "zi",
-    "zg"
+    "zg",
+    "zr"
    ]
   }
  ],
@@ -128,7 +128,15 @@
   },
   {
    "star": "TYC 5256-186-1",
-   "outcome": "selected as S4-2018-08-03-446-c5-q1"
+   "outcome": "products missing in the archive for [579341801615, 579427841615, 579461311615] (amendment 1)"
+  },
+  {
+   "star": "TYC 1896-11-1",
+   "outcome": "products missing in the archive for [450177070415, 450204580415, 450262220415] (amendment 1)"
+  },
+  {
+   "star": "TYC 1916-2156-1",
+   "outcome": "selected as S4-2018-11-07-615-c5-q3"
   }
  ]
 }
