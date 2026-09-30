@@ -80,3 +80,18 @@ identified target outside tolerance, and ≥ 16 passing targets (AS-022
 regression floor, not a scientific requirement). By default SkyBoT is
 replayed from the AS-022 snapshot so PASS/FAIL does not drift with the
 SkyBoT database. Exit code 0 = PASS.
+
+## AS-031 tracklet quality features
+
+`python -m app.validation.quality --out-json validation/results/as031_quality_features.json --out-md validation/results/as031_quality_features.md [--all-records]`
+
+Runs the unchanged pipeline (experimental defaults) on the four AS-022
+fields, identifies against the frozen AS-022 SkyBoT snapshot and extracts
+`TrackletQualityFeatures` (`docs/tracklet_quality_features.md`) for every
+tracklet, with the raw PSF-catalog `sharp` supplied. Output: per-field
+data checks, group summaries (count, missing, min, 10/25/50/75/90th
+percentile, max; categorical counts for flags) and the per-tracklet records
+of identified tracklets (`--all-records` adds the ~6000 UNKNOWN ones,
+~5 MB). Descriptive only — no score, rank or threshold. Interpretation and
+selection effects: `results/as031_findings.md`. Needs IRSA; ~2 min, ~5 GB
+peak memory (crowded field D).

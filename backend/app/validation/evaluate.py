@@ -1,6 +1,5 @@
 """Evaluate the unchanged pipeline on a loaded validation field."""
 
-import statistics
 from collections.abc import Sequence
 
 from app.models.frame_sources import FrameSources
@@ -17,6 +16,7 @@ from app.services.matching_service import (
     extract_moving_candidates,
     match_stationary_sources,
 )
+from app.services.quality_service import extract_quality_features
 from app.services.tracklet_service import build_tracklets
 from app.validation.models import (
     FieldRunResult,
@@ -194,9 +194,7 @@ def _tracklet_features(
     target_designations: set[str],
     sharp_by_source_id: dict[str, float],
 ) -> TrackletFeatures:
-    detections = [item.detection for item in tracklet.detections]
-    snrs = [detection.snr for detection in detections]
-    magnitudes = [detection.magnitude for detection in detections]
+    quality = extract_quality_features(tracklet, sharp_by_source_id)
     designation = (
         identification.best_match.designation
         if identification.best_match
@@ -218,16 +216,11 @@ def _tracklet_features(
         identification_status=identification.status,
         known_designation=designation,
         is_validation_target=designation in target_designations,
-        min_snr=min(snrs),
-        median_snr=statistics.median(snrs),
-        magnitude_spread=max(magnitudes) - min(magnitudes),
-        flagged_detections=sum(
-            detection.on_image_edge or detection.mask_bits > 0
-            for detection in detections
-        ),
-        sharp_values=[
-            sharp_by_source_id.get(detection.source_id) for detection in detections
-        ],
+        min_snr=quality.min_snr,
+        median_snr=quality.median_snr,
+        magnitude_spread=quality.magnitude_range_mag,
+        flagged_detections=quality.flagged_detection_count,
+        sharp_values=quality.sharp_values,
         rate_arcsec_per_min=tracklet.angular_velocity_arcsec_per_min,
         position_angle_deg=tracklet.position_angle_deg,
         fit_rms_residual_arcsec=tracklet.fit_rms_residual_arcsec,

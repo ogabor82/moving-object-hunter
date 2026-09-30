@@ -1,6 +1,8 @@
 """Live loading of a frozen validation field (IRSA + SkyBoT)."""
 
 import csv
+import math
+from collections import Counter
 from dataclasses import dataclass
 from io import StringIO
 
@@ -61,22 +63,7 @@ def load_field_data(
 ) -> FieldData:
     """Fetch metadata, PSF catalogs and per-frame SkyBoT predictions."""
     observations, metadata = fetch_frame_metadata(field.product_ids, client)
-
-    frames: list[FrameSources] = []
-    sharp_by_source_id: dict[str, float] = {}
-    for observation in observations:
-        catalog = fetch_psf_catalog(observation, client)
-        result = normalize_psf_catalog(observation, catalog)
-        frames.append(
-            FrameSources(
-                observation=observation,
-                detections=result.detections,
-                rejected_row_count=len(result.rejected_rows),
-            )
-        )
-        for row in catalog.rows:
-            source_id = f"{observation.product_id}-{int(row['sourceid'])}"
-            sharp_by_source_id[source_id] = float(row["sharp"])
+    catalogs = load_catalog_frames(observations, client)
 
     skybot_fields = [
         query_known_objects(
@@ -93,9 +80,55 @@ def load_field_data(
         field=field,
         observations=observations,
         frame_metadata=metadata,
-        frames=frames,
-        sharp_by_source_id=sharp_by_source_id,
+        frames=catalogs.frames,
+        sharp_by_source_id=catalogs.sharp_by_source_id,
         skybot_fields=skybot_fields,
+    )
+
+
+@dataclass(frozen=True)
+class CatalogFrames:
+    """Normalized frames plus raw PSF catalog values the domain drops.
+
+    `sharp` is not mapped to SourceDetection (docs/ztf_psf_catalog_mapping
+    .md), so it is kept here by source_id for research use; non-finite
+    values are left out. `negative_flag_counts` counts raw `flags` values
+    below 0: -1 becomes on_image_edge, any other negative value would map
+    to on_image_edge=False, mask_bits=0 and so be lost.
+    """
+
+    frames: list[FrameSources]
+    sharp_by_source_id: dict[str, float]
+    negative_flag_counts: dict[int, int]
+
+
+def load_catalog_frames(
+    observations: list[Observation],
+    client: httpx.Client | None = None,
+) -> CatalogFrames:
+    """Fetch and normalize each frame's PSF catalog, keeping raw `sharp`."""
+    frames: list[FrameSources] = []
+    sharp_by_source_id: dict[str, float] = {}
+    negative_flags: Counter[int] = Counter()
+    for observation in observations:
+        catalog = fetch_psf_catalog(observation, client)
+        result = normalize_psf_catalog(observation, catalog)
+        frames.append(
+            FrameSources(
+                observation=observation,
+                detections=result.detections,
+                rejected_row_count=len(result.rejected_rows),
+            )
+        )
+        for row in catalog.rows:
+            source_id = f"{observation.product_id}-{int(row['sourceid'])}"
+            sharp = float(row["sharp"])
+            if math.isfinite(sharp):
+                sharp_by_source_id[source_id] = sharp
+            if int(row["flags"]) < 0:
+                negative_flags[int(row["flags"])] += 1
+    return CatalogFrames(
+        frames, sharp_by_source_id, dict(sorted(negative_flags.items()))
     )
 
 

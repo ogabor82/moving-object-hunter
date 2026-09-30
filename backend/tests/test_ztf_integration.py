@@ -305,3 +305,21 @@ def test_live_overlay_marks_1995_dh_on_every_frame(monkeypatch, tmp_path) -> Non
     assert dh["position_angle_deg"] == pytest.approx(
         target.predicted_position_angle_deg, abs=2.0
     )
+
+
+def test_live_quality_features_of_1995_dh_are_reproducible() -> None:
+    """AS-031: re-running the evidence on the POC field (live archival PSF
+    catalogs, frozen SkyBoT) gives the committed 1995 DH feature set."""
+    from app.validation.quality import QualityEvidenceReport, run_quality_evidence
+
+    committed = QualityEvidenceReport.model_validate_json(
+        (AS022_REPORT.parent / "as031_quality_features.json").read_text()
+    )
+    [expected] = [r for r in committed.records if r.known_designation == "48606"]
+
+    report = run_quality_evidence(field_ids=[expected.field_id])
+
+    [record] = [r for r in report.records if r.known_designation == "48606"]
+    assert record == expected
+    [committed_field] = [f for f in committed.fields if f.field_id == expected.field_id]
+    assert report.fields[0].tracklet_count == committed_field.tracklet_count

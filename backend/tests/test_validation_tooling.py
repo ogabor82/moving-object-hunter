@@ -376,3 +376,35 @@ def test_start_times_are_consistent_with_minutes() -> None:
     assert frames[2].observation.observed_at - frames[0].observation.observed_at == (
         timedelta(minutes=60)
     )
+
+
+def test_load_catalog_frames_keeps_raw_sharp_and_counts_negative_flags(
+    monkeypatch,
+) -> None:
+    from app.services.ztf_service import ZTFPSFCatalog
+    from app.validation import data
+
+    observation = frames_with(lambda minute: [STAR_A])[0].observation
+
+    def row(sourceid, sharp, flags):
+        return {
+            "sourceid": sourceid, "xpos": 1.0, "ypos": 1.0, "ra": 120.0,
+            "dec": 10.0, "flux": 1.0, "sigflux": 0.1, "mag": -5.0,
+            "sigmag": 0.1, "snr": 10.0, "chi": 1.0, "sharp": sharp, "flags": flags,
+        }
+
+    catalog = ZTFPSFCatalog(
+        rows=[row(1, 0.1, 0), row(2, float("nan"), -1), row(3, -0.3, -2)],
+        magnitude_zero_point=26.0,
+    )
+    monkeypatch.setattr(data, "fetch_psf_catalog", lambda observation, client: catalog)
+
+    loaded = data.load_catalog_frames([observation])
+
+    pid = observation.product_id
+    assert loaded.sharp_by_source_id == {f"{pid}-1": 0.1, f"{pid}-3": -0.3}
+    assert loaded.negative_flag_counts == {-2: 1, -1: 1}
+    detections = loaded.frames[0].detections
+    assert [d.on_image_edge for d in detections] == [False, True, False]
+    # flags -2 has no mapping: it reaches the domain as a clean detection.
+    assert detections[2].mask_bits == 0
