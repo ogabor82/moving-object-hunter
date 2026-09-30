@@ -1,0 +1,134 @@
+{
+ "generated_at": "2026-09-30T20:53:12.009176Z",
+ "rule": "Tycho-2 stars with V <= 6.5, Dec >= -25 deg, |ecliptic latitude| <= 10 deg, ordered by SHA-256('AS-033:<Tycho id>'). For each star in turn, the IRSA ZTF science metadata covering the star's position between 2018-03-17 and 2021-01-01 is grouped by (field, CCD, quadrant, UTC date); the earliest group with >= 3 exposures is taken, and its first, middle ((n-1)//2) and last exposure form the sequence (the AS-022 rule). Stars without such a group are skipped and logged. The first 4 stars that yield a sequence are used. No pipeline output, source count or UNKNOWN count is looked at.",
+ "tycho_query": "https://vizier.cds.unistra.fr/viz-bin/asu-tsv?-source=I%2F259%2Ftyc2&-out=TYC1%2CTYC2%2CTYC3%2CRAmdeg%2CDEmdeg%2CRA%28ICRS%29%2CDE%28ICRS%29%2CBTmag%2CVTmag&-out.max=unlimited&VTmag=%3C7.0&DE%28ICRS%29=%3E-26.0",
+ "eligible_stars": 1254,
+ "fields": [
+  {
+   "field": {
+    "field_id": "S1-2018-09-19-508-c10-q4",
+    "description": "AS-033 field around TYC 676-1224-1 (V 6.40)",
+    "product_ids": [
+     626461093915,
+     626497953915,
+     626526633915
+    ],
+    "selection_note": "Tycho-2 stars with V <= 6.5, Dec >= -25 deg, |ecliptic latitude| <= 10 deg, ordered by SHA-256('AS-033:<Tycho id>'). For each star in turn, the IRSA ZTF science metadata covering the star's position between 2018-03-17 and 2021-01-01 is grouped by (field, CCD, quadrant, UTC date); the earliest group with >= 3 exposures is taken, and its first, middle ((n-1)//2) and last exposure form the sequence (the AS-022 rule). Stars without such a group are skipped and logged. The first 4 stars that yield a sequence are used. No pipeline output, source count or UNKNOWN count is looked at.",
+    "control_designations": []
+   },
+   "selection_star": {
+    "tycho_id": "TYC 676-1224-1",
+    "ra": 66.06034367,
+    "dec": 12.15798305,
+    "vt_mag": 6.556,
+    "bt_mag": 8.253,
+    "v_mag": 6.40327,
+    "position_source": "mean J2000"
+   },
+   "filters": [
+    "zr",
+    "zg",
+    "zg"
+   ]
+  },
+  {
+   "field": {
+    "field_id": "S2-2018-09-27-509-c14-q4",
+    "description": "AS-033 field around TYC 696-1788-1 (V 4.75)",
+    "product_ids": [
+     634427845515,
+     634459815515,
+     634499005515
+    ],
+    "selection_note": "Tycho-2 stars with V <= 6.5, Dec >= -25 deg, |ecliptic latitude| <= 10 deg, ordered by SHA-256('AS-033:<Tycho id>'). For each star in turn, the IRSA ZTF science metadata covering the star's position between 2018-03-17 and 2021-01-01 is grouped by (field, CCD, quadrant, UTC date); the earliest group with >= 3 exposures is taken, and its first, middle ((n-1)//2) and last exposure form the sequence (the AS-022 rule). Stars without such a group are skipped and logged. The first 4 stars that yield a sequence are used. No pipeline output, source count or UNKNOWN count is looked at.",
+    "control_designations": []
+   },
+   "selection_star": {
+    "tycho_id": "TYC 696-1788-1",
+    "ra": 73.1331831,
+    "dec": 14.25064331,
+    "vt_mag": 4.941,
+    "bt_mag": 7.043,
+    "v_mag": 4.7518199999999995,
+    "position_source": "mean J2000"
+   },
+   "filters": [
+    "zg",
+    "zg",
+    "zr"
+   ]
+  },
+  {
+   "field": {
+    "field_id": "S3-2019-07-01-335-c7-q1",
+    "description": "AS-033 field around TYC 6301-2457-1 (V 3.91)",
+    "product_ids": [
+     911296442415,
+     911296892415,
+     911336412415
+    ],
+    "selection_note": "Tycho-2 stars with V <= 6.5, Dec >= -25 deg, |ecliptic latitude| <= 10 deg, ordered by SHA-256('AS-033:<Tycho id>'). For each star in turn, the IRSA ZTF science metadata covering the star's position between 2018-03-17 and 2021-01-01 is grouped by (field, CCD, quadrant, UTC date); the earliest group with >= 3 exposures is taken, and its first, middle ((n-1)//2) and last exposure form the sequence (the AS-022 rule). Stars without such a group are skipped and logged. The first 4 stars that yield a sequence are used. No pipeline output, source count or UNKNOWN count is looked at.",
+    "control_designations": []
+   },
+   "selection_star": {
+    "tycho_id": "TYC 6301-2457-1",
+    "ra": 290.41816275,
+    "dec": -17.84720025,
+    "vt_mag": 3.935,
+    "bt_mag": 4.185,
+    "v_mag": 3.9125,
+    "position_source": "mean J2000"
+   },
+   "filters": [
+    "zr",
+    "zr",
+    "zr"
+   ]
+  },
+  {
+   "field": {
+    "field_id": "S4-2018-08-03-446-c5-q1",
+    "description": "AS-033 field around TYC 5256-186-1 (V 5.95)",
+    "product_ids": [
+     579341801615,
+     579427841615,
+     579461311615
+    ],
+    "selection_note": "Tycho-2 stars with V <= 6.5, Dec >= -25 deg, |ecliptic latitude| <= 10 deg, ordered by SHA-256('AS-033:<Tycho id>'). For each star in turn, the IRSA ZTF science metadata covering the star's position between 2018-03-17 and 2021-01-01 is grouped by (field, CCD, quadrant, UTC date); the earliest group with >= 3 exposures is taken, and its first, middle ((n-1)//2) and last exposure form the sequence (the AS-022 rule). Stars without such a group are skipped and logged. The first 4 stars that yield a sequence are used. No pipeline output, source count or UNKNOWN count is looked at.",
+    "control_designations": []
+   },
+   "selection_star": {
+    "tycho_id": "TYC 5256-186-1",
+    "ra": 358.23152143,
+    "dec": -3.155485,
+    "vt_mag": 6.06,
+    "bt_mag": 7.324,
+    "v_mag": 5.9462399999999995,
+    "position_source": "mean J2000"
+   },
+   "filters": [
+    "zr",
+    "zi",
+    "zg"
+   ]
+  }
+ ],
+ "log": [
+  {
+   "star": "TYC 676-1224-1",
+   "outcome": "selected as S1-2018-09-19-508-c10-q4"
+  },
+  {
+   "star": "TYC 696-1788-1",
+   "outcome": "selected as S2-2018-09-27-509-c14-q4"
+  },
+  {
+   "star": "TYC 6301-2457-1",
+   "outcome": "selected as S3-2019-07-01-335-c7-q1"
+  },
+  {
+   "star": "TYC 5256-186-1",
+   "outcome": "selected as S4-2018-08-03-446-c5-q1"
+  }
+ ]
+}
