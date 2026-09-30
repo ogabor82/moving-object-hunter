@@ -1,65 +1,98 @@
-import { useCallback, useEffect, useState } from 'react'
-import { ApiError, getHealth } from './api/client'
+import { useEffect, useState } from 'react'
+import { ApiError, getFramePresets, getHealth } from './api/client'
+import type { BlinkPreset } from './api/types'
+import BlinkComparator from './components/BlinkComparator'
 
-type HealthState =
-  | { kind: 'checking' }
-  | { kind: 'ok'; status: string; checkedAt: Date }
-  | { kind: 'error'; message: string; checkedAt: Date }
+const DEFAULT_DESIGNATION = '48606' // 1995 DH, validated POC control
 
-async function fetchHealth(): Promise<HealthState> {
-  try {
-    const response = await getHealth()
-    return { kind: 'ok', status: response.status, checkedAt: new Date() }
-  } catch (error) {
-    const message =
-      error instanceof ApiError ? `${error.code}: ${error.message}` : String(error)
-    return { kind: 'error', message, checkedAt: new Date() }
-  }
+type Health = { kind: 'checking' } | { kind: 'ok' } | { kind: 'error'; message: string }
+
+type Presets =
+  | { kind: 'loading' }
+  | { kind: 'ready'; items: BlinkPreset[] }
+  | { kind: 'error'; message: string }
+
+function message(error: unknown): string {
+  return error instanceof ApiError ? `${error.code}: ${error.message}` : String(error)
 }
 
 function App() {
-  const [health, setHealth] = useState<HealthState>({ kind: 'checking' })
+  const [health, setHealth] = useState<Health>({ kind: 'checking' })
+  const [presets, setPresets] = useState<Presets>({ kind: 'loading' })
+  const [selectedId, setSelectedId] = useState<string | null>(null)
 
   useEffect(() => {
     let active = true
-    void fetchHealth().then((state) => {
-      if (active) setHealth(state)
-    })
+    getHealth()
+      .then(() => active && setHealth({ kind: 'ok' }))
+      .catch((error: unknown) => active && setHealth({ kind: 'error', message: message(error) }))
+    getFramePresets()
+      .then((items) => {
+        if (!active) return
+        setPresets({ kind: 'ready', items })
+        const preferred = items.find((p) => p.designation === DEFAULT_DESIGNATION)
+        setSelectedId((preferred ?? items[0])?.preset_id ?? null)
+      })
+      .catch((error: unknown) => active && setPresets({ kind: 'error', message: message(error) }))
     return () => {
       active = false
     }
   }, [])
 
-  const check = useCallback(async () => {
-    setHealth({ kind: 'checking' })
-    setHealth(await fetchHealth())
-  }, [])
+  const selected =
+    presets.kind === 'ready'
+      ? presets.items.find((p) => p.preset_id === selectedId) ?? null
+      : null
 
   return (
-    <main className="app">
-      <h1>Moving Object Hunter</h1>
-      <p className="subtitle">ZTF moving-object pipeline — frontend skeleton</p>
+    <div className="shell">
+      <header className="topbar">
+        <div>
+          <span className="brand">Moving Object Hunter</span>
+          <span className="muted"> · ZTF blink comparator</span>
+        </div>
+        <span className={`status ${health.kind}`} data-testid="backend-status">
+          {health.kind === 'checking' && 'backend: checking…'}
+          {health.kind === 'ok' && '● backend connected'}
+          {health.kind === 'error' && `● backend not reachable — ${health.message}`}
+        </span>
+      </header>
 
-      <section className="panel" aria-live="polite">
-        <h2>Backend</h2>
-        {health.kind === 'checking' && <p>Checking /api/health…</p>}
-        {health.kind === 'ok' && (
-          <p className="ok" data-testid="health-ok">
-            Connected — status: <strong>{health.status}</strong>{' '}
-            <span className="muted">({health.checkedAt.toLocaleTimeString()})</span>
-          </p>
-        )}
-        {health.kind === 'error' && (
-          <p className="error" data-testid="health-error">
-            Not reachable — {health.message}{' '}
-            <span className="muted">({health.checkedAt.toLocaleTimeString()})</span>
-          </p>
-        )}
-        <button type="button" onClick={() => void check()}>
-          Check again
-        </button>
-      </section>
-    </main>
+      <div className="layout">
+        <nav className="sidebar" aria-label="frame sequences">
+          <h3>Validation sequences</h3>
+          {presets.kind === 'loading' && <p className="muted">Loading…</p>}
+          {presets.kind === 'error' && <p className="error">{presets.message}</p>}
+          {presets.kind === 'ready' && (
+            <ul>
+              {presets.items.map((preset) => (
+                <li key={preset.preset_id}>
+                  <button
+                    type="button"
+                    className={preset.preset_id === selectedId ? 'preset active' : 'preset'}
+                    onClick={() => setSelectedId(preset.preset_id)}
+                  >
+                    <span>{preset.label}</span>
+                    <span className="muted small">
+                      {preset.role} · V {preset.v_magnitude.toFixed(1)} ·{' '}
+                      {preset.field_id.split('-').slice(0, 4).join('-')}
+                    </span>
+                  </button>
+                </li>
+              ))}
+            </ul>
+          )}
+        </nav>
+
+        <main className="main">
+          {selected ? (
+            <BlinkComparator key={selected.preset_id} preset={selected} />
+          ) : (
+            presets.kind === 'ready' && <p className="muted">No sequence selected.</p>
+          )}
+        </main>
+      </div>
+    </div>
   )
 }
 

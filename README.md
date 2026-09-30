@@ -25,7 +25,8 @@ python3 -m venv .venv
 ```
 
 API: `GET /api/health`, `GET /api/observations/search`,
-`POST /api/tracklets/build`, `POST /api/tracklets/{tracklet_id}/identify`
+`POST /api/tracklets/build`, `POST /api/tracklets/{tracklet_id}/identify`,
+`GET /api/frames/presets`, `GET /api/frames/cutout`
 (interactive docs at http://127.0.0.1:8000/docs). The pipeline endpoints
 call IRSA and SkyBoT live; a tracklet build downloads one PSF catalog per
 frame and can take from seconds to a few minutes.
@@ -38,8 +39,15 @@ npm install
 npm run dev
 ```
 
-Open http://localhost:5173 — the page shows whether `/api/health` is
-reachable (the dev server proxies `/api` to port 8000).
+Open http://localhost:5173 — the blink comparator (AS-029). Pick a
+validation sequence on the left (default: 48606 1995 DH, POC control); the
+three real ZTF frames load from IRSA through the backend. Step with
+← / → or the epoch buttons, blink with space / ▶ Blink, and set the speed
+with the slider. The dev server proxies `/api` to port 8000.
+
+Display transform (backend `app/services/image_service.py`): per-frame
+ZScale + linear 8-bit stretch, north up / east left by flips only (no
+resampling); frames are aligned on the requested sky centre (≤ 0.5 px).
 
 ## Tests
 

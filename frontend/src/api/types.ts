@@ -168,3 +168,48 @@ export interface IdentifyResponse {
   identification: TrackletIdentification
   skybot_fields: KnownObjectField[]
 }
+
+/** A frozen validation frame sequence (backend: app/validation/presets). */
+export interface BlinkPreset {
+  preset_id: string
+  label: string
+  designation: string
+  name: string
+  role: 'control' | 'primary'
+  v_magnitude: number
+  predicted_rate_arcsec_per_min: number
+  field_id: string
+  product_ids: number[]
+  center_ra: number
+  center_dec: number
+  size_arcsec: number
+}
+
+export interface FrameCutoutParams {
+  product_id: number
+  ra: number
+  dec: number
+  size_arcsec: number
+}
+
+/**
+ * One ZTF science-frame cutout as an 8-bit display image. `pixels_base64`
+ * holds width*height bytes, row-major, row 0 at the top, north up and east
+ * left. (center_x, center_y) is the requested sky position in pixels.
+ */
+export interface FrameCutoutResponse {
+  observation: Observation
+  ra: number
+  dec: number
+  size_arcsec: number
+  width: number
+  height: number
+  pixel_scale_arcsec: number
+  center_x: number
+  center_y: number
+  orientation: 'north_up_east_left'
+  rotation_deg: number
+  transform: string[]
+  stretch: { method: 'zscale_linear'; vmin: number; vmax: number }
+  pixels_base64: string
+}

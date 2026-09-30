@@ -1,8 +1,9 @@
 # Moving Object Hunter – frontend
 
-Minimal React + Vite + TypeScript skeleton (AS-028) with a typed client for
-the backend API (`src/api/`). The page shows whether the backend health
-endpoint is reachable.
+React + Vite + TypeScript frontend with a typed client for the backend API
+(`src/api/`). AS-029: a blink comparator for real ZTF frame cutouts of the
+frozen validation sequences (`src/components/BlinkComparator.tsx`), plus
+the backend connection status.
 
 ```
 npm install

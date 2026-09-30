@@ -1,6 +1,8 @@
+import base64
 import os
 from io import BytesIO
 
+import numpy
 import pytest
 from astropy.io import fits
 from fastapi.testclient import TestClient
@@ -28,6 +30,8 @@ from app.services.ztf_service import (
     fetch_science_image,
     find_observation_sequence,
 )
+from app.validation.presets import AS022_REPORT, load_blink_presets
+from app.validation.runner import ValidationReport
 
 
 pytestmark = [
@@ -165,3 +169,44 @@ def test_live_tracklet_build_endpoint() -> None:
     assert body["source_counts"] == [13455, 12553, 8678]
     assert body["diagnostics"]["tracklet_count"] == len(body["tracklets"]) > 0
     assert all(t["tracklet_id"].startswith(body["build_id"]) for t in body["tracklets"])
+
+
+def test_live_blink_frames_show_1995_dh_moving() -> None:
+    """Real ZTF cutouts of the 1995 DH preset: a bright source sits at the
+    frozen SkyBoT prediction in every frame, and it moves between frames."""
+    preset = next(p for p in load_blink_presets() if p.designation == "48606")
+    report = ValidationReport.model_validate_json(AS022_REPORT.read_text())
+    target = next(
+        t for s in report.snapshots for t in s.targets if t.designation == "48606"
+    )
+    client = TestClient(app)
+    positions = []
+    for product_id, (ra, dec) in zip(preset.product_ids, target.predicted_positions):
+        response = client.get(
+            "/api/frames/cutout",
+            params={
+                "product_id": product_id,
+                "ra": preset.center_ra,
+                "dec": preset.center_dec,
+                "size_arcsec": preset.size_arcsec,
+            },
+        )
+        assert response.status_code == 200, response.json()
+        body = response.json()
+        pixels = numpy.frombuffer(
+            base64.b64decode(body["pixels_base64"]), dtype=numpy.uint8
+        ).reshape(body["height"], body["width"])
+        # North up, east left: offsets from the requested centre in pixels.
+        east = (ra - preset.center_ra) * numpy.cos(numpy.radians(dec)) * 3600
+        north = (dec - preset.center_dec) * 3600
+        column = body["center_x"] - east / body["pixel_scale_arcsec"]
+        row = body["center_y"] - north / body["pixel_scale_arcsec"]
+        c, r = int(round(column)), int(round(row))
+        assert pixels[r - 2 : r + 3, c - 2 : c + 3].max() > numpy.percentile(
+            pixels, 95
+        )
+        positions.append((column, row))
+
+    # Moves north (up) and slightly west (right) by several pixels per frame.
+    assert positions[0][1] - positions[2][1] > 20
+    assert positions[2][0] > positions[0][0]

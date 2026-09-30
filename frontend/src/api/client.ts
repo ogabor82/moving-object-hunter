@@ -1,5 +1,8 @@
 import type {
   ApiErrorBody,
+  BlinkPreset,
+  FrameCutoutParams,
+  FrameCutoutResponse,
   HealthResponse,
   IdentifyResponse,
   ObservationSearchParams,
@@ -104,4 +107,21 @@ export function identifyTracklet(
       ),
     },
   )
+}
+
+export function getFramePresets(): Promise<BlinkPreset[]> {
+  return request<BlinkPreset[]>('/frames/presets')
+}
+
+export function getFrameCutout(
+  params: FrameCutoutParams,
+  signal?: AbortSignal,
+): Promise<FrameCutoutResponse> {
+  const query = new URLSearchParams({
+    product_id: String(params.product_id),
+    ra: String(params.ra),
+    dec: String(params.dec),
+    size_arcsec: String(params.size_arcsec),
+  })
+  return request<FrameCutoutResponse>(`/frames/cutout?${query}`, { signal })
 }

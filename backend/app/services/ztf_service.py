@@ -38,6 +38,8 @@ METADATA_COLUMNS = (
     "exptime",
 )
 MAX_RESULTS = 10
+# IRSA metadata searches have been observed to take 20-40 s under load.
+METADATA_TIMEOUT_SECONDS = 90.0
 # Minimum frames for a tracklet sequence (04 – Baby Steps, AS-010).
 MIN_SEQUENCE_FRAMES = 3
 
@@ -113,7 +115,9 @@ def fetch_ztf_metadata(
     request = client.get if client is not None else httpx.get
 
     try:
-        response = request(ZTF_SCIENCE_METADATA_URL, params=params, timeout=30.0)
+        response = request(
+            ZTF_SCIENCE_METADATA_URL, params=params, timeout=METADATA_TIMEOUT_SECONDS
+        )
     except httpx.HTTPError as exc:
         raise ZTFServiceError(f"IRSA ZTF metadata request failed: {exc}") from exc
 
@@ -200,7 +204,9 @@ def fetch_observations(
     request = client.get if client is not None else httpx.get
 
     try:
-        response = request(ZTF_SCIENCE_METADATA_URL, params=params, timeout=30.0)
+        response = request(
+            ZTF_SCIENCE_METADATA_URL, params=params, timeout=METADATA_TIMEOUT_SECONDS
+        )
     except httpx.HTTPError as exc:
         raise ZTFServiceError(f"IRSA ZTF metadata request failed: {exc}") from exc
 
@@ -329,12 +335,13 @@ def _download_fits_product(
     url: str,
     label: str,
     client: httpx.Client | None,
+    params: dict[str, str] | None = None,
 ) -> bytes:
     """Download one ZTF FITS product and check that it looks like FITS."""
     request = client.get if client is not None else httpx.get
 
     try:
-        response = request(url, timeout=120.0)
+        response = request(url, params=params, timeout=120.0)
     except httpx.HTTPError as exc:
         raise ZTFServiceError(f"{label} request failed: {exc}") from exc
 
@@ -376,6 +383,38 @@ def fetch_science_image(
         ) from exc
 
     return payload
+
+
+def fetch_science_cutout(
+    observation: Observation,
+    ra_degrees: float,
+    dec_degrees: float,
+    size_arcsec: float,
+    client: httpx.Client | None = None,
+) -> bytes:
+    """Download a square FITS cutout of an Observation's science image.
+
+    Uses the IRSA IBE cutout service (center/size query on the image URL,
+    https://irsa.ipac.caltech.edu/ibe/cutouts.html). The cutout keeps the
+    parent image's pixel grid and orientation, and is clipped at the image
+    edge; a cutout that does not overlap the image is an error.
+    """
+    if not 0.0 <= ra_degrees < 360.0:
+        raise ValueError("ra_degrees must be in [0, 360).")
+    if not -90.0 <= dec_degrees <= 90.0:
+        raise ValueError("dec_degrees must be in [-90, 90].")
+    if size_arcsec <= 0:
+        raise ValueError("size_arcsec must be positive.")
+    return _download_fits_product(
+        build_science_image_url(observation),
+        "ZTF science image cutout",
+        client,
+        params={
+            "center": f"{ra_degrees},{dec_degrees}deg",
+            "size": f"{size_arcsec}arcsec",
+            "gzip": "false",
+        },
+    )
 
 
 def read_psf_catalog(payload: bytes) -> ZTFPSFCatalog:
