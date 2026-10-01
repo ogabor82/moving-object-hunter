@@ -10,6 +10,11 @@ before any recovery outcome of this ticket was computed.
 
     python -m app.validation.known_recovery select \\
         --out validation/results/as035/as035_selection.json
+    python -m app.validation.known_recovery evidence --population R \\
+        --selection validation/results/as035/as035_selection.json \\
+        --out-dir validation/results/as035          # and --population N
+    python -m app.validation.known_recovery combine --out-dir validation/results/as035
+    python -m app.validation.known_recovery render --out-dir validation/results/as035
 """
 
 import argparse
@@ -43,6 +48,8 @@ from app.validation.bright_stars import (
 )
 from app.validation.models import ValidationField
 from app.validation.presets import AS022_REPORT
+from app.validation.runner import ValidationReport
+from app.validation.star_contamination import StarProximity
 
 
 # ---------------------------------------------------------------------------
@@ -571,18 +578,979 @@ def select_sequences(
     )
 
 
+# ---------------------------------------------------------------------------
+# Evidence (written after the pre-registration commit fa4cd97)
+# ---------------------------------------------------------------------------
+
+STAGES = ("detection", "stationary", "association", "fit", "identification")
+
+
+class FrameTrace(BaseModel):
+    """One target in one frame."""
+
+    product_id: int
+    filter_code: str
+    predicted: tuple[float, float]
+    expected_mag: float
+    global_margin_mag: float  # frame maglimit - expected magnitude
+    local_depth_mag: float | None
+    local_margin_mag: float | None
+    local_sources: int  # PSF sources within LOCAL_DEPTH_RADIUS_ARCSEC
+    nearest_arcsec: float | None  # nearest PSF source within 10"
+    detected: bool  # nearest source within match_radius
+    source_id: str | None
+    source_mag: float | None
+    source_snr: float | None
+    source_mask_bits: int | None
+    source_sharp: float | None
+    candidate: bool | None  # None when not detected
+    # For a stationary source: what it matched within the stationary
+    # tolerance in another frame — "self" (the target's own source there),
+    # "other" (another source), with that source's distance and magnitude.
+    stationary_match: str | None
+    stationary_match_arcsec: float | None
+    stationary_match_mag: float | None
+
+
+class TargetTrace(BaseModel):
+    population: str  # N | R
+    field_id: str
+    designation: str
+    object_class: str
+    role: str
+    v_magnitude: float
+    rate_arcsec_per_min: float
+    min_pair_displacement_arcsec: float
+    rate_eligible: bool
+    baseline_eligible: bool
+    edge_distance_arcsec: float  # min over frames, to the footprint edge
+    proximity: StarProximity  # AS-034 classes, min over E1-E3 positions
+    group: str  # zone | outer | intermediate | control
+    frames: list[FrameTrace]
+    detected_frames: int
+    candidate_frames: int
+    tracklet_id: str | None  # tracklet holding all three target sources
+    tracklet_status: str | None
+    identification_status: str | None
+    best_match: str | None
+    partial_tracklets: int  # tracklets holding 1-2 of the target sources
+    recovered: bool
+    first_failure: str | None  # one of STAGES, None when recovered
+    as022_recovered: bool
+    as022_loss_stage: str
+
+
+def class_separations(proximity: StarProximity) -> tuple[float | None, ...]:
+    """(V<6, 6-8, 8-10, 10-11) closest approaches from the AS-034 classes."""
+    s = proximity.separation_by_class
+
+    def smallest(*values):
+        values = [v for v in values if v is not None]
+        return min(values) if values else None
+
+    return smallest(s[0], s[1]), s[2], s[3], s[4]
+
+
+def proximity_group(proximity: StarProximity) -> str:
+    v6, v8, v10, v11 = class_separations(proximity)
+    reach = dict(zip((0, 1, 2), (r for _, r in ZONE_REACH)))
+    for index, separation in enumerate((v6, v8, v10)):
+        if separation is not None and separation < reach[index]:
+            return "zone"
+    bright = [s for s in (v6, v8, v10) if s is not None]
+    if bright and min(bright) < OUTER_ARCSEC:
+        return "outer"
+    if (not bright or min(bright) >= CONTROL_V10_ARCSEC) and (
+        v11 is None or v11 >= CONTROL_V11_ARCSEC
+    ):
+        return "control"
+    return "intermediate"
+
+
+def distance_bin(separation: float | None) -> int | None:
+    if separation is None:
+        return None
+    for index in range(len(DISTANCE_EDGES) - 1):
+        if DISTANCE_EDGES[index] <= separation < DISTANCE_EDGES[index + 1]:
+            return index
+    return None
+
+
+def frame_depth(magnitudes, snrs) -> float | None:
+    """Median 5-sigma depth estimate mag + 2.5 log10(snr / 5) of sources
+    with LOCAL_DEPTH_SNR; None with fewer than LOCAL_DEPTH_MIN_SOURCES."""
+    import numpy
+
+    magnitudes = numpy.asarray(magnitudes, float)
+    snrs = numpy.asarray(snrs, float)
+    use = (snrs >= LOCAL_DEPTH_SNR[0]) & (snrs <= LOCAL_DEPTH_SNR[1])
+    if use.sum() < LOCAL_DEPTH_MIN_SOURCES:
+        return None
+    return float(numpy.median(magnitudes[use] + 2.5 * numpy.log10(snrs[use] / 5.0)))
+
+
+def edge_distance_arcsec(ra: float, dec: float, corners) -> float:
+    """Distance from a position to the nearest footprint edge (tangent
+    plane), positive inside."""
+    import numpy
+
+    from app.validation.bright_stars import _gnomonic
+
+    xs, ys = _gnomonic(
+        numpy.array([c[0] for c in corners]), numpy.array([c[1] for c in corners]), ra, dec
+    )
+    points = numpy.degrees(numpy.column_stack([xs, ys])) * 3600.0
+    center = points.mean(axis=0)
+    points = points[numpy.argsort(numpy.arctan2(points[:, 1] - center[1], points[:, 0] - center[0]))]
+    best = math.inf
+    for k in range(len(points)):
+        a, b = points[k], points[(k + 1) % len(points)]
+        ab = b - a
+        t = max(0.0, min(1.0, float(numpy.dot(-a, ab) / numpy.dot(ab, ab))))
+        best = min(best, float(numpy.hypot(*(a + t * ab))))
+    return best
+
+
+def trace_target(
+    population: str,
+    field_id: str,
+    target,
+    frames,
+    metadata,
+    candidate_frames,
+    tracklets,
+    identifications,
+    config,
+    stars,
+    sharp_by_source_id: dict[str, float],
+    depth_by_frame: Sequence[float | None],
+) -> TargetTrace:
+    """Stage-by-stage trace of one target (pre-registered definitions)."""
+    from itertools import combinations
+
+    import numpy
+
+    from app.models.identification import IdentificationStatus
+    from app.models.tracklet import TrackletStatus
+    from app.services.astrometry import angular_distance_arcsec, find_pairs_within
+    from app.validation.evaluate import NEAREST_DETECTION_RADIUS_ARCSEC, _target_outcome
+    from app.validation.star_contamination import loss_stage, min_proximity
+
+    positions = target.predicted_positions
+    traces: list[FrameTrace] = []
+    sources: list[str | None] = []
+    for frame, candidate_frame, meta, (ra, dec), depth in zip(
+        frames, candidate_frames, metadata, positions, depth_by_frame
+    ):
+        detections = frame.detections
+        ras = numpy.array([d.ra for d in detections])
+        decs = numpy.array([d.dec for d in detections])
+        _, near_idx, near_sep = find_pairs_within(
+            [ra], [dec], ras, decs, max(LOCAL_DEPTH_RADIUS_ARCSEC, NEAREST_DETECTION_RADIUS_ARCSEC)
+        )
+        local = near_idx[near_sep <= LOCAL_DEPTH_RADIUS_ARCSEC]
+        local_depth = frame_depth(
+            [detections[i].magnitude for i in local], [detections[i].snr for i in local]
+        )
+        expected = target.v_magnitude + BAND_OFFSET.get(frame.observation.filter_code, 0.0)
+        close = near_sep <= NEAREST_DETECTION_RADIUS_ARCSEC
+        nearest = source = None
+        if close.any():
+            best = int(numpy.argmin(numpy.where(close, near_sep, numpy.inf)))
+            nearest = float(near_sep[best])
+            source = detections[int(near_idx[best])]
+        detected = nearest is not None and nearest <= config.match_radius_arcsec
+        source = source if detected else None
+        sources.append(source.source_id if source else None)
+        candidate_ids = {c.source_id for c in candidate_frame.candidates}
+        traces.append(
+            FrameTrace(
+                product_id=frame.observation.product_id,
+                filter_code=frame.observation.filter_code,
+                predicted=(ra, dec),
+                expected_mag=round(expected, 3),
+                global_margin_mag=round(meta.maglimit - expected, 3),
+                local_depth_mag=None if local_depth is None else round(local_depth, 3),
+                local_margin_mag=None if local_depth is None else round(local_depth - expected, 3),
+                local_sources=int(len(local)),
+                nearest_arcsec=None if nearest is None else round(nearest, 3),
+                detected=detected,
+                source_id=source.source_id if source else None,
+                source_mag=source.magnitude if source else None,
+                source_snr=source.snr if source else None,
+                source_mask_bits=source.mask_bits if source else None,
+                source_sharp=sharp_by_source_id.get(source.source_id) if source else None,
+                candidate=(source.source_id in candidate_ids) if source else None,
+                stationary_match=None,
+                stationary_match_arcsec=None,
+                stationary_match_mag=None,
+            )
+        )
+    # What a stationary target source matched in the other frames.
+    for index, trace in enumerate(traces):
+        if trace.candidate is not False:
+            continue
+        own = next(d for d in frames[index].detections if d.source_id == trace.source_id)
+        best = None
+        for other, frame in enumerate(frames):
+            if other == index:
+                continue
+            _, idx, sep = find_pairs_within(
+                [own.ra], [own.dec],
+                [d.ra for d in frame.detections], [d.dec for d in frame.detections],
+                config.stationary_tolerance_arcsec,
+            )
+            for i, s in zip(idx, sep):
+                match = frame.detections[int(i)]
+                kind = "self" if match.source_id == sources[other] else "other"
+                key = (kind != "self", float(s))
+                if best is None or key < best[0]:
+                    best = (key, kind, float(s), match.magnitude)
+        if best is not None:
+            trace.stationary_match = best[1]
+            trace.stationary_match_arcsec = round(best[2], 3)
+            trace.stationary_match_mag = best[3]
+
+    wanted = {s for s in sources if s is not None}
+    full = partial = None
+    partial_count = 0
+    for tracklet, identification in zip(tracklets, identifications):
+        ids = {d.detection.source_id for d in tracklet.detections}
+        shared = len(ids & wanted)
+        if len(wanted) == len(sources) and wanted <= ids:
+            if full is None or (
+                full[0].status is not TrackletStatus.TRACKLET_BUILT
+                and tracklet.status is TrackletStatus.TRACKLET_BUILT
+            ):
+                full = (tracklet, identification)
+        elif shared:
+            partial_count += 1
+    detected_frames = sum(t.detected for t in traces)
+    candidate_frames_count = sum(bool(t.candidate) for t in traces)
+    built = full is not None and full[0].status is TrackletStatus.TRACKLET_BUILT
+    identified = (
+        built
+        and full[1].status is IdentificationStatus.KNOWN
+        and full[1].best_match is not None
+        and full[1].best_match.designation == target.designation
+    )
+    if detected_frames < len(traces):
+        failure = "detection"
+    elif candidate_frames_count < len(traces):
+        failure = "stationary"
+    elif full is None:
+        failure = "association"
+    elif not built:
+        failure = "fit"
+    elif not identified:
+        failure = "identification"
+    else:
+        failure = None
+    outcome = _target_outcome(target, frames, candidate_frames, tracklets, identifications, config)
+    proximity = min_proximity(positions, stars)
+    return TargetTrace(
+        population=population,
+        field_id=field_id,
+        designation=target.designation,
+        object_class=target.object_class,
+        role=target.role,
+        v_magnitude=target.v_magnitude,
+        rate_arcsec_per_min=round(target.predicted_rate_arcsec_per_min, 4),
+        min_pair_displacement_arcsec=round(
+            min(angular_distance_arcsec(*a, *b) for a, b in combinations(positions, 2)), 3
+        ),
+        rate_eligible=target.predicted_rate_arcsec_per_min <= config.max_rate_arcsec_per_min,
+        baseline_eligible=baseline_eligible(positions, config.stationary_tolerance_arcsec),
+        edge_distance_arcsec=round(
+            min(edge_distance_arcsec(ra, dec, m.corners) for (ra, dec), m in zip(positions, metadata)), 1
+        ),
+        proximity=proximity,
+        group=proximity_group(proximity),
+        frames=traces,
+        detected_frames=detected_frames,
+        candidate_frames=candidate_frames_count,
+        tracklet_id=full[0].tracklet_id if full else None,
+        tracklet_status=full[0].status.value if full else None,
+        identification_status=full[1].status.value if full else None,
+        best_match=(full[1].best_match.designation if full and full[1].best_match else None),
+        partial_tracklets=partial_count,
+        recovered=failure is None,
+        first_failure=failure,
+        as022_recovered=outcome.recovered,
+        as022_loss_stage=loss_stage(outcome),
+    )
+
+
+# --- statistics (descriptive; no scipy dependency) ---
+
+
+def wilson(k: int, n: int, z: float = 1.959964) -> tuple[float | None, float | None]:
+    if n == 0:
+        return None, None
+    p = k / n
+    denominator = 1 + z * z / n
+    centre = (p + z * z / (2 * n)) / denominator
+    half = z * math.sqrt(p * (1 - p) / n + z * z / (4 * n * n)) / denominator
+    return max(0.0, centre - half), min(1.0, centre + half)
+
+
+def fisher_two_sided(a: int, b: int, c: int, d: int) -> float:
+    """Fisher exact test of [[a, b], [c, d]], two-sided (sum of tables no
+    more likely than the observed one)."""
+    row1, row2, col1 = a + b, c + d, a + c
+    n = row1 + row2
+
+    def probability(x: int) -> float:
+        return math.comb(row1, x) * math.comb(row2, col1 - x) / math.comb(n, col1)
+
+    observed = probability(a)
+    low, high = max(0, col1 - row2), min(row1, col1)
+    return min(
+        1.0,
+        sum(
+            p
+            for x in range(low, high + 1)
+            if (p := probability(x)) <= observed * (1 + 1e-9)
+        ),
+    )
+
+
+def mantel_haenszel(tables: Sequence[tuple[int, int, int, int]]) -> float | None:
+    """MH common odds ratio of (zone recovered, zone lost, control
+    recovered, control lost) tables; None when undefined."""
+    numerator = denominator = 0.0
+    for a, b, c, d in tables:
+        n = a + b + c + d
+        if n == 0 or a + b == 0 or c + d == 0:
+            continue
+        numerator += a * d / n
+        denominator += b * c / n
+    if denominator == 0:
+        return None if numerator == 0 else math.inf
+    return numerator / denominator
+
+
+class Contrast(BaseModel):
+    scope: str
+    zone_n: int
+    zone_recovered: int
+    control_n: int
+    control_recovered: int
+    fisher_p: float | None
+    mh_odds_ratio: float | None
+    mh_quadrants: int
+    claimed: bool
+    verdict: str
+
+
+def contrast(traces: Sequence[TargetTrace], scope: str) -> Contrast:
+    eligible = [
+        t for t in traces if t.role == "primary" and t.rate_eligible and t.baseline_eligible
+    ]
+    zone = [t for t in eligible if t.group == "zone"]
+    control = [t for t in eligible if t.group == "control"]
+    zk, ck = sum(t.recovered for t in zone), sum(t.recovered for t in control)
+    p = (
+        fisher_two_sided(zk, len(zone) - zk, ck, len(control) - ck)
+        if zone and control
+        else None
+    )
+    tables = []
+    for field_id in sorted({t.field_id for t in zone} & {t.field_id for t in control}):
+        z = [t for t in zone if t.field_id == field_id]
+        c = [t for t in control if t.field_id == field_id]
+        zr, cr = sum(t.recovered for t in z), sum(t.recovered for t in c)
+        tables.append((zr, len(z) - zr, cr, len(c) - cr))
+    mh = mantel_haenszel(tables)
+    lower = bool(zone and control and zk / len(zone) < ck / len(control))
+    claimed = (
+        len(zone) >= MIN_ZONE_TARGETS
+        and p is not None
+        and p < CLAIM_ALPHA
+        and lower
+        and (mh is None or mh < 1)
+    )
+    if claimed:
+        verdict = "penalty claimed"
+    elif len(zone) < MIN_ZONE_TARGETS:
+        verdict = f"not demonstrated: {len(zone)} zone targets < {MIN_ZONE_TARGETS}"
+    elif p is None or p >= CLAIM_ALPHA:
+        verdict = "not demonstrated: no significant zone/control difference"
+    else:
+        verdict = "not demonstrated: difference not lower in zone or not in shared quadrants"
+    return Contrast(
+        scope=scope,
+        zone_n=len(zone),
+        zone_recovered=zk,
+        control_n=len(control),
+        control_recovered=ck,
+        fisher_p=p,
+        mh_odds_ratio=mh,
+        mh_quadrants=len(tables),
+        claimed=claimed,
+        verdict=verdict,
+    )
+
+
+# --- strips ---
+
+
+class Strip(BaseModel):
+    population: str
+    field_id: str
+    designation: str
+    reason: str  # near_recovered | near_lost | control_recovered | control_lost | revisit
+    image: str
+    first_failure: str | None
+    nearest_v10_arcsec: float | None
+    note: str
+
+
+def strip_key(field_id: str, designation: str) -> str:
+    return hashlib.sha256(f"{VISUAL_SALT}:{field_id}:{designation}".encode()).hexdigest()
+
+
+def pick_strips(traces: Sequence[TargetTrace]) -> list[tuple[str, TargetTrace]]:
+    eligible = [t for t in traces if t.rate_eligible and t.baseline_eligible]
+
+    def near(t: TargetTrace) -> bool:
+        bright = [s for s in class_separations(t.proximity)[:3] if s is not None]
+        return bool(bright) and min(bright) < VISUAL_NEAR_ARCSEC
+
+    def ordered(items):
+        return sorted(items, key=lambda t: strip_key(t.field_id, t.designation))
+
+    picks = []
+    for recovered, label in ((True, "near_recovered"), (False, "near_lost")):
+        group = [t for t in eligible if near(t) and t.recovered is recovered]
+        picks += [(label, t) for t in ordered(group)[:VISUAL_NEAR_PER_OUTCOME]]
+    for recovered, label in ((True, "control_recovered"), (False, "control_lost")):
+        group = [t for t in eligible if t.group == "control" and t.recovered is recovered]
+        picks += [(label, t) for t in ordered(group)[:VISUAL_CONTROL_PER_OUTCOME]]
+    chosen = {(t.field_id, t.designation) for _, t in picks}
+    for designation in REVISIT:
+        for t in traces:
+            if (
+                t.population == "R"
+                and t.designation == designation
+                and (t.field_id, t.designation) not in chosen
+            ):
+                picks.append(("revisit", t))
+    return picks
+
+
+# --- run ---
+
+
+class FieldConditions(BaseModel):
+    population: str
+    field_id: str
+    origin: str
+    product_ids: list[int]
+    filters: list[str]
+    minutes_from_first: list[float]
+    sources_per_frame: list[int]
+    maglimit_per_frame: list[float]
+    seeing_per_frame: list[float]
+    frame_depth_per_frame: list[float | None]
+    stars_per_class: list[int]
+    targets: int
+    tracklets: int
+    tycho_query: str
+
+
+class TracePart(BaseModel):
+    """Traces of one population run (combined later)."""
+
+    generated_at: datetime
+    population: str
+    fields: list[FieldConditions]
+    targets: list[TargetTrace]
+
+
+class Evidence(BaseModel):
+    generated_at: datetime
+    preregistration: str
+    fields: list[FieldConditions]
+    targets: list[TargetTrace]
+    contrasts: list[Contrast]
+    strips: list[Strip]
+
+
+def empty_selection() -> Selection:
+    return Selection(
+        generated_at=datetime.now(timezone.utc),
+        preregistration=PREREGISTRATION,
+        tycho_query="",
+        eligible_stars=[],
+        sequences=[],
+        skybot_queries=0,
+        log=[],
+    )
+
+
+def population_fields(selection: Selection) -> list[tuple[str, ValidationField, str]]:
+    """(population, field, origin) in run order: N first, then R."""
+    from app.validation.star_contamination import Population
+
+    population = Population.model_validate_json(
+        (AS022_REPORT.parent / "as034" / "as034_population.json").read_text()
+    )
+    return [
+        ("N", s.field, f"search {s.search_class} {s.search_star.tycho_id}")
+        for s in selection.sequences
+    ] + [("R", f.field, f"AS-034 ({f.origin})") for f in population.fields]
+
+
+def load_field(population: str, field: ValidationField, out_dir: Path, stored: dict):
+    """Observations, metadata and full-quadrant SkyBoT fields; R replays
+    the AS-022/033/034 snapshots, N queries SkyBoT once and stores it."""
+    import json
+
+    from app.models.known_object import KnownObjectField
+    from app.validation.data import fetch_frame_metadata, query_skybot_fields
+
+    report = ValidationReport.model_validate_json(AS022_REPORT.read_text())
+    frozen = {s.field.field_id: s for s in report.snapshots}
+    if field.field_id in frozen:
+        snapshot = frozen[field.field_id]
+        return snapshot.observations, snapshot.frame_metadata, snapshot.skybot_fields
+    observations, metadata = fetch_frame_metadata(field.product_ids)
+    as033 = json.loads((AS022_REPORT.parent / "as033" / "as033_skybot.json").read_text())
+    as034 = json.loads((AS022_REPORT.parent / "as034" / "as034_skybot.json").read_text())
+    if field.field_id in as033:
+        raw = as033[field.field_id]
+    elif field.field_id in as034:
+        raw = as034[field.field_id]
+    elif field.field_id in stored:
+        raw = stored[field.field_id]
+    else:
+        raw = [f.model_dump(mode="json") for f in query_skybot_fields(observations, metadata)]
+        stored[field.field_id] = raw
+        (out_dir / "as035_skybot.json").write_text(json.dumps(stored) + "\n")
+    return observations, metadata, [KnownObjectField.model_validate(f) for f in raw]
+
+
+def run_traces(
+    selection: Selection,
+    population_name: str,
+    out_dir: Path,
+    only: set[str] | None = None,
+    progress: Callable[[str], None] = lambda message: None,
+) -> TracePart:
+    import json
+
+    import numpy
+    from app.models.pipeline_config import EXPERIMENTAL_DEFAULT_CONFIG as CONFIG
+    from app.services.identification_service import match_tracklets_to_known_objects
+    from app.services.pipeline_service import build_tracklets_from_frames
+    from app.validation.data import load_catalog_frames
+    from app.validation.models import TargetSelectionRule
+    from app.validation.selection import select_targets
+    from app.validation.star_contamination import field_stars
+
+    skybot_path = out_dir / "as035_skybot.json"
+    stored = json.loads(skybot_path.read_text()) if skybot_path.exists() else {}
+    conditions: list[FieldConditions] = []
+    traces: list[TargetTrace] = []
+    for population, field, origin in population_fields(selection):
+        if population != population_name or (only is not None and field.field_id not in only):
+            continue
+        progress(f"{population} {field.field_id}: loading")
+        observations, metadata, skybot = load_field(population, field, out_dir, stored)
+        catalogs = load_catalog_frames(observations)
+        progress(f"{population} {field.field_id}: pipeline")
+        pipeline = build_tracklets_from_frames(catalogs.frames, CONFIG)
+        tracklets = pipeline.build.tracklets
+        identifications = match_tracklets_to_known_objects(
+            tracklets,
+            {o.product_id: f for o, f in zip(observations, skybot)},
+            CONFIG.identification(),
+        ).identifications
+        url, stars = field_stars(metadata)
+        depths = [
+            frame_depth(
+                numpy.array([d.magnitude for d in f.detections]),
+                numpy.array([d.snr for d in f.detections]),
+            )
+            for f in catalogs.frames
+        ]
+        targets = select_targets(field.field_id, metadata, skybot, TargetSelectionRule())
+        progress(f"{population} {field.field_id}: tracing {len(targets)} targets")
+        for target in targets:
+            traces.append(
+                trace_target(
+                    population, field.field_id, target, catalogs.frames, metadata,
+                    pipeline.candidate_frames, tracklets, identifications, CONFIG,
+                    stars, catalogs.sharp_by_source_id, depths,
+                )
+            )
+        conditions.append(
+            FieldConditions(
+                population=population,
+                field_id=field.field_id,
+                origin=origin,
+                product_ids=[o.product_id for o in observations],
+                filters=[o.filter_code for o in observations],
+                minutes_from_first=[
+                    round((o.observed_at - observations[0].observed_at).total_seconds() / 60, 2)
+                    for o in observations
+                ],
+                sources_per_frame=[len(f.detections) for f in catalogs.frames],
+                maglimit_per_frame=[m.maglimit for m in metadata],
+                seeing_per_frame=[m.seeing_arcsec for m in metadata],
+                frame_depth_per_frame=[None if d is None else round(d, 3) for d in depths],
+                stars_per_class=[
+                    sum(s.mag_class == c for s in stars) for c in range(5)
+                ],
+                targets=len(targets),
+                tracklets=len(tracklets),
+                tycho_query=url,
+            )
+        )
+        del pipeline, catalogs, tracklets, identifications
+
+    return TracePart(
+        generated_at=datetime.now(timezone.utc),
+        population=population_name,
+        fields=conditions,
+        targets=traces,
+    )
+
+
+def combine(
+    parts: Sequence[TracePart],
+    out_dir: Path,
+    strips: bool = True,
+    progress: Callable[[str], None] = lambda message: None,
+) -> Evidence:
+    """Contrasts and the strip sample over all traced populations."""
+    from fastapi.testclient import TestClient
+
+    from app.main import app
+    from app.validation.masked import render_strip, strip_geometry, write_png
+
+    conditions = [c for part in parts for c in part.fields]
+    traces = [t for part in parts for t in part.targets]
+    products = {c.field_id: c.product_ids for c in conditions}
+    contrasts = [
+        contrast(traces, "N + R"),
+        contrast([t for t in traces if t.population == "N"], "N"),
+        contrast([t for t in traces if t.population == "R"], "R"),
+    ]
+    strips_out: list[Strip] = []
+    if strips:
+        client = TestClient(app)
+        (out_dir / "strips").mkdir(parents=True, exist_ok=True)
+        for reason, t in pick_strips(traces):
+            image = f"strips/{reason}_{t.field_id.split('-')[0]}_{t.designation.replace(' ', '_')}.png"
+            progress(f"strip {image}")
+            positions = [f.predicted for f in t.frames]
+            center, size = strip_geometry(positions)
+            write_png(
+                out_dir / image,
+                render_strip(client, products[t.field_id], center, size, positions, [0, 1, 2]),
+            )
+            bright = [s for s in class_separations(t.proximity)[:3] if s is not None]
+            strips_out.append(
+                Strip(
+                    population=t.population,
+                    field_id=t.field_id,
+                    designation=t.designation,
+                    reason=reason,
+                    image=image,
+                    first_failure=t.first_failure,
+                    nearest_v10_arcsec=min(bright) if bright else None,
+                    note="markers = SkyBoT predicted positions (crosshair: this epoch)",
+                )
+            )
+    return Evidence(
+        generated_at=datetime.now(timezone.utc),
+        preregistration=PREREGISTRATION,
+        fields=conditions,
+        targets=traces,
+        contrasts=contrasts,
+        strips=strips_out,
+    )
+
+
+def _fmt(value, digits: int = 2) -> str:
+    return "–" if value is None else f"{value:.{digits}f}"
+
+
+def _rate(group: Sequence[TargetTrace]) -> str:
+    k, n = sum(t.recovered for t in group), len(group)
+    if n == 0:
+        return "0/0"
+    low, high = wilson(k, n)
+    return f"{k}/{n} ({100 * k / n:.0f} %, {100 * low:.0f}–{100 * high:.0f})"
+
+
+def _stages(group: Sequence[TargetTrace]) -> str:
+    return " / ".join(str(sum(t.first_failure == s for t in group)) for s in STAGES)
+
+
+def render_markdown(evidence: Evidence, reviews: Sequence) -> str:
+    targets = evidence.targets
+    eligible = [t for t in targets if t.rate_eligible and t.baseline_eligible]
+    lines = [
+        "# AS-035 known-object recovery near bright stars (generated)",
+        "",
+        f"Generated {evidence.generated_at:%Y-%m-%d %H:%M UTC}. Descriptive only; no "
+        "filter, radius, score, rank or threshold. Interpretation: `as035_findings.md`.",
+        "",
+        f"Pre-registration (commit fa4cd97): {evidence.preregistration}",
+        "",
+        "Recovery cells: recovered/n (%, Wilson 95 % interval). Stage columns: first "
+        "failure detection / stationary / association / fit / identification.",
+        "",
+        "## Population",
+        "",
+        "| pop | field | origin | filters | minutes | sources/frame | maglimit | catalog depth "
+        "| seeing | stars V<=11 by class | targets | tracklets |",
+        "|---|---|---|---|---|---|---|---|---|---|---|---|",
+    ]
+    for c in evidence.fields:
+        lines.append(
+            f"| {c.population} | {c.field_id} | {c.origin} | {'/'.join(c.filters)} "
+            f"| {'/'.join(f'{m:.0f}' for m in c.minutes_from_first)} "
+            f"| {'/'.join(map(str, c.sources_per_frame))} "
+            f"| {'/'.join(f'{m:.1f}' for m in c.maglimit_per_frame)} "
+            f"| {'/'.join(_fmt(m, 1) for m in c.frame_depth_per_frame)} "
+            f"| {'/'.join(f'{m:.1f}' for m in c.seeing_per_frame)} "
+            f"| {'/'.join(map(str, c.stars_per_class))} | {c.targets} | {c.tracklets} |"
+        )
+
+    lines += [
+        "",
+        "## Eligibility strata (temporal baseline and rate separated first)",
+        "",
+        "| pop | role | targets | too fast | short baseline | eligible | eligible recovered "
+        "| short-baseline recovered | short-baseline stages |",
+        "|---|---|---|---|---|---|---|---|---|",
+    ]
+    for pop in ("N", "R"):
+        for role in ("primary", "marginal"):
+            group = [t for t in targets if t.population == pop and t.role == role]
+            fast = [t for t in group if not t.rate_eligible]
+            short = [t for t in group if t.rate_eligible and not t.baseline_eligible]
+            ok = [t for t in group if t.rate_eligible and t.baseline_eligible]
+            lines.append(
+                f"| {pop} | {role} | {len(group)} | {len(fast)} | {len(short)} | {len(ok)} "
+                f"| {_rate(ok)} | {_rate(short)} | {_stages(short)} |"
+            )
+
+    lines += [
+        "",
+        "## Recovery by proximity group (rate- and baseline-eligible)",
+        "",
+        'zone: <120" of V<6, <60" of 6-8, <30" of 8-10; outer: other <240" of V<10; '
+        'control: >=480" from V<10 and >=60" from V10-11; intermediate: the rest.',
+        "",
+        "| scope | role | group | recovered | first-failure stages |",
+        "|---|---|---|---|---|",
+    ]
+    for scope, pops in (("N + R", ("N", "R")), ("N", ("N",)), ("R", ("R",))):
+        for role in ("primary", "marginal"):
+            for group in ("zone", "outer", "intermediate", "control"):
+                members = [
+                    t for t in eligible
+                    if t.population in pops and t.role == role and t.group == group
+                ]
+                lines.append(f"| {scope} | {role} | {group} | {_rate(members)} | {_stages(members)} |")
+
+    lines += [
+        "",
+        "## Pre-registered claim rule (PRIMARY, eligible, zone vs control)",
+        "",
+        "| scope | zone | control | Fisher p (two-sided) | MH odds ratio (quadrants) | verdict |",
+        "|---|---|---|---|---|---|",
+    ]
+    for c in evidence.contrasts:
+        lines.append(
+            f"| {c.scope} | {c.zone_recovered}/{c.zone_n} | {c.control_recovered}/{c.control_n} "
+            f"| {_fmt(c.fisher_p, 3)} | {_fmt(c.mh_odds_ratio, 2)} ({c.mh_quadrants}) | {c.verdict} |"
+        )
+
+    labels = ("V<6", "6<=V<8", "8<=V<10")
+    lines += [
+        "",
+        "## Star magnitude × closest approach (N + R, eligible)",
+        "",
+        "Each target once per class, in the bin of its closest predicted approach "
+        "(E1-E3) to a star of that class.",
+        "",
+        "| class | closest approach | role | recovered | first-failure stages |",
+        "|---|---|---|---|---|",
+    ]
+    for index, label in enumerate(labels):
+        for b in range(len(DISTANCE_EDGES) - 1):
+            for role in ("primary", "marginal"):
+                members = [
+                    t for t in eligible
+                    if t.role == role
+                    and distance_bin(class_separations(t.proximity)[index]) == b
+                ]
+                if members:
+                    lines.append(
+                        f'| {label} | {DISTANCE_EDGES[b]:g}-{DISTANCE_EDGES[b + 1]:g}" | {role} '
+                        f"| {_rate(members)} | {_stages(members)} |"
+                    )
+
+    lines += [
+        "",
+        "## Detection-stage losses and local depth (eligible)",
+        "",
+        "Local margin = local 5σ catalog depth − expected band magnitude, minimum over "
+        "the frames where the target was not detected.",
+        "",
+        "| group | detection losses | locally detectable (margin >= 0) | locally below "
+        "| no local depth |",
+        "|---|---|---|---|---|",
+    ]
+    for group in ("zone", "outer", "intermediate", "control"):
+        losses = [t for t in eligible if t.group == group and t.first_failure == "detection"]
+        margins = []
+        for t in losses:
+            values = [f.local_margin_mag for f in t.frames if not f.detected]
+            margins.append(None if any(v is None for v in values) else min(values))
+        lines.append(
+            f"| {group} | {len(losses)} | {sum(m is not None and m >= 0 for m in margins)} "
+            f"| {sum(m is not None and m < 0 for m in margins)} | {sum(m is None for m in margins)} |"
+        )
+
+    near = sorted(
+        (
+            t for t in targets
+            if any(s is not None and s < OUTER_ARCSEC for s in class_separations(t.proximity)[:3])
+        ),
+        key=lambda t: min(s for s in class_separations(t.proximity)[:3] if s is not None),
+    )
+    lines += [
+        "",
+        '## Every target within 240" of a V<10 star (all strata)',
+        "",
+        '| pop | field | object | role | V | rate ("/min) | min disp. (") | eligible | nearest V<10 (", class) '
+        '| group | nearest src (") E1/E2/E3 | candidate | global / local margin (min) '
+        "| tracklet | first failure | AS-022 |",
+        "|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|",
+    ]
+    for t in near:
+        sep, cls = min(
+            (s, c) for c, s in enumerate(class_separations(t.proximity)[:3]) if s is not None
+        )
+        local = [f.local_margin_mag for f in t.frames if f.local_margin_mag is not None]
+        lines.append(
+            f"| {t.population} | {t.field_id} | {t.designation} | {t.role} | {t.v_magnitude:.1f} "
+            f"| {t.rate_arcsec_per_min:.2f} | {t.min_pair_displacement_arcsec:.1f} "
+            f"| {'yes' if t.rate_eligible and t.baseline_eligible else ('short baseline' if t.rate_eligible else 'too fast')} "
+            f"| {sep:.0f}, {labels[cls]} | {t.group} "
+            f"| {'/'.join(_fmt(f.nearest_arcsec, 1) for f in t.frames)} "
+            f"| {'/'.join('–' if f.candidate is None else ('y' if f.candidate else 'n:' + (f.stationary_match or '?')) for f in t.frames)} "
+            f"| {min(f.global_margin_mag for f in t.frames):.1f} / {_fmt(min(local) if local else None, 1)} "
+            f"| {t.tracklet_id or '–'} {t.tracklet_status or ''} | {t.first_failure or 'recovered'} | {t.as022_loss_stage} |"
+        )
+
+    lines += ["", "## AS-034 revisit", ""]
+    for designation in REVISIT:
+        for t in (t for t in targets if t.designation == designation):
+            lines.append(
+                f"- **{t.designation}** ({t.population}, {t.field_id}, {t.role}, V {t.v_magnitude:.1f}): "
+                f"rate {t.rate_arcsec_per_min:.3f}\"/min, min pairwise displacement "
+                f"{t.min_pair_displacement_arcsec:.2f}\" → "
+                f"{'baseline-eligible' if t.baseline_eligible else 'short-baseline stratum'}; "
+                f"group {t.group}; nearest source per frame "
+                f"{'/'.join(_fmt(f.nearest_arcsec, 2) for f in t.frames)}\"; candidate "
+                f"{'/'.join('–' if f.candidate is None else ('y' if f.candidate else 'n:' + (f.stationary_match or '?')) for f in t.frames)}; "
+                f"first failure {t.first_failure or 'none (recovered)'}."
+            )
+
+    by_key = {(r.field_id, r.tracklet_id): r for r in reviews}
+    lines += [
+        "",
+        "## Visual sample",
+        "",
+        '| pop | field | object | reason | nearest V<10 (") | first failure | agent label | context | image |',
+        "|---|---|---|---|---|---|---|---|---|",
+    ]
+    for s in evidence.strips:
+        r = by_key.get((s.field_id, s.designation))
+        lines.append(
+            f"| {s.population} | {s.field_id} | {s.designation} | {s.reason} "
+            f"| {_fmt(s.nearest_v10_arcsec, 0)} | {s.first_failure or 'recovered'} "
+            f"| {r.same_source_all_epochs if r else 'not reviewed'} | {r.context if r else ''} "
+            f"| [{s.image}]({s.image}) |"
+        )
+    return "\n".join(lines) + "\n"
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     commands = parser.add_subparsers(dest="command", required=True)
     select = commands.add_parser("select", help="pre-registered star-driven search (N)")
     select.add_argument("--out", type=Path, required=True)
+    evidence = commands.add_parser("evidence", help="trace the targets of N or R")
+    evidence.add_argument("--selection", type=Path)
+    evidence.add_argument("--population", choices=("N", "R"), required=True)
+    evidence.add_argument("--out-dir", type=Path, required=True)
+    combined = commands.add_parser("combine", help="contrasts and strips over N + R")
+    combined.add_argument("--out-dir", type=Path, required=True)
+    render = commands.add_parser("render", help="markdown from the evidence JSON")
+    render.add_argument("--out-dir", type=Path, required=True)
     args = parser.parse_args()
 
     if args.command == "select":
         selection = select_sequences(progress=lambda m: print(m, flush=True))
         args.out.parent.mkdir(parents=True, exist_ok=True)
         args.out.write_text(selection.model_dump_json(indent=1) + "\n")
-        print(f"wrote {args.out} ({len(selection.sequences)} sequences, {selection.skybot_queries} SkyBoT queries)")
+        print(
+            f"wrote {args.out} ({len(selection.sequences)} sequences, "
+            f"{selection.skybot_queries} SkyBoT queries)"
+        )
+    elif args.command == "evidence":
+        selection = (
+            Selection.model_validate_json(args.selection.read_text())
+            if args.population == "N"
+            else empty_selection()  # R needs no search result
+        )
+        part = run_traces(
+            selection,
+            args.population,
+            args.out_dir,
+            progress=lambda m: print(m, flush=True),
+        )
+        path = args.out_dir / f"as035_traces_{args.population}.json"
+        path.write_text(part.model_dump_json() + "\n")
+        print(f"wrote {path}")
+    elif args.command == "combine":
+        parts = [
+            TracePart.model_validate_json(
+                (args.out_dir / f"as035_traces_{name}.json").read_text()
+            )
+            for name in ("N", "R")
+        ]
+        evidence = combine(parts, args.out_dir, progress=lambda m: print(m, flush=True))
+        (args.out_dir / "as035_evidence.json").write_text(
+            evidence.model_dump_json() + "\n"
+        )
+        print(f"wrote {args.out_dir}")
+    if args.command in ("combine", "render"):
+        import json
+
+        from app.validation.masked import VisualReview
+
+        evidence = Evidence.model_validate_json(
+            (args.out_dir / "as035_evidence.json").read_text()
+        )
+        review_path = args.out_dir / "visual_review.json"
+        reviews = (
+            [VisualReview.model_validate(r) for r in json.loads(review_path.read_text())]
+            if review_path.exists()
+            else []
+        )
+        (args.out_dir / "as035_evidence.md").write_text(
+            render_markdown(evidence, reviews)
+        )
 
 
 if __name__ == "__main__":

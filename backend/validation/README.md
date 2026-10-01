@@ -147,3 +147,29 @@ rejected UNKNOWN and built KNOWN tracklets with mask and quality summaries,
 KNOWN loss stages by closest approach to a star, and a reviewed strip
 sample. Evidence only — no filter, radius, score, rank or threshold.
 Interpretation: `results/as034/as034_findings.md`. ~35 min, ~8.6 GB peak.
+
+## AS-035 known-object recovery near bright stars
+
+```
+python -m app.validation.known_recovery select --out validation/results/as035/as035_selection.json
+python -m app.validation.known_recovery evidence --population N --selection validation/results/as035/as035_selection.json --out-dir validation/results/as035
+python -m app.validation.known_recovery evidence --population R --out-dir validation/results/as035
+python -m app.validation.known_recovery combine --out-dir validation/results/as035
+python -m app.validation.known_recovery render --out-dir validation/results/as035
+```
+
+Pre-registered (commit fa4cd97) before any AS-035 outcome: `select` finds
+new quadrant-nights (N) where SkyBoT predicts an AS-022-rule object
+passing within 120" of a Tycho-2 V < 8 star (SHA-256 star order,
+alternating V < 6 / 6-8, 12 per class), with a temporal-baseline sequence
+rule (E2/E3 >= 15 min apart, span <= 150 min); R is the 26 AS-034
+quadrants (not blind). `evidence` traces every AS-022-rule target of a
+population stage by stage (expected position → detection → stationary /
+moving → association → fit → identification; first failure point), with
+rate / baseline eligibility, band-corrected global and local catalog
+depth, and the closest predicted approach to Tycho-2 stars by class.
+`combine` applies the pre-registered zone/control contrast and claim rule
+and renders the strip sample. N SkyBoT predictions are stored in
+`as035_skybot.json` and replayed. Evidence only — no filter, radius,
+score, rank or threshold. Interpretation:
+`results/as035/as035_findings.md`.

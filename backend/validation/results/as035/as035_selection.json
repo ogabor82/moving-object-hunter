@@ -1,0 +1,1813 @@
+{
+ "generated_at": "2026-10-01T17:44:03.604164Z",
+ "preregistration": "Populations: N = star-driven search (Tycho-2 V<6 and 6-8 stars, Dec>=-25, |beta|<=10, SHA-256('AS-035:<id>') order, alternating classes, 12 quadrant-nights per class, <=60 stars and <=15 nights per star; trigger = SkyBoT object passing within 120\" of the star at E1/E2/E3 that meets the AS-022 target rule, rate <= 1\"/min and baseline rule, inside the footprint); R = the 26 AS-034 quadrants (not blind). Sequence rule: E1 first, E3 last within 150 min, E2 closest to the midpoint with >=15 min gaps, archived products. Targets: AS-022 rule (primary/marginal). Eligibility: rate <= 1.0\"/min; every pairwise predicted displacement >= 3.0\" (2x stationary tolerance); failures form their own strata. Detectability: band offsets g +0.33, r -0.22, i -0.37; local 5-sigma depth from PSF sources (3<=snr<=20) within 60\". Strata: classes V<6, 6-8, 8-10 x closest approach 0-30-60-120-240\"; zone = <120\" of V<6, <60\" of 6-8, <30\" of 8-10; control = >=480\" from V<10 and >=60\" from V10-11. Trace: expected position, detection (2.0\"), stationary/moving, association, fit, identification; first failure. Claim rule: zone PRIMARY eligible n>=10, Fisher two-sided p<0.05 (lower in zone) and MH odds ratio over shared quadrants < 1; else not demonstrated. Strips: SHA-256 order, <=8 recovered + <=8 lost within 120\" of V<10, 2+2 controls, plus 288181/408599 if R targets. No outcome was looked at.",
+ "tycho_query": "https://vizier.cds.unistra.fr/viz-bin/asu-tsv?-source=I%2F259%2Ftyc2&-out=TYC1%2CTYC2%2CTYC3%2CRAmdeg%2CDEmdeg%2CRA%28ICRS%29%2CDE%28ICRS%29%2CBTmag%2CVTmag&-out.max=unlimited&VTmag=%3C8.5&DE%28ICRS%29=%3E-26.0",
+ "eligible_stars": [
+  731,
+  5415
+ ],
+ "sequences": [
+  {
+   "field": {
+    "field_id": "N1-2018-11-25-468-c12-q1",
+    "description": "AS-035 near-star search: TYC 243-1975-1 (V 5.94)",
+    "product_ids": [
+     693460084415,
+     693521994415,
+     693541754415
+    ],
+    "selection_note": "Populations: N = star-driven search (Tycho-2 V<6 and 6-8 stars, Dec>=-25, |beta|<=10, SHA-256('AS-035:<id>') order, alternating classes, 12 quadrant-nights per class, <=60 stars and <=15 nights per star; trigger = SkyBoT object passing within 120\" of the star at E1/E2/E3 that meets the AS-022 target rule, rate <= 1\"/min and baseline rule, inside the footprint); R = the 26 AS-034 quadrants (not blind). Sequence rule: E1 first, E3 last within 150 min, E2 closest to the midpoint with >=15 min gaps, archived products. Targets: AS-022 rule (primary/marginal). Eligibility: rate <= 1.0\"/min; every pairwise predicted displacement >= 3.0\" (2x stationary tolerance); failures form their own strata. Detectability: band offsets g +0.33, r -0.22, i -0.37; local 5-sigma depth from PSF sources (3<=snr<=20) within 60\". Strata: classes V<6, 6-8, 8-10 x closest approach 0-30-60-120-240\"; zone = <120\" of V<6, <60\" of 6-8, <30\" of 8-10; control = >=480\" from V<10 and >=60\" from V10-11. Trace: expected position, detection (2.0\"), stationary/moving, association, fit, identification; first failure. Claim rule: zone PRIMARY eligible n>=10, Fisher two-sided p<0.05 (lower in zone) and MH odds ratio over shared quadrants < 1; else not demonstrated. Strips: SHA-256 order, <=8 recovered + <=8 lost within 120\" of V<10, 2+2 controls, plus 288181/408599 if R targets. No outcome was looked at.",
+    "control_designations": []
+   },
+   "search_class": "V<6",
+   "search_star": {
+    "tycho_id": "TYC 243-1975-1",
+    "ra": 148.42885234,
+    "dec": 5.95857159,
+    "vt_mag": 6.119,
+    "bt_mag": 8.088,
+    "v_mag": 5.94179,
+    "position_source": "mean J2000"
+   },
+   "night_index": 3,
+   "filters": [
+    "zr",
+    "zr",
+    "zr"
+   ],
+   "minutes_from_first": [
+    0.0,
+    89.15,
+    117.62
+   ],
+   "trigger": [
+    {
+     "designation": "29559",
+     "v_magnitude": 19.6,
+     "rate_arcsec_per_min": 0.3381,
+     "closest_approach_arcsec": 105.13,
+     "positions": [
+      [
+       148.4576995191708,
+       5.96401217582912
+      ],
+      [
+       148.46589625,
+       5.962106388888889
+      ],
+      [
+       148.4685135763868,
+       5.961497845489052
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "field": {
+    "field_id": "N2-2019-11-05-564-c1-q2",
+    "description": "AS-035 near-star search: TYC 1344-1281-1 (V 5.87)",
+    "product_ids": [
+     1038377240115,
+     1038422430115,
+     1038468050115
+    ],
+    "selection_note": "Populations: N = star-driven search (Tycho-2 V<6 and 6-8 stars, Dec>=-25, |beta|<=10, SHA-256('AS-035:<id>') order, alternating classes, 12 quadrant-nights per class, <=60 stars and <=15 nights per star; trigger = SkyBoT object passing within 120\" of the star at E1/E2/E3 that meets the AS-022 target rule, rate <= 1\"/min and baseline rule, inside the footprint); R = the 26 AS-034 quadrants (not blind). Sequence rule: E1 first, E3 last within 150 min, E2 closest to the midpoint with >=15 min gaps, archived products. Targets: AS-022 rule (primary/marginal). Eligibility: rate <= 1.0\"/min; every pairwise predicted displacement >= 3.0\" (2x stationary tolerance); failures form their own strata. Detectability: band offsets g +0.33, r -0.22, i -0.37; local 5-sigma depth from PSF sources (3<=snr<=20) within 60\". Strata: classes V<6, 6-8, 8-10 x closest approach 0-30-60-120-240\"; zone = <120\" of V<6, <60\" of 6-8, <30\" of 8-10; control = >=480\" from V<10 and >=60\" from V10-11. Trace: expected position, detection (2.0\"), stationary/moving, association, fit, identification; first failure. Claim rule: zone PRIMARY eligible n>=10, Fisher two-sided p<0.05 (lower in zone) and MH odds ratio over shared quadrants < 1; else not demonstrated. Strips: SHA-256 order, <=8 recovered + <=8 lost within 120\" of V<10, 2+2 controls, plus 288181/408599 if R targets. No outcome was looked at.",
+    "control_designations": []
+   },
+   "search_class": "V<6",
+   "search_star": {
+    "tycho_id": "TYC 1344-1281-1",
+    "ra": 105.63869809,
+    "dec": 16.67444649,
+    "vt_mag": 6.05,
+    "bt_mag": 8.023,
+    "v_mag": 5.87243,
+    "position_source": "mean J2000"
+   },
+   "night_index": 2,
+   "filters": [
+    "zr",
+    "zr",
+    "zr"
+   ],
+   "minutes_from_first": [
+    0.0,
+    65.07,
+    130.77
+   ],
+   "trigger": [
+    {
+     "designation": "247549",
+     "v_magnitude": 20.4,
+     "rate_arcsec_per_min": 0.2934,
+     "closest_approach_arcsec": 93.91,
+     "positions": [
+      [
+       105.6259103451639,
+       16.65063128511035
+      ],
+      [
+       105.63128041666666,
+       16.649348055555556
+      ],
+      [
+       105.63670275653779,
+       16.648052335978043
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "field": {
+    "field_id": "N3-2019-09-23-1441-c5-q4",
+    "description": "AS-035 near-star search: TYC 4672-1255-1 (V 5.95)",
+    "product_ids": [
+     995334401915,
+     995363281915,
+     995434941915
+    ],
+    "selection_note": "Populations: N = star-driven search (Tycho-2 V<6 and 6-8 stars, Dec>=-25, |beta|<=10, SHA-256('AS-035:<id>') order, alternating classes, 12 quadrant-nights per class, <=60 stars and <=15 nights per star; trigger = SkyBoT object passing within 120\" of the star at E1/E2/E3 that meets the AS-022 target rule, rate <= 1\"/min and baseline rule, inside the footprint); R = the 26 AS-034 quadrants (not blind). Sequence rule: E1 first, E3 last within 150 min, E2 closest to the midpoint with >=15 min gaps, archived products. Targets: AS-022 rule (primary/marginal). Eligibility: rate <= 1.0\"/min; every pairwise predicted displacement >= 3.0\" (2x stationary tolerance); failures form their own strata. Detectability: band offsets g +0.33, r -0.22, i -0.37; local 5-sigma depth from PSF sources (3<=snr<=20) within 60\". Strata: classes V<6, 6-8, 8-10 x closest approach 0-30-60-120-240\"; zone = <120\" of V<6, <60\" of 6-8, <30\" of 8-10; control = >=480\" from V<10 and >=60\" from V10-11. Trace: expected position, detection (2.0\"), stationary/moving, association, fit, identification; first failure. Claim rule: zone PRIMARY eligible n>=10, Fisher two-sided p<0.05 (lower in zone) and MH odds ratio over shared quadrants < 1; else not demonstrated. Strips: SHA-256 order, <=8 recovered + <=8 lost within 120\" of V<10, 2+2 controls, plus 288181/408599 if R targets. No outcome was looked at.",
+    "control_designations": []
+   },
+   "search_class": "V<6",
+   "search_star": {
+    "tycho_id": "TYC 4672-1255-1",
+    "ra": 8.88680457,
+    "dec": -0.50561186,
+    "vt_mag": 5.987,
+    "bt_mag": 6.45,
+    "v_mag": 5.94533,
+    "position_source": "mean J2000"
+   },
+   "night_index": 8,
+   "filters": [
+    "zg",
+    "zr",
+    "zg"
+   ],
+   "minutes_from_first": [
+    0.0,
+    41.58,
+    144.77
+   ],
+   "trigger": [
+    {
+     "designation": "190831",
+     "v_magnitude": 19.3,
+     "rate_arcsec_per_min": 0.652,
+     "closest_approach_arcsec": 90.74,
+     "positions": [
+      [
+       8.892134550048658,
+       -0.5302469932096927
+      ],
+      [
+       8.88604,
+       -0.5346711111111111
+      ],
+      [
+       8.870917201424637,
+       -0.5456489590839139
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "field": {
+    "field_id": "N4-2020-09-15-447-c3-q4",
+    "description": "AS-035 near-star search: TYC 2-1641-1 (V 6.18)",
+    "product_ids": [
+     1353310621115,
+     1353355841115,
+     1353385211115
+    ],
+    "selection_note": "Populations: N = star-driven search (Tycho-2 V<6 and 6-8 stars, Dec>=-25, |beta|<=10, SHA-256('AS-035:<id>') order, alternating classes, 12 quadrant-nights per class, <=60 stars and <=15 nights per star; trigger = SkyBoT object passing within 120\" of the star at E1/E2/E3 that meets the AS-022 target rule, rate <= 1\"/min and baseline rule, inside the footprint); R = the 26 AS-034 quadrants (not blind). Sequence rule: E1 first, E3 last within 150 min, E2 closest to the midpoint with >=15 min gaps, archived products. Targets: AS-022 rule (primary/marginal). Eligibility: rate <= 1.0\"/min; every pairwise predicted displacement >= 3.0\" (2x stationary tolerance); failures form their own strata. Detectability: band offsets g +0.33, r -0.22, i -0.37; local 5-sigma depth from PSF sources (3<=snr<=20) within 60\". Strata: classes V<6, 6-8, 8-10 x closest approach 0-30-60-120-240\"; zone = <120\" of V<6, <60\" of 6-8, <30\" of 8-10; control = >=480\" from V<10 and >=60\" from V10-11. Trace: expected position, detection (2.0\"), stationary/moving, association, fit, identification; first failure. Claim rule: zone PRIMARY eligible n>=10, Fisher two-sided p<0.05 (lower in zone) and MH odds ratio over shared quadrants < 1; else not demonstrated. Strips: SHA-256 order, <=8 recovered + <=8 lost within 120\" of V<10, 2+2 controls, plus 288181/408599 if R targets. No outcome was looked at.",
+    "control_designations": []
+   },
+   "search_class": "6<=V<8",
+   "search_star": {
+    "tycho_id": "TYC 2-1641-1",
+    "ra": 4.44873872,
+    "dec": 1.68872676,
+    "vt_mag": 6.281,
+    "bt_mag": 7.371,
+    "v_mag": 6.1829,
+    "position_source": "mean J2000"
+   },
+   "night_index": 8,
+   "filters": [
+    "zr",
+    "zg",
+    "zg"
+   ],
+   "minutes_from_first": [
+    0.0,
+    65.12,
+    107.42
+   ],
+   "trigger": [
+    {
+     "designation": "700974",
+     "v_magnitude": 19.9,
+     "rate_arcsec_per_min": 0.6075,
+     "closest_approach_arcsec": 104.31,
+     "positions": [
+      [
+       4.4205800333621825,
+       1.6818460457061994
+      ],
+      [
+       4.409622083333333,
+       1.6827288888888887
+      ],
+      [
+       4.402503761960107,
+       1.6833023868041008
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "field": {
+    "field_id": "N5-2019-08-27-335-c7-q4",
+    "description": "AS-035 near-star search: TYC 6301-2322-1 (V 5.85)",
+    "product_ids": [
+     968174502715,
+     968203532715,
+     968232692715
+    ],
+    "selection_note": "Populations: N = star-driven search (Tycho-2 V<6 and 6-8 stars, Dec>=-25, |beta|<=10, SHA-256('AS-035:<id>') order, alternating classes, 12 quadrant-nights per class, <=60 stars and <=15 nights per star; trigger = SkyBoT object passing within 120\" of the star at E1/E2/E3 that meets the AS-022 target rule, rate <= 1\"/min and baseline rule, inside the footprint); R = the 26 AS-034 quadrants (not blind). Sequence rule: E1 first, E3 last within 150 min, E2 closest to the midpoint with >=15 min gaps, archived products. Targets: AS-022 rule (primary/marginal). Eligibility: rate <= 1.0\"/min; every pairwise predicted displacement >= 3.0\" (2x stationary tolerance); failures form their own strata. Detectability: band offsets g +0.33, r -0.22, i -0.37; local 5-sigma depth from PSF sources (3<=snr<=20) within 60\". Strata: classes V<6, 6-8, 8-10 x closest approach 0-30-60-120-240\"; zone = <120\" of V<6, <60\" of 6-8, <30\" of 8-10; control = >=480\" from V<10 and >=60\" from V10-11. Trace: expected position, detection (2.0\"), stationary/moving, association, fit, identification; first failure. Claim rule: zone PRIMARY eligible n>=10, Fisher two-sided p<0.05 (lower in zone) and MH odds ratio over shared quadrants < 1; else not demonstrated. Strips: SHA-256 order, <=8 recovered + <=8 lost within 120\" of V<10, 2+2 controls, plus 288181/408599 if R targets. No outcome was looked at.",
+    "control_designations": []
+   },
+   "search_class": "V<6",
+   "search_star": {
+    "tycho_id": "TYC 6301-2322-1",
+    "ra": 290.4620667,
+    "dec": -18.30838799,
+    "vt_mag": 5.963,
+    "bt_mag": 7.199,
+    "v_mag": 5.8517600000000005,
+    "position_source": "mean J2000"
+   },
+   "night_index": 8,
+   "filters": [
+    "zr",
+    "zr",
+    "zr"
+   ],
+   "minutes_from_first": [
+    0.0,
+    41.8,
+    83.8
+   ],
+   "trigger": [
+    {
+     "designation": "172333",
+     "v_magnitude": 20.4,
+     "rate_arcsec_per_min": 0.1999,
+     "closest_approach_arcsec": 90.34,
+     "positions": [
+      [
+       290.4467344386284,
+       -18.32883046815316
+      ],
+      [
+       290.44431833333334,
+       -18.329185555555554
+      ],
+      [
+       290.44189066682844,
+       -18.32954234207262
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "field": {
+    "field_id": "N6-2019-07-29-338-c6-q1",
+    "description": "AS-035 near-star search: TYC 6348-1259-1 (V 5.79)",
+    "product_ids": [
+     939313592015,
+     939328682015,
+     939341212015
+    ],
+    "selection_note": "Populations: N = star-driven search (Tycho-2 V<6 and 6-8 stars, Dec>=-25, |beta|<=10, SHA-256('AS-035:<id>') order, alternating classes, 12 quadrant-nights per class, <=60 stars and <=15 nights per star; trigger = SkyBoT object passing within 120\" of the star at E1/E2/E3 that meets the AS-022 target rule, rate <= 1\"/min and baseline rule, inside the footprint); R = the 26 AS-034 quadrants (not blind). Sequence rule: E1 first, E3 last within 150 min, E2 closest to the midpoint with >=15 min gaps, archived products. Targets: AS-022 rule (primary/marginal). Eligibility: rate <= 1.0\"/min; every pairwise predicted displacement >= 3.0\" (2x stationary tolerance); failures form their own strata. Detectability: band offsets g +0.33, r -0.22, i -0.37; local 5-sigma depth from PSF sources (3<=snr<=20) within 60\". Strata: classes V<6, 6-8, 8-10 x closest approach 0-30-60-120-240\"; zone = <120\" of V<6, <60\" of 6-8, <30\" of 8-10; control = >=480\" from V<10 and >=60\" from V10-11. Trace: expected position, detection (2.0\"), stationary/moving, association, fit, identification; first failure. Claim rule: zone PRIMARY eligible n>=10, Fisher two-sided p<0.05 (lower in zone) and MH odds ratio over shared quadrants < 1; else not demonstrated. Strips: SHA-256 order, <=8 recovered + <=8 lost within 120\" of V<10, 2+2 controls, plus 288181/408599 if R targets. No outcome was looked at.",
+    "control_designations": []
+   },
+   "search_class": "V<6",
+   "search_star": {
+    "tycho_id": "TYC 6348-1259-1",
+    "ra": 313.69923451,
+    "dec": -17.92289527,
+    "vt_mag": 5.905,
+    "bt_mag": 7.2,
+    "v_mag": 5.78845,
+    "position_source": "mean J2000"
+   },
+   "night_index": 0,
+   "filters": [
+    "zg",
+    "zg",
+    "zr"
+   ],
+   "minutes_from_first": [
+    0.0,
+    21.72,
+    39.77
+   ],
+   "trigger": [
+    {
+     "designation": "72582",
+     "v_magnitude": 19.4,
+     "rate_arcsec_per_min": 0.5095,
+     "closest_approach_arcsec": 102.58,
+     "positions": [
+      [
+       313.7348585724237,
+       -17.920198989523808
+      ],
+      [
+       313.7317445833333,
+       -17.921016666666667
+      ],
+      [
+       313.7291563823259,
+       -17.921696281380598
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "field": {
+    "field_id": "N7-2019-12-29-611-c9-q3",
+    "description": "AS-035 near-star search: TYC 1870-903-1 (V 7.35)",
+    "product_ids": [
+     1092147123415,
+     1092187633415,
+     1092228463415
+    ],
+    "selection_note": "Populations: N = star-driven search (Tycho-2 V<6 and 6-8 stars, Dec>=-25, |beta|<=10, SHA-256('AS-035:<id>') order, alternating classes, 12 quadrant-nights per class, <=60 stars and <=15 nights per star; trigger = SkyBoT object passing within 120\" of the star at E1/E2/E3 that meets the AS-022 target rule, rate <= 1\"/min and baseline rule, inside the footprint); R = the 26 AS-034 quadrants (not blind). Sequence rule: E1 first, E3 last within 150 min, E2 closest to the midpoint with >=15 min gaps, archived products. Targets: AS-022 rule (primary/marginal). Eligibility: rate <= 1.0\"/min; every pairwise predicted displacement >= 3.0\" (2x stationary tolerance); failures form their own strata. Detectability: band offsets g +0.33, r -0.22, i -0.37; local 5-sigma depth from PSF sources (3<=snr<=20) within 60\". Strata: classes V<6, 6-8, 8-10 x closest approach 0-30-60-120-240\"; zone = <120\" of V<6, <60\" of 6-8, <30\" of 8-10; control = >=480\" from V<10 and >=60\" from V10-11. Trace: expected position, detection (2.0\"), stationary/moving, association, fit, identification; first failure. Claim rule: zone PRIMARY eligible n>=10, Fisher two-sided p<0.05 (lower in zone) and MH odds ratio over shared quadrants < 1; else not demonstrated. Strips: SHA-256 order, <=8 recovered + <=8 lost within 120\" of V<10, 2+2 controls, plus 288181/408599 if R targets. No outcome was looked at.",
+    "control_designations": []
+   },
+   "search_class": "6<=V<8",
+   "search_star": {
+    "tycho_id": "TYC 1870-903-1",
+    "ra": 86.23149012,
+    "dec": 26.34239182,
+    "vt_mag": 7.353,
+    "bt_mag": 7.356,
+    "v_mag": 7.352729999999999,
+    "position_source": "mean J2000"
+   },
+   "night_index": 8,
+   "filters": [
+    "zr",
+    "zr",
+    "zg"
+   ],
+   "minutes_from_first": [
+    0.0,
+    58.33,
+    117.12
+   ],
+   "trigger": [
+    {
+     "designation": "231583",
+     "v_magnitude": 20.1,
+     "rate_arcsec_per_min": 0.5205,
+     "closest_approach_arcsec": 88.31,
+     "positions": [
+      [
+       86.20636062701318,
+       26.352119139954603
+      ],
+      [
+       86.19695374999999,
+       26.351825555555557
+      ],
+      [
+       86.18747432882421,
+       26.351529707085838
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "field": {
+    "field_id": "N8-2019-07-24-333-c8-q1",
+    "description": "AS-035 near-star search: TYC 6269-4008-1 (V 5.81)",
+    "product_ids": [
+     934217292815,
+     934248252815,
+     934281642815
+    ],
+    "selection_note": "Populations: N = star-driven search (Tycho-2 V<6 and 6-8 stars, Dec>=-25, |beta|<=10, SHA-256('AS-035:<id>') order, alternating classes, 12 quadrant-nights per class, <=60 stars and <=15 nights per star; trigger = SkyBoT object passing within 120\" of the star at E1/E2/E3 that meets the AS-022 target rule, rate <= 1\"/min and baseline rule, inside the footprint); R = the 26 AS-034 quadrants (not blind). Sequence rule: E1 first, E3 last within 150 min, E2 closest to the midpoint with >=15 min gaps, archived products. Targets: AS-022 rule (primary/marginal). Eligibility: rate <= 1.0\"/min; every pairwise predicted displacement >= 3.0\" (2x stationary tolerance); failures form their own strata. Detectability: band offsets g +0.33, r -0.22, i -0.37; local 5-sigma depth from PSF sources (3<=snr<=20) within 60\". Strata: classes V<6, 6-8, 8-10 x closest approach 0-30-60-120-240\"; zone = <120\" of V<6, <60\" of 6-8, <30\" of 8-10; control = >=480\" from V<10 and >=60\" from V10-11. Trace: expected position, detection (2.0\"), stationary/moving, association, fit, identification; first failure. Claim rule: zone PRIMARY eligible n>=10, Fisher two-sided p<0.05 (lower in zone) and MH odds ratio over shared quadrants < 1; else not demonstrated. Strips: SHA-256 order, <=8 recovered + <=8 lost within 120\" of V<10, 2+2 controls, plus 288181/408599 if R targets. No outcome was looked at.",
+    "control_designations": []
+   },
+   "search_class": "V<6",
+   "search_star": {
+    "tycho_id": "TYC 6269-4008-1",
+    "ra": 274.29844635,
+    "dec": -17.37388506,
+    "vt_mag": 5.974,
+    "bt_mag": 7.838,
+    "v_mag": 5.80624,
+    "position_source": "mean J2000"
+   },
+   "night_index": 5,
+   "filters": [
+    "zr",
+    "zr",
+    "zr"
+   ],
+   "minutes_from_first": [
+    0.0,
+    44.58,
+    92.67
+   ],
+   "trigger": [
+    {
+     "designation": "188826",
+     "v_magnitude": 19.7,
+     "rate_arcsec_per_min": 0.4338,
+     "closest_approach_arcsec": 82.21,
+     "positions": [
+      [
+       274.3200238635405,
+       -17.348973585040117
+      ],
+      [
+       274.31489374999995,
+       -17.3511825
+      ],
+      [
+       274.309360890563,
+       -17.35356482855563
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "field": {
+    "field_id": "N9-2019-08-31-334-c4-q3",
+    "description": "AS-035 near-star search: TYC 6288-1682-1 (V 7.12)",
+    "product_ids": [
+     972175371415,
+     972211491415,
+     972247801415
+    ],
+    "selection_note": "Populations: N = star-driven search (Tycho-2 V<6 and 6-8 stars, Dec>=-25, |beta|<=10, SHA-256('AS-035:<id>') order, alternating classes, 12 quadrant-nights per class, <=60 stars and <=15 nights per star; trigger = SkyBoT object passing within 120\" of the star at E1/E2/E3 that meets the AS-022 target rule, rate <= 1\"/min and baseline rule, inside the footprint); R = the 26 AS-034 quadrants (not blind). Sequence rule: E1 first, E3 last within 150 min, E2 closest to the midpoint with >=15 min gaps, archived products. Targets: AS-022 rule (primary/marginal). Eligibility: rate <= 1.0\"/min; every pairwise predicted displacement >= 3.0\" (2x stationary tolerance); failures form their own strata. Detectability: band offsets g +0.33, r -0.22, i -0.37; local 5-sigma depth from PSF sources (3<=snr<=20) within 60\". Strata: classes V<6, 6-8, 8-10 x closest approach 0-30-60-120-240\"; zone = <120\" of V<6, <60\" of 6-8, <30\" of 8-10; control = >=480\" from V<10 and >=60\" from V10-11. Trace: expected position, detection (2.0\"), stationary/moving, association, fit, identification; first failure. Claim rule: zone PRIMARY eligible n>=10, Fisher two-sided p<0.05 (lower in zone) and MH odds ratio over shared quadrants < 1; else not demonstrated. Strips: SHA-256 order, <=8 recovered + <=8 lost within 120\" of V<10, 2+2 controls, plus 288181/408599 if R targets. No outcome was looked at.",
+    "control_designations": []
+   },
+   "search_class": "6<=V<8",
+   "search_star": {
+    "tycho_id": "TYC 6288-1682-1",
+    "ra": 280.60601091,
+    "dec": -20.3119393,
+    "vt_mag": 7.136,
+    "bt_mag": 7.313,
+    "v_mag": 7.12007,
+    "position_source": "mean J2000"
+   },
+   "night_index": 13,
+   "filters": [
+    "zr",
+    "zr",
+    "zg"
+   ],
+   "minutes_from_first": [
+    0.0,
+    52.02,
+    104.3
+   ],
+   "trigger": [
+    {
+     "designation": "101094",
+     "v_magnitude": 19.3,
+     "rate_arcsec_per_min": 0.2913,
+     "closest_approach_arcsec": 90.07,
+     "positions": [
+      [
+       280.63213907840526,
+       -20.316996962075578
+      ],
+      [
+       280.63660874999994,
+       -20.316607222222224
+      ],
+      [
+       280.6411013250803,
+       -20.316215485264394
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "field": {
+    "field_id": "N10-2018-11-12-504-c2-q3",
+    "description": "AS-035 near-star search: TYC 632-1491-1 (V 4.26)",
+    "product_ids": [
+     680243630615,
+     680281250615,
+     680307560615
+    ],
+    "selection_note": "Populations: N = star-driven search (Tycho-2 V<6 and 6-8 stars, Dec>=-25, |beta|<=10, SHA-256('AS-035:<id>') order, alternating classes, 12 quadrant-nights per class, <=60 stars and <=15 nights per star; trigger = SkyBoT object passing within 120\" of the star at E1/E2/E3 that meets the AS-022 target rule, rate <= 1\"/min and baseline rule, inside the footprint); R = the 26 AS-034 quadrants (not blind). Sequence rule: E1 first, E3 last within 150 min, E2 closest to the midpoint with >=15 min gaps, archived products. Targets: AS-022 rule (primary/marginal). Eligibility: rate <= 1.0\"/min; every pairwise predicted displacement >= 3.0\" (2x stationary tolerance); failures form their own strata. Detectability: band offsets g +0.33, r -0.22, i -0.37; local 5-sigma depth from PSF sources (3<=snr<=20) within 60\". Strata: classes V<6, 6-8, 8-10 x closest approach 0-30-60-120-240\"; zone = <120\" of V<6, <60\" of 6-8, <30\" of 8-10; control = >=480\" from V<10 and >=60\" from V10-11. Trace: expected position, detection (2.0\"), stationary/moving, association, fit, identification; first failure. Claim rule: zone PRIMARY eligible n>=10, Fisher two-sided p<0.05 (lower in zone) and MH odds ratio over shared quadrants < 1; else not demonstrated. Strips: SHA-256 order, <=8 recovered + <=8 lost within 120\" of V<10, 2+2 controls, plus 288181/408599 if R targets. No outcome was looked at.",
+    "control_designations": []
+   },
+   "search_class": "V<6",
+   "search_star": {
+    "tycho_id": "TYC 632-1491-1",
+    "ra": 37.03975201,
+    "dec": 8.46007064,
+    "vt_mag": 4.261,
+    "bt_mag": 4.223,
+    "v_mag": 4.26442,
+    "position_source": "mean J2000"
+   },
+   "night_index": 4,
+   "filters": [
+    "zi",
+    "zg",
+    "zr"
+   ],
+   "minutes_from_first": [
+    0.0,
+    54.17,
+    92.07
+   ],
+   "trigger": [
+    {
+     "designation": "182070",
+     "v_magnitude": 19.6,
+     "rate_arcsec_per_min": 0.6248,
+     "closest_approach_arcsec": 42.48,
+     "positions": [
+      [
+       37.02830783806463,
+       8.456735227781971
+      ],
+      [
+       37.02040208333333,
+       8.451518055555555
+      ],
+      [
+       37.01487049094682,
+       8.447867642514973
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "field": {
+    "field_id": "N11-2018-10-31-559-c3-q1",
+    "description": "AS-035 near-star search: TYC 1264-758-1 (V 7.84)",
+    "product_ids": [
+     668346700815,
+     668395940815,
+     668429760815
+    ],
+    "selection_note": "Populations: N = star-driven search (Tycho-2 V<6 and 6-8 stars, Dec>=-25, |beta|<=10, SHA-256('AS-035:<id>') order, alternating classes, 12 quadrant-nights per class, <=60 stars and <=15 nights per star; trigger = SkyBoT object passing within 120\" of the star at E1/E2/E3 that meets the AS-022 target rule, rate <= 1\"/min and baseline rule, inside the footprint); R = the 26 AS-034 quadrants (not blind). Sequence rule: E1 first, E3 last within 150 min, E2 closest to the midpoint with >=15 min gaps, archived products. Targets: AS-022 rule (primary/marginal). Eligibility: rate <= 1.0\"/min; every pairwise predicted displacement >= 3.0\" (2x stationary tolerance); failures form their own strata. Detectability: band offsets g +0.33, r -0.22, i -0.37; local 5-sigma depth from PSF sources (3<=snr<=20) within 60\". Strata: classes V<6, 6-8, 8-10 x closest approach 0-30-60-120-240\"; zone = <120\" of V<6, <60\" of 6-8, <30\" of 8-10; control = >=480\" from V<10 and >=60\" from V10-11. Trace: expected position, detection (2.0\"), stationary/moving, association, fit, identification; first failure. Claim rule: zone PRIMARY eligible n>=10, Fisher two-sided p<0.05 (lower in zone) and MH odds ratio over shared quadrants < 1; else not demonstrated. Strips: SHA-256 order, <=8 recovered + <=8 lost within 120\" of V<10, 2+2 controls, plus 288181/408599 if R targets. No outcome was looked at.",
+    "control_designations": []
+   },
+   "search_class": "6<=V<8",
+   "search_star": {
+    "tycho_id": "TYC 1264-758-1",
+    "ra": 65.68617083,
+    "dec": 16.79103472,
+    "vt_mag": 7.912,
+    "bt_mag": 8.657,
+    "v_mag": 7.84495,
+    "position_source": "observed ~J1991.25"
+   },
+   "night_index": 1,
+   "filters": [
+    "zr",
+    "zr",
+    "zg"
+   ],
+   "minutes_from_first": [
+    0.0,
+    70.92,
+    119.62
+   ],
+   "trigger": [
+    {
+     "designation": "172379",
+     "v_magnitude": 18.6,
+     "rate_arcsec_per_min": 0.5313,
+     "closest_approach_arcsec": 45.78,
+     "positions": [
+      [
+       65.70999974000065,
+       16.80518878819744
+      ],
+      [
+       65.70374458333332,
+       16.796605833333334
+      ],
+      [
+       65.6994490397265,
+       16.790711743248174
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "field": {
+    "field_id": "N12-2019-11-01-607-c1-q2",
+    "description": "AS-035 near-star search: TYC 1799-1441-1 (V 3.68)",
+    "product_ids": [
+     1034298280115,
+     1034333040115,
+     1034400200115
+    ],
+    "selection_note": "Populations: N = star-driven search (Tycho-2 V<6 and 6-8 stars, Dec>=-25, |beta|<=10, SHA-256('AS-035:<id>') order, alternating classes, 12 quadrant-nights per class, <=60 stars and <=15 nights per star; trigger = SkyBoT object passing within 120\" of the star at E1/E2/E3 that meets the AS-022 target rule, rate <= 1\"/min and baseline rule, inside the footprint); R = the 26 AS-034 quadrants (not blind). Sequence rule: E1 first, E3 last within 150 min, E2 closest to the midpoint with >=15 min gaps, archived products. Targets: AS-022 rule (primary/marginal). Eligibility: rate <= 1.0\"/min; every pairwise predicted displacement >= 3.0\" (2x stationary tolerance); failures form their own strata. Detectability: band offsets g +0.33, r -0.22, i -0.37; local 5-sigma depth from PSF sources (3<=snr<=20) within 60\". Strata: classes V<6, 6-8, 8-10 x closest approach 0-30-60-120-240\"; zone = <120\" of V<6, <60\" of 6-8, <30\" of 8-10; control = >=480\" from V<10 and >=60\" from V10-11. Trace: expected position, detection (2.0\"), stationary/moving, association, fit, identification; first failure. Claim rule: zone PRIMARY eligible n>=10, Fisher two-sided p<0.05 (lower in zone) and MH odds ratio over shared quadrants < 1; else not demonstrated. Strips: SHA-256 order, <=8 recovered + <=8 lost within 120\" of V<10, 2+2 controls, plus 288181/408599 if R targets. No outcome was looked at.",
+    "control_designations": []
+   },
+   "search_class": "V<6",
+   "search_star": {
+    "tycho_id": "TYC 1799-1441-1",
+    "ra": 56.21885222,
+    "dec": 24.11344611,
+    "vt_mag": 3.674,
+    "bt_mag": 3.558,
+    "v_mag": 3.68444,
+    "position_source": "observed ~J1991.25"
+   },
+   "night_index": 5,
+   "filters": [
+    "zr",
+    "zr",
+    "zr"
+   ],
+   "minutes_from_first": [
+    0.0,
+    50.05,
+    146.77
+   ],
+   "trigger": [
+    {
+     "designation": "409309",
+     "v_magnitude": 19.6,
+     "rate_arcsec_per_min": 0.5037,
+     "closest_approach_arcsec": 116.47,
+     "positions": [
+      [
+       56.27617678487927,
+       24.109928491241515
+      ],
+      [
+       56.26870833333333,
+       24.11152888888889
+      ],
+      [
+       56.2542763247805,
+       24.114621491470935
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "field": {
+    "field_id": "N13-2018-08-21-394-c12-q4",
+    "description": "AS-035 near-star search: TYC 5821-453-1 (V 7.89)",
+    "product_ids": [
+     597335914715,
+     597373584715,
+     597401464715
+    ],
+    "selection_note": "Populations: N = star-driven search (Tycho-2 V<6 and 6-8 stars, Dec>=-25, |beta|<=10, SHA-256('AS-035:<id>') order, alternating classes, 12 quadrant-nights per class, <=60 stars and <=15 nights per star; trigger = SkyBoT object passing within 120\" of the star at E1/E2/E3 that meets the AS-022 target rule, rate <= 1\"/min and baseline rule, inside the footprint); R = the 26 AS-034 quadrants (not blind). Sequence rule: E1 first, E3 last within 150 min, E2 closest to the midpoint with >=15 min gaps, archived products. Targets: AS-022 rule (primary/marginal). Eligibility: rate <= 1.0\"/min; every pairwise predicted displacement >= 3.0\" (2x stationary tolerance); failures form their own strata. Detectability: band offsets g +0.33, r -0.22, i -0.37; local 5-sigma depth from PSF sources (3<=snr<=20) within 60\". Strata: classes V<6, 6-8, 8-10 x closest approach 0-30-60-120-240\"; zone = <120\" of V<6, <60\" of 6-8, <30\" of 8-10; control = >=480\" from V<10 and >=60\" from V10-11. Trace: expected position, detection (2.0\"), stationary/moving, association, fit, identification; first failure. Claim rule: zone PRIMARY eligible n>=10, Fisher two-sided p<0.05 (lower in zone) and MH odds ratio over shared quadrants < 1; else not demonstrated. Strips: SHA-256 order, <=8 recovered + <=8 lost within 120\" of V<10, 2+2 controls, plus 288181/408599 if R targets. No outcome was looked at.",
+    "control_designations": []
+   },
+   "search_class": "6<=V<8",
+   "search_star": {
+    "tycho_id": "TYC 5821-453-1",
+    "ra": 348.36475103,
+    "dec": -8.90806913,
+    "vt_mag": 7.928,
+    "bt_mag": 8.4,
+    "v_mag": 7.88552,
+    "position_source": "mean J2000"
+   },
+   "night_index": 2,
+   "filters": [
+    "zi",
+    "zr",
+    "zg"
+   ],
+   "minutes_from_first": [
+    0.0,
+    54.25,
+    94.4
+   ],
+   "trigger": [
+    {
+     "designation": "167518",
+     "v_magnitude": 20.7,
+     "rate_arcsec_per_min": 0.4441,
+     "closest_approach_arcsec": 76.05,
+     "positions": [
+      [
+       348.39165445029465,
+       -8.91694667768114
+      ],
+      [
+       348.38550874999993,
+       -8.919763055555554
+      ],
+      [
+       348.3809603712935,
+       -8.921847432036502
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "field": {
+    "field_id": "N14-2018-11-02-562-c3-q3",
+    "description": "AS-035 near-star search: TYC 1299-1090-1 (V 5.99)",
+    "product_ids": [
+     670352401015,
+     670372631015,
+     670420241015
+    ],
+    "selection_note": "Populations: N = star-driven search (Tycho-2 V<6 and 6-8 stars, Dec>=-25, |beta|<=10, SHA-256('AS-035:<id>') order, alternating classes, 12 quadrant-nights per class, <=60 stars and <=15 nights per star; trigger = SkyBoT object passing within 120\" of the star at E1/E2/E3 that meets the AS-022 target rule, rate <= 1\"/min and baseline rule, inside the footprint); R = the 26 AS-034 quadrants (not blind). Sequence rule: E1 first, E3 last within 150 min, E2 closest to the midpoint with >=15 min gaps, archived products. Targets: AS-022 rule (primary/marginal). Eligibility: rate <= 1.0\"/min; every pairwise predicted displacement >= 3.0\" (2x stationary tolerance); failures form their own strata. Detectability: band offsets g +0.33, r -0.22, i -0.37; local 5-sigma depth from PSF sources (3<=snr<=20) within 60\". Strata: classes V<6, 6-8, 8-10 x closest approach 0-30-60-120-240\"; zone = <120\" of V<6, <60\" of 6-8, <30\" of 8-10; control = >=480\" from V<10 and >=60\" from V10-11. Trace: expected position, detection (2.0\"), stationary/moving, association, fit, identification; first failure. Claim rule: zone PRIMARY eligible n>=10, Fisher two-sided p<0.05 (lower in zone) and MH odds ratio over shared quadrants < 1; else not demonstrated. Strips: SHA-256 order, <=8 recovered + <=8 lost within 120\" of V<10, 2+2 controls, plus 288181/408599 if R targets. No outcome was looked at.",
+    "control_designations": []
+   },
+   "search_class": "V<6",
+   "search_star": {
+    "tycho_id": "TYC 1299-1090-1",
+    "ra": 86.6895696,
+    "dec": 15.82249619,
+    "vt_mag": 5.981,
+    "bt_mag": 5.896,
+    "v_mag": 5.98865,
+    "position_source": "mean J2000"
+   },
+   "night_index": 2,
+   "filters": [
+    "zr",
+    "zg",
+    "zr"
+   ],
+   "minutes_from_first": [
+    0.0,
+    29.13,
+    97.68
+   ],
+   "trigger": [
+    {
+     "designation": "242915",
+     "v_magnitude": 20.0,
+     "rate_arcsec_per_min": 0.1937,
+     "closest_approach_arcsec": 114.45,
+     "positions": [
+      [
+       86.72363230803961,
+       15.837013668139646
+      ],
+      [
+       86.72204416666666,
+       15.83736388888889
+      ],
+      [
+       86.71830731076234,
+       15.838187949326409
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "field": {
+    "field_id": "N15-2019-07-29-338-c13-q3",
+    "description": "AS-035 near-star search: TYC 5782-1505-1 (V 5.97)",
+    "product_ids": [
+     939313595015,
+     939328685015,
+     939341215015
+    ],
+    "selection_note": "Populations: N = star-driven search (Tycho-2 V<6 and 6-8 stars, Dec>=-25, |beta|<=10, SHA-256('AS-035:<id>') order, alternating classes, 12 quadrant-nights per class, <=60 stars and <=15 nights per star; trigger = SkyBoT object passing within 120\" of the star at E1/E2/E3 that meets the AS-022 target rule, rate <= 1\"/min and baseline rule, inside the footprint); R = the 26 AS-034 quadrants (not blind). Sequence rule: E1 first, E3 last within 150 min, E2 closest to the midpoint with >=15 min gaps, archived products. Targets: AS-022 rule (primary/marginal). Eligibility: rate <= 1.0\"/min; every pairwise predicted displacement >= 3.0\" (2x stationary tolerance); failures form their own strata. Detectability: band offsets g +0.33, r -0.22, i -0.37; local 5-sigma depth from PSF sources (3<=snr<=20) within 60\". Strata: classes V<6, 6-8, 8-10 x closest approach 0-30-60-120-240\"; zone = <120\" of V<6, <60\" of 6-8, <30\" of 8-10; control = >=480\" from V<10 and >=60\" from V10-11. Trace: expected position, detection (2.0\"), stationary/moving, association, fit, identification; first failure. Claim rule: zone PRIMARY eligible n>=10, Fisher two-sided p<0.05 (lower in zone) and MH odds ratio over shared quadrants < 1; else not demonstrated. Strips: SHA-256 order, <=8 recovered + <=8 lost within 120\" of V<10, 2+2 controls, plus 288181/408599 if R targets. No outcome was looked at.",
+    "control_designations": []
+   },
+   "search_class": "V<6",
+   "search_star": {
+    "tycho_id": "TYC 5782-1505-1",
+    "ra": 314.67433231,
+    "dec": -14.48312312,
+    "vt_mag": 5.992,
+    "bt_mag": 6.244,
+    "v_mag": 5.96932,
+    "position_source": "mean J2000"
+   },
+   "night_index": 0,
+   "filters": [
+    "zg",
+    "zg",
+    "zr"
+   ],
+   "minutes_from_first": [
+    0.0,
+    21.72,
+    39.77
+   ],
+   "trigger": [
+    {
+     "designation": "203683",
+     "v_magnitude": 18.7,
+     "rate_arcsec_per_min": 0.7066,
+     "closest_approach_arcsec": 106.65,
+     "positions": [
+      [
+       314.67214068294584,
+       -14.448625948978496
+      ],
+      [
+       314.6691937499999,
+       -14.451791944444444
+      ],
+      [
+       314.6667443981885,
+       -14.454423370700754
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "field": {
+    "field_id": "N16-2019-12-29-568-c15-q4",
+    "description": "AS-035 near-star search: TYC 1399-2905-1 (V 4.65)",
+    "product_ids": [
+     1092409825915,
+     1092439565915,
+     1092483025915
+    ],
+    "selection_note": "Populations: N = star-driven search (Tycho-2 V<6 and 6-8 stars, Dec>=-25, |beta|<=10, SHA-256('AS-035:<id>') order, alternating classes, 12 quadrant-nights per class, <=60 stars and <=15 nights per star; trigger = SkyBoT object passing within 120\" of the star at E1/E2/E3 that meets the AS-022 target rule, rate <= 1\"/min and baseline rule, inside the footprint); R = the 26 AS-034 quadrants (not blind). Sequence rule: E1 first, E3 last within 150 min, E2 closest to the midpoint with >=15 min gaps, archived products. Targets: AS-022 rule (primary/marginal). Eligibility: rate <= 1.0\"/min; every pairwise predicted displacement >= 3.0\" (2x stationary tolerance); failures form their own strata. Detectability: band offsets g +0.33, r -0.22, i -0.37; local 5-sigma depth from PSF sources (3<=snr<=20) within 60\". Strata: classes V<6, 6-8, 8-10 x closest approach 0-30-60-120-240\"; zone = <120\" of V<6, <60\" of 6-8, <30\" of 8-10; control = >=480\" from V<10 and >=60\" from V10-11. Trace: expected position, detection (2.0\"), stationary/moving, association, fit, identification; first failure. Claim rule: zone PRIMARY eligible n>=10, Fisher two-sided p<0.05 (lower in zone) and MH odds ratio over shared quadrants < 1; else not demonstrated. Strips: SHA-256 order, <=8 recovered + <=8 lost within 120\" of V<10, 2+2 controls, plus 288181/408599 if R targets. No outcome was looked at.",
+    "control_designations": []
+   },
+   "search_class": "V<6",
+   "search_star": {
+    "tycho_id": "TYC 1399-2905-1",
+    "ra": 130.8214428,
+    "dec": 21.46849861,
+    "vt_mag": 4.654,
+    "bt_mag": 4.68,
+    "v_mag": 4.65166,
+    "position_source": "mean J2000"
+   },
+   "night_index": 7,
+   "filters": [
+    "zr",
+    "zr",
+    "zg"
+   ],
+   "minutes_from_first": [
+    0.0,
+    42.82,
+    105.4
+   ],
+   "trigger": [
+    {
+     "designation": "284210",
+     "v_magnitude": 20.4,
+     "rate_arcsec_per_min": 0.3979,
+     "closest_approach_arcsec": 89.96,
+     "positions": [
+      [
+       130.83400435221174,
+       21.491494890469365
+      ],
+      [
+       130.8290270833333,
+       21.492470555555556
+      ],
+      [
+       130.82175202621988,
+       21.493896642712787
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "field": {
+    "field_id": "N17-2019-06-27-330-c9-q2",
+    "description": "AS-035 near-star search: TYC 6232-1333-1 (V 2.47)",
+    "product_ids": [
+     907241563315,
+     907273533315,
+     907302853315
+    ],
+    "selection_note": "Populations: N = star-driven search (Tycho-2 V<6 and 6-8 stars, Dec>=-25, |beta|<=10, SHA-256('AS-035:<id>') order, alternating classes, 12 quadrant-nights per class, <=60 stars and <=15 nights per star; trigger = SkyBoT object passing within 120\" of the star at E1/E2/E3 that meets the AS-022 target rule, rate <= 1\"/min and baseline rule, inside the footprint); R = the 26 AS-034 quadrants (not blind). Sequence rule: E1 first, E3 last within 150 min, E2 closest to the midpoint with >=15 min gaps, archived products. Targets: AS-022 rule (primary/marginal). Eligibility: rate <= 1.0\"/min; every pairwise predicted displacement >= 3.0\" (2x stationary tolerance); failures form their own strata. Detectability: band offsets g +0.33, r -0.22, i -0.37; local 5-sigma depth from PSF sources (3<=snr<=20) within 60\". Strata: classes V<6, 6-8, 8-10 x closest approach 0-30-60-120-240\"; zone = <120\" of V<6, <60\" of 6-8, <30\" of 8-10; control = >=480\" from V<10 and >=60\" from V10-11. Trace: expected position, detection (2.0\"), stationary/moving, association, fit, identification; first failure. Claim rule: zone PRIMARY eligible n>=10, Fisher two-sided p<0.05 (lower in zone) and MH odds ratio over shared quadrants < 1; else not demonstrated. Strips: SHA-256 order, <=8 recovered + <=8 lost within 120\" of V<10, 2+2 controls, plus 288181/408599 if R targets. No outcome was looked at.",
+    "control_designations": []
+   },
+   "search_class": "V<6",
+   "search_star": {
+    "tycho_id": "TYC 6232-1333-1",
+    "ra": 257.59438917,
+    "dec": -15.72515972,
+    "vt_mag": 2.477,
+    "bt_mag": 2.597,
+    "v_mag": 2.4661999999999997,
+    "position_source": "observed ~J1991.25"
+   },
+   "night_index": 6,
+   "filters": [
+    "zr",
+    "zr",
+    "zr"
+   ],
+   "minutes_from_first": [
+    0.0,
+    46.03,
+    88.27
+   ],
+   "trigger": [
+    {
+     "designation": "700826",
+     "v_magnitude": 19.8,
+     "rate_arcsec_per_min": 0.5206,
+     "closest_approach_arcsec": 93.1,
+     "positions": [
+      [
+       257.5781804962168,
+       -15.70453572472997
+      ],
+      [
+       257.57128,
+       -15.704975833333332
+      ],
+      [
+       257.5649491342094,
+       -15.7053796113246
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "field": {
+    "field_id": "N18-2018-07-16-333-c13-q2",
+    "description": "AS-035 near-star search: TYC 5703-3416-1 (V 7.85)",
+    "product_ids": [
+     561251204915,
+     561282254915,
+     561312874915
+    ],
+    "selection_note": "Populations: N = star-driven search (Tycho-2 V<6 and 6-8 stars, Dec>=-25, |beta|<=10, SHA-256('AS-035:<id>') order, alternating classes, 12 quadrant-nights per class, <=60 stars and <=15 nights per star; trigger = SkyBoT object passing within 120\" of the star at E1/E2/E3 that meets the AS-022 target rule, rate <= 1\"/min and baseline rule, inside the footprint); R = the 26 AS-034 quadrants (not blind). Sequence rule: E1 first, E3 last within 150 min, E2 closest to the midpoint with >=15 min gaps, archived products. Targets: AS-022 rule (primary/marginal). Eligibility: rate <= 1.0\"/min; every pairwise predicted displacement >= 3.0\" (2x stationary tolerance); failures form their own strata. Detectability: band offsets g +0.33, r -0.22, i -0.37; local 5-sigma depth from PSF sources (3<=snr<=20) within 60\". Strata: classes V<6, 6-8, 8-10 x closest approach 0-30-60-120-240\"; zone = <120\" of V<6, <60\" of 6-8, <30\" of 8-10; control = >=480\" from V<10 and >=60\" from V10-11. Trace: expected position, detection (2.0\"), stationary/moving, association, fit, identification; first failure. Claim rule: zone PRIMARY eligible n>=10, Fisher two-sided p<0.05 (lower in zone) and MH odds ratio over shared quadrants < 1; else not demonstrated. Strips: SHA-256 order, <=8 recovered + <=8 lost within 120\" of V<10, 2+2 controls, plus 288181/408599 if R targets. No outcome was looked at.",
+    "control_designations": []
+   },
+   "search_class": "6<=V<8",
+   "search_star": {
+    "tycho_id": "TYC 5703-3416-1",
+    "ra": 279.05139652,
+    "dec": -13.83382519,
+    "vt_mag": 7.863,
+    "bt_mag": 8.036,
+    "v_mag": 7.84743,
+    "position_source": "mean J2000"
+   },
+   "night_index": 2,
+   "filters": [
+    "zr",
+    "zr",
+    "zr"
+   ],
+   "minutes_from_first": [
+    0.0,
+    44.72,
+    88.8
+   ],
+   "trigger": [
+    {
+     "designation": "332829",
+     "v_magnitude": 20.4,
+     "rate_arcsec_per_min": 0.5001,
+     "closest_approach_arcsec": 6.28,
+     "positions": [
+      [
+       279.05615741551617,
+       -13.83272305526321
+      ],
+      [
+       279.0502908333333,
+       -13.835199444444445
+      ],
+      [
+       279.0445073193902,
+       -13.837640769037144
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "field": {
+    "field_id": "N19-2019-01-25-614-c2-q1",
+    "description": "AS-035 near-star search: TYC 1896-63-1 (V 7.96)",
+    "product_ids": [
+     754204390415,
+     754226140415,
+     754257120415
+    ],
+    "selection_note": "Populations: N = star-driven search (Tycho-2 V<6 and 6-8 stars, Dec>=-25, |beta|<=10, SHA-256('AS-035:<id>') order, alternating classes, 12 quadrant-nights per class, <=60 stars and <=15 nights per star; trigger = SkyBoT object passing within 120\" of the star at E1/E2/E3 that meets the AS-022 target rule, rate <= 1\"/min and baseline rule, inside the footprint); R = the 26 AS-034 quadrants (not blind). Sequence rule: E1 first, E3 last within 150 min, E2 closest to the midpoint with >=15 min gaps, archived products. Targets: AS-022 rule (primary/marginal). Eligibility: rate <= 1.0\"/min; every pairwise predicted displacement >= 3.0\" (2x stationary tolerance); failures form their own strata. Detectability: band offsets g +0.33, r -0.22, i -0.37; local 5-sigma depth from PSF sources (3<=snr<=20) within 60\". Strata: classes V<6, 6-8, 8-10 x closest approach 0-30-60-120-240\"; zone = <120\" of V<6, <60\" of 6-8, <30\" of 8-10; control = >=480\" from V<10 and >=60\" from V10-11. Trace: expected position, detection (2.0\"), stationary/moving, association, fit, identification; first failure. Claim rule: zone PRIMARY eligible n>=10, Fisher two-sided p<0.05 (lower in zone) and MH odds ratio over shared quadrants < 1; else not demonstrated. Strips: SHA-256 order, <=8 recovered + <=8 lost within 120\" of V<10, 2+2 controls, plus 288181/408599 if R targets. No outcome was looked at.",
+    "control_designations": []
+   },
+   "search_class": "6<=V<8",
+   "search_star": {
+    "tycho_id": "TYC 1896-63-1",
+    "ra": 107.62325755,
+    "dec": 24.10814401,
+    "vt_mag": 8.009,
+    "bt_mag": 8.511,
+    "v_mag": 7.96382,
+    "position_source": "mean J2000"
+   },
+   "night_index": 2,
+   "filters": [
+    "zg",
+    "zr",
+    "zr"
+   ],
+   "minutes_from_first": [
+    0.0,
+    31.32,
+    75.93
+   ],
+   "trigger": [
+    {
+     "designation": "342893",
+     "v_magnitude": 20.9,
+     "rate_arcsec_per_min": 0.5134,
+     "closest_approach_arcsec": 66.86,
+     "positions": [
+      [
+       107.62643417718681,
+       24.089800489648383
+      ],
+      [
+       107.62158041666666,
+       24.089244444444443
+      ],
+      [
+       107.61466529734462,
+       24.088452250656196
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "field": {
+    "field_id": "N20-2018-09-27-499-c1-q2",
+    "description": "AS-035 near-star search: TYC 595-1125-1 (V 7.61)",
+    "product_ids": [
+     634273470115,
+     634358270115,
+     634369210115
+    ],
+    "selection_note": "Populations: N = star-driven search (Tycho-2 V<6 and 6-8 stars, Dec>=-25, |beta|<=10, SHA-256('AS-035:<id>') order, alternating classes, 12 quadrant-nights per class, <=60 stars and <=15 nights per star; trigger = SkyBoT object passing within 120\" of the star at E1/E2/E3 that meets the AS-022 target rule, rate <= 1\"/min and baseline rule, inside the footprint); R = the 26 AS-034 quadrants (not blind). Sequence rule: E1 first, E3 last within 150 min, E2 closest to the midpoint with >=15 min gaps, archived products. Targets: AS-022 rule (primary/marginal). Eligibility: rate <= 1.0\"/min; every pairwise predicted displacement >= 3.0\" (2x stationary tolerance); failures form their own strata. Detectability: band offsets g +0.33, r -0.22, i -0.37; local 5-sigma depth from PSF sources (3<=snr<=20) within 60\". Strata: classes V<6, 6-8, 8-10 x closest approach 0-30-60-120-240\"; zone = <120\" of V<6, <60\" of 6-8, <30\" of 8-10; control = >=480\" from V<10 and >=60\" from V10-11. Trace: expected position, detection (2.0\"), stationary/moving, association, fit, identification; first failure. Claim rule: zone PRIMARY eligible n>=10, Fisher two-sided p<0.05 (lower in zone) and MH odds ratio over shared quadrants < 1; else not demonstrated. Strips: SHA-256 order, <=8 recovered + <=8 lost within 120\" of V<10, 2+2 controls, plus 288181/408599 if R targets. No outcome was looked at.",
+    "control_designations": []
+   },
+   "search_class": "6<=V<8",
+   "search_star": {
+    "tycho_id": "TYC 595-1125-1",
+    "ra": 4.35117306,
+    "dec": 8.87570139,
+    "vt_mag": 7.655,
+    "bt_mag": 8.153,
+    "v_mag": 7.610180000000001,
+    "position_source": "observed ~J1991.25"
+   },
+   "night_index": 10,
+   "filters": [
+    "zr",
+    "zg",
+    "zg"
+   ],
+   "minutes_from_first": [
+    0.0,
+    122.12,
+    137.87
+   ],
+   "trigger": [
+    {
+     "designation": "127639",
+     "v_magnitude": 19.4,
+     "rate_arcsec_per_min": 0.8107,
+     "closest_approach_arcsec": 68.42,
+     "positions": [
+      [
+       4.34064227907785,
+       8.859797565928911
+      ],
+      [
+       4.312820416666666,
+       8.86058861111111
+      ],
+      [
+       4.30923209386534,
+       8.860690636109373
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "field": {
+    "field_id": "N21-2019-01-28-474-c8-q4",
+    "description": "AS-035 near-star search: TYC 292-377-1 (V 6.33)",
+    "product_ids": [
+     757443403115,
+     757496663115,
+     757541653115
+    ],
+    "selection_note": "Populations: N = star-driven search (Tycho-2 V<6 and 6-8 stars, Dec>=-25, |beta|<=10, SHA-256('AS-035:<id>') order, alternating classes, 12 quadrant-nights per class, <=60 stars and <=15 nights per star; trigger = SkyBoT object passing within 120\" of the star at E1/E2/E3 that meets the AS-022 target rule, rate <= 1\"/min and baseline rule, inside the footprint); R = the 26 AS-034 quadrants (not blind). Sequence rule: E1 first, E3 last within 150 min, E2 closest to the midpoint with >=15 min gaps, archived products. Targets: AS-022 rule (primary/marginal). Eligibility: rate <= 1.0\"/min; every pairwise predicted displacement >= 3.0\" (2x stationary tolerance); failures form their own strata. Detectability: band offsets g +0.33, r -0.22, i -0.37; local 5-sigma depth from PSF sources (3<=snr<=20) within 60\". Strata: classes V<6, 6-8, 8-10 x closest approach 0-30-60-120-240\"; zone = <120\" of V<6, <60\" of 6-8, <30\" of 8-10; control = >=480\" from V<10 and >=60\" from V10-11. Trace: expected position, detection (2.0\"), stationary/moving, association, fit, identification; first failure. Claim rule: zone PRIMARY eligible n>=10, Fisher two-sided p<0.05 (lower in zone) and MH odds ratio over shared quadrants < 1; else not demonstrated. Strips: SHA-256 order, <=8 recovered + <=8 lost within 120\" of V<10, 2+2 controls, plus 288181/408599 if R targets. No outcome was looked at.",
+    "control_designations": []
+   },
+   "search_class": "6<=V<8",
+   "search_star": {
+    "tycho_id": "TYC 292-377-1",
+    "ra": 189.51839953,
+    "dec": 3.28244594,
+    "vt_mag": 6.334,
+    "bt_mag": 6.343,
+    "v_mag": 6.333189999999999,
+    "position_source": "mean J2000"
+   },
+   "night_index": 0,
+   "filters": [
+    "zg",
+    "zg",
+    "zr"
+   ],
+   "minutes_from_first": [
+    0.0,
+    76.7,
+    141.48
+   ],
+   "trigger": [
+    {
+     "designation": "161277",
+     "v_magnitude": 20.4,
+     "rate_arcsec_per_min": 0.1302,
+     "closest_approach_arcsec": 50.49,
+     "positions": [
+      [
+       189.5082607274469,
+       3.2665478412314553
+      ],
+      [
+       189.5103670833333,
+       3.2683575
+      ],
+      [
+       189.51214617912277,
+       3.269885995880601
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "field": {
+    "field_id": "N22-2018-09-06-553-c4-q4",
+    "description": "AS-035 near-star search: TYC 1197-491-1 (V 7.35)",
+    "product_ids": [
+     613380241515,
+     613405251515,
+     613454721515
+    ],
+    "selection_note": "Populations: N = star-driven search (Tycho-2 V<6 and 6-8 stars, Dec>=-25, |beta|<=10, SHA-256('AS-035:<id>') order, alternating classes, 12 quadrant-nights per class, <=60 stars and <=15 nights per star; trigger = SkyBoT object passing within 120\" of the star at E1/E2/E3 that meets the AS-022 target rule, rate <= 1\"/min and baseline rule, inside the footprint); R = the 26 AS-034 quadrants (not blind). Sequence rule: E1 first, E3 last within 150 min, E2 closest to the midpoint with >=15 min gaps, archived products. Targets: AS-022 rule (primary/marginal). Eligibility: rate <= 1.0\"/min; every pairwise predicted displacement >= 3.0\" (2x stationary tolerance); failures form their own strata. Detectability: band offsets g +0.33, r -0.22, i -0.37; local 5-sigma depth from PSF sources (3<=snr<=20) within 60\". Strata: classes V<6, 6-8, 8-10 x closest approach 0-30-60-120-240\"; zone = <120\" of V<6, <60\" of 6-8, <30\" of 8-10; control = >=480\" from V<10 and >=60\" from V10-11. Trace: expected position, detection (2.0\"), stationary/moving, association, fit, identification; first failure. Claim rule: zone PRIMARY eligible n>=10, Fisher two-sided p<0.05 (lower in zone) and MH odds ratio over shared quadrants < 1; else not demonstrated. Strips: SHA-256 order, <=8 recovered + <=8 lost within 120\" of V<10, 2+2 controls, plus 288181/408599 if R targets. No outcome was looked at.",
+    "control_designations": []
+   },
+   "search_class": "6<=V<8",
+   "search_star": {
+    "tycho_id": "TYC 1197-491-1",
+    "ra": 20.51033996,
+    "dec": 15.78921474,
+    "vt_mag": 7.399,
+    "bt_mag": 7.92,
+    "v_mag": 7.35211,
+    "position_source": "mean J2000"
+   },
+   "night_index": 3,
+   "filters": [
+    "zr",
+    "zg",
+    "zg"
+   ],
+   "minutes_from_first": [
+    0.0,
+    36.02,
+    107.25
+   ],
+   "trigger": [
+    {
+     "designation": "566711",
+     "v_magnitude": 20.9,
+     "rate_arcsec_per_min": 0.3825,
+     "closest_approach_arcsec": 94.73,
+     "positions": [
+      [
+       20.545360912266826,
+       15.772470854516133
+      ],
+      [
+       20.54199125,
+       15.774503055555556
+      ],
+      [
+       20.53532675143744,
+       15.778522331029952
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "field": {
+    "field_id": "N23-2019-06-01-279-c6-q1",
+    "description": "AS-035 near-star search: TYC 6813-809-1 (V 7.13)",
+    "product_ids": [
+     881293392015,
+     881325452015,
+     881357492015
+    ],
+    "selection_note": "Populations: N = star-driven search (Tycho-2 V<6 and 6-8 stars, Dec>=-25, |beta|<=10, SHA-256('AS-035:<id>') order, alternating classes, 12 quadrant-nights per class, <=60 stars and <=15 nights per star; trigger = SkyBoT object passing within 120\" of the star at E1/E2/E3 that meets the AS-022 target rule, rate <= 1\"/min and baseline rule, inside the footprint); R = the 26 AS-034 quadrants (not blind). Sequence rule: E1 first, E3 last within 150 min, E2 closest to the midpoint with >=15 min gaps, archived products. Targets: AS-022 rule (primary/marginal). Eligibility: rate <= 1.0\"/min; every pairwise predicted displacement >= 3.0\" (2x stationary tolerance); failures form their own strata. Detectability: band offsets g +0.33, r -0.22, i -0.37; local 5-sigma depth from PSF sources (3<=snr<=20) within 60\". Strata: classes V<6, 6-8, 8-10 x closest approach 0-30-60-120-240\"; zone = <120\" of V<6, <60\" of 6-8, <30\" of 8-10; control = >=480\" from V<10 and >=60\" from V10-11. Trace: expected position, detection (2.0\"), stationary/moving, association, fit, identification; first failure. Claim rule: zone PRIMARY eligible n>=10, Fisher two-sided p<0.05 (lower in zone) and MH odds ratio over shared quadrants < 1; else not demonstrated. Strips: SHA-256 order, <=8 recovered + <=8 lost within 120\" of V<10, 2+2 controls, plus 288181/408599 if R targets. No outcome was looked at.",
+    "control_designations": []
+   },
+   "search_class": "6<=V<8",
+   "search_star": {
+    "tycho_id": "TYC 6813-809-1",
+    "ra": 252.05762491,
+    "dec": -24.52664756,
+    "vt_mag": 7.314,
+    "bt_mag": 9.363,
+    "v_mag": 7.12959,
+    "position_source": "mean J2000"
+   },
+   "night_index": 0,
+   "filters": [
+    "zr",
+    "zr",
+    "zr"
+   ],
+   "minutes_from_first": [
+    0.0,
+    46.17,
+    92.32
+   ],
+   "trigger": [
+    {
+     "designation": "625513",
+     "v_magnitude": 20.9,
+     "rate_arcsec_per_min": 0.524,
+     "closest_approach_arcsec": 92.34,
+     "positions": [
+      [
+       252.0500597516252,
+       -24.551356874936477
+      ],
+      [
+       252.04269416666665,
+       -24.55083861111111
+      ],
+      [
+       252.0353312468463,
+       -24.550320534812567
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "field": {
+    "field_id": "N24-2019-08-21-335-c10-q3",
+    "description": "AS-035 near-star search: TYC 6297-25-1 (V 7.81)",
+    "product_ids": [
+     962192183815,
+     962224053815,
+     962253333815
+    ],
+    "selection_note": "Populations: N = star-driven search (Tycho-2 V<6 and 6-8 stars, Dec>=-25, |beta|<=10, SHA-256('AS-035:<id>') order, alternating classes, 12 quadrant-nights per class, <=60 stars and <=15 nights per star; trigger = SkyBoT object passing within 120\" of the star at E1/E2/E3 that meets the AS-022 target rule, rate <= 1\"/min and baseline rule, inside the footprint); R = the 26 AS-034 quadrants (not blind). Sequence rule: E1 first, E3 last within 150 min, E2 closest to the midpoint with >=15 min gaps, archived products. Targets: AS-022 rule (primary/marginal). Eligibility: rate <= 1.0\"/min; every pairwise predicted displacement >= 3.0\" (2x stationary tolerance); failures form their own strata. Detectability: band offsets g +0.33, r -0.22, i -0.37; local 5-sigma depth from PSF sources (3<=snr<=20) within 60\". Strata: classes V<6, 6-8, 8-10 x closest approach 0-30-60-120-240\"; zone = <120\" of V<6, <60\" of 6-8, <30\" of 8-10; control = >=480\" from V<10 and >=60\" from V10-11. Trace: expected position, detection (2.0\"), stationary/moving, association, fit, identification; first failure. Claim rule: zone PRIMARY eligible n>=10, Fisher two-sided p<0.05 (lower in zone) and MH odds ratio over shared quadrants < 1; else not demonstrated. Strips: SHA-256 order, <=8 recovered + <=8 lost within 120\" of V<10, 2+2 controls, plus 288181/408599 if R targets. No outcome was looked at.",
+    "control_designations": []
+   },
+   "search_class": "6<=V<8",
+   "search_star": {
+    "tycho_id": "TYC 6297-25-1",
+    "ra": 291.32896263,
+    "dec": -16.83657621,
+    "vt_mag": 7.949,
+    "bt_mag": 9.49,
+    "v_mag": 7.810309999999999,
+    "position_source": "mean J2000"
+   },
+   "night_index": 2,
+   "filters": [
+    "zr",
+    "zr",
+    "zr"
+   ],
+   "minutes_from_first": [
+    0.0,
+    45.88,
+    88.05
+   ],
+   "trigger": [
+    {
+     "designation": "67559",
+     "v_magnitude": 18.8,
+     "rate_arcsec_per_min": 0.2131,
+     "closest_approach_arcsec": 100.73,
+     "positions": [
+      [
+       291.3066197371433,
+       -16.854621583493728
+      ],
+      [
+       291.3056066666667,
+       -16.857158611111114
+      ],
+      [
+       291.30467565694875,
+       -16.859490134357454
+      ]
+     ]
+    }
+   ]
+  }
+ ],
+ "skybot_queries": 546,
+ "log": [
+  {
+   "star": "TYC 243-1975-1",
+   "search_class": "V<6",
+   "outcome": "selected as N1-2018-11-25-468-c12-q1 (night 3)"
+  },
+  {
+   "star": "TYC 622-1312-1",
+   "search_class": "6<=V<8",
+   "outcome": "no triggering night in 15 of 59 qualifying nights"
+  },
+  {
+   "star": "TYC 1344-1281-1",
+   "search_class": "V<6",
+   "outcome": "selected as N2-2019-11-05-564-c1-q2 (night 2)"
+  },
+  {
+   "star": "TYC 5535-224-1",
+   "search_class": "6<=V<8",
+   "outcome": "no triggering night in 0 of 0 qualifying nights"
+  },
+  {
+   "star": "TYC 4672-1255-1",
+   "search_class": "V<6",
+   "outcome": "selected as N3-2019-09-23-1441-c5-q4 (night 8)"
+  },
+  {
+   "star": "TYC 6199-328-1",
+   "search_class": "6<=V<8",
+   "outcome": "no triggering night in 0 of 0 qualifying nights"
+  },
+  {
+   "star": "TYC 5749-2530-1",
+   "search_class": "V<6",
+   "outcome": "no triggering night in 1 of 1 qualifying nights"
+  },
+  {
+   "star": "TYC 1890-61-1",
+   "search_class": "6<=V<8",
+   "outcome": "SkyBoT error on night 0: SkyBoT reported an error: SkyBoT asteroid conesearch -> numIntAstromJ2000_para[1]: computeEphemeris: \nProgram received signal SIGBUS: Access to an undefined portion of a memory object.\n\nBacktrace for this error:\n\nProgram received signal SIGBUS: Access to an undefined portion of a memory object.\n\nBacktrace for this error:\n\nPr (after 3 attempt(s))"
+  },
+  {
+   "star": "TYC 1344-969-1",
+   "search_class": "V<6",
+   "outcome": "no triggering night in 14 of 14 qualifying nights"
+  },
+  {
+   "star": "TYC 5721-874-1",
+   "search_class": "6<=V<8",
+   "outcome": "no triggering night in 14 of 14 qualifying nights"
+  },
+  {
+   "star": "TYC 6333-2128-1",
+   "search_class": "V<6",
+   "outcome": "no triggering night in 1 of 1 qualifying nights"
+  },
+  {
+   "star": "TYC 5702-2050-1",
+   "search_class": "6<=V<8",
+   "outcome": "SkyBoT error on night 6: SkyBoT reported an error: SkyBoT asteroid conesearch -> numIntAstromJ2000_para[1]: computeEphemeris: \nProgram received signal SIGBUS: Access to an undefined portion of a memory object.\n\nBacktrace for this error:\n\nProgram received signal SIGBUS: Access to an undefined portion of a memory object.\n\nBacktrace for this error:\n\nPr (after 3 attempt(s))"
+  },
+  {
+   "star": "TYC 4912-1381-1",
+   "search_class": "V<6",
+   "outcome": "no triggering night in 0 of 0 qualifying nights"
+  },
+  {
+   "star": "TYC 2-1641-1",
+   "search_class": "6<=V<8",
+   "outcome": "selected as N4-2020-09-15-447-c3-q4 (night 8)"
+  },
+  {
+   "star": "TYC 865-1308-1",
+   "search_class": "V<6",
+   "outcome": "no triggering night in 15 of 39 qualifying nights"
+  },
+  {
+   "star": "TYC 579-1092-1",
+   "search_class": "6<=V<8",
+   "outcome": "no triggering night in 6 of 6 qualifying nights"
+  },
+  {
+   "star": "TYC 6301-2322-1",
+   "search_class": "V<6",
+   "outcome": "selected as N5-2019-08-27-335-c7-q4 (night 8)"
+  },
+  {
+   "star": "TYC 6147-662-1",
+   "search_class": "6<=V<8",
+   "outcome": "no triggering night in 4 of 4 qualifying nights"
+  },
+  {
+   "star": "TYC 6348-1259-1",
+   "search_class": "V<6",
+   "outcome": "selected as N6-2019-07-29-338-c6-q1 (night 0)"
+  },
+  {
+   "star": "TYC 679-175-1",
+   "search_class": "6<=V<8",
+   "outcome": "no triggering night in 9 of 9 qualifying nights"
+  },
+  {
+   "star": "TYC 4675-1216-3",
+   "search_class": "V<6",
+   "outcome": "no triggering night in 8 of 8 qualifying nights"
+  },
+  {
+   "star": "TYC 5831-1042-1",
+   "search_class": "6<=V<8",
+   "outcome": "no triggering night in 2 of 2 qualifying nights"
+  },
+  {
+   "star": "TYC 35-435-1",
+   "search_class": "V<6",
+   "outcome": "no triggering night in 15 of 27 qualifying nights"
+  },
+  {
+   "star": "TYC 792-2261-1",
+   "search_class": "6<=V<8",
+   "outcome": "SkyBoT error on night 10: SkyBoT reported an error: SkyBoT asteroid conesearch -> numIntAstromJ2000_para[1]: computeEphemeris: \nProgram received signal SIGBUS: Access to an undefined portion of a memory object.\n\nBacktrace for this error:\n\nProgram received signal SIGBUS: Access to an undefined portion of a memory object.\n\nBacktrace for this error:\n\nPr (after 3 attempt(s))"
+  },
+  {
+   "star": "TYC 5803-1997-1",
+   "search_class": "V<6",
+   "outcome": "no triggering night in 7 of 7 qualifying nights"
+  },
+  {
+   "star": "TYC 54-174-1",
+   "search_class": "6<=V<8",
+   "outcome": "no triggering night in 4 of 4 qualifying nights"
+  },
+  {
+   "star": "TYC 713-1669-1",
+   "search_class": "V<6",
+   "outcome": "no triggering night in 9 of 9 qualifying nights"
+  },
+  {
+   "star": "TYC 1200-1028-1",
+   "search_class": "6<=V<8",
+   "outcome": "no triggering night in 15 of 38 qualifying nights"
+  },
+  {
+   "star": "TYC 592-433-1",
+   "search_class": "V<6",
+   "outcome": "no triggering night in 15 of 22 qualifying nights"
+  },
+  {
+   "star": "TYC 5256-1129-1",
+   "search_class": "6<=V<8",
+   "outcome": "no triggering night in 0 of 0 qualifying nights"
+  },
+  {
+   "star": "TYC 6780-1608-1",
+   "search_class": "V<6",
+   "outcome": "no triggering night in 0 of 0 qualifying nights"
+  },
+  {
+   "star": "TYC 1870-903-1",
+   "search_class": "6<=V<8",
+   "outcome": "selected as N7-2019-12-29-611-c9-q3 (night 8)"
+  },
+  {
+   "star": "TYC 6269-4008-1",
+   "search_class": "V<6",
+   "outcome": "selected as N8-2019-07-24-333-c8-q1 (night 5)"
+  },
+  {
+   "star": "TYC 6288-1682-1",
+   "search_class": "6<=V<8",
+   "outcome": "selected as N9-2019-08-31-334-c4-q3 (night 13)"
+  },
+  {
+   "star": "TYC 6858-1156-1",
+   "search_class": "V<6",
+   "outcome": "night 11 ('283', '11', '4', '2019-08-27'): products missing"
+  },
+  {
+   "star": "TYC 6858-1156-1",
+   "search_class": "V<6",
+   "outcome": "no triggering night in 15 of 16 qualifying nights"
+  },
+  {
+   "star": "TYC 5527-1884-1",
+   "search_class": "6<=V<8",
+   "outcome": "no triggering night in 0 of 0 qualifying nights"
+  },
+  {
+   "star": "TYC 6360-1220-1",
+   "search_class": "V<6",
+   "outcome": "no triggering night in 1 of 1 qualifying nights"
+  },
+  {
+   "star": "TYC 1902-283-1",
+   "search_class": "6<=V<8",
+   "outcome": "no triggering night in 12 of 12 qualifying nights"
+  },
+  {
+   "star": "TYC 4965-1204-1",
+   "search_class": "V<6",
+   "outcome": "no triggering night in 0 of 0 qualifying nights"
+  },
+  {
+   "star": "TYC 4972-96-1",
+   "search_class": "6<=V<8",
+   "outcome": "no triggering night in 7 of 7 qualifying nights"
+  },
+  {
+   "star": "TYC 632-1491-1",
+   "search_class": "V<6",
+   "outcome": "selected as N10-2018-11-12-504-c2-q3 (night 4)"
+  },
+  {
+   "star": "TYC 5773-578-1",
+   "search_class": "6<=V<8",
+   "outcome": "no triggering night in 3 of 3 qualifying nights"
+  },
+  {
+   "star": "TYC 1265-1169-1",
+   "search_class": "V<6",
+   "outcome": "no triggering night in 15 of 16 qualifying nights"
+  },
+  {
+   "star": "TYC 1264-758-1",
+   "search_class": "6<=V<8",
+   "outcome": "selected as N11-2018-10-31-559-c3-q1 (night 1)"
+  },
+  {
+   "star": "TYC 6299-2609-1",
+   "search_class": "V<6",
+   "outcome": "no triggering night in 1 of 1 qualifying nights"
+  },
+  {
+   "star": "TYC 257-623-1",
+   "search_class": "6<=V<8",
+   "outcome": "no triggering night in 1 of 1 qualifying nights"
+  },
+  {
+   "star": "TYC 5226-1605-1",
+   "search_class": "V<6",
+   "outcome": "SkyBoT error on night 14: SkyBoT reported an error: SkyBoT asteroid conesearch -> numIntAstromJ2000_para[1]: computeEphemeris: \nProgram received signal SIGBUS: Access to an undefined portion of a memory object.\n\nBacktrace for this error:\n\nProgram received signal SIGBUS: Access to an undefined portion of a memory object.\n\nBacktrace for this error:\n\nPr (after 3 attempt(s))"
+  },
+  {
+   "star": "TYC 791-817-1",
+   "search_class": "6<=V<8",
+   "outcome": "no triggering night in 0 of 0 qualifying nights"
+  },
+  {
+   "star": "TYC 1799-1441-1",
+   "search_class": "V<6",
+   "outcome": "selected as N12-2019-11-01-607-c1-q2 (night 5)"
+  },
+  {
+   "star": "TYC 5821-453-1",
+   "search_class": "6<=V<8",
+   "outcome": "selected as N13-2018-08-21-394-c12-q4 (night 2)"
+  },
+  {
+   "star": "TYC 5550-1597-1",
+   "search_class": "V<6",
+   "outcome": "no triggering night in 8 of 8 qualifying nights"
+  },
+  {
+   "star": "TYC 6778-1979-1",
+   "search_class": "6<=V<8",
+   "outcome": "no triggering night in 0 of 0 qualifying nights"
+  },
+  {
+   "star": "TYC 1299-1090-1",
+   "search_class": "V<6",
+   "outcome": "selected as N14-2018-11-02-562-c3-q3 (night 2)"
+  },
+  {
+   "star": "TYC 1344-677-1",
+   "search_class": "6<=V<8",
+   "outcome": "no triggering night in 11 of 11 qualifying nights"
+  },
+  {
+   "star": "TYC 5782-1505-1",
+   "search_class": "V<6",
+   "outcome": "selected as N15-2019-07-29-338-c13-q3 (night 0)"
+  },
+  {
+   "star": "TYC 4966-992-1",
+   "search_class": "6<=V<8",
+   "outcome": "no triggering night in 5 of 5 qualifying nights"
+  },
+  {
+   "star": "TYC 1947-1495-1",
+   "search_class": "V<6",
+   "outcome": "no triggering night in 0 of 0 qualifying nights"
+  },
+  {
+   "star": "TYC 6779-2195-1",
+   "search_class": "6<=V<8",
+   "outcome": "no triggering night in 0 of 0 qualifying nights"
+  },
+  {
+   "star": "TYC 1399-2905-1",
+   "search_class": "V<6",
+   "outcome": "selected as N16-2019-12-29-568-c15-q4 (night 7)"
+  },
+  {
+   "star": "TYC 1800-1622-1",
+   "search_class": "6<=V<8",
+   "outcome": "no triggering night in 13 of 13 qualifying nights"
+  },
+  {
+   "star": "TYC 6750-1742-1",
+   "search_class": "V<6",
+   "outcome": "no triggering night in 0 of 0 qualifying nights"
+  },
+  {
+   "star": "TYC 6380-1649-1",
+   "search_class": "6<=V<8",
+   "outcome": "no triggering night in 3 of 3 qualifying nights"
+  },
+  {
+   "star": "TYC 6232-1333-1",
+   "search_class": "V<6",
+   "outcome": "selected as N17-2019-06-27-330-c9-q2 (night 6)"
+  },
+  {
+   "star": "TYC 1241-146-1",
+   "search_class": "6<=V<8",
+   "outcome": "no triggering night in 12 of 12 qualifying nights"
+  },
+  {
+   "star": "TYC 6265-1312-1",
+   "search_class": "6<=V<8",
+   "outcome": "no triggering night in 15 of 31 qualifying nights"
+  },
+  {
+   "star": "TYC 1171-425-1",
+   "search_class": "6<=V<8",
+   "outcome": "SkyBoT error on night 5: SkyBoT reported an error: SkyBoT asteroid conesearch -> numIntAstromJ2000_para[1]: computeEphemeris: \nProgram received signal SIGBUS: Access to an undefined portion of a memory object.\n\nBacktrace for this error:\n\nProgram received signal SIGBUS: Access to an undefined portion of a memory object.\n\nBacktrace for this error:\n\nPr (after 3 attempt(s))"
+  },
+  {
+   "star": "TYC 5703-3416-1",
+   "search_class": "6<=V<8",
+   "outcome": "selected as N18-2018-07-16-333-c13-q2 (night 2)"
+  },
+  {
+   "star": "TYC 1405-60-1",
+   "search_class": "6<=V<8",
+   "outcome": "no triggering night in 15 of 15 qualifying nights"
+  },
+  {
+   "star": "TYC 1896-63-1",
+   "search_class": "6<=V<8",
+   "outcome": "selected as N19-2019-01-25-614-c2-q1 (night 2)"
+  },
+  {
+   "star": "TYC 595-1125-1",
+   "search_class": "6<=V<8",
+   "outcome": "selected as N20-2018-09-27-499-c1-q2 (night 10)"
+  },
+  {
+   "star": "TYC 5781-314-1",
+   "search_class": "6<=V<8",
+   "outcome": "no triggering night in 3 of 3 qualifying nights"
+  },
+  {
+   "star": "TYC 4933-1348-1",
+   "search_class": "6<=V<8",
+   "outcome": "no triggering night in 1 of 1 qualifying nights"
+  },
+  {
+   "star": "TYC 292-377-1",
+   "search_class": "6<=V<8",
+   "outcome": "selected as N21-2019-01-28-474-c8-q4 (night 0)"
+  },
+  {
+   "star": "TYC 6364-634-1",
+   "search_class": "6<=V<8",
+   "outcome": "no triggering night in 1 of 1 qualifying nights"
+  },
+  {
+   "star": "TYC 259-440-1",
+   "search_class": "6<=V<8",
+   "outcome": "no triggering night in 0 of 0 qualifying nights"
+  },
+  {
+   "star": "TYC 6314-1711-1",
+   "search_class": "6<=V<8",
+   "outcome": "no triggering night in 2 of 2 qualifying nights"
+  },
+  {
+   "star": "TYC 1197-491-1",
+   "search_class": "6<=V<8",
+   "outcome": "selected as N22-2018-09-06-553-c4-q4 (night 3)"
+  },
+  {
+   "star": "TYC 6258-94-1",
+   "search_class": "6<=V<8",
+   "outcome": "no triggering night in 15 of 30 qualifying nights"
+  },
+  {
+   "star": "TYC 6813-809-1",
+   "search_class": "6<=V<8",
+   "outcome": "selected as N23-2019-06-01-279-c6-q1 (night 0)"
+  },
+  {
+   "star": "TYC 5559-251-1",
+   "search_class": "6<=V<8",
+   "outcome": "no triggering night in 6 of 6 qualifying nights"
+  },
+  {
+   "star": "TYC 6310-2230-1",
+   "search_class": "6<=V<8",
+   "outcome": "no triggering night in 1 of 1 qualifying nights"
+  },
+  {
+   "star": "TYC 4671-110-1",
+   "search_class": "6<=V<8",
+   "outcome": "no triggering night in 10 of 10 qualifying nights"
+  },
+  {
+   "star": "TYC 6315-1058-1",
+   "search_class": "6<=V<8",
+   "outcome": "no triggering night in 1 of 1 qualifying nights"
+  },
+  {
+   "star": "TYC 1352-332-1",
+   "search_class": "6<=V<8",
+   "outcome": "no triggering night in 12 of 12 qualifying nights"
+  },
+  {
+   "star": "TYC 1227-27-1",
+   "search_class": "6<=V<8",
+   "outcome": "SkyBoT error on night 13: SkyBoT reported an error: SkyBoT asteroid conesearch -> numIntAstromJ2000_para[1]: computeEphemeris: \nProgram received signal SIGBUS: Access to an undefined portion of a memory object.\n\nBacktrace for this error:\n\nProgram received signal SIGBUS: Access to an undefined portion of a memory object.\n\nBacktrace for this error:\n\nPr (after 3 attempt(s))"
+  },
+  {
+   "star": "TYC 13-900-1",
+   "search_class": "6<=V<8",
+   "outcome": "night 9 ('448', '8', '1', '2018-09-21'): products missing"
+  },
+  {
+   "star": "TYC 13-900-1",
+   "search_class": "6<=V<8",
+   "outcome": "no triggering night in 15 of 21 qualifying nights"
+  },
+  {
+   "star": "TYC 6281-234-1",
+   "search_class": "6<=V<8",
+   "outcome": "no triggering night in 5 of 5 qualifying nights"
+  },
+  {
+   "star": "TYC 1346-760-1",
+   "search_class": "6<=V<8",
+   "outcome": "no triggering night in 11 of 11 qualifying nights"
+  },
+  {
+   "star": "TYC 6297-25-1",
+   "search_class": "6<=V<8",
+   "outcome": "selected as N24-2019-08-21-335-c10-q3 (night 2)"
+  }
+ ]
+}
