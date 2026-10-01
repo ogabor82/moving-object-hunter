@@ -173,3 +173,29 @@ and renders the strip sample. N SkyBoT predictions are stored in
 `as035_skybot.json` and replayed. Evidence only — no filter, radius,
 score, rank or threshold. Interpretation:
 `results/as035/as035_findings.md`.
+
+## AS-036 near-star PRIMARY recovery confirmation
+
+```
+python -m app.validation.near_star_confirmation select --out validation/results/as036/as036_selection.json
+python -m app.validation.near_star_confirmation evidence --selection validation/results/as036/as036_selection.json --out-dir validation/results/as036
+python -m app.validation.near_star_confirmation analyse --selection validation/results/as036/as036_selection.json --out-dir validation/results/as036
+python -m app.validation.near_star_confirmation render --selection validation/results/as036/as036_selection.json --out-dir validation/results/as036
+```
+
+Confirmatory. Pre-registered (PRE-REGISTRATION block of
+`app/validation/near_star_confirmation.py`) before any AS-036 search or
+outcome: a new sample C of quadrant-nights (none of the AS-035 N/R ones)
+from a star-driven search (Tycho-2 V < 6 and 6-8, SHA-256 'AS-036' order)
+that examines up to 20 qualifying nights per star and triggers only on an
+AS-022 PRIMARY, rate- and baseline-eligible object passing inside the
+AS-035 zone of the star (< 120" V < 6, < 60" 6-8); budget per class 15
+trigger objects / 300 stars / 3000 SkyBoT cones. AS-035 definitions
+(sequence rule, target rule, eligibility strata, zone, control, six-stage
+trace) are reused unchanged. Decision rule on C only: CONFIRMED (zone
+n >= 20, control n >= 20, zone lower, Fisher p < 0.05, MH OR < 1),
+NOT REPRODUCED (minimums met, Newcombe 95 % lower bound of zone - control
+> -0.20), else INCONCLUSIVE. Pooled AS-035 + AS-036 is secondary only.
+C SkyBoT predictions are stored in `as036_skybot.json` and replayed.
+Evidence only — no filter, radius, score, rank or threshold.
+Interpretation: `results/as036/as036_findings.md`.

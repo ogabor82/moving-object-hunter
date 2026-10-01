@@ -1102,7 +1102,13 @@ def population_fields(selection: Selection) -> list[tuple[str, ValidationField, 
     ] + [("R", f.field, f"AS-034 ({f.origin})") for f in population.fields]
 
 
-def load_field(population: str, field: ValidationField, out_dir: Path, stored: dict):
+def load_field(
+    population: str,
+    field: ValidationField,
+    out_dir: Path,
+    stored: dict,
+    skybot_name: str = "as035_skybot.json",
+):
     """Observations, metadata and full-quadrant SkyBoT fields; R replays
     the AS-022/033/034 snapshots, N queries SkyBoT once and stores it."""
     import json
@@ -1127,7 +1133,7 @@ def load_field(population: str, field: ValidationField, out_dir: Path, stored: d
     else:
         raw = [f.model_dump(mode="json") for f in query_skybot_fields(observations, metadata)]
         stored[field.field_id] = raw
-        (out_dir / "as035_skybot.json").write_text(json.dumps(stored) + "\n")
+        (out_dir / skybot_name).write_text(json.dumps(stored) + "\n")
     return observations, metadata, [KnownObjectField.model_validate(f) for f in raw]
 
 
@@ -1137,7 +1143,11 @@ def run_traces(
     out_dir: Path,
     only: set[str] | None = None,
     progress: Callable[[str], None] = lambda message: None,
+    fields: Sequence[tuple[str, ValidationField, str]] | None = None,
+    skybot_name: str = "as035_skybot.json",
 ) -> TracePart:
+    """Trace every target of one population. `fields` / `skybot_name`
+    default to AS-035 (N + R, as035_skybot.json); AS-036 passes its own."""
     import json
 
     import numpy
@@ -1149,15 +1159,19 @@ def run_traces(
     from app.validation.selection import select_targets
     from app.validation.star_contamination import field_stars
 
-    skybot_path = out_dir / "as035_skybot.json"
+    skybot_path = out_dir / skybot_name
     stored = json.loads(skybot_path.read_text()) if skybot_path.exists() else {}
     conditions: list[FieldConditions] = []
     traces: list[TargetTrace] = []
-    for population, field, origin in population_fields(selection):
+    for population, field, origin in (
+        population_fields(selection) if fields is None else fields
+    ):
         if population != population_name or (only is not None and field.field_id not in only):
             continue
         progress(f"{population} {field.field_id}: loading")
-        observations, metadata, skybot = load_field(population, field, out_dir, stored)
+        observations, metadata, skybot = load_field(
+            population, field, out_dir, stored, skybot_name
+        )
         catalogs = load_catalog_frames(observations)
         progress(f"{population} {field.field_id}: pipeline")
         pipeline = build_tracklets_from_frames(catalogs.frames, CONFIG)
