@@ -1,0 +1,419 @@
+{
+ "generated_at": "2026-10-01T15:20:44.484065Z",
+ "preregistration": "Stars: Tycho-2, V = VT - 0.090 (BT - VT), V <= 11. Magnitude classes <4, 4-6, 6-8, 8-10, 10-11. Annuli 0-15-30-60-120-240-480\" around each star, 480-900\" = local background of the same stars; primary profiles use isolated stars (no brighter Tycho-2 star within 900\"), all-star profiles reported too. Population: POC, B, C, D (AS-022), S1-S4 (AS-033) and the three sibling quadrants (same exposures and CCD) of B, D, S1-S4 with archived products. KNOWN: all objects passing the AS-022 target rule (primary + marginal), proximity from predicted positions, loss stage from the AS-022 outcome logic. Visual: up to 12 KNOWN within 120\" of a V <= 10 star; 3 built UNKNOWN within 60\" of a star per class 6-8, 8-10, 10-11; 4 built UNKNOWN with no V <= 11 star within 240\"; SHA-256 order. No outcome was looked at.",
+ "fields": [
+  {
+   "field": {
+    "field_id": "POC-2018-04-11-535-c11-q3",
+    "description": "POC field; 3 zr frames 10:09-11:53 UTC; ~60 deg east of opposition.",
+    "product_ids": [
+     465423434215,
+     465467854215,
+     465495204215
+    ],
+    "selection_note": "Existing AS-003 POC sequence (IRSA API documentation example position); all frames of the quadrant-night. Controls: 48606 (1995 DH), identified in Phase D; 285862 (2001 HM48), detected in 2 of 3 frames in Phase D.",
+    "control_designations": [
+     "48606",
+     "285862"
+    ]
+   },
+   "origin": "AS-022",
+   "skybot": "AS-022 snapshot"
+  },
+  {
+   "field": {
+    "field_id": "B-2019-01-25-565-c13-q3",
+    "description": "Near opposition (Jan 2019); frames g, r, r over 75 min.",
+    "product_ids": [
+     754204845015,
+     754226595015,
+     754256675015
+    ],
+    "selection_note": "First quadrant-night with >= 3 exposures found by an IRSA POS search at (112.0, +21.5) for 2019-01; all frames of the quadrant-night.",
+    "control_designations": []
+   },
+   "origin": "AS-022",
+   "skybot": "AS-022 snapshot"
+  },
+  {
+   "field": {
+    "field_id": "C-2018-10-06-448-c9-q3",
+    "description": "At opposition (Oct 2018); frames r, i, g over 69 min.",
+    "product_ids": [
+     643291653415,
+     643328593415,
+     643339443415
+    ],
+    "selection_note": "Only quadrant-night with >= 3 exposures found by an IRSA POS search at (15.0, +5.0) for 2018-10; all frames of the quadrant-night.",
+    "control_designations": []
+   },
+   "origin": "AS-022",
+   "skybot": "AS-022 snapshot"
+  },
+  {
+   "field": {
+    "field_id": "D-2019-06-02-281-c16-q3",
+    "description": "Crowded low-galactic-latitude field near opposition (Jun 2019); 3 zr frames over 92 min.",
+    "product_ids": [
+     882334526215,
+     882366576215,
+     882398636215
+    ],
+    "selection_note": "IRSA POS search at (262.0, -22.0) for 2019-06 found one high-cadence quadrant-night (143 zr frames); pre-registered rule: first, middle (index 71) and last frame.",
+    "control_designations": []
+   },
+   "origin": "AS-022",
+   "skybot": "AS-022 snapshot"
+  },
+  {
+   "field": {
+    "field_id": "S1-2018-09-19-508-c10-q4",
+    "description": "AS-033 field around TYC 676-1224-1 (V 6.40)",
+    "product_ids": [
+     626461093915,
+     626497953915,
+     626526633915
+    ],
+    "selection_note": "Tycho-2 stars with V <= 6.5, Dec >= -25 deg, |ecliptic latitude| <= 10 deg, ordered by SHA-256('AS-033:<Tycho id>'). For each star in turn, the IRSA ZTF science metadata covering the star's position between 2018-03-17 and 2021-01-01 is grouped by (field, CCD, quadrant, UTC date); the earliest group with >= 3 exposures is taken, and its first, middle ((n-1)//2) and last exposure form the sequence (the AS-022 rule). Stars without such a group are skipped and logged. The first 4 stars that yield a sequence are used. No pipeline output, source count or UNKNOWN count is looked at. Amendment 1 (2026-09-30, before any evidence output existed): a sequence qualifies only if the PSF catalog and science image of all three exposures exist in the IRSA archive (HTTP HEAD 200); otherwise the star is skipped and logged. Reason: IRSA metadata listed an exposure (pid 579341801615) whose products return 404.",
+    "control_designations": []
+   },
+   "origin": "AS-033",
+   "skybot": "AS-033 snapshot"
+  },
+  {
+   "field": {
+    "field_id": "S2-2018-09-27-509-c14-q4",
+    "description": "AS-033 field around TYC 696-1788-1 (V 4.75)",
+    "product_ids": [
+     634427845515,
+     634459815515,
+     634499005515
+    ],
+    "selection_note": "Tycho-2 stars with V <= 6.5, Dec >= -25 deg, |ecliptic latitude| <= 10 deg, ordered by SHA-256('AS-033:<Tycho id>'). For each star in turn, the IRSA ZTF science metadata covering the star's position between 2018-03-17 and 2021-01-01 is grouped by (field, CCD, quadrant, UTC date); the earliest group with >= 3 exposures is taken, and its first, middle ((n-1)//2) and last exposure form the sequence (the AS-022 rule). Stars without such a group are skipped and logged. The first 4 stars that yield a sequence are used. No pipeline output, source count or UNKNOWN count is looked at. Amendment 1 (2026-09-30, before any evidence output existed): a sequence qualifies only if the PSF catalog and science image of all three exposures exist in the IRSA archive (HTTP HEAD 200); otherwise the star is skipped and logged. Reason: IRSA metadata listed an exposure (pid 579341801615) whose products return 404.",
+    "control_designations": []
+   },
+   "origin": "AS-033",
+   "skybot": "AS-033 snapshot"
+  },
+  {
+   "field": {
+    "field_id": "S3-2019-07-01-335-c7-q1",
+    "description": "AS-033 field around TYC 6301-2457-1 (V 3.91)",
+    "product_ids": [
+     911296442415,
+     911296892415,
+     911336412415
+    ],
+    "selection_note": "Tycho-2 stars with V <= 6.5, Dec >= -25 deg, |ecliptic latitude| <= 10 deg, ordered by SHA-256('AS-033:<Tycho id>'). For each star in turn, the IRSA ZTF science metadata covering the star's position between 2018-03-17 and 2021-01-01 is grouped by (field, CCD, quadrant, UTC date); the earliest group with >= 3 exposures is taken, and its first, middle ((n-1)//2) and last exposure form the sequence (the AS-022 rule). Stars without such a group are skipped and logged. The first 4 stars that yield a sequence are used. No pipeline output, source count or UNKNOWN count is looked at. Amendment 1 (2026-09-30, before any evidence output existed): a sequence qualifies only if the PSF catalog and science image of all three exposures exist in the IRSA archive (HTTP HEAD 200); otherwise the star is skipped and logged. Reason: IRSA metadata listed an exposure (pid 579341801615) whose products return 404.",
+    "control_designations": []
+   },
+   "origin": "AS-033",
+   "skybot": "AS-033 snapshot"
+  },
+  {
+   "field": {
+    "field_id": "S4-2018-11-07-615-c5-q3",
+    "description": "AS-033 field around TYC 1916-2156-1 (V 3.56)",
+    "product_ids": [
+     675388211815,
+     675453921815,
+     675505501815
+    ],
+    "selection_note": "Tycho-2 stars with V <= 6.5, Dec >= -25 deg, |ecliptic latitude| <= 10 deg, ordered by SHA-256('AS-033:<Tycho id>'). For each star in turn, the IRSA ZTF science metadata covering the star's position between 2018-03-17 and 2021-01-01 is grouped by (field, CCD, quadrant, UTC date); the earliest group with >= 3 exposures is taken, and its first, middle ((n-1)//2) and last exposure form the sequence (the AS-022 rule). Stars without such a group are skipped and logged. The first 4 stars that yield a sequence are used. No pipeline output, source count or UNKNOWN count is looked at. Amendment 1 (2026-09-30, before any evidence output existed): a sequence qualifies only if the PSF catalog and science image of all three exposures exist in the IRSA archive (HTTP HEAD 200); otherwise the star is skipped and logged. Reason: IRSA metadata listed an exposure (pid 579341801615) whose products return 404.",
+    "control_designations": []
+   },
+   "origin": "AS-033",
+   "skybot": "AS-033 snapshot"
+  },
+  {
+   "field": {
+    "field_id": "B-2019-01-25-565-c13-q1",
+    "description": "AS-034 sibling quadrant of B-2019-01-25-565-c13-q3",
+    "product_ids": [
+     754204844815,
+     754226594815,
+     754256674815
+    ],
+    "selection_note": "Stars: Tycho-2, V = VT - 0.090 (BT - VT), V <= 11. Magnitude classes <4, 4-6, 6-8, 8-10, 10-11. Annuli 0-15-30-60-120-240-480\" around each star, 480-900\" = local background of the same stars; primary profiles use isolated stars (no brighter Tycho-2 star within 900\"), all-star profiles reported too. Population: POC, B, C, D (AS-022), S1-S4 (AS-033) and the three sibling quadrants (same exposures and CCD) of B, D, S1-S4 with archived products. KNOWN: all objects passing the AS-022 target rule (primary + marginal), proximity from predicted positions, loss stage from the AS-022 outcome logic. Visual: up to 12 KNOWN within 120\" of a V <= 10 star; 3 built UNKNOWN within 60\" of a star per class 6-8, 8-10, 10-11; 4 built UNKNOWN with no V <= 11 star within 240\"; SHA-256 order. No outcome was looked at.",
+    "control_designations": []
+   },
+   "origin": "sibling of B-2019-01-25-565-c13-q3",
+   "skybot": "live (stored in as034_skybot.json)"
+  },
+  {
+   "field": {
+    "field_id": "B-2019-01-25-565-c13-q2",
+    "description": "AS-034 sibling quadrant of B-2019-01-25-565-c13-q3",
+    "product_ids": [
+     754204844915,
+     754226594915,
+     754256674915
+    ],
+    "selection_note": "Stars: Tycho-2, V = VT - 0.090 (BT - VT), V <= 11. Magnitude classes <4, 4-6, 6-8, 8-10, 10-11. Annuli 0-15-30-60-120-240-480\" around each star, 480-900\" = local background of the same stars; primary profiles use isolated stars (no brighter Tycho-2 star within 900\"), all-star profiles reported too. Population: POC, B, C, D (AS-022), S1-S4 (AS-033) and the three sibling quadrants (same exposures and CCD) of B, D, S1-S4 with archived products. KNOWN: all objects passing the AS-022 target rule (primary + marginal), proximity from predicted positions, loss stage from the AS-022 outcome logic. Visual: up to 12 KNOWN within 120\" of a V <= 10 star; 3 built UNKNOWN within 60\" of a star per class 6-8, 8-10, 10-11; 4 built UNKNOWN with no V <= 11 star within 240\"; SHA-256 order. No outcome was looked at.",
+    "control_designations": []
+   },
+   "origin": "sibling of B-2019-01-25-565-c13-q3",
+   "skybot": "live (stored in as034_skybot.json)"
+  },
+  {
+   "field": {
+    "field_id": "B-2019-01-25-565-c13-q4",
+    "description": "AS-034 sibling quadrant of B-2019-01-25-565-c13-q3",
+    "product_ids": [
+     754204845115,
+     754226595115,
+     754256675115
+    ],
+    "selection_note": "Stars: Tycho-2, V = VT - 0.090 (BT - VT), V <= 11. Magnitude classes <4, 4-6, 6-8, 8-10, 10-11. Annuli 0-15-30-60-120-240-480\" around each star, 480-900\" = local background of the same stars; primary profiles use isolated stars (no brighter Tycho-2 star within 900\"), all-star profiles reported too. Population: POC, B, C, D (AS-022), S1-S4 (AS-033) and the three sibling quadrants (same exposures and CCD) of B, D, S1-S4 with archived products. KNOWN: all objects passing the AS-022 target rule (primary + marginal), proximity from predicted positions, loss stage from the AS-022 outcome logic. Visual: up to 12 KNOWN within 120\" of a V <= 10 star; 3 built UNKNOWN within 60\" of a star per class 6-8, 8-10, 10-11; 4 built UNKNOWN with no V <= 11 star within 240\"; SHA-256 order. No outcome was looked at.",
+    "control_designations": []
+   },
+   "origin": "sibling of B-2019-01-25-565-c13-q3",
+   "skybot": "live (stored in as034_skybot.json)"
+  },
+  {
+   "field": {
+    "field_id": "D-2019-06-02-281-c16-q1",
+    "description": "AS-034 sibling quadrant of D-2019-06-02-281-c16-q3",
+    "product_ids": [
+     882334526015,
+     882366576015,
+     882398636015
+    ],
+    "selection_note": "Stars: Tycho-2, V = VT - 0.090 (BT - VT), V <= 11. Magnitude classes <4, 4-6, 6-8, 8-10, 10-11. Annuli 0-15-30-60-120-240-480\" around each star, 480-900\" = local background of the same stars; primary profiles use isolated stars (no brighter Tycho-2 star within 900\"), all-star profiles reported too. Population: POC, B, C, D (AS-022), S1-S4 (AS-033) and the three sibling quadrants (same exposures and CCD) of B, D, S1-S4 with archived products. KNOWN: all objects passing the AS-022 target rule (primary + marginal), proximity from predicted positions, loss stage from the AS-022 outcome logic. Visual: up to 12 KNOWN within 120\" of a V <= 10 star; 3 built UNKNOWN within 60\" of a star per class 6-8, 8-10, 10-11; 4 built UNKNOWN with no V <= 11 star within 240\"; SHA-256 order. No outcome was looked at.",
+    "control_designations": []
+   },
+   "origin": "sibling of D-2019-06-02-281-c16-q3",
+   "skybot": "live (stored in as034_skybot.json)"
+  },
+  {
+   "field": {
+    "field_id": "D-2019-06-02-281-c16-q2",
+    "description": "AS-034 sibling quadrant of D-2019-06-02-281-c16-q3",
+    "product_ids": [
+     882334526115,
+     882366576115,
+     882398636115
+    ],
+    "selection_note": "Stars: Tycho-2, V = VT - 0.090 (BT - VT), V <= 11. Magnitude classes <4, 4-6, 6-8, 8-10, 10-11. Annuli 0-15-30-60-120-240-480\" around each star, 480-900\" = local background of the same stars; primary profiles use isolated stars (no brighter Tycho-2 star within 900\"), all-star profiles reported too. Population: POC, B, C, D (AS-022), S1-S4 (AS-033) and the three sibling quadrants (same exposures and CCD) of B, D, S1-S4 with archived products. KNOWN: all objects passing the AS-022 target rule (primary + marginal), proximity from predicted positions, loss stage from the AS-022 outcome logic. Visual: up to 12 KNOWN within 120\" of a V <= 10 star; 3 built UNKNOWN within 60\" of a star per class 6-8, 8-10, 10-11; 4 built UNKNOWN with no V <= 11 star within 240\"; SHA-256 order. No outcome was looked at.",
+    "control_designations": []
+   },
+   "origin": "sibling of D-2019-06-02-281-c16-q3",
+   "skybot": "live (stored in as034_skybot.json)"
+  },
+  {
+   "field": {
+    "field_id": "D-2019-06-02-281-c16-q4",
+    "description": "AS-034 sibling quadrant of D-2019-06-02-281-c16-q3",
+    "product_ids": [
+     882334526315,
+     882366576315,
+     882398636315
+    ],
+    "selection_note": "Stars: Tycho-2, V = VT - 0.090 (BT - VT), V <= 11. Magnitude classes <4, 4-6, 6-8, 8-10, 10-11. Annuli 0-15-30-60-120-240-480\" around each star, 480-900\" = local background of the same stars; primary profiles use isolated stars (no brighter Tycho-2 star within 900\"), all-star profiles reported too. Population: POC, B, C, D (AS-022), S1-S4 (AS-033) and the three sibling quadrants (same exposures and CCD) of B, D, S1-S4 with archived products. KNOWN: all objects passing the AS-022 target rule (primary + marginal), proximity from predicted positions, loss stage from the AS-022 outcome logic. Visual: up to 12 KNOWN within 120\" of a V <= 10 star; 3 built UNKNOWN within 60\" of a star per class 6-8, 8-10, 10-11; 4 built UNKNOWN with no V <= 11 star within 240\"; SHA-256 order. No outcome was looked at.",
+    "control_designations": []
+   },
+   "origin": "sibling of D-2019-06-02-281-c16-q3",
+   "skybot": "live (stored in as034_skybot.json)"
+  },
+  {
+   "field": {
+    "field_id": "S1-2018-09-19-508-c10-q1",
+    "description": "AS-034 sibling quadrant of S1-2018-09-19-508-c10-q4",
+    "product_ids": [
+     626461093615,
+     626497953615,
+     626526633615
+    ],
+    "selection_note": "Stars: Tycho-2, V = VT - 0.090 (BT - VT), V <= 11. Magnitude classes <4, 4-6, 6-8, 8-10, 10-11. Annuli 0-15-30-60-120-240-480\" around each star, 480-900\" = local background of the same stars; primary profiles use isolated stars (no brighter Tycho-2 star within 900\"), all-star profiles reported too. Population: POC, B, C, D (AS-022), S1-S4 (AS-033) and the three sibling quadrants (same exposures and CCD) of B, D, S1-S4 with archived products. KNOWN: all objects passing the AS-022 target rule (primary + marginal), proximity from predicted positions, loss stage from the AS-022 outcome logic. Visual: up to 12 KNOWN within 120\" of a V <= 10 star; 3 built UNKNOWN within 60\" of a star per class 6-8, 8-10, 10-11; 4 built UNKNOWN with no V <= 11 star within 240\"; SHA-256 order. No outcome was looked at.",
+    "control_designations": []
+   },
+   "origin": "sibling of S1-2018-09-19-508-c10-q4",
+   "skybot": "live (stored in as034_skybot.json)"
+  },
+  {
+   "field": {
+    "field_id": "S1-2018-09-19-508-c10-q2",
+    "description": "AS-034 sibling quadrant of S1-2018-09-19-508-c10-q4",
+    "product_ids": [
+     626461093715,
+     626497953715,
+     626526633715
+    ],
+    "selection_note": "Stars: Tycho-2, V = VT - 0.090 (BT - VT), V <= 11. Magnitude classes <4, 4-6, 6-8, 8-10, 10-11. Annuli 0-15-30-60-120-240-480\" around each star, 480-900\" = local background of the same stars; primary profiles use isolated stars (no brighter Tycho-2 star within 900\"), all-star profiles reported too. Population: POC, B, C, D (AS-022), S1-S4 (AS-033) and the three sibling quadrants (same exposures and CCD) of B, D, S1-S4 with archived products. KNOWN: all objects passing the AS-022 target rule (primary + marginal), proximity from predicted positions, loss stage from the AS-022 outcome logic. Visual: up to 12 KNOWN within 120\" of a V <= 10 star; 3 built UNKNOWN within 60\" of a star per class 6-8, 8-10, 10-11; 4 built UNKNOWN with no V <= 11 star within 240\"; SHA-256 order. No outcome was looked at.",
+    "control_designations": []
+   },
+   "origin": "sibling of S1-2018-09-19-508-c10-q4",
+   "skybot": "live (stored in as034_skybot.json)"
+  },
+  {
+   "field": {
+    "field_id": "S1-2018-09-19-508-c10-q3",
+    "description": "AS-034 sibling quadrant of S1-2018-09-19-508-c10-q4",
+    "product_ids": [
+     626461093815,
+     626497953815,
+     626526633815
+    ],
+    "selection_note": "Stars: Tycho-2, V = VT - 0.090 (BT - VT), V <= 11. Magnitude classes <4, 4-6, 6-8, 8-10, 10-11. Annuli 0-15-30-60-120-240-480\" around each star, 480-900\" = local background of the same stars; primary profiles use isolated stars (no brighter Tycho-2 star within 900\"), all-star profiles reported too. Population: POC, B, C, D (AS-022), S1-S4 (AS-033) and the three sibling quadrants (same exposures and CCD) of B, D, S1-S4 with archived products. KNOWN: all objects passing the AS-022 target rule (primary + marginal), proximity from predicted positions, loss stage from the AS-022 outcome logic. Visual: up to 12 KNOWN within 120\" of a V <= 10 star; 3 built UNKNOWN within 60\" of a star per class 6-8, 8-10, 10-11; 4 built UNKNOWN with no V <= 11 star within 240\"; SHA-256 order. No outcome was looked at.",
+    "control_designations": []
+   },
+   "origin": "sibling of S1-2018-09-19-508-c10-q4",
+   "skybot": "live (stored in as034_skybot.json)"
+  },
+  {
+   "field": {
+    "field_id": "S2-2018-09-27-509-c14-q1",
+    "description": "AS-034 sibling quadrant of S2-2018-09-27-509-c14-q4",
+    "product_ids": [
+     634427845215,
+     634459815215,
+     634499005215
+    ],
+    "selection_note": "Stars: Tycho-2, V = VT - 0.090 (BT - VT), V <= 11. Magnitude classes <4, 4-6, 6-8, 8-10, 10-11. Annuli 0-15-30-60-120-240-480\" around each star, 480-900\" = local background of the same stars; primary profiles use isolated stars (no brighter Tycho-2 star within 900\"), all-star profiles reported too. Population: POC, B, C, D (AS-022), S1-S4 (AS-033) and the three sibling quadrants (same exposures and CCD) of B, D, S1-S4 with archived products. KNOWN: all objects passing the AS-022 target rule (primary + marginal), proximity from predicted positions, loss stage from the AS-022 outcome logic. Visual: up to 12 KNOWN within 120\" of a V <= 10 star; 3 built UNKNOWN within 60\" of a star per class 6-8, 8-10, 10-11; 4 built UNKNOWN with no V <= 11 star within 240\"; SHA-256 order. No outcome was looked at.",
+    "control_designations": []
+   },
+   "origin": "sibling of S2-2018-09-27-509-c14-q4",
+   "skybot": "live (stored in as034_skybot.json)"
+  },
+  {
+   "field": {
+    "field_id": "S2-2018-09-27-509-c14-q2",
+    "description": "AS-034 sibling quadrant of S2-2018-09-27-509-c14-q4",
+    "product_ids": [
+     634427845315,
+     634459815315,
+     634499005315
+    ],
+    "selection_note": "Stars: Tycho-2, V = VT - 0.090 (BT - VT), V <= 11. Magnitude classes <4, 4-6, 6-8, 8-10, 10-11. Annuli 0-15-30-60-120-240-480\" around each star, 480-900\" = local background of the same stars; primary profiles use isolated stars (no brighter Tycho-2 star within 900\"), all-star profiles reported too. Population: POC, B, C, D (AS-022), S1-S4 (AS-033) and the three sibling quadrants (same exposures and CCD) of B, D, S1-S4 with archived products. KNOWN: all objects passing the AS-022 target rule (primary + marginal), proximity from predicted positions, loss stage from the AS-022 outcome logic. Visual: up to 12 KNOWN within 120\" of a V <= 10 star; 3 built UNKNOWN within 60\" of a star per class 6-8, 8-10, 10-11; 4 built UNKNOWN with no V <= 11 star within 240\"; SHA-256 order. No outcome was looked at.",
+    "control_designations": []
+   },
+   "origin": "sibling of S2-2018-09-27-509-c14-q4",
+   "skybot": "live (stored in as034_skybot.json)"
+  },
+  {
+   "field": {
+    "field_id": "S2-2018-09-27-509-c14-q3",
+    "description": "AS-034 sibling quadrant of S2-2018-09-27-509-c14-q4",
+    "product_ids": [
+     634427845415,
+     634459815415,
+     634499005415
+    ],
+    "selection_note": "Stars: Tycho-2, V = VT - 0.090 (BT - VT), V <= 11. Magnitude classes <4, 4-6, 6-8, 8-10, 10-11. Annuli 0-15-30-60-120-240-480\" around each star, 480-900\" = local background of the same stars; primary profiles use isolated stars (no brighter Tycho-2 star within 900\"), all-star profiles reported too. Population: POC, B, C, D (AS-022), S1-S4 (AS-033) and the three sibling quadrants (same exposures and CCD) of B, D, S1-S4 with archived products. KNOWN: all objects passing the AS-022 target rule (primary + marginal), proximity from predicted positions, loss stage from the AS-022 outcome logic. Visual: up to 12 KNOWN within 120\" of a V <= 10 star; 3 built UNKNOWN within 60\" of a star per class 6-8, 8-10, 10-11; 4 built UNKNOWN with no V <= 11 star within 240\"; SHA-256 order. No outcome was looked at.",
+    "control_designations": []
+   },
+   "origin": "sibling of S2-2018-09-27-509-c14-q4",
+   "skybot": "live (stored in as034_skybot.json)"
+  },
+  {
+   "field": {
+    "field_id": "S3-2019-07-01-335-c7-q2",
+    "description": "AS-034 sibling quadrant of S3-2019-07-01-335-c7-q1",
+    "product_ids": [
+     911296442515,
+     911296892515,
+     911336412515
+    ],
+    "selection_note": "Stars: Tycho-2, V = VT - 0.090 (BT - VT), V <= 11. Magnitude classes <4, 4-6, 6-8, 8-10, 10-11. Annuli 0-15-30-60-120-240-480\" around each star, 480-900\" = local background of the same stars; primary profiles use isolated stars (no brighter Tycho-2 star within 900\"), all-star profiles reported too. Population: POC, B, C, D (AS-022), S1-S4 (AS-033) and the three sibling quadrants (same exposures and CCD) of B, D, S1-S4 with archived products. KNOWN: all objects passing the AS-022 target rule (primary + marginal), proximity from predicted positions, loss stage from the AS-022 outcome logic. Visual: up to 12 KNOWN within 120\" of a V <= 10 star; 3 built UNKNOWN within 60\" of a star per class 6-8, 8-10, 10-11; 4 built UNKNOWN with no V <= 11 star within 240\"; SHA-256 order. No outcome was looked at.",
+    "control_designations": []
+   },
+   "origin": "sibling of S3-2019-07-01-335-c7-q1",
+   "skybot": "live (stored in as034_skybot.json)"
+  },
+  {
+   "field": {
+    "field_id": "S3-2019-07-01-335-c7-q3",
+    "description": "AS-034 sibling quadrant of S3-2019-07-01-335-c7-q1",
+    "product_ids": [
+     911296442615,
+     911296892615,
+     911336412615
+    ],
+    "selection_note": "Stars: Tycho-2, V = VT - 0.090 (BT - VT), V <= 11. Magnitude classes <4, 4-6, 6-8, 8-10, 10-11. Annuli 0-15-30-60-120-240-480\" around each star, 480-900\" = local background of the same stars; primary profiles use isolated stars (no brighter Tycho-2 star within 900\"), all-star profiles reported too. Population: POC, B, C, D (AS-022), S1-S4 (AS-033) and the three sibling quadrants (same exposures and CCD) of B, D, S1-S4 with archived products. KNOWN: all objects passing the AS-022 target rule (primary + marginal), proximity from predicted positions, loss stage from the AS-022 outcome logic. Visual: up to 12 KNOWN within 120\" of a V <= 10 star; 3 built UNKNOWN within 60\" of a star per class 6-8, 8-10, 10-11; 4 built UNKNOWN with no V <= 11 star within 240\"; SHA-256 order. No outcome was looked at.",
+    "control_designations": []
+   },
+   "origin": "sibling of S3-2019-07-01-335-c7-q1",
+   "skybot": "live (stored in as034_skybot.json)"
+  },
+  {
+   "field": {
+    "field_id": "S3-2019-07-01-335-c7-q4",
+    "description": "AS-034 sibling quadrant of S3-2019-07-01-335-c7-q1",
+    "product_ids": [
+     911296442715,
+     911296892715,
+     911336412715
+    ],
+    "selection_note": "Stars: Tycho-2, V = VT - 0.090 (BT - VT), V <= 11. Magnitude classes <4, 4-6, 6-8, 8-10, 10-11. Annuli 0-15-30-60-120-240-480\" around each star, 480-900\" = local background of the same stars; primary profiles use isolated stars (no brighter Tycho-2 star within 900\"), all-star profiles reported too. Population: POC, B, C, D (AS-022), S1-S4 (AS-033) and the three sibling quadrants (same exposures and CCD) of B, D, S1-S4 with archived products. KNOWN: all objects passing the AS-022 target rule (primary + marginal), proximity from predicted positions, loss stage from the AS-022 outcome logic. Visual: up to 12 KNOWN within 120\" of a V <= 10 star; 3 built UNKNOWN within 60\" of a star per class 6-8, 8-10, 10-11; 4 built UNKNOWN with no V <= 11 star within 240\"; SHA-256 order. No outcome was looked at.",
+    "control_designations": []
+   },
+   "origin": "sibling of S3-2019-07-01-335-c7-q1",
+   "skybot": "live (stored in as034_skybot.json)"
+  },
+  {
+   "field": {
+    "field_id": "S4-2018-11-07-615-c5-q1",
+    "description": "AS-034 sibling quadrant of S4-2018-11-07-615-c5-q3",
+    "product_ids": [
+     675388211615,
+     675453921615,
+     675505501615
+    ],
+    "selection_note": "Stars: Tycho-2, V = VT - 0.090 (BT - VT), V <= 11. Magnitude classes <4, 4-6, 6-8, 8-10, 10-11. Annuli 0-15-30-60-120-240-480\" around each star, 480-900\" = local background of the same stars; primary profiles use isolated stars (no brighter Tycho-2 star within 900\"), all-star profiles reported too. Population: POC, B, C, D (AS-022), S1-S4 (AS-033) and the three sibling quadrants (same exposures and CCD) of B, D, S1-S4 with archived products. KNOWN: all objects passing the AS-022 target rule (primary + marginal), proximity from predicted positions, loss stage from the AS-022 outcome logic. Visual: up to 12 KNOWN within 120\" of a V <= 10 star; 3 built UNKNOWN within 60\" of a star per class 6-8, 8-10, 10-11; 4 built UNKNOWN with no V <= 11 star within 240\"; SHA-256 order. No outcome was looked at.",
+    "control_designations": []
+   },
+   "origin": "sibling of S4-2018-11-07-615-c5-q3",
+   "skybot": "live (stored in as034_skybot.json)"
+  },
+  {
+   "field": {
+    "field_id": "S4-2018-11-07-615-c5-q2",
+    "description": "AS-034 sibling quadrant of S4-2018-11-07-615-c5-q3",
+    "product_ids": [
+     675388211715,
+     675453921715,
+     675505501715
+    ],
+    "selection_note": "Stars: Tycho-2, V = VT - 0.090 (BT - VT), V <= 11. Magnitude classes <4, 4-6, 6-8, 8-10, 10-11. Annuli 0-15-30-60-120-240-480\" around each star, 480-900\" = local background of the same stars; primary profiles use isolated stars (no brighter Tycho-2 star within 900\"), all-star profiles reported too. Population: POC, B, C, D (AS-022), S1-S4 (AS-033) and the three sibling quadrants (same exposures and CCD) of B, D, S1-S4 with archived products. KNOWN: all objects passing the AS-022 target rule (primary + marginal), proximity from predicted positions, loss stage from the AS-022 outcome logic. Visual: up to 12 KNOWN within 120\" of a V <= 10 star; 3 built UNKNOWN within 60\" of a star per class 6-8, 8-10, 10-11; 4 built UNKNOWN with no V <= 11 star within 240\"; SHA-256 order. No outcome was looked at.",
+    "control_designations": []
+   },
+   "origin": "sibling of S4-2018-11-07-615-c5-q3",
+   "skybot": "live (stored in as034_skybot.json)"
+  },
+  {
+   "field": {
+    "field_id": "S4-2018-11-07-615-c5-q4",
+    "description": "AS-034 sibling quadrant of S4-2018-11-07-615-c5-q3",
+    "product_ids": [
+     675388211915,
+     675453921915,
+     675505501915
+    ],
+    "selection_note": "Stars: Tycho-2, V = VT - 0.090 (BT - VT), V <= 11. Magnitude classes <4, 4-6, 6-8, 8-10, 10-11. Annuli 0-15-30-60-120-240-480\" around each star, 480-900\" = local background of the same stars; primary profiles use isolated stars (no brighter Tycho-2 star within 900\"), all-star profiles reported too. Population: POC, B, C, D (AS-022), S1-S4 (AS-033) and the three sibling quadrants (same exposures and CCD) of B, D, S1-S4 with archived products. KNOWN: all objects passing the AS-022 target rule (primary + marginal), proximity from predicted positions, loss stage from the AS-022 outcome logic. Visual: up to 12 KNOWN within 120\" of a V <= 10 star; 3 built UNKNOWN within 60\" of a star per class 6-8, 8-10, 10-11; 4 built UNKNOWN with no V <= 11 star within 240\"; SHA-256 order. No outcome was looked at.",
+    "control_designations": []
+   },
+   "origin": "sibling of S4-2018-11-07-615-c5-q3",
+   "skybot": "live (stored in as034_skybot.json)"
+  }
+ ],
+ "log": [
+  "B-2019-01-25-565-c13-q3 q1: added as B-2019-01-25-565-c13-q1",
+  "B-2019-01-25-565-c13-q3 q2: added as B-2019-01-25-565-c13-q2",
+  "B-2019-01-25-565-c13-q3 q4: added as B-2019-01-25-565-c13-q4",
+  "D-2019-06-02-281-c16-q3 q1: added as D-2019-06-02-281-c16-q1",
+  "D-2019-06-02-281-c16-q3 q2: added as D-2019-06-02-281-c16-q2",
+  "D-2019-06-02-281-c16-q3 q4: added as D-2019-06-02-281-c16-q4",
+  "S1-2018-09-19-508-c10-q4 q1: added as S1-2018-09-19-508-c10-q1",
+  "S1-2018-09-19-508-c10-q4 q2: added as S1-2018-09-19-508-c10-q2",
+  "S1-2018-09-19-508-c10-q4 q3: added as S1-2018-09-19-508-c10-q3",
+  "S2-2018-09-27-509-c14-q4 q1: added as S2-2018-09-27-509-c14-q1",
+  "S2-2018-09-27-509-c14-q4 q2: added as S2-2018-09-27-509-c14-q2",
+  "S2-2018-09-27-509-c14-q4 q3: added as S2-2018-09-27-509-c14-q3",
+  "S3-2019-07-01-335-c7-q1 q2: added as S3-2019-07-01-335-c7-q2",
+  "S3-2019-07-01-335-c7-q1 q3: added as S3-2019-07-01-335-c7-q3",
+  "S3-2019-07-01-335-c7-q1 q4: added as S3-2019-07-01-335-c7-q4",
+  "S4-2018-11-07-615-c5-q3 q1: added as S4-2018-11-07-615-c5-q1",
+  "S4-2018-11-07-615-c5-q3 q2: added as S4-2018-11-07-615-c5-q2",
+  "S4-2018-11-07-615-c5-q3 q4: added as S4-2018-11-07-615-c5-q4"
+ ]
+}
