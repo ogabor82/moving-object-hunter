@@ -415,3 +415,28 @@ def test_live_star_contamination_reproduces_a_sibling_quadrant(tmp_path) -> None
     assert {k: c for k, c in fresh.cells.items() if not k.startswith("ALL|")} == {
         k: c for k, c in committed.cells.items() if k.startswith(f"{field_id}|")
     }
+
+
+def test_live_known_recovery_reproduces_an_n_quadrant(tmp_path) -> None:
+    """AS-035: a fresh trace of one small N quadrant (live IRSA catalogs +
+    VizieR, SkyBoT replayed from the committed snapshot) reproduces the
+    committed stage-by-stage traces and conditions of that quadrant."""
+    import shutil
+
+    from app.validation.known_recovery import Selection, TracePart, run_traces
+
+    as035 = AS022_REPORT.parent / "as035"
+    selection = Selection.model_validate_json(
+        (as035 / "as035_selection.json").read_text()
+    )
+    field_id = "N20-2018-09-27-499-c1-q2"
+    shutil.copy(as035 / "as035_skybot.json", tmp_path / "as035_skybot.json")
+    committed = TracePart.model_validate_json(
+        (as035 / "as035_traces_N.json").read_text()
+    )
+
+    fresh = run_traces(selection, "N", tmp_path, only={field_id})
+
+    assert fresh.fields == [f for f in committed.fields if f.field_id == field_id]
+    assert fresh.targets == [t for t in committed.targets if t.field_id == field_id]
+    assert len(fresh.targets) == 4

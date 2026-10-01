@@ -1,0 +1,178 @@
+[
+ {
+  "field_id": "N17-2019-06-27-330-c9-q2",
+  "tracklet_id": "700826",
+  "same_source_all_epochs": "unclear",
+  "source_visible_each_epoch": "no,unclear,no",
+  "context": "V 5.7 star 93\" away: bright glow, halo arc and a spike/trail cross the panel",
+  "notes": "near_lost, PRIMARY. No clear point source at the crosshairs; E2 catalog source 2.2\" off (outside the 2.0\" match radius). Detections E1/E3 carry bit 12. Agent label, not ground truth."
+ },
+ {
+  "field_id": "N1-2018-11-25-468-c12-q1",
+  "tracklet_id": "29559",
+  "same_source_all_epochs": "unclear",
+  "source_visible_each_epoch": "no,yes,no",
+  "context": "V 5.9 star 105\" away, out of view; diffuse horizontal band (star halo/ghost) and high noise",
+  "notes": "near_lost, marginal: faint dot in E2 only; E1 not catalogued."
+ },
+ {
+  "field_id": "N14-2018-11-02-562-c3-q3",
+  "tracklet_id": "242915",
+  "same_source_all_epochs": "yes",
+  "source_visible_each_epoch": "yes,unclear,yes",
+  "context": "V 6.0 star 114\" away, not in view; an unrelated bright field star 20\" below",
+  "notes": "near_lost, marginal: faint compact source at E1/E3; E2 (zg, ~0.55 mag fainter band) a faint smudge, not catalogued \u2014 filter/depth, no visible bright-star structure."
+ },
+ {
+  "field_id": "S2-2018-09-27-509-c14-q1",
+  "tracklet_id": "34131",
+  "same_source_all_epochs": "yes",
+  "source_visible_each_epoch": "yes,no,yes",
+  "context": "on the edge of a V 8-10 star's glow/spike 16\" away",
+  "notes": "near_lost, marginal: source visible at E1/E3; E2 position inside the saturated star's glow \u2014 consistent with a bright-star detection loss (not proof)."
+ },
+ {
+  "field_id": "B-2019-01-25-565-c13-q4",
+  "tracklet_id": "305928",
+  "same_source_all_epochs": "unclear",
+  "source_visible_each_epoch": "no,unclear,yes",
+  "context": "clean sky; V 8-10 star 94\" away, out of view",
+  "notes": "near_lost, marginal: at the noise level; no star structure."
+ },
+ {
+  "field_id": "B-2019-01-25-565-c13-q3",
+  "tracklet_id": "465280",
+  "same_source_all_epochs": "unclear",
+  "source_visible_each_epoch": "no,unclear,no",
+  "context": "bad column at the left; V 6-8 star 103\" away, out of view; E1 zg",
+  "notes": "near_lost, marginal: essentially invisible; depth, not star light."
+ },
+ {
+  "field_id": "N23-2019-06-01-279-c6-q1",
+  "tracklet_id": "331332",
+  "same_source_all_epochs": "unclear",
+  "source_visible_each_epoch": "unclear,yes,no",
+  "context": "crowded field with an arc of sources (halo of a star off panel)",
+  "notes": "near_lost, marginal: faint at E1/E2, nothing at E3."
+ },
+ {
+  "field_id": "N9-2019-08-31-334-c4-q3",
+  "tracklet_id": "36463",
+  "same_source_all_epochs": "unclear",
+  "source_visible_each_epoch": "unclear,unclear,no",
+  "context": "crowded; slow mover (0.10\"/min) next to bright neighbours",
+  "notes": "near_lost, marginal: blend with neighbouring field sources (E1/E2 stationary-matched to other sources)."
+ },
+ {
+  "field_id": "S3-2019-07-01-335-c7-q2",
+  "tracklet_id": "288181",
+  "same_source_all_epochs": "yes",
+  "source_visible_each_epoch": "no,yes,yes",
+  "context": "E1 on a bright vertical column artifact; V 9.6 star 79\" away (the bright blob); E1-E2 0.66 min",
+  "notes": "revisit: short-baseline stratum (0.4\" E1-E2). E1 lost on a column artifact, E3 on the outskirts of the star's light."
+ },
+ {
+  "field_id": "S3-2019-07-01-335-c7-q2",
+  "tracklet_id": "408599",
+  "same_source_all_epochs": "yes",
+  "source_visible_each_epoch": "yes,yes,yes",
+  "context": "compact field star under E1/E2; E1-E2 0.66 min",
+  "notes": "revisit: short-baseline stratum; stationary in E1/E2 (matched to its own E2/E1 source) while blended with a field star; moves off in E3."
+ },
+ {
+  "field_id": "N7-2019-12-29-611-c9-q3",
+  "tracklet_id": "9686",
+  "same_source_all_epochs": "yes",
+  "source_visible_each_epoch": "yes,yes,yes",
+  "context": "clean sky; V 8-10 star 40\" away, not visibly affecting",
+  "notes": "near_recovered: bright moving point source."
+ },
+ {
+  "field_id": "N14-2018-11-02-562-c3-q3",
+  "tracklet_id": "4446",
+  "same_source_all_epochs": "yes",
+  "source_visible_each_epoch": "yes,yes,yes",
+  "context": "clean sky",
+  "notes": "near_recovered: bright moving point source."
+ },
+ {
+  "field_id": "D-2019-06-02-281-c16-q2",
+  "tracklet_id": "657605",
+  "same_source_all_epochs": "yes",
+  "source_visible_each_epoch": "yes,yes,yes",
+  "context": "crowded D field",
+  "notes": "near_recovered: faint source between field stars."
+ },
+ {
+  "field_id": "N24-2019-08-21-335-c10-q3",
+  "tracklet_id": "114058",
+  "same_source_all_epochs": "yes",
+  "source_visible_each_epoch": "yes,yes,yes",
+  "context": "field stars nearby",
+  "notes": "near_recovered: faint compact source."
+ },
+ {
+  "field_id": "N24-2019-08-21-335-c10-q3",
+  "tracklet_id": "93731",
+  "same_source_all_epochs": "yes",
+  "source_visible_each_epoch": "yes,yes,yes",
+  "context": "E2/E3 on a bright diffuse glow/spike band of a star off panel",
+  "notes": "near_recovered: counterexample \u2014 a real object recovered on star glow."
+ },
+ {
+  "field_id": "N13-2018-08-21-394-c12-q4",
+  "tracklet_id": "400310",
+  "same_source_all_epochs": "yes",
+  "source_visible_each_epoch": "yes,yes,yes",
+  "context": "bleed/bad column near E2/E3",
+  "notes": "near_recovered: faint source next to column artifacts."
+ },
+ {
+  "field_id": "N7-2019-12-29-611-c9-q3",
+  "tracklet_id": "112871",
+  "same_source_all_epochs": "yes",
+  "source_visible_each_epoch": "yes,yes,yes",
+  "context": "E2 next to a bright field star",
+  "notes": "near_recovered despite a near-blend in E2."
+ },
+ {
+  "field_id": "S4-2018-11-07-615-c5-q4",
+  "tracklet_id": "23139",
+  "same_source_all_epochs": "yes",
+  "source_visible_each_epoch": "yes,yes,yes",
+  "context": "clean sky; V 9.8 star 77\" away out of view",
+  "notes": "near_recovered (also an AS-034 strip)."
+ },
+ {
+  "field_id": "N14-2018-11-02-562-c3-q3",
+  "tracklet_id": "165846",
+  "same_source_all_epochs": "yes",
+  "source_visible_each_epoch": "yes,yes,no",
+  "context": "E3 lands on a saturated star with spikes that is NOT in Tycho-2 V<=11 (nearest V<=11 star 320\")",
+  "notes": "control_lost: counterexample to the control definition \u2014 a bright-star-like loss in the 'control' group (Tycho-2 V<=11 incompleteness / fainter saturated stars)."
+ },
+ {
+  "field_id": "N23-2019-06-01-279-c6-q1",
+  "tracklet_id": "237824",
+  "same_source_all_epochs": "yes",
+  "source_visible_each_epoch": "yes,yes,yes",
+  "context": "crowded; E2 on/next to a brighter field star",
+  "notes": "control_lost: E2 source stationary-matched to another source (blend with a field star), not a bright-star effect."
+ },
+ {
+  "field_id": "N6-2019-07-29-338-c6-q1",
+  "tracklet_id": "135022",
+  "same_source_all_epochs": "yes",
+  "source_visible_each_epoch": "yes,yes,yes",
+  "context": "clean sky",
+  "notes": "control_recovered."
+ },
+ {
+  "field_id": "N19-2019-01-25-614-c2-q1",
+  "tracklet_id": "49061",
+  "same_source_all_epochs": "yes",
+  "source_visible_each_epoch": "yes,yes,yes",
+  "context": "field stars nearby",
+  "notes": "control_recovered."
+ }
+]
