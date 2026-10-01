@@ -1,0 +1,4774 @@
+{
+ "generated_at": "2026-10-01T20:26:59.950640Z",
+ "preregistration": "AS-036 confirmatory sample C: Tycho-2 V<6 and 6-8 search stars (Dec>=-25, |beta|<=10, 2018-03-17..2021-01-01), SHA-256('AS-036:<id>') order, alternating classes; per star the first 20 qualifying quadrant-nights (AS-035 sequence rule: E1 first, E3 last within 150 min, E2 nearest midpoint with >=15 min gaps, archived products) not in AS-035 N/R, one SkyBoT cone each; trigger = AS-022 PRIMARY object (V<=faintest maglimit-0.5, err<=1\"), rate<=1\"/min, every pairwise displacement >=3\", inside the footprint, closest approach to the star <120\" (V<6) / <60\" (6-8); <=3 triggering nights per star, earliest first. Budget per class: stop at >=15 trigger objects, 300 stars or 3000 cones. Unchanged AS-035 definitions: target rule, eligibility strata, zone (<120\" V<6, <60\" 6-8, <30\" 8-10), control (>=480\" from V<10, >=60\" from V10-11), six-stage trace with first failure; local depth descriptive only. Primary comparison: C only, PRIMARY eligible zone vs control. CONFIRMED: zone n>=20, control n>=20, zone lower, Fisher two-sided p<0.05, MH OR<1 if defined. NOT REPRODUCED: minimums met, not confirmed, Newcombe 95% lower bound of zone-control > -0.20. Otherwise INCONCLUSIVE. Pooled AS-035+036 secondary only. Strips: SHA-256 order, <=6+6 zone, 2+2 control. No outcome was looked at.",
+ "tycho_query": "https://vizier.cds.unistra.fr/viz-bin/asu-tsv?-source=I%2F259%2Ftyc2&-out=TYC1%2CTYC2%2CTYC3%2CRAmdeg%2CDEmdeg%2CRA%28ICRS%29%2CDE%28ICRS%29%2CBTmag%2CVTmag&-out.max=unlimited&VTmag=%3C8.5&DE%28ICRS%29=%3E-26.0",
+ "eligible_stars": [
+  731,
+  5415
+ ],
+ "excluded_nights": 50,
+ "sequences": [
+  {
+   "field": {
+    "field_id": "C1-2020-06-17-333-c11-q1",
+    "description": "AS-036 near-star confirmation: TYC 6266-1670-1 (V 7.95)",
+    "product_ids": [
+     1263313564015,
+     1263345934015,
+     1263374094015
+    ],
+    "selection_note": "AS-036 confirmatory sample C: Tycho-2 V<6 and 6-8 search stars (Dec>=-25, |beta|<=10, 2018-03-17..2021-01-01), SHA-256('AS-036:<id>') order, alternating classes; per star the first 20 qualifying quadrant-nights (AS-035 sequence rule: E1 first, E3 last within 150 min, E2 nearest midpoint with >=15 min gaps, archived products) not in AS-035 N/R, one SkyBoT cone each; trigger = AS-022 PRIMARY object (V<=faintest maglimit-0.5, err<=1\"), rate<=1\"/min, every pairwise displacement >=3\", inside the footprint, closest approach to the star <120\" (V<6) / <60\" (6-8); <=3 triggering nights per star, earliest first. Budget per class: stop at >=15 trigger objects, 300 stars or 3000 cones. Unchanged AS-035 definitions: target rule, eligibility strata, zone (<120\" V<6, <60\" 6-8, <30\" 8-10), control (>=480\" from V<10, >=60\" from V10-11), six-stage trace with first failure; local depth descriptive only. Primary comparison: C only, PRIMARY eligible zone vs control. CONFIRMED: zone n>=20, control n>=20, zone lower, Fisher two-sided p<0.05, MH OR<1 if defined. NOT REPRODUCED: minimums met, not confirmed, Newcombe 95% lower bound of zone-control > -0.20. Otherwise INCONCLUSIVE. Pooled AS-035+036 secondary only. Strips: SHA-256 order, <=6+6 zone, 2+2 control. No outcome was looked at.",
+    "control_designations": []
+   },
+   "search_class": "6<=V<8",
+   "search_star": {
+    "tycho_id": "TYC 6266-1670-1",
+    "ra": 276.53517173,
+    "dec": -15.93553765,
+    "vt_mag": 8.142,
+    "bt_mag": 10.267,
+    "v_mag": 7.950749999999999,
+    "position_source": "mean J2000"
+   },
+   "night_index": 18,
+   "filters": [
+    "zg",
+    "zi",
+    "zi"
+   ],
+   "minutes_from_first": [
+    0.0,
+    46.62,
+    87.17
+   ],
+   "trigger": [
+    {
+     "designation": "31302",
+     "v_magnitude": 18.9,
+     "rate_arcsec_per_min": 0.5109,
+     "closest_approach_arcsec": 24.09,
+     "positions": [
+      [
+       276.53231219181566,
+       -15.941638456325371
+      ],
+      [
+       276.5255175,
+       -15.940601666666668
+      ],
+      [
+       276.519607072762,
+       -15.939699805330635
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "field": {
+    "field_id": "C2-2019-08-01-553-c11-q3",
+    "description": "AS-036 near-star confirmation: TYC 1201-1725-1 (V 5.35)",
+    "product_ids": [
+     942428634215,
+     942466454215,
+     942477524215
+    ],
+    "selection_note": "AS-036 confirmatory sample C: Tycho-2 V<6 and 6-8 search stars (Dec>=-25, |beta|<=10, 2018-03-17..2021-01-01), SHA-256('AS-036:<id>') order, alternating classes; per star the first 20 qualifying quadrant-nights (AS-035 sequence rule: E1 first, E3 last within 150 min, E2 nearest midpoint with >=15 min gaps, archived products) not in AS-035 N/R, one SkyBoT cone each; trigger = AS-022 PRIMARY object (V<=faintest maglimit-0.5, err<=1\"), rate<=1\"/min, every pairwise displacement >=3\", inside the footprint, closest approach to the star <120\" (V<6) / <60\" (6-8); <=3 triggering nights per star, earliest first. Budget per class: stop at >=15 trigger objects, 300 stars or 3000 cones. Unchanged AS-035 definitions: target rule, eligibility strata, zone (<120\" V<6, <60\" 6-8, <30\" 8-10), control (>=480\" from V<10, >=60\" from V10-11), six-stage trace with first failure; local depth descriptive only. Primary comparison: C only, PRIMARY eligible zone vs control. CONFIRMED: zone n>=20, control n>=20, zone lower, Fisher two-sided p<0.05, MH OR<1 if defined. NOT REPRODUCED: minimums met, not confirmed, Newcombe 95% lower bound of zone-control > -0.20. Otherwise INCONCLUSIVE. Pooled AS-035+036 secondary only. Strips: SHA-256 order, <=6+6 zone, 2+2 control. No outcome was looked at.",
+    "control_designations": []
+   },
+   "search_class": "V<6",
+   "search_star": {
+    "tycho_id": "TYC 1201-1725-1",
+    "ra": 21.56360024,
+    "dec": 19.17234281,
+    "vt_mag": 5.389,
+    "bt_mag": 5.789,
+    "v_mag": 5.353000000000001,
+    "position_source": "mean J2000"
+   },
+   "night_index": 12,
+   "filters": [
+    "zg",
+    "zr",
+    "zr"
+   ],
+   "minutes_from_first": [
+    0.0,
+    54.47,
+    70.4
+   ],
+   "trigger": [
+    {
+     "designation": "51775",
+     "v_magnitude": 19.4,
+     "rate_arcsec_per_min": 0.2653,
+     "closest_approach_arcsec": 110.52,
+     "positions": [
+      [
+       21.541531398069747,
+       19.143264507616834
+      ],
+      [
+       21.54461208333333,
+       19.14602777777778
+      ],
+      [
+       21.545513288018117,
+       19.146836127804253
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "field": {
+    "field_id": "C3-2018-12-13-559-c9-q2",
+    "description": "AS-036 near-star confirmation: TYC 1278-2001-1 (V 5.84)",
+    "product_ids": [
+     711219613315,
+     711255743315,
+     711271623315
+    ],
+    "selection_note": "AS-036 confirmatory sample C: Tycho-2 V<6 and 6-8 search stars (Dec>=-25, |beta|<=10, 2018-03-17..2021-01-01), SHA-256('AS-036:<id>') order, alternating classes; per star the first 20 qualifying quadrant-nights (AS-035 sequence rule: E1 first, E3 last within 150 min, E2 nearest midpoint with >=15 min gaps, archived products) not in AS-035 N/R, one SkyBoT cone each; trigger = AS-022 PRIMARY object (V<=faintest maglimit-0.5, err<=1\"), rate<=1\"/min, every pairwise displacement >=3\", inside the footprint, closest approach to the star <120\" (V<6) / <60\" (6-8); <=3 triggering nights per star, earliest first. Budget per class: stop at >=15 trigger objects, 300 stars or 3000 cones. Unchanged AS-035 definitions: target rule, eligibility strata, zone (<120\" V<6, <60\" 6-8, <30\" 8-10), control (>=480\" from V<10, >=60\" from V10-11), six-stage trace with first failure; local depth descriptive only. Primary comparison: C only, PRIMARY eligible zone vs control. CONFIRMED: zone n>=20, control n>=20, zone lower, Fisher two-sided p<0.05, MH OR<1 if defined. NOT REPRODUCED: minimums met, not confirmed, Newcombe 95% lower bound of zone-control > -0.20. Otherwise INCONCLUSIVE. Pooled AS-035+036 secondary only. Strips: SHA-256 order, <=6+6 zone, 2+2 control. No outcome was looked at.",
+    "control_designations": []
+   },
+   "search_class": "V<6",
+   "search_star": {
+    "tycho_id": "TYC 1278-2001-1",
+    "ra": 69.56596379,
+    "dec": 20.68471913,
+    "vt_mag": 5.84,
+    "bt_mag": 5.831,
+    "v_mag": 5.840809999999999,
+    "position_source": "mean J2000"
+   },
+   "night_index": 6,
+   "filters": [
+    "zg",
+    "zr",
+    "zr"
+   ],
+   "minutes_from_first": [
+    0.0,
+    52.02,
+    74.88
+   ],
+   "trigger": [
+    {
+     "designation": "113626",
+     "v_magnitude": 19.2,
+     "rate_arcsec_per_min": 0.5368,
+     "closest_approach_arcsec": 104.7,
+     "positions": [
+      [
+       69.56759487685429,
+       20.65567701045847
+      ],
+      [
+       69.55939249999997,
+       20.65456111111111
+      ],
+      [
+       69.55578668854702,
+       20.654070555419935
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "field": {
+    "field_id": "C4-2019-08-20-335-c11-q1",
+    "description": "AS-036 near-star confirmation: TYC 6297-1419-1 (V 4.57)",
+    "product_ids": [
+     961182284015,
+     961198184015,
+     961233724015
+    ],
+    "selection_note": "AS-036 confirmatory sample C: Tycho-2 V<6 and 6-8 search stars (Dec>=-25, |beta|<=10, 2018-03-17..2021-01-01), SHA-256('AS-036:<id>') order, alternating classes; per star the first 20 qualifying quadrant-nights (AS-035 sequence rule: E1 first, E3 last within 150 min, E2 nearest midpoint with >=15 min gaps, archived products) not in AS-035 N/R, one SkyBoT cone each; trigger = AS-022 PRIMARY object (V<=faintest maglimit-0.5, err<=1\"), rate<=1\"/min, every pairwise displacement >=3\", inside the footprint, closest approach to the star <120\" (V<6) / <60\" (6-8); <=3 triggering nights per star, earliest first. Budget per class: stop at >=15 trigger objects, 300 stars or 3000 cones. Unchanged AS-035 definitions: target rule, eligibility strata, zone (<120\" V<6, <60\" 6-8, <30\" 8-10), control (>=480\" from V<10, >=60\" from V10-11), six-stage trace with first failure; local depth descriptive only. Primary comparison: C only, PRIMARY eligible zone vs control. CONFIRMED: zone n>=20, control n>=20, zone lower, Fisher two-sided p<0.05, MH OR<1 if defined. NOT REPRODUCED: minimums met, not confirmed, Newcombe 95% lower bound of zone-control > -0.20. Otherwise INCONCLUSIVE. Pooled AS-035+036 secondary only. Strips: SHA-256 order, <=6+6 zone, 2+2 control. No outcome was looked at.",
+    "control_designations": []
+   },
+   "search_class": "V<6",
+   "search_star": {
+    "tycho_id": "TYC 6297-1419-1",
+    "ra": 290.43176503,
+    "dec": -15.95501735,
+    "vt_mag": 4.579,
+    "bt_mag": 4.644,
+    "v_mag": 4.57315,
+    "position_source": "mean J2000"
+   },
+   "night_index": 1,
+   "filters": [
+    "zr",
+    "zr",
+    "zr"
+   ],
+   "minutes_from_first": [
+    0.0,
+    22.9,
+    74.08
+   ],
+   "trigger": [
+    {
+     "designation": "149159",
+     "v_magnitude": 18.8,
+     "rate_arcsec_per_min": 0.4249,
+     "closest_approach_arcsec": 44.19,
+     "positions": [
+      [
+       290.4207994463816,
+       -15.961303914829362
+      ],
+      [
+       290.41966333333335,
+       -15.96377611111111
+      ],
+      [
+       290.4171240319367,
+       -15.96930166288671
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "field": {
+    "field_id": "C5-2020-09-21-447-c9-q1",
+    "description": "AS-036 near-star confirmation: TYC 16-724-1 (V 7.65)",
+    "product_ids": [
+     1359303843215,
+     1359315603215,
+     1359359133215
+    ],
+    "selection_note": "AS-036 confirmatory sample C: Tycho-2 V<6 and 6-8 search stars (Dec>=-25, |beta|<=10, 2018-03-17..2021-01-01), SHA-256('AS-036:<id>') order, alternating classes; per star the first 20 qualifying quadrant-nights (AS-035 sequence rule: E1 first, E3 last within 150 min, E2 nearest midpoint with >=15 min gaps, archived products) not in AS-035 N/R, one SkyBoT cone each; trigger = AS-022 PRIMARY object (V<=faintest maglimit-0.5, err<=1\"), rate<=1\"/min, every pairwise displacement >=3\", inside the footprint, closest approach to the star <120\" (V<6) / <60\" (6-8); <=3 triggering nights per star, earliest first. Budget per class: stop at >=15 trigger objects, 300 stars or 3000 cones. Unchanged AS-035 definitions: target rule, eligibility strata, zone (<120\" V<6, <60\" 6-8, <30\" 8-10), control (>=480\" from V<10, >=60\" from V10-11), six-stage trace with first failure; local depth descriptive only. Primary comparison: C only, PRIMARY eligible zone vs control. CONFIRMED: zone n>=20, control n>=20, zone lower, Fisher two-sided p<0.05, MH OR<1 if defined. NOT REPRODUCED: minimums met, not confirmed, Newcombe 95% lower bound of zone-control > -0.20. Otherwise INCONCLUSIVE. Pooled AS-035+036 secondary only. Strips: SHA-256 order, <=6+6 zone, 2+2 control. No outcome was looked at.",
+    "control_designations": []
+   },
+   "search_class": "6<=V<8",
+   "search_star": {
+    "tycho_id": "TYC 16-724-1",
+    "ra": 8.53458362,
+    "dec": 5.95789113,
+    "vt_mag": 7.687,
+    "bt_mag": 8.146,
+    "v_mag": 7.64569,
+    "position_source": "mean J2000"
+   },
+   "night_index": 10,
+   "filters": [
+    "zr",
+    "zr",
+    "zg"
+   ],
+   "minutes_from_first": [
+    0.0,
+    16.93,
+    79.62
+   ],
+   "trigger": [
+    {
+     "designation": "319436",
+     "v_magnitude": 19.5,
+     "rate_arcsec_per_min": 0.603,
+     "closest_approach_arcsec": 32.02,
+     "positions": [
+      [
+       8.554315232529525,
+       5.962997784362926
+      ],
+      [
+       8.551952499999999,
+       5.961409722222222
+      ],
+      [
+       8.54320625280828,
+       5.955531111814638
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "field": {
+    "field_id": "C6-2018-07-12-283-c15-q1",
+    "description": "AS-036 near-star confirmation: TYC 6279-1723-1 (V 5.87)",
+    "product_ids": [
+     557263445615,
+     557293135615,
+     557323255615
+    ],
+    "selection_note": "AS-036 confirmatory sample C: Tycho-2 V<6 and 6-8 search stars (Dec>=-25, |beta|<=10, 2018-03-17..2021-01-01), SHA-256('AS-036:<id>') order, alternating classes; per star the first 20 qualifying quadrant-nights (AS-035 sequence rule: E1 first, E3 last within 150 min, E2 nearest midpoint with >=15 min gaps, archived products) not in AS-035 N/R, one SkyBoT cone each; trigger = AS-022 PRIMARY object (V<=faintest maglimit-0.5, err<=1\"), rate<=1\"/min, every pairwise displacement >=3\", inside the footprint, closest approach to the star <120\" (V<6) / <60\" (6-8); <=3 triggering nights per star, earliest first. Budget per class: stop at >=15 trigger objects, 300 stars or 3000 cones. Unchanged AS-035 definitions: target rule, eligibility strata, zone (<120\" V<6, <60\" 6-8, <30\" 8-10), control (>=480\" from V<10, >=60\" from V10-11), six-stage trace with first failure; local depth descriptive only. Primary comparison: C only, PRIMARY eligible zone vs control. CONFIRMED: zone n>=20, control n>=20, zone lower, Fisher two-sided p<0.05, MH OR<1 if defined. NOT REPRODUCED: minimums met, not confirmed, Newcombe 95% lower bound of zone-control > -0.20. Otherwise INCONCLUSIVE. Pooled AS-035+036 secondary only. Strips: SHA-256 order, <=6+6 zone, 2+2 control. No outcome was looked at.",
+    "control_designations": []
+   },
+   "search_class": "V<6",
+   "search_star": {
+    "tycho_id": "TYC 6279-1723-1",
+    "ra": 279.72250512,
+    "dec": -21.0518731,
+    "vt_mag": 5.935,
+    "bt_mag": 6.666,
+    "v_mag": 5.86921,
+    "position_source": "mean J2000"
+   },
+   "night_index": 1,
+   "filters": [
+    "zr",
+    "zr",
+    "zr"
+   ],
+   "minutes_from_first": [
+    0.0,
+    42.75,
+    86.12
+   ],
+   "trigger": [
+    {
+     "designation": "195695",
+     "v_magnitude": 19.1,
+     "rate_arcsec_per_min": 0.5102,
+     "closest_approach_arcsec": 115.82,
+     "positions": [
+      [
+       279.72736865335605,
+       -21.084242767014622
+      ],
+      [
+       279.7208804166666,
+       -21.08400888888889
+      ],
+      [
+       279.714298596434,
+       -21.08377163740538
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "field": {
+    "field_id": "C7-2019-01-25-565-c3-q2",
+    "description": "AS-036 near-star confirmation: TYC 1346-1397-1 (V 5.09)",
+    "product_ids": [
+     754204840915,
+     754226590915,
+     754256670915
+    ],
+    "selection_note": "AS-036 confirmatory sample C: Tycho-2 V<6 and 6-8 search stars (Dec>=-25, |beta|<=10, 2018-03-17..2021-01-01), SHA-256('AS-036:<id>') order, alternating classes; per star the first 20 qualifying quadrant-nights (AS-035 sequence rule: E1 first, E3 last within 150 min, E2 nearest midpoint with >=15 min gaps, archived products) not in AS-035 N/R, one SkyBoT cone each; trigger = AS-022 PRIMARY object (V<=faintest maglimit-0.5, err<=1\"), rate<=1\"/min, every pairwise displacement >=3\", inside the footprint, closest approach to the star <120\" (V<6) / <60\" (6-8); <=3 triggering nights per star, earliest first. Budget per class: stop at >=15 trigger objects, 300 stars or 3000 cones. Unchanged AS-035 definitions: target rule, eligibility strata, zone (<120\" V<6, <60\" 6-8, <30\" 8-10), control (>=480\" from V<10, >=60\" from V10-11), six-stage trace with first failure; local depth descriptive only. Primary comparison: C only, PRIMARY eligible zone vs control. CONFIRMED: zone n>=20, control n>=20, zone lower, Fisher two-sided p<0.05, MH OR<1 if defined. NOT REPRODUCED: minimums met, not confirmed, Newcombe 95% lower bound of zone-control > -0.20. Otherwise INCONCLUSIVE. Pooled AS-035+036 secondary only. Strips: SHA-256 order, <=6+6 zone, 2+2 control. No outcome was looked at.",
+    "control_designations": []
+   },
+   "search_class": "V<6",
+   "search_star": {
+    "tycho_id": "TYC 1346-1397-1",
+    "ra": 108.34280995,
+    "dec": 16.15896481,
+    "vt_mag": 5.261,
+    "bt_mag": 7.132,
+    "v_mag": 5.0926100000000005,
+    "position_source": "mean J2000"
+   },
+   "night_index": 2,
+   "filters": [
+    "zg",
+    "zr",
+    "zr"
+   ],
+   "minutes_from_first": [
+    0.0,
+    31.32,
+    74.63
+   ],
+   "trigger": [
+    {
+     "designation": "183143",
+     "v_magnitude": 19.4,
+     "rate_arcsec_per_min": 0.5879,
+     "closest_approach_arcsec": 118.58,
+     "positions": [
+      [
+       108.35981902569299,
+       16.124154536491467
+      ],
+      [
+       108.35458,
+       16.125061111111112
+      ],
+      [
+       108.34733348056055,
+       16.126315067665164
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "field": {
+    "field_id": "C8-2020-11-14-613-c4-q2",
+    "description": "AS-036 near-star confirmation: TYC 1878-363-1 (V 7.30)",
+    "product_ids": [
+     1413458071315,
+     1413476341315,
+     1413506971315
+    ],
+    "selection_note": "AS-036 confirmatory sample C: Tycho-2 V<6 and 6-8 search stars (Dec>=-25, |beta|<=10, 2018-03-17..2021-01-01), SHA-256('AS-036:<id>') order, alternating classes; per star the first 20 qualifying quadrant-nights (AS-035 sequence rule: E1 first, E3 last within 150 min, E2 nearest midpoint with >=15 min gaps, archived products) not in AS-035 N/R, one SkyBoT cone each; trigger = AS-022 PRIMARY object (V<=faintest maglimit-0.5, err<=1\"), rate<=1\"/min, every pairwise displacement >=3\", inside the footprint, closest approach to the star <120\" (V<6) / <60\" (6-8); <=3 triggering nights per star, earliest first. Budget per class: stop at >=15 trigger objects, 300 stars or 3000 cones. Unchanged AS-035 definitions: target rule, eligibility strata, zone (<120\" V<6, <60\" 6-8, <30\" 8-10), control (>=480\" from V<10, >=60\" from V10-11), six-stage trace with first failure; local depth descriptive only. Primary comparison: C only, PRIMARY eligible zone vs control. CONFIRMED: zone n>=20, control n>=20, zone lower, Fisher two-sided p<0.05, MH OR<1 if defined. NOT REPRODUCED: minimums met, not confirmed, Newcombe 95% lower bound of zone-control > -0.20. Otherwise INCONCLUSIVE. Pooled AS-035+036 secondary only. Strips: SHA-256 order, <=6+6 zone, 2+2 control. No outcome was looked at.",
+    "control_designations": []
+   },
+   "search_class": "6<=V<8",
+   "search_star": {
+    "tycho_id": "TYC 1878-363-1",
+    "ra": 95.45494996,
+    "dec": 23.7606368,
+    "vt_mag": 7.44,
+    "bt_mag": 9.033,
+    "v_mag": 7.29663,
+    "position_source": "mean J2000"
+   },
+   "night_index": 18,
+   "filters": [
+    "zi",
+    "zr",
+    "zg"
+   ],
+   "minutes_from_first": [
+    0.0,
+    26.3,
+    70.42
+   ],
+   "trigger": [
+    {
+     "designation": "74293",
+     "v_magnitude": 19.4,
+     "rate_arcsec_per_min": 0.2196,
+     "closest_approach_arcsec": 49.13,
+     "positions": [
+      [
+       95.44776165586217,
+       23.772595111133572
+      ],
+      [
+       95.44607208333332,
+       23.772166944444443
+      ],
+      [
+       95.44323792639548,
+       23.771448720413314
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "field": {
+    "field_id": "C9-2020-04-17-373-c1-q1",
+    "description": "AS-036 near-star confirmation: TYC 5549-1342-1 (V 5.56)",
+    "product_ids": [
+     1202273350015,
+     1202316370015,
+     1202354060015
+    ],
+    "selection_note": "AS-036 confirmatory sample C: Tycho-2 V<6 and 6-8 search stars (Dec>=-25, |beta|<=10, 2018-03-17..2021-01-01), SHA-256('AS-036:<id>') order, alternating classes; per star the first 20 qualifying quadrant-nights (AS-035 sequence rule: E1 first, E3 last within 150 min, E2 nearest midpoint with >=15 min gaps, archived products) not in AS-035 N/R, one SkyBoT cone each; trigger = AS-022 PRIMARY object (V<=faintest maglimit-0.5, err<=1\"), rate<=1\"/min, every pairwise displacement >=3\", inside the footprint, closest approach to the star <120\" (V<6) / <60\" (6-8); <=3 triggering nights per star, earliest first. Budget per class: stop at >=15 trigger objects, 300 stars or 3000 cones. Unchanged AS-035 definitions: target rule, eligibility strata, zone (<120\" V<6, <60\" 6-8, <30\" 8-10), control (>=480\" from V<10, >=60\" from V10-11), six-stage trace with first failure; local depth descriptive only. Primary comparison: C only, PRIMARY eligible zone vs control. CONFIRMED: zone n>=20, control n>=20, zone lower, Fisher two-sided p<0.05, MH OR<1 if defined. NOT REPRODUCED: minimums met, not confirmed, Newcombe 95% lower bound of zone-control > -0.20. Otherwise INCONCLUSIVE. Pooled AS-035+036 secondary only. Strips: SHA-256 order, <=6+6 zone, 2+2 control. No outcome was looked at.",
+    "control_designations": []
+   },
+   "search_class": "V<6",
+   "search_star": {
+    "tycho_id": "TYC 5549-1342-1",
+    "ra": 206.4846395,
+    "dec": -12.42652059,
+    "vt_mag": 5.661,
+    "bt_mag": 6.737,
+    "v_mag": 5.564159999999999,
+    "position_source": "mean J2000"
+   },
+   "night_index": 11,
+   "filters": [
+    "zr",
+    "zr",
+    "zr"
+   ],
+   "minutes_from_first": [
+    0.0,
+    61.95,
+    116.22
+   ],
+   "trigger": [
+    {
+     "designation": "29400",
+     "v_magnitude": 19.4,
+     "rate_arcsec_per_min": 0.5299,
+     "closest_approach_arcsec": 63.4,
+     "positions": [
+      [
+       206.5122193673635,
+       -12.418296552009123
+      ],
+      [
+       206.50341249999997,
+       -12.415265277777777
+      ],
+      [
+       206.49569789309385,
+       -12.412609953454817
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "field": {
+    "field_id": "C10-2020-08-14-447-c2-q1",
+    "description": "AS-036 near-star confirmation: TYC 3-1464-1 (V 5.78)",
+    "product_ids": [
+     1321375900415,
+     1321406570415,
+     1321460870415
+    ],
+    "selection_note": "AS-036 confirmatory sample C: Tycho-2 V<6 and 6-8 search stars (Dec>=-25, |beta|<=10, 2018-03-17..2021-01-01), SHA-256('AS-036:<id>') order, alternating classes; per star the first 20 qualifying quadrant-nights (AS-035 sequence rule: E1 first, E3 last within 150 min, E2 nearest midpoint with >=15 min gaps, archived products) not in AS-035 N/R, one SkyBoT cone each; trigger = AS-022 PRIMARY object (V<=faintest maglimit-0.5, err<=1\"), rate<=1\"/min, every pairwise displacement >=3\", inside the footprint, closest approach to the star <120\" (V<6) / <60\" (6-8); <=3 triggering nights per star, earliest first. Budget per class: stop at >=15 trigger objects, 300 stars or 3000 cones. Unchanged AS-035 definitions: target rule, eligibility strata, zone (<120\" V<6, <60\" 6-8, <30\" 8-10), control (>=480\" from V<10, >=60\" from V10-11), six-stage trace with first failure; local depth descriptive only. Primary comparison: C only, PRIMARY eligible zone vs control. CONFIRMED: zone n>=20, control n>=20, zone lower, Fisher two-sided p<0.05, MH OR<1 if defined. NOT REPRODUCED: minimums met, not confirmed, Newcombe 95% lower bound of zone-control > -0.20. Otherwise INCONCLUSIVE. Pooled AS-035+036 secondary only. Strips: SHA-256 order, <=6+6 zone, 2+2 control. No outcome was looked at.",
+    "control_designations": []
+   },
+   "search_class": "V<6",
+   "search_star": {
+    "tycho_id": "TYC 3-1464-1",
+    "ra": 6.35086574,
+    "dec": 1.93968941,
+    "vt_mag": 5.864,
+    "bt_mag": 6.825,
+    "v_mag": 5.7775099999999995,
+    "position_source": "mean J2000"
+   },
+   "night_index": 6,
+   "filters": [
+    "zg",
+    "zg",
+    "zr"
+   ],
+   "minutes_from_first": [
+    0.0,
+    44.17,
+    122.37
+   ],
+   "trigger": [
+    {
+     "designation": "123398",
+     "v_magnitude": 19.5,
+     "rate_arcsec_per_min": 0.1429,
+     "closest_approach_arcsec": 102.33,
+     "positions": [
+      [
+       6.376634631284199,
+       1.9210751670783761
+      ],
+      [
+       6.3748949999999995,
+       1.920854722222222
+      ],
+      [
+       6.371814871423125,
+       1.9204644104893667
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "field": {
+    "field_id": "C11-2020-08-27-447-c2-q1",
+    "description": "AS-036 near-star confirmation: TYC 3-1464-1 (V 5.78)",
+    "product_ids": [
+     1334400080415,
+     1334437880415,
+     1334473270415
+    ],
+    "selection_note": "AS-036 confirmatory sample C: Tycho-2 V<6 and 6-8 search stars (Dec>=-25, |beta|<=10, 2018-03-17..2021-01-01), SHA-256('AS-036:<id>') order, alternating classes; per star the first 20 qualifying quadrant-nights (AS-035 sequence rule: E1 first, E3 last within 150 min, E2 nearest midpoint with >=15 min gaps, archived products) not in AS-035 N/R, one SkyBoT cone each; trigger = AS-022 PRIMARY object (V<=faintest maglimit-0.5, err<=1\"), rate<=1\"/min, every pairwise displacement >=3\", inside the footprint, closest approach to the star <120\" (V<6) / <60\" (6-8); <=3 triggering nights per star, earliest first. Budget per class: stop at >=15 trigger objects, 300 stars or 3000 cones. Unchanged AS-035 definitions: target rule, eligibility strata, zone (<120\" V<6, <60\" 6-8, <30\" 8-10), control (>=480\" from V<10, >=60\" from V10-11), six-stage trace with first failure; local depth descriptive only. Primary comparison: C only, PRIMARY eligible zone vs control. CONFIRMED: zone n>=20, control n>=20, zone lower, Fisher two-sided p<0.05, MH OR<1 if defined. NOT REPRODUCED: minimums met, not confirmed, Newcombe 95% lower bound of zone-control > -0.20. Otherwise INCONCLUSIVE. Pooled AS-035+036 secondary only. Strips: SHA-256 order, <=6+6 zone, 2+2 control. No outcome was looked at.",
+    "control_designations": []
+   },
+   "search_class": "V<6",
+   "search_star": {
+    "tycho_id": "TYC 3-1464-1",
+    "ra": 6.35086574,
+    "dec": 1.93968941,
+    "vt_mag": 5.864,
+    "bt_mag": 6.825,
+    "v_mag": 5.7775099999999995,
+    "position_source": "mean J2000"
+   },
+   "night_index": 8,
+   "filters": [
+    "zr",
+    "zr",
+    "zg"
+   ],
+   "minutes_from_first": [
+    0.0,
+    54.43,
+    105.4
+   ],
+   "trigger": [
+    {
+     "designation": "82840",
+     "v_magnitude": 19.9,
+     "rate_arcsec_per_min": 0.3262,
+     "closest_approach_arcsec": 79.69,
+     "positions": [
+      [
+       6.330146200196808,
+       1.947511656271167
+      ],
+      [
+       6.325599583333333,
+       1.9455947222222223
+      ],
+      [
+       6.321342511745919,
+       1.943799865580514
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "field": {
+    "field_id": "C12-2019-11-01-558-c7-q3",
+    "description": "AS-036 near-star confirmation: TYC 1252-844-1 (V 7.50)",
+    "product_ids": [
+     1034232612615,
+     1034294472615,
+     1034331622615
+    ],
+    "selection_note": "AS-036 confirmatory sample C: Tycho-2 V<6 and 6-8 search stars (Dec>=-25, |beta|<=10, 2018-03-17..2021-01-01), SHA-256('AS-036:<id>') order, alternating classes; per star the first 20 qualifying quadrant-nights (AS-035 sequence rule: E1 first, E3 last within 150 min, E2 nearest midpoint with >=15 min gaps, archived products) not in AS-035 N/R, one SkyBoT cone each; trigger = AS-022 PRIMARY object (V<=faintest maglimit-0.5, err<=1\"), rate<=1\"/min, every pairwise displacement >=3\", inside the footprint, closest approach to the star <120\" (V<6) / <60\" (6-8); <=3 triggering nights per star, earliest first. Budget per class: stop at >=15 trigger objects, 300 stars or 3000 cones. Unchanged AS-035 definitions: target rule, eligibility strata, zone (<120\" V<6, <60\" 6-8, <30\" 8-10), control (>=480\" from V<10, >=60\" from V10-11), six-stage trace with first failure; local depth descriptive only. Primary comparison: C only, PRIMARY eligible zone vs control. CONFIRMED: zone n>=20, control n>=20, zone lower, Fisher two-sided p<0.05, MH OR<1 if defined. NOT REPRODUCED: minimums met, not confirmed, Newcombe 95% lower bound of zone-control > -0.20. Otherwise INCONCLUSIVE. Pooled AS-035+036 secondary only. Strips: SHA-256 order, <=6+6 zone, 2+2 control. No outcome was looked at.",
+    "control_designations": []
+   },
+   "search_class": "6<=V<8",
+   "search_star": {
+    "tycho_id": "TYC 1252-844-1",
+    "ra": 57.59570356,
+    "dec": 17.47636427,
+    "vt_mag": 7.57,
+    "bt_mag": 8.324,
+    "v_mag": 7.502140000000001,
+    "position_source": "mean J2000"
+   },
+   "night_index": 6,
+   "filters": [
+    "zr",
+    "zr",
+    "zr"
+   ],
+   "minutes_from_first": [
+    0.0,
+    89.08,
+    142.57
+   ],
+   "trigger": [
+    {
+     "designation": "52047",
+     "v_magnitude": 19.1,
+     "rate_arcsec_per_min": 0.4732,
+     "closest_approach_arcsec": 38.58,
+     "positions": [
+      [
+       57.61495407255146,
+       17.490136640370583
+      ],
+      [
+       57.60284166666666,
+       17.488226666666666
+      ],
+      [
+       57.595569700409854,
+       17.487079969267455
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "field": {
+    "field_id": "C13-2018-09-16-393-c14-q1",
+    "description": "AS-036 near-star confirmation: TYC 5248-1384-1 (V 7.70)",
+    "product_ids": [
+     623251355215,
+     623293565215,
+     623319715215
+    ],
+    "selection_note": "AS-036 confirmatory sample C: Tycho-2 V<6 and 6-8 search stars (Dec>=-25, |beta|<=10, 2018-03-17..2021-01-01), SHA-256('AS-036:<id>') order, alternating classes; per star the first 20 qualifying quadrant-nights (AS-035 sequence rule: E1 first, E3 last within 150 min, E2 nearest midpoint with >=15 min gaps, archived products) not in AS-035 N/R, one SkyBoT cone each; trigger = AS-022 PRIMARY object (V<=faintest maglimit-0.5, err<=1\"), rate<=1\"/min, every pairwise displacement >=3\", inside the footprint, closest approach to the star <120\" (V<6) / <60\" (6-8); <=3 triggering nights per star, earliest first. Budget per class: stop at >=15 trigger objects, 300 stars or 3000 cones. Unchanged AS-035 definitions: target rule, eligibility strata, zone (<120\" V<6, <60\" 6-8, <30\" 8-10), control (>=480\" from V<10, >=60\" from V10-11), six-stage trace with first failure; local depth descriptive only. Primary comparison: C only, PRIMARY eligible zone vs control. CONFIRMED: zone n>=20, control n>=20, zone lower, Fisher two-sided p<0.05, MH OR<1 if defined. NOT REPRODUCED: minimums met, not confirmed, Newcombe 95% lower bound of zone-control > -0.20. Otherwise INCONCLUSIVE. Pooled AS-035+036 secondary only. Strips: SHA-256 order, <=6+6 zone, 2+2 control. No outcome was looked at.",
+    "control_designations": []
+   },
+   "search_class": "6<=V<8",
+   "search_star": {
+    "tycho_id": "TYC 5248-1384-1",
+    "ra": 345.44118981,
+    "dec": -6.96042286,
+    "vt_mag": 7.801,
+    "bt_mag": 8.949,
+    "v_mag": 7.69768,
+    "position_source": "mean J2000"
+   },
+   "night_index": 2,
+   "filters": [
+    "zg",
+    "zr",
+    "zi"
+   ],
+   "minutes_from_first": [
+    0.0,
+    60.78,
+    98.43
+   ],
+   "trigger": [
+    {
+     "designation": "77431",
+     "v_magnitude": 18.9,
+     "rate_arcsec_per_min": 0.517,
+     "closest_approach_arcsec": 16.9,
+     "positions": [
+      [
+       345.4449987658604,
+       -6.954541621052774
+      ],
+      [
+       345.43701874999994,
+       -6.958209722222223
+      ],
+      [
+       345.4320758234094,
+       -6.960481792243685
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "field": {
+    "field_id": "C14-2019-02-08-518-c16-q4",
+    "description": "AS-036 near-star confirmation: TYC 817-1299-1 (V 7.07)",
+    "product_ids": [
+     768231356315,
+     768281706315,
+     768334186315
+    ],
+    "selection_note": "AS-036 confirmatory sample C: Tycho-2 V<6 and 6-8 search stars (Dec>=-25, |beta|<=10, 2018-03-17..2021-01-01), SHA-256('AS-036:<id>') order, alternating classes; per star the first 20 qualifying quadrant-nights (AS-035 sequence rule: E1 first, E3 last within 150 min, E2 nearest midpoint with >=15 min gaps, archived products) not in AS-035 N/R, one SkyBoT cone each; trigger = AS-022 PRIMARY object (V<=faintest maglimit-0.5, err<=1\"), rate<=1\"/min, every pairwise displacement >=3\", inside the footprint, closest approach to the star <120\" (V<6) / <60\" (6-8); <=3 triggering nights per star, earliest first. Budget per class: stop at >=15 trigger objects, 300 stars or 3000 cones. Unchanged AS-035 definitions: target rule, eligibility strata, zone (<120\" V<6, <60\" 6-8, <30\" 8-10), control (>=480\" from V<10, >=60\" from V10-11), six-stage trace with first failure; local depth descriptive only. Primary comparison: C only, PRIMARY eligible zone vs control. CONFIRMED: zone n>=20, control n>=20, zone lower, Fisher two-sided p<0.05, MH OR<1 if defined. NOT REPRODUCED: minimums met, not confirmed, Newcombe 95% lower bound of zone-control > -0.20. Otherwise INCONCLUSIVE. Pooled AS-035+036 secondary only. Strips: SHA-256 order, <=6+6 zone, 2+2 control. No outcome was looked at.",
+    "control_designations": []
+   },
+   "search_class": "6<=V<8",
+   "search_star": {
+    "tycho_id": "TYC 817-1299-1",
+    "ra": 133.44058562,
+    "dec": 13.83040605,
+    "vt_mag": 7.087,
+    "bt_mag": 7.287,
+    "v_mag": 7.069,
+    "position_source": "mean J2000"
+   },
+   "night_index": 2,
+   "filters": [
+    "zr",
+    "zr",
+    "zr"
+   ],
+   "minutes_from_first": [
+    0.0,
+    72.5,
+    148.08
+   ],
+   "trigger": [
+    {
+     "designation": "544",
+     "v_magnitude": 14.0,
+     "rate_arcsec_per_min": 0.6228,
+     "closest_approach_arcsec": 30.67,
+     "positions": [
+      [
+       133.43898009979472,
+       13.822030895347893
+      ],
+      [
+       133.42615958333332,
+       13.823562222222222
+      ],
+      [
+       133.412793827219,
+       13.825158674408467
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "field": {
+    "field_id": "C15-2019-01-04-500-c15-q4",
+    "description": "AS-036 near-star confirmation: TYC 609-359-1 (V 7.90)",
+    "product_ids": [
+     733099215915,
+     733153915915,
+     733164645915
+    ],
+    "selection_note": "AS-036 confirmatory sample C: Tycho-2 V<6 and 6-8 search stars (Dec>=-25, |beta|<=10, 2018-03-17..2021-01-01), SHA-256('AS-036:<id>') order, alternating classes; per star the first 20 qualifying quadrant-nights (AS-035 sequence rule: E1 first, E3 last within 150 min, E2 nearest midpoint with >=15 min gaps, archived products) not in AS-035 N/R, one SkyBoT cone each; trigger = AS-022 PRIMARY object (V<=faintest maglimit-0.5, err<=1\"), rate<=1\"/min, every pairwise displacement >=3\", inside the footprint, closest approach to the star <120\" (V<6) / <60\" (6-8); <=3 triggering nights per star, earliest first. Budget per class: stop at >=15 trigger objects, 300 stars or 3000 cones. Unchanged AS-035 definitions: target rule, eligibility strata, zone (<120\" V<6, <60\" 6-8, <30\" 8-10), control (>=480\" from V<10, >=60\" from V10-11), six-stage trace with first failure; local depth descriptive only. Primary comparison: C only, PRIMARY eligible zone vs control. CONFIRMED: zone n>=20, control n>=20, zone lower, Fisher two-sided p<0.05, MH OR<1 if defined. NOT REPRODUCED: minimums met, not confirmed, Newcombe 95% lower bound of zone-control > -0.20. Otherwise INCONCLUSIVE. Pooled AS-035+036 secondary only. Strips: SHA-256 order, <=6+6 zone, 2+2 control. No outcome was looked at.",
+    "control_designations": []
+   },
+   "search_class": "6<=V<8",
+   "search_star": {
+    "tycho_id": "TYC 609-359-1",
+    "ra": 8.55211019,
+    "dec": 14.51576882,
+    "vt_mag": 7.935,
+    "bt_mag": 8.319,
+    "v_mag": 7.90044,
+    "position_source": "mean J2000"
+   },
+   "night_index": 13,
+   "filters": [
+    "zr",
+    "zg",
+    "zg"
+   ],
+   "minutes_from_first": [
+    0.0,
+    78.77,
+    94.22
+   ],
+   "trigger": [
+    {
+     "designation": "71493",
+     "v_magnitude": 19.3,
+     "rate_arcsec_per_min": 0.6495,
+     "closest_approach_arcsec": 51.94,
+     "positions": [
+      [
+       8.524525922031035,
+       14.502503014956128
+      ],
+      [
+       8.539002916666666,
+       14.50485138888889
+      ],
+      [
+       8.54184257687835,
+       14.505312022064963
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "field": {
+    "field_id": "C16-2020-01-29-511-c13-q3",
+    "description": "AS-036 near-star confirmation: TYC 728-3138-1 (V 5.58)",
+    "product_ids": [
+     1123150495015,
+     1123166135015,
+     1123213475015
+    ],
+    "selection_note": "AS-036 confirmatory sample C: Tycho-2 V<6 and 6-8 search stars (Dec>=-25, |beta|<=10, 2018-03-17..2021-01-01), SHA-256('AS-036:<id>') order, alternating classes; per star the first 20 qualifying quadrant-nights (AS-035 sequence rule: E1 first, E3 last within 150 min, E2 nearest midpoint with >=15 min gaps, archived products) not in AS-035 N/R, one SkyBoT cone each; trigger = AS-022 PRIMARY object (V<=faintest maglimit-0.5, err<=1\"), rate<=1\"/min, every pairwise displacement >=3\", inside the footprint, closest approach to the star <120\" (V<6) / <60\" (6-8); <=3 triggering nights per star, earliest first. Budget per class: stop at >=15 trigger objects, 300 stars or 3000 cones. Unchanged AS-035 definitions: target rule, eligibility strata, zone (<120\" V<6, <60\" 6-8, <30\" 8-10), control (>=480\" from V<10, >=60\" from V10-11), six-stage trace with first failure; local depth descriptive only. Primary comparison: C only, PRIMARY eligible zone vs control. CONFIRMED: zone n>=20, control n>=20, zone lower, Fisher two-sided p<0.05, MH OR<1 if defined. NOT REPRODUCED: minimums met, not confirmed, Newcombe 95% lower bound of zone-control > -0.20. Otherwise INCONCLUSIVE. Pooled AS-035+036 secondary only. Strips: SHA-256 order, <=6+6 zone, 2+2 control. No outcome was looked at.",
+    "control_designations": []
+   },
+   "search_class": "V<6",
+   "search_star": {
+    "tycho_id": "TYC 728-3138-1",
+    "ra": 88.09288446,
+    "dec": 14.17178614,
+    "vt_mag": 5.577,
+    "bt_mag": 5.521,
+    "v_mag": 5.58204,
+    "position_source": "mean J2000"
+   },
+   "night_index": 4,
+   "filters": [
+    "zr",
+    "zr",
+    "zg"
+   ],
+   "minutes_from_first": [
+    0.0,
+    22.52,
+    90.68
+   ],
+   "trigger": [
+    {
+     "designation": "83616",
+     "v_magnitude": 19.1,
+     "rate_arcsec_per_min": 0.3344,
+     "closest_approach_arcsec": 74.34,
+     "positions": [
+      [
+       88.0730377859146,
+       14.179283248835963
+      ],
+      [
+       88.07133875,
+       14.180571944444443
+      ],
+      [
+       88.06619512596254,
+       14.18447331324531
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "field": {
+    "field_id": "C17-2020-09-22-561-c15-q2",
+    "description": "AS-036 near-star confirmation: TYC 1295-1998-1 (V 4.96)",
+    "product_ids": [
+     1360473495715,
+     1360485615715,
+     1360523415715
+    ],
+    "selection_note": "AS-036 confirmatory sample C: Tycho-2 V<6 and 6-8 search stars (Dec>=-25, |beta|<=10, 2018-03-17..2021-01-01), SHA-256('AS-036:<id>') order, alternating classes; per star the first 20 qualifying quadrant-nights (AS-035 sequence rule: E1 first, E3 last within 150 min, E2 nearest midpoint with >=15 min gaps, archived products) not in AS-035 N/R, one SkyBoT cone each; trigger = AS-022 PRIMARY object (V<=faintest maglimit-0.5, err<=1\"), rate<=1\"/min, every pairwise displacement >=3\", inside the footprint, closest approach to the star <120\" (V<6) / <60\" (6-8); <=3 triggering nights per star, earliest first. Budget per class: stop at >=15 trigger objects, 300 stars or 3000 cones. Unchanged AS-035 definitions: target rule, eligibility strata, zone (<120\" V<6, <60\" 6-8, <30\" 8-10), control (>=480\" from V<10, >=60\" from V10-11), six-stage trace with first failure; local depth descriptive only. Primary comparison: C only, PRIMARY eligible zone vs control. CONFIRMED: zone n>=20, control n>=20, zone lower, Fisher two-sided p<0.05, MH OR<1 if defined. NOT REPRODUCED: minimums met, not confirmed, Newcombe 95% lower bound of zone-control > -0.20. Otherwise INCONCLUSIVE. Pooled AS-035+036 secondary only. Strips: SHA-256 order, <=6+6 zone, 2+2 control. No outcome was looked at.",
+    "control_designations": []
+   },
+   "search_class": "V<6",
+   "search_star": {
+    "tycho_id": "TYC 1295-1998-1",
+    "ra": 79.81917315,
+    "dec": 22.09649646,
+    "vt_mag": 5.053,
+    "bt_mag": 6.138,
+    "v_mag": 4.95535,
+    "position_source": "mean J2000"
+   },
+   "night_index": 9,
+   "filters": [
+    "zr",
+    "zr",
+    "zg"
+   ],
+   "minutes_from_first": [
+    0.0,
+    17.45,
+    71.88
+   ],
+   "trigger": [
+    {
+     "designation": "24822",
+     "v_magnitude": 19.5,
+     "rate_arcsec_per_min": 0.2859,
+     "closest_approach_arcsec": 117.97,
+     "positions": [
+      [
+       79.79266112430068,
+       22.12280619951398
+      ],
+      [
+       79.79415166666665,
+       22.1229225
+      ],
+      [
+       79.79880127810264,
+       22.123285288795646
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "field": {
+    "field_id": "C18-2018-07-14-333-c3-q4",
+    "description": "AS-036 near-star confirmation: TYC 6274-1663-1 (V 4.87)",
+    "product_ids": [
+     559252501115,
+     559282621115,
+     559312751115
+    ],
+    "selection_note": "AS-036 confirmatory sample C: Tycho-2 V<6 and 6-8 search stars (Dec>=-25, |beta|<=10, 2018-03-17..2021-01-01), SHA-256('AS-036:<id>') order, alternating classes; per star the first 20 qualifying quadrant-nights (AS-035 sequence rule: E1 first, E3 last within 150 min, E2 nearest midpoint with >=15 min gaps, archived products) not in AS-035 N/R, one SkyBoT cone each; trigger = AS-022 PRIMARY object (V<=faintest maglimit-0.5, err<=1\"), rate<=1\"/min, every pairwise displacement >=3\", inside the footprint, closest approach to the star <120\" (V<6) / <60\" (6-8); <=3 triggering nights per star, earliest first. Budget per class: stop at >=15 trigger objects, 300 stars or 3000 cones. Unchanged AS-035 definitions: target rule, eligibility strata, zone (<120\" V<6, <60\" 6-8, <30\" 8-10), control (>=480\" from V<10, >=60\" from V10-11), six-stage trace with first failure; local depth descriptive only. Primary comparison: C only, PRIMARY eligible zone vs control. CONFIRMED: zone n>=20, control n>=20, zone lower, Fisher two-sided p<0.05, MH OR<1 if defined. NOT REPRODUCED: minimums met, not confirmed, Newcombe 95% lower bound of zone-control > -0.20. Otherwise INCONCLUSIVE. Pooled AS-035+036 secondary only. Strips: SHA-256 order, <=6+6 zone, 2+2 control. No outcome was looked at.",
+    "control_designations": []
+   },
+   "search_class": "V<6",
+   "search_star": {
+    "tycho_id": "TYC 6274-1663-1",
+    "ra": 276.33759697,
+    "dec": -20.54164289,
+    "vt_mag": 5.029,
+    "bt_mag": 6.779,
+    "v_mag": 4.8715,
+    "position_source": "mean J2000"
+   },
+   "night_index": 3,
+   "filters": [
+    "zr",
+    "zr",
+    "zr"
+   ],
+   "minutes_from_first": [
+    0.0,
+    43.38,
+    86.77
+   ],
+   "trigger": [
+    {
+     "designation": "107974",
+     "v_magnitude": 19.0,
+     "rate_arcsec_per_min": 0.5385,
+     "closest_approach_arcsec": 91.52,
+     "positions": [
+      [
+       276.31055130933754,
+       -20.53943516329101
+      ],
+      [
+       276.3039,
+       -20.541257222222224
+      ],
+      [
+       276.29724869066246,
+       -20.54307928115344
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "field": {
+    "field_id": "C19-2019-07-22-333-c3-q4",
+    "description": "AS-036 near-star confirmation: TYC 6274-1663-1 (V 4.87)",
+    "product_ids": [
+     932217041115,
+     932248541115,
+     932279931115
+    ],
+    "selection_note": "AS-036 confirmatory sample C: Tycho-2 V<6 and 6-8 search stars (Dec>=-25, |beta|<=10, 2018-03-17..2021-01-01), SHA-256('AS-036:<id>') order, alternating classes; per star the first 20 qualifying quadrant-nights (AS-035 sequence rule: E1 first, E3 last within 150 min, E2 nearest midpoint with >=15 min gaps, archived products) not in AS-035 N/R, one SkyBoT cone each; trigger = AS-022 PRIMARY object (V<=faintest maglimit-0.5, err<=1\"), rate<=1\"/min, every pairwise displacement >=3\", inside the footprint, closest approach to the star <120\" (V<6) / <60\" (6-8); <=3 triggering nights per star, earliest first. Budget per class: stop at >=15 trigger objects, 300 stars or 3000 cones. Unchanged AS-035 definitions: target rule, eligibility strata, zone (<120\" V<6, <60\" 6-8, <30\" 8-10), control (>=480\" from V<10, >=60\" from V10-11), six-stage trace with first failure; local depth descriptive only. Primary comparison: C only, PRIMARY eligible zone vs control. CONFIRMED: zone n>=20, control n>=20, zone lower, Fisher two-sided p<0.05, MH OR<1 if defined. NOT REPRODUCED: minimums met, not confirmed, Newcombe 95% lower bound of zone-control > -0.20. Otherwise INCONCLUSIVE. Pooled AS-035+036 secondary only. Strips: SHA-256 order, <=6+6 zone, 2+2 control. No outcome was looked at.",
+    "control_designations": []
+   },
+   "search_class": "V<6",
+   "search_star": {
+    "tycho_id": "TYC 6274-1663-1",
+    "ra": 276.33759697,
+    "dec": -20.54164289,
+    "vt_mag": 5.029,
+    "bt_mag": 6.779,
+    "v_mag": 4.8715,
+    "position_source": "mean J2000"
+   },
+   "night_index": 9,
+   "filters": [
+    "zr",
+    "zr",
+    "zr"
+   ],
+   "minutes_from_first": [
+    0.0,
+    45.35,
+    90.55
+   ],
+   "trigger": [
+    {
+     "designation": "48173",
+     "v_magnitude": 19.4,
+     "rate_arcsec_per_min": 0.4664,
+     "closest_approach_arcsec": 97.57,
+     "positions": [
+      [
+       276.3127688407657,
+       -20.55557535236126
+      ],
+      [
+       276.3065091666667,
+       -20.555982222222223
+      ],
+      [
+       276.30027020382005,
+       -20.55638774588141
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "field": {
+    "field_id": "C20-2019-07-28-282-c13-q1",
+    "description": "AS-036 near-star confirmation: TYC 6274-1663-1 (V 4.87)",
+    "product_ids": [
+     938232444815,
+     938277624815,
+     938315314815
+    ],
+    "selection_note": "AS-036 confirmatory sample C: Tycho-2 V<6 and 6-8 search stars (Dec>=-25, |beta|<=10, 2018-03-17..2021-01-01), SHA-256('AS-036:<id>') order, alternating classes; per star the first 20 qualifying quadrant-nights (AS-035 sequence rule: E1 first, E3 last within 150 min, E2 nearest midpoint with >=15 min gaps, archived products) not in AS-035 N/R, one SkyBoT cone each; trigger = AS-022 PRIMARY object (V<=faintest maglimit-0.5, err<=1\"), rate<=1\"/min, every pairwise displacement >=3\", inside the footprint, closest approach to the star <120\" (V<6) / <60\" (6-8); <=3 triggering nights per star, earliest first. Budget per class: stop at >=15 trigger objects, 300 stars or 3000 cones. Unchanged AS-035 definitions: target rule, eligibility strata, zone (<120\" V<6, <60\" 6-8, <30\" 8-10), control (>=480\" from V<10, >=60\" from V10-11), six-stage trace with first failure; local depth descriptive only. Primary comparison: C only, PRIMARY eligible zone vs control. CONFIRMED: zone n>=20, control n>=20, zone lower, Fisher two-sided p<0.05, MH OR<1 if defined. NOT REPRODUCED: minimums met, not confirmed, Newcombe 95% lower bound of zone-control > -0.20. Otherwise INCONCLUSIVE. Pooled AS-035+036 secondary only. Strips: SHA-256 order, <=6+6 zone, 2+2 control. No outcome was looked at.",
+    "control_designations": []
+   },
+   "search_class": "V<6",
+   "search_star": {
+    "tycho_id": "TYC 6274-1663-1",
+    "ra": 276.33759697,
+    "dec": -20.54164289,
+    "vt_mag": 5.029,
+    "bt_mag": 6.779,
+    "v_mag": 4.8715,
+    "position_source": "mean J2000"
+   },
+   "night_index": 16,
+   "filters": [
+    "zr",
+    "zr",
+    "zr"
+   ],
+   "minutes_from_first": [
+    0.0,
+    65.07,
+    119.33
+   ],
+   "trigger": [
+    {
+     "designation": "26340",
+     "v_magnitude": 17.9,
+     "rate_arcsec_per_min": 0.5141,
+     "closest_approach_arcsec": 101.13,
+     "positions": [
+      [
+       276.3570735958113,
+       -20.57370599034556
+      ],
+      [
+       276.34743,
+       -20.571513333333332
+      ],
+      [
+       276.3393870824432,
+       -20.56968462131297
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "field": {
+    "field_id": "C21-2020-08-23-452-c15-q3",
+    "description": "AS-036 near-star confirmation: TYC 52-1686-1 (V 5.83)",
+    "product_ids": [
+     1330395905815,
+     1330461675815,
+     1330483425815
+    ],
+    "selection_note": "AS-036 confirmatory sample C: Tycho-2 V<6 and 6-8 search stars (Dec>=-25, |beta|<=10, 2018-03-17..2021-01-01), SHA-256('AS-036:<id>') order, alternating classes; per star the first 20 qualifying quadrant-nights (AS-035 sequence rule: E1 first, E3 last within 150 min, E2 nearest midpoint with >=15 min gaps, archived products) not in AS-035 N/R, one SkyBoT cone each; trigger = AS-022 PRIMARY object (V<=faintest maglimit-0.5, err<=1\"), rate<=1\"/min, every pairwise displacement >=3\", inside the footprint, closest approach to the star <120\" (V<6) / <60\" (6-8); <=3 triggering nights per star, earliest first. Budget per class: stop at >=15 trigger objects, 300 stars or 3000 cones. Unchanged AS-035 definitions: target rule, eligibility strata, zone (<120\" V<6, <60\" 6-8, <30\" 8-10), control (>=480\" from V<10, >=60\" from V10-11), six-stage trace with first failure; local depth descriptive only. Primary comparison: C only, PRIMARY eligible zone vs control. CONFIRMED: zone n>=20, control n>=20, zone lower, Fisher two-sided p<0.05, MH OR<1 if defined. NOT REPRODUCED: minimums met, not confirmed, Newcombe 95% lower bound of zone-control > -0.20. Otherwise INCONCLUSIVE. Pooled AS-035+036 secondary only. Strips: SHA-256 order, <=6+6 zone, 2+2 control. No outcome was looked at.",
+    "control_designations": []
+   },
+   "search_class": "V<6",
+   "search_star": {
+    "tycho_id": "TYC 52-1686-1",
+    "ra": 39.01623361,
+    "dec": 6.88356944,
+    "vt_mag": 5.928,
+    "bt_mag": 7.063,
+    "v_mag": 5.82585,
+    "position_source": "observed ~J1991.25"
+   },
+   "night_index": 12,
+   "filters": [
+    "zg",
+    "zg",
+    "zr"
+   ],
+   "minutes_from_first": [
+    0.0,
+    94.72,
+    126.03
+   ],
+   "trigger": [
+    {
+     "designation": "15009",
+     "v_magnitude": 19.5,
+     "rate_arcsec_per_min": 0.9512,
+     "closest_approach_arcsec": 15.87,
+     "positions": [
+      [
+       38.997802071374245,
+       6.8942390309634565
+      ],
+      [
+       39.018294166666664,
+       6.879665833333334
+      ],
+      [
+       39.025069586342525,
+       6.874847412934913
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "field": {
+    "field_id": "C22-2020-02-24-517-c15-q3",
+    "description": "AS-036 near-star confirmation: TYC 808-1546-1 (V 5.95)",
+    "product_ids": [
+     1149210495815,
+     1149251235815,
+     1149291195815
+    ],
+    "selection_note": "AS-036 confirmatory sample C: Tycho-2 V<6 and 6-8 search stars (Dec>=-25, |beta|<=10, 2018-03-17..2021-01-01), SHA-256('AS-036:<id>') order, alternating classes; per star the first 20 qualifying quadrant-nights (AS-035 sequence rule: E1 first, E3 last within 150 min, E2 nearest midpoint with >=15 min gaps, archived products) not in AS-035 N/R, one SkyBoT cone each; trigger = AS-022 PRIMARY object (V<=faintest maglimit-0.5, err<=1\"), rate<=1\"/min, every pairwise displacement >=3\", inside the footprint, closest approach to the star <120\" (V<6) / <60\" (6-8); <=3 triggering nights per star, earliest first. Budget per class: stop at >=15 trigger objects, 300 stars or 3000 cones. Unchanged AS-035 definitions: target rule, eligibility strata, zone (<120\" V<6, <60\" 6-8, <30\" 8-10), control (>=480\" from V<10, >=60\" from V10-11), six-stage trace with first failure; local depth descriptive only. Primary comparison: C only, PRIMARY eligible zone vs control. CONFIRMED: zone n>=20, control n>=20, zone lower, Fisher two-sided p<0.05, MH OR<1 if defined. NOT REPRODUCED: minimums met, not confirmed, Newcombe 95% lower bound of zone-control > -0.20. Otherwise INCONCLUSIVE. Pooled AS-035+036 secondary only. Strips: SHA-256 order, <=6+6 zone, 2+2 control. No outcome was looked at.",
+    "control_designations": []
+   },
+   "search_class": "V<6",
+   "search_star": {
+    "tycho_id": "TYC 808-1546-1",
+    "ra": 127.15557979,
+    "dec": 14.21082371,
+    "vt_mag": 5.973,
+    "bt_mag": 6.182,
+    "v_mag": 5.95419,
+    "position_source": "mean J2000"
+   },
+   "night_index": 11,
+   "filters": [
+    "zr",
+    "zg",
+    "zg"
+   ],
+   "minutes_from_first": [
+    0.0,
+    58.67,
+    116.2
+   ],
+   "trigger": [
+    {
+     "designation": "223718",
+     "v_magnitude": 20.3,
+     "rate_arcsec_per_min": 0.4225,
+     "closest_approach_arcsec": 62.42,
+     "positions": [
+      [
+       127.18645288221569,
+       14.202926784180239
+      ],
+      [
+       127.1795125,
+       14.20439
+      ],
+      [
+       127.17270618720384,
+       14.205824950446257
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "field": {
+    "field_id": "C23-2020-11-17-659-c4-q2",
+    "description": "AS-036 near-star confirmation: TYC 2403-1182-1 (V 7.91)",
+    "product_ids": [
+     1416319391315,
+     1416351951315,
+     1416414881315
+    ],
+    "selection_note": "AS-036 confirmatory sample C: Tycho-2 V<6 and 6-8 search stars (Dec>=-25, |beta|<=10, 2018-03-17..2021-01-01), SHA-256('AS-036:<id>') order, alternating classes; per star the first 20 qualifying quadrant-nights (AS-035 sequence rule: E1 first, E3 last within 150 min, E2 nearest midpoint with >=15 min gaps, archived products) not in AS-035 N/R, one SkyBoT cone each; trigger = AS-022 PRIMARY object (V<=faintest maglimit-0.5, err<=1\"), rate<=1\"/min, every pairwise displacement >=3\", inside the footprint, closest approach to the star <120\" (V<6) / <60\" (6-8); <=3 triggering nights per star, earliest first. Budget per class: stop at >=15 trigger objects, 300 stars or 3000 cones. Unchanged AS-035 definitions: target rule, eligibility strata, zone (<120\" V<6, <60\" 6-8, <30\" 8-10), control (>=480\" from V<10, >=60\" from V10-11), six-stage trace with first failure; local depth descriptive only. Primary comparison: C only, PRIMARY eligible zone vs control. CONFIRMED: zone n>=20, control n>=20, zone lower, Fisher two-sided p<0.05, MH OR<1 if defined. NOT REPRODUCED: minimums met, not confirmed, Newcombe 95% lower bound of zone-control > -0.20. Otherwise INCONCLUSIVE. Pooled AS-035+036 secondary only. Strips: SHA-256 order, <=6+6 zone, 2+2 control. No outcome was looked at.",
+    "control_designations": []
+   },
+   "search_class": "6<=V<8",
+   "search_star": {
+    "tycho_id": "TYC 2403-1182-1",
+    "ra": 82.6191477,
+    "dec": 31.28221524,
+    "vt_mag": 7.917,
+    "bt_mag": 7.979,
+    "v_mag": 7.91142,
+    "position_source": "mean J2000"
+   },
+   "night_index": 17,
+   "filters": [
+    "zi",
+    "zi",
+    "zr"
+   ],
+   "minutes_from_first": [
+    0.0,
+    46.88,
+    137.5
+   ],
+   "trigger": [
+    {
+     "designation": "128068",
+     "v_magnitude": 19.5,
+     "rate_arcsec_per_min": 0.4242,
+     "closest_approach_arcsec": 56.17,
+     "positions": [
+      [
+       82.65580313573125,
+       31.282135754976558
+      ],
+      [
+       82.64942958333333,
+       31.28121388888889
+      ],
+      [
+       82.63711070478632,
+       31.27943209505374
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "field": {
+    "field_id": "C24-2019-06-29-279-c5-q2",
+    "description": "AS-036 near-star confirmation: TYC 6813-1435-1 (V 7.68)",
+    "product_ids": [
+     909241721715,
+     909268841715,
+     909295471715
+    ],
+    "selection_note": "AS-036 confirmatory sample C: Tycho-2 V<6 and 6-8 search stars (Dec>=-25, |beta|<=10, 2018-03-17..2021-01-01), SHA-256('AS-036:<id>') order, alternating classes; per star the first 20 qualifying quadrant-nights (AS-035 sequence rule: E1 first, E3 last within 150 min, E2 nearest midpoint with >=15 min gaps, archived products) not in AS-035 N/R, one SkyBoT cone each; trigger = AS-022 PRIMARY object (V<=faintest maglimit-0.5, err<=1\"), rate<=1\"/min, every pairwise displacement >=3\", inside the footprint, closest approach to the star <120\" (V<6) / <60\" (6-8); <=3 triggering nights per star, earliest first. Budget per class: stop at >=15 trigger objects, 300 stars or 3000 cones. Unchanged AS-035 definitions: target rule, eligibility strata, zone (<120\" V<6, <60\" 6-8, <30\" 8-10), control (>=480\" from V<10, >=60\" from V10-11), six-stage trace with first failure; local depth descriptive only. Primary comparison: C only, PRIMARY eligible zone vs control. CONFIRMED: zone n>=20, control n>=20, zone lower, Fisher two-sided p<0.05, MH OR<1 if defined. NOT REPRODUCED: minimums met, not confirmed, Newcombe 95% lower bound of zone-control > -0.20. Otherwise INCONCLUSIVE. Pooled AS-035+036 secondary only. Strips: SHA-256 order, <=6+6 zone, 2+2 control. No outcome was looked at.",
+    "control_designations": []
+   },
+   "search_class": "6<=V<8",
+   "search_star": {
+    "tycho_id": "TYC 6813-1435-1",
+    "ra": 252.83976975,
+    "dec": -24.83417856,
+    "vt_mag": 7.729,
+    "bt_mag": 8.276,
+    "v_mag": 7.67977,
+    "position_source": "mean J2000"
+   },
+   "night_index": 5,
+   "filters": [
+    "zr",
+    "zr",
+    "zr"
+   ],
+   "minutes_from_first": [
+    0.0,
+    39.05,
+    77.4
+   ],
+   "trigger": [
+    {
+     "designation": "146081",
+     "v_magnitude": 19.6,
+     "rate_arcsec_per_min": 0.5122,
+     "closest_approach_arcsec": 26.61,
+     "positions": [
+      [
+       252.83556161664353,
+       -24.82784886768102
+      ],
+      [
+       252.82951458333332,
+       -24.828715833333334
+      ],
+      [
+       252.82357596713433,
+       -24.82956725517983
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "field": {
+    "field_id": "C25-2018-07-05-331-c9-q4",
+    "description": "AS-036 near-star confirmation: TYC 6249-564-1 (V 7.50)",
+    "product_ids": [
+     550231343515,
+     550282933515,
+     550334173515
+    ],
+    "selection_note": "AS-036 confirmatory sample C: Tycho-2 V<6 and 6-8 search stars (Dec>=-25, |beta|<=10, 2018-03-17..2021-01-01), SHA-256('AS-036:<id>') order, alternating classes; per star the first 20 qualifying quadrant-nights (AS-035 sequence rule: E1 first, E3 last within 150 min, E2 nearest midpoint with >=15 min gaps, archived products) not in AS-035 N/R, one SkyBoT cone each; trigger = AS-022 PRIMARY object (V<=faintest maglimit-0.5, err<=1\"), rate<=1\"/min, every pairwise displacement >=3\", inside the footprint, closest approach to the star <120\" (V<6) / <60\" (6-8); <=3 triggering nights per star, earliest first. Budget per class: stop at >=15 trigger objects, 300 stars or 3000 cones. Unchanged AS-035 definitions: target rule, eligibility strata, zone (<120\" V<6, <60\" 6-8, <30\" 8-10), control (>=480\" from V<10, >=60\" from V10-11), six-stage trace with first failure; local depth descriptive only. Primary comparison: C only, PRIMARY eligible zone vs control. CONFIRMED: zone n>=20, control n>=20, zone lower, Fisher two-sided p<0.05, MH OR<1 if defined. NOT REPRODUCED: minimums met, not confirmed, Newcombe 95% lower bound of zone-control > -0.20. Otherwise INCONCLUSIVE. Pooled AS-035+036 secondary only. Strips: SHA-256 order, <=6+6 zone, 2+2 control. No outcome was looked at.",
+    "control_designations": []
+   },
+   "search_class": "6<=V<8",
+   "search_star": {
+    "tycho_id": "TYC 6249-564-1",
+    "ra": 266.08196919,
+    "dec": -16.86479416,
+    "vt_mag": 7.549,
+    "bt_mag": 8.091,
+    "v_mag": 7.5002200000000006,
+    "position_source": "mean J2000"
+   },
+   "night_index": 0,
+   "filters": [
+    "zr",
+    "zr",
+    "zr"
+   ],
+   "minutes_from_first": [
+    0.0,
+    74.3,
+    148.08
+   ],
+   "trigger": [
+    {
+     "designation": "76166",
+     "v_magnitude": 18.5,
+     "rate_arcsec_per_min": 0.6007,
+     "closest_approach_arcsec": 46.14,
+     "positions": [
+      [
+       266.1070526513319,
+       -16.866756651870624
+      ],
+      [
+       266.09538333333336,
+       -16.872143055555554
+      ],
+      [
+       266.08379516219134,
+       -16.877492002918945
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "field": {
+    "field_id": "C26-2020-11-26-612-c3-q1",
+    "description": "AS-036 near-star confirmation: TYC 1864-564-1 (V 7.35)",
+    "product_ids": [
+     1425358720815,
+     1425409150815,
+     1425443650815
+    ],
+    "selection_note": "AS-036 confirmatory sample C: Tycho-2 V<6 and 6-8 search stars (Dec>=-25, |beta|<=10, 2018-03-17..2021-01-01), SHA-256('AS-036:<id>') order, alternating classes; per star the first 20 qualifying quadrant-nights (AS-035 sequence rule: E1 first, E3 last within 150 min, E2 nearest midpoint with >=15 min gaps, archived products) not in AS-035 N/R, one SkyBoT cone each; trigger = AS-022 PRIMARY object (V<=faintest maglimit-0.5, err<=1\"), rate<=1\"/min, every pairwise displacement >=3\", inside the footprint, closest approach to the star <120\" (V<6) / <60\" (6-8); <=3 triggering nights per star, earliest first. Budget per class: stop at >=15 trigger objects, 300 stars or 3000 cones. Unchanged AS-035 definitions: target rule, eligibility strata, zone (<120\" V<6, <60\" 6-8, <30\" 8-10), control (>=480\" from V<10, >=60\" from V10-11), six-stage trace with first failure; local depth descriptive only. Primary comparison: C only, PRIMARY eligible zone vs control. CONFIRMED: zone n>=20, control n>=20, zone lower, Fisher two-sided p<0.05, MH OR<1 if defined. NOT REPRODUCED: minimums met, not confirmed, Newcombe 95% lower bound of zone-control > -0.20. Otherwise INCONCLUSIVE. Pooled AS-035+036 secondary only. Strips: SHA-256 order, <=6+6 zone, 2+2 control. No outcome was looked at.",
+    "control_designations": []
+   },
+   "search_class": "6<=V<8",
+   "search_star": {
+    "tycho_id": "TYC 1864-564-1",
+    "ra": 90.37171571,
+    "dec": 23.70393725,
+    "vt_mag": 7.36,
+    "bt_mag": 7.514,
+    "v_mag": 7.34614,
+    "position_source": "mean J2000"
+   },
+   "night_index": 16,
+   "filters": [
+    "zr",
+    "zi",
+    "zg"
+   ],
+   "minutes_from_first": [
+    0.0,
+    72.62,
+    122.3
+   ],
+   "trigger": [
+    {
+     "designation": "4979",
+     "v_magnitude": 18.2,
+     "rate_arcsec_per_min": 0.5617,
+     "closest_approach_arcsec": 12.61,
+     "positions": [
+      [
+       90.39624966212868,
+       23.704205673437883
+      ],
+      [
+       90.38388124999999,
+       23.704564722222223
+      ],
+      [
+       90.3754189478557,
+       23.704810378597998
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "field": {
+    "field_id": "C27-2020-11-15-392-c7-q4",
+    "description": "AS-036 near-star confirmation: TYC 5807-1521-1 (V 7.81)",
+    "product_ids": [
+     1414100982715,
+     1414124292715,
+     1414166602715
+    ],
+    "selection_note": "AS-036 confirmatory sample C: Tycho-2 V<6 and 6-8 search stars (Dec>=-25, |beta|<=10, 2018-03-17..2021-01-01), SHA-256('AS-036:<id>') order, alternating classes; per star the first 20 qualifying quadrant-nights (AS-035 sequence rule: E1 first, E3 last within 150 min, E2 nearest midpoint with >=15 min gaps, archived products) not in AS-035 N/R, one SkyBoT cone each; trigger = AS-022 PRIMARY object (V<=faintest maglimit-0.5, err<=1\"), rate<=1\"/min, every pairwise displacement >=3\", inside the footprint, closest approach to the star <120\" (V<6) / <60\" (6-8); <=3 triggering nights per star, earliest first. Budget per class: stop at >=15 trigger objects, 300 stars or 3000 cones. Unchanged AS-035 definitions: target rule, eligibility strata, zone (<120\" V<6, <60\" 6-8, <30\" 8-10), control (>=480\" from V<10, >=60\" from V10-11), six-stage trace with first failure; local depth descriptive only. Primary comparison: C only, PRIMARY eligible zone vs control. CONFIRMED: zone n>=20, control n>=20, zone lower, Fisher two-sided p<0.05, MH OR<1 if defined. NOT REPRODUCED: minimums met, not confirmed, Newcombe 95% lower bound of zone-control > -0.20. Otherwise INCONCLUSIVE. Pooled AS-035+036 secondary only. Strips: SHA-256 order, <=6+6 zone, 2+2 control. No outcome was looked at.",
+    "control_designations": []
+   },
+   "search_class": "6<=V<8",
+   "search_star": {
+    "tycho_id": "TYC 5807-1521-1",
+    "ra": 336.12882695,
+    "dec": -11.15660094,
+    "vt_mag": 7.98,
+    "bt_mag": 9.862,
+    "v_mag": 7.81062,
+    "position_source": "mean J2000"
+   },
+   "night_index": 7,
+   "filters": [
+    "zg",
+    "zr",
+    "zr"
+   ],
+   "minutes_from_first": [
+    0.0,
+    33.57,
+    94.5
+   ],
+   "trigger": [
+    {
+     "designation": "10011",
+     "v_magnitude": 18.1,
+     "rate_arcsec_per_min": 0.5677,
+     "closest_approach_arcsec": 51.8,
+     "positions": [
+      [
+       336.1348779608953,
+       -11.169709451827101
+      ],
+      [
+       336.14005749999995,
+       -11.168225555555555
+      ],
+      [
+       336.14945987141726,
+       -11.165531851809316
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "field": {
+    "field_id": "C28-2020-01-04-657-c4-q3",
+    "description": "AS-036 near-star confirmation: TYC 2372-2100-1 (V 7.98)",
+    "product_ids": [
+     1098132061415,
+     1098172451415,
+     1098183211415
+    ],
+    "selection_note": "AS-036 confirmatory sample C: Tycho-2 V<6 and 6-8 search stars (Dec>=-25, |beta|<=10, 2018-03-17..2021-01-01), SHA-256('AS-036:<id>') order, alternating classes; per star the first 20 qualifying quadrant-nights (AS-035 sequence rule: E1 first, E3 last within 150 min, E2 nearest midpoint with >=15 min gaps, archived products) not in AS-035 N/R, one SkyBoT cone each; trigger = AS-022 PRIMARY object (V<=faintest maglimit-0.5, err<=1\"), rate<=1\"/min, every pairwise displacement >=3\", inside the footprint, closest approach to the star <120\" (V<6) / <60\" (6-8); <=3 triggering nights per star, earliest first. Budget per class: stop at >=15 trigger objects, 300 stars or 3000 cones. Unchanged AS-035 definitions: target rule, eligibility strata, zone (<120\" V<6, <60\" 6-8, <30\" 8-10), control (>=480\" from V<10, >=60\" from V10-11), six-stage trace with first failure; local depth descriptive only. Primary comparison: C only, PRIMARY eligible zone vs control. CONFIRMED: zone n>=20, control n>=20, zone lower, Fisher two-sided p<0.05, MH OR<1 if defined. NOT REPRODUCED: minimums met, not confirmed, Newcombe 95% lower bound of zone-control > -0.20. Otherwise INCONCLUSIVE. Pooled AS-035+036 secondary only. Strips: SHA-256 order, <=6+6 zone, 2+2 control. No outcome was looked at.",
+    "control_designations": []
+   },
+   "search_class": "6<=V<8",
+   "search_star": {
+    "tycho_id": "TYC 2372-2100-1",
+    "ra": 67.21940869,
+    "dec": 30.3647909,
+    "vt_mag": 8.026,
+    "bt_mag": 8.578,
+    "v_mag": 7.976319999999999,
+    "position_source": "mean J2000"
+   },
+   "night_index": 6,
+   "filters": [
+    "zg",
+    "zr",
+    "zr"
+   ],
+   "minutes_from_first": [
+    0.0,
+    58.17,
+    73.67
+   ],
+   "trigger": [
+    {
+     "designation": "135224",
+     "v_magnitude": 18.8,
+     "rate_arcsec_per_min": 0.2336,
+     "closest_approach_arcsec": 42.17,
+     "positions": [
+      [
+       67.20812247680456,
+       30.358282651703245
+      ],
+      [
+       67.203965,
+       30.357109166666667
+      ],
+      [
+       67.20285713205149,
+       30.35679646102303
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "field": {
+    "field_id": "C29-2020-01-28-617-c2-q2",
+    "description": "AS-036 near-star confirmation: TYC 1942-375-1 (V 6.98)",
+    "product_ids": [
+     1122232630515,
+     1122260420515,
+     1122289570515
+    ],
+    "selection_note": "AS-036 confirmatory sample C: Tycho-2 V<6 and 6-8 search stars (Dec>=-25, |beta|<=10, 2018-03-17..2021-01-01), SHA-256('AS-036:<id>') order, alternating classes; per star the first 20 qualifying quadrant-nights (AS-035 sequence rule: E1 first, E3 last within 150 min, E2 nearest midpoint with >=15 min gaps, archived products) not in AS-035 N/R, one SkyBoT cone each; trigger = AS-022 PRIMARY object (V<=faintest maglimit-0.5, err<=1\"), rate<=1\"/min, every pairwise displacement >=3\", inside the footprint, closest approach to the star <120\" (V<6) / <60\" (6-8); <=3 triggering nights per star, earliest first. Budget per class: stop at >=15 trigger objects, 300 stars or 3000 cones. Unchanged AS-035 definitions: target rule, eligibility strata, zone (<120\" V<6, <60\" 6-8, <30\" 8-10), control (>=480\" from V<10, >=60\" from V10-11), six-stage trace with first failure; local depth descriptive only. Primary comparison: C only, PRIMARY eligible zone vs control. CONFIRMED: zone n>=20, control n>=20, zone lower, Fisher two-sided p<0.05, MH OR<1 if defined. NOT REPRODUCED: minimums met, not confirmed, Newcombe 95% lower bound of zone-control > -0.20. Otherwise INCONCLUSIVE. Pooled AS-035+036 secondary only. Strips: SHA-256 order, <=6+6 zone, 2+2 control. No outcome was looked at.",
+    "control_designations": []
+   },
+   "search_class": "6<=V<8",
+   "search_star": {
+    "tycho_id": "TYC 1942-375-1",
+    "ra": 129.01028822,
+    "dec": 24.05115178,
+    "vt_mag": 6.99,
+    "bt_mag": 7.083,
+    "v_mag": 6.98163,
+    "position_source": "mean J2000"
+   },
+   "night_index": 12,
+   "filters": [
+    "zg",
+    "zr",
+    "zr"
+   ],
+   "minutes_from_first": [
+    0.0,
+    40.02,
+    81.98
+   ],
+   "trigger": [
+    {
+     "designation": "125093",
+     "v_magnitude": 18.6,
+     "rate_arcsec_per_min": 0.7199,
+     "closest_approach_arcsec": 47.46,
+     "positions": [
+      [
+       129.02043541613347,
+       24.063832391595305
+      ],
+      [
+       129.01168499999997,
+       24.0642725
+      ],
+      [
+       129.00250813598146,
+       24.064734056904463
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "field": {
+    "field_id": "C30-2020-01-28-1613-c9-q2",
+    "description": "AS-036 near-star confirmation: TYC 1942-375-1 (V 6.98)",
+    "product_ids": [
+     1122257773315,
+     1122273273315,
+     1122318053315
+    ],
+    "selection_note": "AS-036 confirmatory sample C: Tycho-2 V<6 and 6-8 search stars (Dec>=-25, |beta|<=10, 2018-03-17..2021-01-01), SHA-256('AS-036:<id>') order, alternating classes; per star the first 20 qualifying quadrant-nights (AS-035 sequence rule: E1 first, E3 last within 150 min, E2 nearest midpoint with >=15 min gaps, archived products) not in AS-035 N/R, one SkyBoT cone each; trigger = AS-022 PRIMARY object (V<=faintest maglimit-0.5, err<=1\"), rate<=1\"/min, every pairwise displacement >=3\", inside the footprint, closest approach to the star <120\" (V<6) / <60\" (6-8); <=3 triggering nights per star, earliest first. Budget per class: stop at >=15 trigger objects, 300 stars or 3000 cones. Unchanged AS-035 definitions: target rule, eligibility strata, zone (<120\" V<6, <60\" 6-8, <30\" 8-10), control (>=480\" from V<10, >=60\" from V10-11), six-stage trace with first failure; local depth descriptive only. Primary comparison: C only, PRIMARY eligible zone vs control. CONFIRMED: zone n>=20, control n>=20, zone lower, Fisher two-sided p<0.05, MH OR<1 if defined. NOT REPRODUCED: minimums met, not confirmed, Newcombe 95% lower bound of zone-control > -0.20. Otherwise INCONCLUSIVE. Pooled AS-035+036 secondary only. Strips: SHA-256 order, <=6+6 zone, 2+2 control. No outcome was looked at.",
+    "control_designations": []
+   },
+   "search_class": "6<=V<8",
+   "search_star": {
+    "tycho_id": "TYC 1942-375-1",
+    "ra": 129.01028822,
+    "dec": 24.05115178,
+    "vt_mag": 6.99,
+    "bt_mag": 7.083,
+    "v_mag": 6.98163,
+    "position_source": "mean J2000"
+   },
+   "night_index": 13,
+   "filters": [
+    "zr",
+    "zr",
+    "zr"
+   ],
+   "minutes_from_first": [
+    0.0,
+    22.32,
+    86.8
+   ],
+   "trigger": [
+    {
+     "designation": "125093",
+     "v_magnitude": 18.6,
+     "rate_arcsec_per_min": 0.7206,
+     "closest_approach_arcsec": 47.58,
+     "positions": [
+      [
+       129.0122479570156,
+       24.064247533608384
+      ],
+      [
+       129.0073625,
+       24.064487500000002
+      ],
+      [
+       128.99324613123818,
+       24.065180875064755
+      ]
+     ]
+    }
+   ]
+  }
+ ],
+ "stars_examined": [
+  66,
+  172
+ ],
+ "skybot_queries": [
+  675,
+  1741
+ ],
+ "triggers": [
+  15,
+  15
+ ],
+ "class_outcome": [
+  "done: 15 trigger objects",
+  "done: 15 trigger objects"
+ ],
+ "log": [
+  {
+   "star": "TYC 6232-1333-1",
+   "v_mag": 2.4661999999999997,
+   "search_class": "V<6",
+   "qualifying_nights": 18,
+   "examined_nights": 18,
+   "skybot_queries": 18,
+   "outcome": "no triggering night",
+   "nights": []
+  },
+  {
+   "star": "TYC 6152-847-1",
+   "v_mag": 7.55103,
+   "search_class": "6<=V<8",
+   "qualifying_nights": 0,
+   "examined_nights": 0,
+   "skybot_queries": 0,
+   "outcome": "no triggering night",
+   "nights": []
+  },
+  {
+   "star": "TYC 6291-1685-1",
+   "v_mag": 5.54983,
+   "search_class": "V<6",
+   "qualifying_nights": 30,
+   "examined_nights": 20,
+   "skybot_queries": 20,
+   "outcome": "no triggering night",
+   "nights": []
+  },
+  {
+   "star": "TYC 1274-566-1",
+   "v_mag": 7.409409999999999,
+   "search_class": "6<=V<8",
+   "qualifying_nights": 16,
+   "examined_nights": 16,
+   "skybot_queries": 16,
+   "outcome": "no triggering night",
+   "nights": [
+    {
+     "night_index": 15,
+     "key": [
+      "559",
+      "10",
+      "4",
+      "2020-08-29"
+     ],
+     "outcome": "SkyBoT error: SkyBoT reported an error: SkyBoT asteroid conesearch -> numIntAstromJ2000_para[1]: computeEphemeris: \nProgram received signal SIGBUS: Access to an undefined por",
+     "triggers": 0
+    }
+   ]
+  },
+  {
+   "star": "TYC 4669-997-1",
+   "v_mag": 4.404999999999999,
+   "search_class": "V<6",
+   "qualifying_nights": 17,
+   "examined_nights": 17,
+   "skybot_queries": 17,
+   "outcome": "no triggering night",
+   "nights": []
+  },
+  {
+   "star": "TYC 2423-824-1",
+   "v_mag": 7.08595,
+   "search_class": "6<=V<8",
+   "qualifying_nights": 41,
+   "examined_nights": 20,
+   "skybot_queries": 20,
+   "outcome": "no triggering night",
+   "nights": [
+    {
+     "night_index": 7,
+     "key": [
+      "660",
+      "8",
+      "3",
+      "2019-11-03"
+     ],
+     "outcome": "SkyBoT error: SkyBoT reported an error: SkyBoT asteroid conesearch -> numIntAstromJ2000_para[1]: computeEphemeris: \nProgram received signal SIGBUS: Access to an undefined por",
+     "triggers": 0
+    }
+   ]
+  },
+  {
+   "star": "TYC 6281-2005-1",
+   "v_mag": 5.0902199999999995,
+   "search_class": "V<6",
+   "qualifying_nights": 13,
+   "examined_nights": 13,
+   "skybot_queries": 13,
+   "outcome": "no triggering night",
+   "nights": [
+    {
+     "night_index": 8,
+     "key": [
+      "334",
+      "11",
+      "1",
+      "2019-08-27"
+     ],
+     "outcome": "SkyBoT error: SkyBoT reported an error: SkyBoT asteroid conesearch -> numIntAstromJ2000_para[1]: computeEphemeris: \nProgram received signal SIGBUS: Access to an undefined por",
+     "triggers": 0
+    }
+   ]
+  },
+  {
+   "star": "TYC 867-523-1",
+   "v_mag": 7.06418,
+   "search_class": "6<=V<8",
+   "qualifying_nights": 0,
+   "examined_nights": 0,
+   "skybot_queries": 0,
+   "outcome": "no triggering night",
+   "nights": []
+  },
+  {
+   "star": "TYC 1791-1519-1",
+   "v_mag": 5.763179999999999,
+   "search_class": "V<6",
+   "qualifying_nights": 23,
+   "examined_nights": 20,
+   "skybot_queries": 20,
+   "outcome": "no triggering night",
+   "nights": []
+  },
+  {
+   "star": "TYC 4674-743-1",
+   "v_mag": 7.66342,
+   "search_class": "6<=V<8",
+   "qualifying_nights": 0,
+   "examined_nights": 0,
+   "skybot_queries": 0,
+   "outcome": "no triggering night",
+   "nights": []
+  },
+  {
+   "star": "TYC 4983-1616-1",
+   "v_mag": 5.43298,
+   "search_class": "V<6",
+   "qualifying_nights": 12,
+   "examined_nights": 12,
+   "skybot_queries": 12,
+   "outcome": "no triggering night",
+   "nights": []
+  },
+  {
+   "star": "TYC 6266-1670-1",
+   "v_mag": 7.950749999999999,
+   "search_class": "6<=V<8",
+   "qualifying_nights": 31,
+   "examined_nights": 20,
+   "skybot_queries": 20,
+   "outcome": "selected C1-2020-06-17-333-c11-q1",
+   "nights": [
+    {
+     "night_index": 18,
+     "key": [
+      "333",
+      "11",
+      "1",
+      "2020-06-17"
+     ],
+     "outcome": "selected as C1-2020-06-17-333-c11-q1",
+     "triggers": 1
+    }
+   ]
+  },
+  {
+   "star": "TYC 5587-1059-1",
+   "v_mag": 5.46554,
+   "search_class": "V<6",
+   "qualifying_nights": 0,
+   "examined_nights": 0,
+   "skybot_queries": 0,
+   "outcome": "no triggering night",
+   "nights": []
+  },
+  {
+   "star": "TYC 604-294-1",
+   "v_mag": 7.966959999999999,
+   "search_class": "6<=V<8",
+   "qualifying_nights": 22,
+   "examined_nights": 20,
+   "skybot_queries": 20,
+   "outcome": "no triggering night",
+   "nights": []
+  },
+  {
+   "star": "TYC 727-1683-1",
+   "v_mag": 5.722980000000001,
+   "search_class": "V<6",
+   "qualifying_nights": 9,
+   "examined_nights": 9,
+   "skybot_queries": 9,
+   "outcome": "no triggering night",
+   "nights": []
+  },
+  {
+   "star": "TYC 6780-1467-1",
+   "v_mag": 7.256,
+   "search_class": "6<=V<8",
+   "qualifying_nights": 0,
+   "examined_nights": 0,
+   "skybot_queries": 0,
+   "outcome": "no triggering night",
+   "nights": []
+  },
+  {
+   "star": "TYC 1947-1495-1",
+   "v_mag": 5.58598,
+   "search_class": "V<6",
+   "qualifying_nights": 0,
+   "examined_nights": 0,
+   "skybot_queries": 0,
+   "outcome": "no triggering night",
+   "nights": []
+  },
+  {
+   "star": "TYC 5251-78-1",
+   "v_mag": 6.39074,
+   "search_class": "6<=V<8",
+   "qualifying_nights": 8,
+   "examined_nights": 8,
+   "skybot_queries": 8,
+   "outcome": "no triggering night",
+   "nights": []
+  },
+  {
+   "star": "TYC 6127-581-1",
+   "v_mag": 5.43931,
+   "search_class": "V<6",
+   "qualifying_nights": 0,
+   "examined_nights": 0,
+   "skybot_queries": 0,
+   "outcome": "no triggering night",
+   "nights": []
+  },
+  {
+   "star": "TYC 32-555-1",
+   "v_mag": 7.80038,
+   "search_class": "6<=V<8",
+   "qualifying_nights": 27,
+   "examined_nights": 20,
+   "skybot_queries": 20,
+   "outcome": "no triggering night",
+   "nights": []
+  },
+  {
+   "star": "TYC 1220-1929-1",
+   "v_mag": 5.23579,
+   "search_class": "V<6",
+   "qualifying_nights": 55,
+   "examined_nights": 20,
+   "skybot_queries": 20,
+   "outcome": "no triggering night",
+   "nights": [
+    {
+     "night_index": 0,
+     "key": [
+      "554",
+      "13",
+      "3",
+      "2018-08-08"
+     ],
+     "outcome": "products missing",
+     "triggers": 1
+    },
+    {
+     "night_index": 4,
+     "key": [
+      "554",
+      "13",
+      "3",
+      "2018-09-05"
+     ],
+     "outcome": "products missing",
+     "triggers": 1
+    }
+   ]
+  },
+  {
+   "star": "TYC 6252-2245-1",
+   "v_mag": 7.51201,
+   "search_class": "6<=V<8",
+   "qualifying_nights": 19,
+   "examined_nights": 19,
+   "skybot_queries": 19,
+   "outcome": "no triggering night",
+   "nights": []
+  },
+  {
+   "star": "TYC 4982-1645-1",
+   "v_mag": 4.07641,
+   "search_class": "V<6",
+   "qualifying_nights": 19,
+   "examined_nights": 19,
+   "skybot_queries": 19,
+   "outcome": "no triggering night",
+   "nights": []
+  },
+  {
+   "star": "TYC 6177-609-1",
+   "v_mag": 7.21854,
+   "search_class": "6<=V<8",
+   "qualifying_nights": 0,
+   "examined_nights": 0,
+   "skybot_queries": 0,
+   "outcome": "no triggering night",
+   "nights": []
+  },
+  {
+   "star": "TYC 5226-1606-1",
+   "v_mag": 3.83105,
+   "search_class": "V<6",
+   "qualifying_nights": 0,
+   "examined_nights": 0,
+   "skybot_queries": 0,
+   "outcome": "no triggering night",
+   "nights": []
+  },
+  {
+   "star": "TYC 5555-494-1",
+   "v_mag": 7.15824,
+   "search_class": "6<=V<8",
+   "qualifying_nights": 18,
+   "examined_nights": 18,
+   "skybot_queries": 18,
+   "outcome": "no triggering night",
+   "nights": []
+  },
+  {
+   "star": "TYC 6208-1622-1",
+   "v_mag": 4.5170900000000005,
+   "search_class": "V<6",
+   "qualifying_nights": 0,
+   "examined_nights": 0,
+   "skybot_queries": 0,
+   "outcome": "no triggering night",
+   "nights": []
+  },
+  {
+   "star": "TYC 5215-783-1",
+   "v_mag": 7.69153,
+   "search_class": "6<=V<8",
+   "qualifying_nights": 7,
+   "examined_nights": 7,
+   "skybot_queries": 7,
+   "outcome": "no triggering night",
+   "nights": []
+  },
+  {
+   "star": "TYC 1201-1725-1",
+   "v_mag": 5.353000000000001,
+   "search_class": "V<6",
+   "qualifying_nights": 38,
+   "examined_nights": 20,
+   "skybot_queries": 20,
+   "outcome": "selected C2-2019-08-01-553-c11-q3",
+   "nights": [
+    {
+     "night_index": 12,
+     "key": [
+      "553",
+      "11",
+      "3",
+      "2019-08-01"
+     ],
+     "outcome": "selected as C2-2019-08-01-553-c11-q3",
+     "triggers": 1
+    }
+   ]
+  },
+  {
+   "star": "TYC 244-1722-1",
+   "v_mag": 6.6919900000000005,
+   "search_class": "6<=V<8",
+   "qualifying_nights": 9,
+   "examined_nights": 9,
+   "skybot_queries": 9,
+   "outcome": "no triggering night",
+   "nights": []
+  },
+  {
+   "star": "TYC 1278-2001-1",
+   "v_mag": 5.840809999999999,
+   "search_class": "V<6",
+   "qualifying_nights": 16,
+   "examined_nights": 16,
+   "skybot_queries": 16,
+   "outcome": "selected C3-2018-12-13-559-c9-q2",
+   "nights": [
+    {
+     "night_index": 3,
+     "key": [
+      "559",
+      "9",
+      "2",
+      "2018-11-09"
+     ],
+     "outcome": "SkyBoT error: SkyBoT reported an error: SkyBoT asteroid conesearch -> numIntAstromJ2000_para[1]: computeEphemeris: \nProgram received signal SIGBUS: Access to an undefined por",
+     "triggers": 0
+    },
+    {
+     "night_index": 6,
+     "key": [
+      "559",
+      "9",
+      "2",
+      "2018-12-13"
+     ],
+     "outcome": "selected as C3-2018-12-13-559-c9-q2",
+     "triggers": 1
+    }
+   ]
+  },
+  {
+   "star": "TYC 5565-836-1",
+   "v_mag": 6.64496,
+   "search_class": "6<=V<8",
+   "qualifying_nights": 1,
+   "examined_nights": 1,
+   "skybot_queries": 1,
+   "outcome": "no triggering night",
+   "nights": []
+  },
+  {
+   "star": "TYC 1266-1417-1",
+   "v_mag": 5.77994,
+   "search_class": "V<6",
+   "qualifying_nights": 15,
+   "examined_nights": 15,
+   "skybot_queries": 15,
+   "outcome": "no triggering night",
+   "nights": []
+  },
+  {
+   "star": "TYC 1395-1928-1",
+   "v_mag": 7.44425,
+   "search_class": "6<=V<8",
+   "qualifying_nights": 37,
+   "examined_nights": 20,
+   "skybot_queries": 20,
+   "outcome": "no triggering night",
+   "nights": []
+  },
+  {
+   "star": "TYC 6297-1419-1",
+   "v_mag": 4.57315,
+   "search_class": "V<6",
+   "qualifying_nights": 13,
+   "examined_nights": 13,
+   "skybot_queries": 13,
+   "outcome": "selected C4-2019-08-20-335-c11-q1",
+   "nights": [
+    {
+     "night_index": 1,
+     "key": [
+      "335",
+      "11",
+      "1",
+      "2019-08-20"
+     ],
+     "outcome": "selected as C4-2019-08-20-335-c11-q1",
+     "triggers": 1
+    }
+   ]
+  },
+  {
+   "star": "TYC 16-724-1",
+   "v_mag": 7.64569,
+   "search_class": "6<=V<8",
+   "qualifying_nights": 12,
+   "examined_nights": 12,
+   "skybot_queries": 12,
+   "outcome": "selected C5-2020-09-21-447-c9-q1",
+   "nights": [
+    {
+     "night_index": 10,
+     "key": [
+      "447",
+      "9",
+      "1",
+      "2020-09-21"
+     ],
+     "outcome": "selected as C5-2020-09-21-447-c9-q1",
+     "triggers": 1
+    }
+   ]
+  },
+  {
+   "star": "TYC 5796-1288-1",
+   "v_mag": 5.56627,
+   "search_class": "V<6",
+   "qualifying_nights": 11,
+   "examined_nights": 11,
+   "skybot_queries": 11,
+   "outcome": "no triggering night",
+   "nights": []
+  },
+  {
+   "star": "TYC 5547-1411-1",
+   "v_mag": 7.917529999999999,
+   "search_class": "6<=V<8",
+   "qualifying_nights": 7,
+   "examined_nights": 7,
+   "skybot_queries": 7,
+   "outcome": "no triggering night",
+   "nights": []
+  },
+  {
+   "star": "TYC 6279-1723-1",
+   "v_mag": 5.86921,
+   "search_class": "V<6",
+   "qualifying_nights": 16,
+   "examined_nights": 16,
+   "skybot_queries": 16,
+   "outcome": "selected C6-2018-07-12-283-c15-q1",
+   "nights": [
+    {
+     "night_index": 1,
+     "key": [
+      "283",
+      "15",
+      "1",
+      "2018-07-12"
+     ],
+     "outcome": "selected as C6-2018-07-12-283-c15-q1",
+     "triggers": 1
+    },
+    {
+     "night_index": 5,
+     "key": [
+      "283",
+      "15",
+      "1",
+      "2019-08-21"
+     ],
+     "outcome": "SkyBoT error: SkyBoT reported an error: SkyBoT asteroid conesearch -> numIntAstromJ2000_para[1]: computeEphemeris: \nProgram received signal SIGBUS: Access to an undefined por",
+     "triggers": 0
+    }
+   ]
+  },
+  {
+   "star": "TYC 1228-544-1",
+   "v_mag": 7.64129,
+   "search_class": "6<=V<8",
+   "qualifying_nights": 19,
+   "examined_nights": 19,
+   "skybot_queries": 19,
+   "outcome": "no triggering night",
+   "nights": []
+  },
+  {
+   "star": "TYC 1310-2697-1",
+   "v_mag": 2.94648,
+   "search_class": "V<6",
+   "qualifying_nights": 9,
+   "examined_nights": 9,
+   "skybot_queries": 9,
+   "outcome": "no triggering night",
+   "nights": []
+  },
+  {
+   "star": "TYC 1961-255-1",
+   "v_mag": 7.99798,
+   "search_class": "6<=V<8",
+   "qualifying_nights": 44,
+   "examined_nights": 20,
+   "skybot_queries": 20,
+   "outcome": "no triggering night",
+   "nights": []
+  },
+  {
+   "star": "TYC 6180-855-1",
+   "v_mag": 5.76453,
+   "search_class": "V<6",
+   "qualifying_nights": 0,
+   "examined_nights": 0,
+   "skybot_queries": 0,
+   "outcome": "no triggering night",
+   "nights": []
+  },
+  {
+   "star": "TYC 1782-90-1",
+   "v_mag": 7.0728,
+   "search_class": "6<=V<8",
+   "qualifying_nights": 23,
+   "examined_nights": 20,
+   "skybot_queries": 20,
+   "outcome": "no triggering night",
+   "nights": [
+    {
+     "night_index": 6,
+     "key": [
+      "606",
+      "3",
+      "4",
+      "2019-10-28"
+     ],
+     "outcome": "SkyBoT error: SkyBoT reported an error: SkyBoT asteroid conesearch -> numIntAstromJ2000_para[1]: computeEphemeris: \nProgram received signal SIGBUS: Access to an undefined por",
+     "triggers": 0
+    }
+   ]
+  },
+  {
+   "star": "TYC 1171-1694-1",
+   "v_mag": 5.803870000000001,
+   "search_class": "V<6",
+   "qualifying_nights": 21,
+   "examined_nights": 20,
+   "skybot_queries": 20,
+   "outcome": "no triggering night",
+   "nights": []
+  },
+  {
+   "star": "TYC 6313-2300-1",
+   "v_mag": 7.6628,
+   "search_class": "6<=V<8",
+   "qualifying_nights": 1,
+   "examined_nights": 1,
+   "skybot_queries": 1,
+   "outcome": "no triggering night",
+   "nights": []
+  },
+  {
+   "star": "TYC 1280-1437-1",
+   "v_mag": 5.77111,
+   "search_class": "V<6",
+   "qualifying_nights": 17,
+   "examined_nights": 17,
+   "skybot_queries": 17,
+   "outcome": "no triggering night",
+   "nights": []
+  },
+  {
+   "star": "TYC 5791-1167-1",
+   "v_mag": 7.3008,
+   "search_class": "6<=V<8",
+   "qualifying_nights": 3,
+   "examined_nights": 3,
+   "skybot_queries": 3,
+   "outcome": "no triggering night",
+   "nights": []
+  },
+  {
+   "star": "TYC 1346-1397-1",
+   "v_mag": 5.0926100000000005,
+   "search_class": "V<6",
+   "qualifying_nights": 15,
+   "examined_nights": 15,
+   "skybot_queries": 15,
+   "outcome": "selected C7-2019-01-25-565-c3-q2",
+   "nights": [
+    {
+     "night_index": 2,
+     "key": [
+      "565",
+      "3",
+      "2",
+      "2019-01-25"
+     ],
+     "outcome": "selected as C7-2019-01-25-565-c3-q2",
+     "triggers": 1
+    }
+   ]
+  },
+  {
+   "star": "TYC 6277-1071-1",
+   "v_mag": 7.28835,
+   "search_class": "6<=V<8",
+   "qualifying_nights": 0,
+   "examined_nights": 0,
+   "skybot_queries": 0,
+   "outcome": "no triggering night",
+   "nights": []
+  },
+  {
+   "star": "TYC 1758-2417-1",
+   "v_mag": 5.02405,
+   "search_class": "V<6",
+   "qualifying_nights": 111,
+   "examined_nights": 20,
+   "skybot_queries": 20,
+   "outcome": "no triggering night",
+   "nights": []
+  },
+  {
+   "star": "TYC 6383-1658-1",
+   "v_mag": 6.10757,
+   "search_class": "6<=V<8",
+   "qualifying_nights": 0,
+   "examined_nights": 0,
+   "skybot_queries": 0,
+   "outcome": "no triggering night",
+   "nights": []
+  },
+  {
+   "star": "TYC 4666-935-1",
+   "v_mag": 5.09487,
+   "search_class": "V<6",
+   "qualifying_nights": 17,
+   "examined_nights": 17,
+   "skybot_queries": 17,
+   "outcome": "no triggering night",
+   "nights": []
+  },
+  {
+   "star": "TYC 1407-809-1",
+   "v_mag": 6.0191,
+   "search_class": "6<=V<8",
+   "qualifying_nights": 9,
+   "examined_nights": 9,
+   "skybot_queries": 9,
+   "outcome": "no triggering night",
+   "nights": []
+  },
+  {
+   "star": "TYC 2452-2167-1",
+   "v_mag": 4.1673100000000005,
+   "search_class": "V<6",
+   "qualifying_nights": 39,
+   "examined_nights": 20,
+   "skybot_queries": 20,
+   "outcome": "no triggering night",
+   "nights": []
+  },
+  {
+   "star": "TYC 1891-153-1",
+   "v_mag": 6.85188,
+   "search_class": "6<=V<8",
+   "qualifying_nights": 19,
+   "examined_nights": 19,
+   "skybot_queries": 19,
+   "outcome": "no triggering night",
+   "nights": []
+  },
+  {
+   "star": "TYC 6345-1577-1",
+   "v_mag": 5.87509,
+   "search_class": "V<6",
+   "qualifying_nights": 1,
+   "examined_nights": 1,
+   "skybot_queries": 1,
+   "outcome": "no triggering night",
+   "nights": []
+  },
+  {
+   "star": "TYC 5730-1773-1",
+   "v_mag": 7.6108,
+   "search_class": "6<=V<8",
+   "qualifying_nights": 14,
+   "examined_nights": 14,
+   "skybot_queries": 14,
+   "outcome": "no triggering night",
+   "nights": []
+  },
+  {
+   "star": "TYC 6780-1608-1",
+   "v_mag": 5.8591999999999995,
+   "search_class": "V<6",
+   "qualifying_nights": 0,
+   "examined_nights": 0,
+   "skybot_queries": 0,
+   "outcome": "no triggering night",
+   "nights": []
+  },
+  {
+   "star": "TYC 286-973-1",
+   "v_mag": 6.39625,
+   "search_class": "6<=V<8",
+   "qualifying_nights": 3,
+   "examined_nights": 3,
+   "skybot_queries": 3,
+   "outcome": "no triggering night",
+   "nights": []
+  },
+  {
+   "star": "TYC 1262-1645-1",
+   "v_mag": 4.35095,
+   "search_class": "V<6",
+   "qualifying_nights": 17,
+   "examined_nights": 17,
+   "skybot_queries": 17,
+   "outcome": "no triggering night",
+   "nights": [
+    {
+     "night_index": 4,
+     "key": [
+      "558",
+      "14",
+      "1",
+      "2019-10-30"
+     ],
+     "outcome": "products missing",
+     "triggers": 1
+    }
+   ]
+  },
+  {
+   "star": "TYC 6192-762-1",
+   "v_mag": 7.66508,
+   "search_class": "6<=V<8",
+   "qualifying_nights": 0,
+   "examined_nights": 0,
+   "skybot_queries": 0,
+   "outcome": "no triggering night",
+   "nights": []
+  },
+  {
+   "star": "TYC 6370-1176-1",
+   "v_mag": 4.50463,
+   "search_class": "V<6",
+   "qualifying_nights": 0,
+   "examined_nights": 0,
+   "skybot_queries": 0,
+   "outcome": "no triggering night",
+   "nights": []
+  },
+  {
+   "star": "TYC 6213-1945-1",
+   "v_mag": 7.06487,
+   "search_class": "6<=V<8",
+   "qualifying_nights": 0,
+   "examined_nights": 0,
+   "skybot_queries": 0,
+   "outcome": "no triggering night",
+   "nights": []
+  },
+  {
+   "star": "TYC 6794-549-1",
+   "v_mag": 5.04981,
+   "search_class": "V<6",
+   "qualifying_nights": 0,
+   "examined_nights": 0,
+   "skybot_queries": 0,
+   "outcome": "no triggering night",
+   "nights": []
+  },
+  {
+   "star": "TYC 830-1128-1",
+   "v_mag": 7.32472,
+   "search_class": "6<=V<8",
+   "qualifying_nights": 5,
+   "examined_nights": 5,
+   "skybot_queries": 5,
+   "outcome": "no triggering night",
+   "nights": []
+  },
+  {
+   "star": "TYC 1265-1170-1",
+   "v_mag": 3.83673,
+   "search_class": "V<6",
+   "qualifying_nights": 16,
+   "examined_nights": 16,
+   "skybot_queries": 16,
+   "outcome": "no triggering night",
+   "nights": []
+  },
+  {
+   "star": "TYC 1878-363-1",
+   "v_mag": 7.29663,
+   "search_class": "6<=V<8",
+   "qualifying_nights": 19,
+   "examined_nights": 19,
+   "skybot_queries": 19,
+   "outcome": "selected C8-2020-11-14-613-c4-q2",
+   "nights": [
+    {
+     "night_index": 18,
+     "key": [
+      "613",
+      "4",
+      "2",
+      "2020-11-14"
+     ],
+     "outcome": "selected as C8-2020-11-14-613-c4-q2",
+     "triggers": 1
+    }
+   ]
+  },
+  {
+   "star": "TYC 5549-1342-1",
+   "v_mag": 5.564159999999999,
+   "search_class": "V<6",
+   "qualifying_nights": 14,
+   "examined_nights": 14,
+   "skybot_queries": 14,
+   "outcome": "selected C9-2020-04-17-373-c1-q1",
+   "nights": [
+    {
+     "night_index": 11,
+     "key": [
+      "373",
+      "1",
+      "1",
+      "2020-04-17"
+     ],
+     "outcome": "selected as C9-2020-04-17-373-c1-q1",
+     "triggers": 1
+    }
+   ]
+  },
+  {
+   "star": "TYC 681-911-1",
+   "v_mag": 7.979019999999999,
+   "search_class": "6<=V<8",
+   "qualifying_nights": 9,
+   "examined_nights": 9,
+   "skybot_queries": 9,
+   "outcome": "no triggering night",
+   "nights": []
+  },
+  {
+   "star": "TYC 5819-1247-1",
+   "v_mag": 4.041530000000001,
+   "search_class": "V<6",
+   "qualifying_nights": 3,
+   "examined_nights": 3,
+   "skybot_queries": 3,
+   "outcome": "no triggering night",
+   "nights": []
+  },
+  {
+   "star": "TYC 606-1511-1",
+   "v_mag": 6.76217,
+   "search_class": "6<=V<8",
+   "qualifying_nights": 35,
+   "examined_nights": 20,
+   "skybot_queries": 20,
+   "outcome": "no triggering night",
+   "nights": []
+  },
+  {
+   "star": "TYC 813-1445-1",
+   "v_mag": 5.888660000000001,
+   "search_class": "V<6",
+   "qualifying_nights": 18,
+   "examined_nights": 18,
+   "skybot_queries": 18,
+   "outcome": "no triggering night",
+   "nights": [
+    {
+     "night_index": 5,
+     "key": [
+      "517",
+      "9",
+      "4",
+      "2019-12-13"
+     ],
+     "outcome": "SkyBoT error: SkyBoT reported an error: SkyBoT asteroid conesearch -> numIntAstromJ2000_para[1]: computeEphemeris: \nProgram received signal SIGBUS: Access to an undefined por",
+     "triggers": 0
+    },
+    {
+     "night_index": 6,
+     "key": [
+      "517",
+      "9",
+      "4",
+      "2019-12-29"
+     ],
+     "outcome": "SkyBoT error: SkyBoT reported an error: SkyBoT asteroid conesearch -> numIntAstromJ2000_para[1]: computeEphemeris: \nProgram received signal SIGBUS: Access to an undefined por",
+     "triggers": 0
+    }
+   ]
+  },
+  {
+   "star": "TYC 1394-755-1",
+   "v_mag": 7.37508,
+   "search_class": "6<=V<8",
+   "qualifying_nights": 1,
+   "examined_nights": 1,
+   "skybot_queries": 1,
+   "outcome": "no triggering night",
+   "nights": []
+  },
+  {
+   "star": "TYC 4930-1093-1",
+   "v_mag": 4.31095,
+   "search_class": "V<6",
+   "qualifying_nights": 0,
+   "examined_nights": 0,
+   "skybot_queries": 0,
+   "outcome": "no triggering night",
+   "nights": []
+  },
+  {
+   "star": "TYC 605-1062-1",
+   "v_mag": 7.85391,
+   "search_class": "6<=V<8",
+   "qualifying_nights": 21,
+   "examined_nights": 20,
+   "skybot_queries": 20,
+   "outcome": "no triggering night",
+   "nights": []
+  },
+  {
+   "star": "TYC 6893-2132-1",
+   "v_mag": 4.59366,
+   "search_class": "V<6",
+   "qualifying_nights": 1,
+   "examined_nights": 1,
+   "skybot_queries": 1,
+   "outcome": "no triggering night",
+   "nights": []
+  },
+  {
+   "star": "TYC 5207-130-1",
+   "v_mag": 7.529129999999999,
+   "search_class": "6<=V<8",
+   "qualifying_nights": 3,
+   "examined_nights": 3,
+   "skybot_queries": 3,
+   "outcome": "no triggering night",
+   "nights": [
+    {
+     "night_index": 2,
+     "key": [
+      "390",
+      "15",
+      "3",
+      "2019-09-28"
+     ],
+     "outcome": "SkyBoT error: SkyBoT reported an error: SkyBoT asteroid conesearch -> numIntAstromJ2000_para[1]: computeEphemeris: \nProgram received signal SIGBUS: Access to an undefined por",
+     "triggers": 0
+    }
+   ]
+  },
+  {
+   "star": "TYC 3-1464-1",
+   "v_mag": 5.7775099999999995,
+   "search_class": "V<6",
+   "qualifying_nights": 12,
+   "examined_nights": 12,
+   "skybot_queries": 12,
+   "outcome": "selected C10-2020-08-14-447-c2-q1, C11-2020-08-27-447-c2-q1",
+   "nights": [
+    {
+     "night_index": 6,
+     "key": [
+      "447",
+      "2",
+      "1",
+      "2020-08-14"
+     ],
+     "outcome": "selected as C10-2020-08-14-447-c2-q1",
+     "triggers": 1
+    },
+    {
+     "night_index": 8,
+     "key": [
+      "447",
+      "2",
+      "1",
+      "2020-08-27"
+     ],
+     "outcome": "selected as C11-2020-08-27-447-c2-q1",
+     "triggers": 1
+    }
+   ]
+  },
+  {
+   "star": "TYC 6924-1003-1",
+   "v_mag": 7.97542,
+   "search_class": "6<=V<8",
+   "qualifying_nights": 0,
+   "examined_nights": 0,
+   "skybot_queries": 0,
+   "outcome": "no triggering night",
+   "nights": []
+  },
+  {
+   "star": "TYC 6750-1742-1",
+   "v_mag": 5.69191,
+   "search_class": "V<6",
+   "qualifying_nights": 0,
+   "examined_nights": 0,
+   "skybot_queries": 0,
+   "outcome": "no triggering night",
+   "nights": []
+  },
+  {
+   "star": "TYC 1252-844-1",
+   "v_mag": 7.502140000000001,
+   "search_class": "6<=V<8",
+   "qualifying_nights": 17,
+   "examined_nights": 17,
+   "skybot_queries": 17,
+   "outcome": "selected C12-2019-11-01-558-c7-q3",
+   "nights": [
+    {
+     "night_index": 3,
+     "key": [
+      "558",
+      "7",
+      "3",
+      "2018-11-12"
+     ],
+     "outcome": "SkyBoT error: SkyBoT reported an error: SkyBoT asteroid conesearch -> numIntAstromJ2000_para[1]: computeEphemeris: \nProgram received signal SIGBUS: Access to an undefined por",
+     "triggers": 0
+    },
+    {
+     "night_index": 6,
+     "key": [
+      "558",
+      "7",
+      "3",
+      "2019-11-01"
+     ],
+     "outcome": "selected as C12-2019-11-01-558-c7-q3",
+     "triggers": 1
+    }
+   ]
+  },
+  {
+   "star": "TYC 661-1403-1",
+   "v_mag": 5.0680499999999995,
+   "search_class": "V<6",
+   "qualifying_nights": 10,
+   "examined_nights": 10,
+   "skybot_queries": 10,
+   "outcome": "no triggering night",
+   "nights": []
+  },
+  {
+   "star": "TYC 288-507-1",
+   "v_mag": 7.72201,
+   "search_class": "6<=V<8",
+   "qualifying_nights": 9,
+   "examined_nights": 9,
+   "skybot_queries": 9,
+   "outcome": "no triggering night",
+   "nights": []
+  },
+  {
+   "star": "TYC 6138-15-1",
+   "v_mag": 4.95303,
+   "search_class": "V<6",
+   "qualifying_nights": 4,
+   "examined_nights": 4,
+   "skybot_queries": 4,
+   "outcome": "no triggering night",
+   "nights": []
+  },
+  {
+   "star": "TYC 5248-1384-1",
+   "v_mag": 7.69768,
+   "search_class": "6<=V<8",
+   "qualifying_nights": 3,
+   "examined_nights": 3,
+   "skybot_queries": 3,
+   "outcome": "selected C13-2018-09-16-393-c14-q1",
+   "nights": [
+    {
+     "night_index": 2,
+     "key": [
+      "393",
+      "14",
+      "1",
+      "2018-09-16"
+     ],
+     "outcome": "selected as C13-2018-09-16-393-c14-q1",
+     "triggers": 1
+    }
+   ]
+  },
+  {
+   "star": "TYC 6116-1517-1",
+   "v_mag": 4.737819999999999,
+   "search_class": "V<6",
+   "qualifying_nights": 0,
+   "examined_nights": 0,
+   "skybot_queries": 0,
+   "outcome": "no triggering night",
+   "nights": []
+  },
+  {
+   "star": "TYC 817-1299-1",
+   "v_mag": 7.069,
+   "search_class": "6<=V<8",
+   "qualifying_nights": 11,
+   "examined_nights": 11,
+   "skybot_queries": 11,
+   "outcome": "selected C14-2019-02-08-518-c16-q4",
+   "nights": [
+    {
+     "night_index": 2,
+     "key": [
+      "518",
+      "16",
+      "4",
+      "2019-02-08"
+     ],
+     "outcome": "selected as C14-2019-02-08-518-c16-q4",
+     "triggers": 1
+    }
+   ]
+  },
+  {
+   "star": "TYC 268-1067-1",
+   "v_mag": 4.62859,
+   "search_class": "V<6",
+   "qualifying_nights": 1,
+   "examined_nights": 1,
+   "skybot_queries": 1,
+   "outcome": "no triggering night",
+   "nights": []
+  },
+  {
+   "star": "TYC 609-359-1",
+   "v_mag": 7.90044,
+   "search_class": "6<=V<8",
+   "qualifying_nights": 34,
+   "examined_nights": 20,
+   "skybot_queries": 20,
+   "outcome": "selected C15-2019-01-04-500-c15-q4",
+   "nights": [
+    {
+     "night_index": 4,
+     "key": [
+      "500",
+      "15",
+      "4",
+      "2018-08-21"
+     ],
+     "outcome": "SkyBoT error: SkyBoT reported an error: SkyBoT asteroid conesearch -> numIntAstromJ2000_para[1]: computeEphemeris: \nProgram received signal SIGBUS: Access to an undefined por",
+     "triggers": 0
+    },
+    {
+     "night_index": 13,
+     "key": [
+      "500",
+      "15",
+      "4",
+      "2019-01-04"
+     ],
+     "outcome": "selected as C15-2019-01-04-500-c15-q4",
+     "triggers": 1
+    }
+   ]
+  },
+  {
+   "star": "TYC 6299-2609-1",
+   "v_mag": 5.303100000000001,
+   "search_class": "V<6",
+   "qualifying_nights": 1,
+   "examined_nights": 1,
+   "skybot_queries": 1,
+   "outcome": "no triggering night",
+   "nights": []
+  },
+  {
+   "star": "TYC 5704-906-1",
+   "v_mag": 7.9687399999999995,
+   "search_class": "6<=V<8",
+   "qualifying_nights": 34,
+   "examined_nights": 20,
+   "skybot_queries": 20,
+   "outcome": "no triggering night",
+   "nights": [
+    {
+     "night_index": 11,
+     "key": [
+      "333",
+      "13",
+      "1",
+      "2019-08-03"
+     ],
+     "outcome": "SkyBoT error: SkyBoT reported an error: SkyBoT asteroid conesearch -> numIntAstromJ2000_para[1]: computeEphemeris: \nProgram received signal SIGBUS: Access to an undefined por",
+     "triggers": 0
+    }
+   ]
+  },
+  {
+   "star": "TYC 1326-1732-1",
+   "v_mag": 5.92898,
+   "search_class": "V<6",
+   "qualifying_nights": 17,
+   "examined_nights": 17,
+   "skybot_queries": 17,
+   "outcome": "no triggering night",
+   "nights": []
+  },
+  {
+   "star": "TYC 1331-337-1",
+   "v_mag": 7.056830000000001,
+   "search_class": "6<=V<8",
+   "qualifying_nights": 14,
+   "examined_nights": 14,
+   "skybot_queries": 14,
+   "outcome": "no triggering night",
+   "nights": []
+  },
+  {
+   "star": "TYC 6358-1841-1",
+   "v_mag": 5.3151,
+   "search_class": "V<6",
+   "qualifying_nights": 0,
+   "examined_nights": 0,
+   "skybot_queries": 0,
+   "outcome": "no triggering night",
+   "nights": []
+  },
+  {
+   "star": "TYC 813-2785-1",
+   "v_mag": 7.6594500000000005,
+   "search_class": "6<=V<8",
+   "qualifying_nights": 18,
+   "examined_nights": 18,
+   "skybot_queries": 18,
+   "outcome": "no triggering night",
+   "nights": [
+    {
+     "night_index": 1,
+     "key": [
+      "517",
+      "5",
+      "1",
+      "2019-01-23"
+     ],
+     "outcome": "SkyBoT error: SkyBoT reported an error: SkyBoT asteroid conesearch -> numIntAstromJ2000_para[1]: computeEphemeris: \nProgram received signal SIGBUS: Access to an undefined por",
+     "triggers": 0
+    }
+   ]
+  },
+  {
+   "star": "TYC 2403-781-1",
+   "v_mag": 5.925400000000001,
+   "search_class": "V<6",
+   "qualifying_nights": 18,
+   "examined_nights": 18,
+   "skybot_queries": 18,
+   "outcome": "no triggering night",
+   "nights": [
+    {
+     "night_index": 11,
+     "key": [
+      "658",
+      "1",
+      "2",
+      "2020-11-02"
+     ],
+     "outcome": "SkyBoT error: SkyBoT reported an error: SkyBoT asteroid conesearch -> numIntAstromJ2000_para[1]: computeEphemeris: \nProgram received signal SIGBUS: Access to an undefined por",
+     "triggers": 0
+    }
+   ]
+  },
+  {
+   "star": "TYC 43-36-1",
+   "v_mag": 6.98336,
+   "search_class": "6<=V<8",
+   "qualifying_nights": 27,
+   "examined_nights": 20,
+   "skybot_queries": 20,
+   "outcome": "no triggering night",
+   "nights": []
+  },
+  {
+   "star": "TYC 662-1546-1",
+   "v_mag": 3.39907,
+   "search_class": "V<6",
+   "qualifying_nights": 10,
+   "examined_nights": 10,
+   "skybot_queries": 10,
+   "outcome": "no triggering night",
+   "nights": []
+  },
+  {
+   "star": "TYC 1231-223-1",
+   "v_mag": 7.50331,
+   "search_class": "6<=V<8",
+   "qualifying_nights": 19,
+   "examined_nights": 19,
+   "skybot_queries": 19,
+   "outcome": "no triggering night",
+   "nights": []
+  },
+  {
+   "star": "TYC 728-3138-1",
+   "v_mag": 5.58204,
+   "search_class": "V<6",
+   "qualifying_nights": 9,
+   "examined_nights": 9,
+   "skybot_queries": 9,
+   "outcome": "selected C16-2020-01-29-511-c13-q3",
+   "nights": [
+    {
+     "night_index": 4,
+     "key": [
+      "511",
+      "13",
+      "3",
+      "2020-01-29"
+     ],
+     "outcome": "selected as C16-2020-01-29-511-c13-q3",
+     "triggers": 1
+    }
+   ]
+  },
+  {
+   "star": "TYC 6208-1489-1",
+   "v_mag": 7.77469,
+   "search_class": "6<=V<8",
+   "qualifying_nights": 0,
+   "examined_nights": 0,
+   "skybot_queries": 0,
+   "outcome": "no triggering night",
+   "nights": []
+  },
+  {
+   "star": "TYC 1295-1998-1",
+   "v_mag": 4.95535,
+   "search_class": "V<6",
+   "qualifying_nights": 10,
+   "examined_nights": 10,
+   "skybot_queries": 10,
+   "outcome": "selected C17-2020-09-22-561-c15-q2",
+   "nights": [
+    {
+     "night_index": 9,
+     "key": [
+      "561",
+      "15",
+      "2",
+      "2020-09-22"
+     ],
+     "outcome": "selected as C17-2020-09-22-561-c15-q2",
+     "triggers": 1
+    }
+   ]
+  },
+  {
+   "star": "TYC 5260-786-1",
+   "v_mag": 7.09422,
+   "search_class": "6<=V<8",
+   "qualifying_nights": 10,
+   "examined_nights": 10,
+   "skybot_queries": 10,
+   "outcome": "no triggering night",
+   "nights": []
+  },
+  {
+   "star": "TYC 650-1469-1",
+   "v_mag": 3.72112,
+   "search_class": "V<6",
+   "qualifying_nights": 7,
+   "examined_nights": 7,
+   "skybot_queries": 7,
+   "outcome": "no triggering night",
+   "nights": [
+    {
+     "night_index": 4,
+     "key": [
+      "506",
+      "2",
+      "1",
+      "2020-01-18"
+     ],
+     "outcome": "SkyBoT error: SkyBoT reported an error: SkyBoT asteroid conesearch -> numIntAstromJ2000_para[1]: computeEphemeris: \nProgram received signal SIGBUS: Access to an undefined por",
+     "triggers": 0
+    }
+   ]
+  },
+  {
+   "star": "TYC 805-1288-1",
+   "v_mag": 7.62395,
+   "search_class": "6<=V<8",
+   "qualifying_nights": 17,
+   "examined_nights": 17,
+   "skybot_queries": 17,
+   "outcome": "no triggering night",
+   "nights": [
+    {
+     "night_index": 3,
+     "key": [
+      "517",
+      "6",
+      "1",
+      "2019-11-16"
+     ],
+     "outcome": "SkyBoT error: SkyBoT reported an error: SkyBoT asteroid conesearch -> numIntAstromJ2000_para[1]: computeEphemeris: \nProgram received signal SIGBUS: Access to an undefined por",
+     "triggers": 0
+    }
+   ]
+  },
+  {
+   "star": "TYC 4965-1204-1",
+   "v_mag": 5.75877,
+   "search_class": "V<6",
+   "qualifying_nights": 0,
+   "examined_nights": 0,
+   "skybot_queries": 0,
+   "outcome": "no triggering night",
+   "nights": []
+  },
+  {
+   "star": "TYC 5737-2472-1",
+   "v_mag": 6.08884,
+   "search_class": "6<=V<8",
+   "qualifying_nights": 1,
+   "examined_nights": 1,
+   "skybot_queries": 1,
+   "outcome": "no triggering night",
+   "nights": []
+  },
+  {
+   "star": "TYC 1900-2026-1",
+   "v_mag": 5.84016,
+   "search_class": "V<6",
+   "qualifying_nights": 12,
+   "examined_nights": 12,
+   "skybot_queries": 12,
+   "outcome": "no triggering night",
+   "nights": [
+    {
+     "night_index": 11,
+     "key": [
+      "614",
+      "5",
+      "3",
+      "2020-12-05"
+     ],
+     "outcome": "SkyBoT error: SkyBoT reported an error: SkyBoT asteroid conesearch -> numIntAstromJ2000_para[1]: computeEphemeris: \nProgram received signal SIGBUS: Access to an undefined por",
+     "triggers": 0
+    }
+   ]
+  },
+  {
+   "star": "TYC 5260-703-1",
+   "v_mag": 7.1408000000000005,
+   "search_class": "6<=V<8",
+   "qualifying_nights": 2,
+   "examined_nights": 2,
+   "skybot_queries": 2,
+   "outcome": "no triggering night",
+   "nights": []
+  },
+  {
+   "star": "TYC 5804-1742-1",
+   "v_mag": 5.33495,
+   "search_class": "V<6",
+   "qualifying_nights": 4,
+   "examined_nights": 4,
+   "skybot_queries": 4,
+   "outcome": "no triggering night",
+   "nights": []
+  },
+  {
+   "star": "TYC 1301-1942-1",
+   "v_mag": 6.4423699999999995,
+   "search_class": "6<=V<8",
+   "qualifying_nights": 0,
+   "examined_nights": 0,
+   "skybot_queries": 0,
+   "outcome": "no triggering night",
+   "nights": []
+  },
+  {
+   "star": "TYC 1217-1559-1",
+   "v_mag": 5.57174,
+   "search_class": "V<6",
+   "qualifying_nights": 19,
+   "examined_nights": 19,
+   "skybot_queries": 19,
+   "outcome": "no triggering night",
+   "nights": []
+  },
+  {
+   "star": "TYC 6387-962-1",
+   "v_mag": 7.03838,
+   "search_class": "6<=V<8",
+   "qualifying_nights": 2,
+   "examined_nights": 2,
+   "skybot_queries": 2,
+   "outcome": "no triggering night",
+   "nights": []
+  },
+  {
+   "star": "TYC 5527-1966-1",
+   "v_mag": 5.47233,
+   "search_class": "V<6",
+   "qualifying_nights": 0,
+   "examined_nights": 0,
+   "skybot_queries": 0,
+   "outcome": "no triggering night",
+   "nights": []
+  },
+  {
+   "star": "TYC 4982-1250-1",
+   "v_mag": 7.3484799999999995,
+   "search_class": "6<=V<8",
+   "qualifying_nights": 19,
+   "examined_nights": 19,
+   "skybot_queries": 19,
+   "outcome": "no triggering night",
+   "nights": []
+  },
+  {
+   "star": "TYC 1320-1695-1",
+   "v_mag": 5.8853100000000005,
+   "search_class": "V<6",
+   "qualifying_nights": 19,
+   "examined_nights": 19,
+   "skybot_queries": 19,
+   "outcome": "no triggering night",
+   "nights": []
+  },
+  {
+   "star": "TYC 5528-1444-1",
+   "v_mag": 7.75685,
+   "search_class": "6<=V<8",
+   "qualifying_nights": 0,
+   "examined_nights": 0,
+   "skybot_queries": 0,
+   "outcome": "no triggering night",
+   "nights": []
+  },
+  {
+   "star": "TYC 6783-2695-1",
+   "v_mag": 5.41463,
+   "search_class": "V<6",
+   "qualifying_nights": 0,
+   "examined_nights": 0,
+   "skybot_queries": 0,
+   "outcome": "no triggering night",
+   "nights": []
+  },
+  {
+   "star": "TYC 1389-751-1",
+   "v_mag": 6.9372,
+   "search_class": "6<=V<8",
+   "qualifying_nights": 51,
+   "examined_nights": 20,
+   "skybot_queries": 20,
+   "outcome": "no triggering night",
+   "nights": []
+  },
+  {
+   "star": "TYC 6274-1663-1",
+   "v_mag": 4.8715,
+   "search_class": "V<6",
+   "qualifying_nights": 72,
+   "examined_nights": 20,
+   "skybot_queries": 20,
+   "outcome": "selected C18-2018-07-14-333-c3-q4, C19-2019-07-22-333-c3-q4, C20-2019-07-28-282-c13-q1",
+   "nights": [
+    {
+     "night_index": 3,
+     "key": [
+      "333",
+      "3",
+      "4",
+      "2018-07-14"
+     ],
+     "outcome": "selected as C18-2018-07-14-333-c3-q4",
+     "triggers": 1
+    },
+    {
+     "night_index": 9,
+     "key": [
+      "333",
+      "3",
+      "4",
+      "2019-07-22"
+     ],
+     "outcome": "selected as C19-2019-07-22-333-c3-q4",
+     "triggers": 1
+    },
+    {
+     "night_index": 16,
+     "key": [
+      "282",
+      "13",
+      "1",
+      "2019-07-28"
+     ],
+     "outcome": "selected as C20-2019-07-28-282-c13-q1",
+     "triggers": 1
+    }
+   ]
+  },
+  {
+   "star": "TYC 6255-181-1",
+   "v_mag": 7.85063,
+   "search_class": "6<=V<8",
+   "qualifying_nights": 32,
+   "examined_nights": 20,
+   "skybot_queries": 20,
+   "outcome": "no triggering night",
+   "nights": []
+  },
+  {
+   "star": "TYC 5749-2530-1",
+   "v_mag": 3.56654,
+   "search_class": "V<6",
+   "qualifying_nights": 1,
+   "examined_nights": 1,
+   "skybot_queries": 1,
+   "outcome": "no triggering night",
+   "nights": []
+  },
+  {
+   "star": "TYC 1821-2305-1",
+   "v_mag": 7.961759999999999,
+   "search_class": "6<=V<8",
+   "qualifying_nights": 19,
+   "examined_nights": 19,
+   "skybot_queries": 19,
+   "outcome": "no triggering night",
+   "nights": []
+  },
+  {
+   "star": "TYC 1918-2339-1",
+   "v_mag": 3.7801799999999997,
+   "search_class": "V<6",
+   "qualifying_nights": 34,
+   "examined_nights": 20,
+   "skybot_queries": 20,
+   "outcome": "no triggering night",
+   "nights": []
+  },
+  {
+   "star": "TYC 1333-1277-1",
+   "v_mag": 7.980020000000001,
+   "search_class": "6<=V<8",
+   "qualifying_nights": 0,
+   "examined_nights": 0,
+   "skybot_queries": 0,
+   "outcome": "no triggering night",
+   "nights": []
+  },
+  {
+   "star": "TYC 52-1686-1",
+   "v_mag": 5.82585,
+   "search_class": "V<6",
+   "qualifying_nights": 24,
+   "examined_nights": 20,
+   "skybot_queries": 20,
+   "outcome": "selected C21-2020-08-23-452-c15-q3",
+   "nights": [
+    {
+     "night_index": 12,
+     "key": [
+      "452",
+      "15",
+      "3",
+      "2020-08-23"
+     ],
+     "outcome": "selected as C21-2020-08-23-452-c15-q3",
+     "triggers": 1
+    }
+   ]
+  },
+  {
+   "star": "TYC 662-1030-1",
+   "v_mag": 7.315300000000001,
+   "search_class": "6<=V<8",
+   "qualifying_nights": 10,
+   "examined_nights": 10,
+   "skybot_queries": 10,
+   "outcome": "no triggering night",
+   "nights": []
+  },
+  {
+   "star": "TYC 6246-168-1",
+   "v_mag": 5.83671,
+   "search_class": "V<6",
+   "qualifying_nights": 16,
+   "examined_nights": 16,
+   "skybot_queries": 16,
+   "outcome": "no triggering night",
+   "nights": []
+  },
+  {
+   "star": "TYC 579-1035-1",
+   "v_mag": 7.34896,
+   "search_class": "6<=V<8",
+   "qualifying_nights": 1,
+   "examined_nights": 1,
+   "skybot_queries": 1,
+   "outcome": "no triggering night",
+   "nights": []
+  },
+  {
+   "star": "TYC 808-1546-1",
+   "v_mag": 5.95419,
+   "search_class": "V<6",
+   "qualifying_nights": 18,
+   "examined_nights": 18,
+   "skybot_queries": 18,
+   "outcome": "selected C22-2020-02-24-517-c15-q3",
+   "nights": [
+    {
+     "night_index": 11,
+     "key": [
+      "517",
+      "15",
+      "3",
+      "2020-02-24"
+     ],
+     "outcome": "selected as C22-2020-02-24-517-c15-q3",
+     "triggers": 1
+    }
+   ]
+  },
+  {
+   "star": "TYC 5253-343-1",
+   "v_mag": 6.84363,
+   "search_class": "6<=V<8",
+   "qualifying_nights": 8,
+   "examined_nights": 8,
+   "skybot_queries": 8,
+   "outcome": "no triggering night",
+   "nights": []
+  },
+  {
+   "star": "TYC 588-8-1",
+   "v_mag": 7.87728,
+   "search_class": "6<=V<8",
+   "qualifying_nights": 16,
+   "examined_nights": 16,
+   "skybot_queries": 16,
+   "outcome": "no triggering night",
+   "nights": []
+  },
+  {
+   "star": "TYC 657-335-1",
+   "v_mag": 7.97022,
+   "search_class": "6<=V<8",
+   "qualifying_nights": 10,
+   "examined_nights": 10,
+   "skybot_queries": 10,
+   "outcome": "no triggering night",
+   "nights": []
+  },
+  {
+   "star": "TYC 1953-273-1",
+   "v_mag": 6.86271,
+   "search_class": "6<=V<8",
+   "qualifying_nights": 17,
+   "examined_nights": 17,
+   "skybot_queries": 17,
+   "outcome": "no triggering night",
+   "nights": []
+  },
+  {
+   "star": "TYC 5824-1239-1",
+   "v_mag": 7.8420700000000005,
+   "search_class": "6<=V<8",
+   "qualifying_nights": 6,
+   "examined_nights": 6,
+   "skybot_queries": 6,
+   "outcome": "no triggering night",
+   "nights": []
+  },
+  {
+   "star": "TYC 5549-111-1",
+   "v_mag": 7.983770000000001,
+   "search_class": "6<=V<8",
+   "qualifying_nights": 14,
+   "examined_nights": 14,
+   "skybot_queries": 14,
+   "outcome": "no triggering night",
+   "nights": [
+    {
+     "night_index": 2,
+     "key": [
+      "374",
+      "4",
+      "2",
+      "2019-04-21"
+     ],
+     "outcome": "SkyBoT error: SkyBoT reported an error: SkyBoT asteroid conesearch -> numIntAstromJ2000_para[1]: computeEphemeris: \nProgram received signal SIGBUS: Access to an undefined por",
+     "triggers": 0
+    },
+    {
+     "night_index": 11,
+     "key": [
+      "373",
+      "1",
+      "1",
+      "2020-04-17"
+     ],
+     "outcome": "skipped: already selected",
+     "triggers": 0
+    }
+   ]
+  },
+  {
+   "star": "TYC 6233-827-1",
+   "v_mag": 6.7113499999999995,
+   "search_class": "6<=V<8",
+   "qualifying_nights": 18,
+   "examined_nights": 18,
+   "skybot_queries": 18,
+   "outcome": "no triggering night",
+   "nights": []
+  },
+  {
+   "star": "TYC 2403-1182-1",
+   "v_mag": 7.91142,
+   "search_class": "6<=V<8",
+   "qualifying_nights": 24,
+   "examined_nights": 20,
+   "skybot_queries": 20,
+   "outcome": "selected C23-2020-11-17-659-c4-q2",
+   "nights": [
+    {
+     "night_index": 12,
+     "key": [
+      "659",
+      "4",
+      "2",
+      "2020-11-13"
+     ],
+     "outcome": "SkyBoT error: SkyBoT reported an error: SkyBoT asteroid conesearch -> numIntAstromJ2000_para[1]: computeEphemeris: \nProgram received signal SIGBUS: Access to an undefined por",
+     "triggers": 0
+    },
+    {
+     "night_index": 17,
+     "key": [
+      "659",
+      "4",
+      "2",
+      "2020-11-17"
+     ],
+     "outcome": "selected as C23-2020-11-17-659-c4-q2",
+     "triggers": 1
+    }
+   ]
+  },
+  {
+   "star": "TYC 5689-933-1",
+   "v_mag": 7.97395,
+   "search_class": "6<=V<8",
+   "qualifying_nights": 31,
+   "examined_nights": 20,
+   "skybot_queries": 20,
+   "outcome": "no triggering night",
+   "nights": []
+  },
+  {
+   "star": "TYC 6874-882-1",
+   "v_mag": 7.7963000000000005,
+   "search_class": "6<=V<8",
+   "qualifying_nights": 15,
+   "examined_nights": 15,
+   "skybot_queries": 15,
+   "outcome": "no triggering night",
+   "nights": []
+  },
+  {
+   "star": "TYC 777-923-1",
+   "v_mag": 7.75143,
+   "search_class": "6<=V<8",
+   "qualifying_nights": 16,
+   "examined_nights": 16,
+   "skybot_queries": 16,
+   "outcome": "no triggering night",
+   "nights": []
+  },
+  {
+   "star": "TYC 234-395-1",
+   "v_mag": 7.9008899999999995,
+   "search_class": "6<=V<8",
+   "qualifying_nights": 11,
+   "examined_nights": 11,
+   "skybot_queries": 11,
+   "outcome": "no triggering night",
+   "nights": []
+  },
+  {
+   "star": "TYC 1811-1548-1",
+   "v_mag": 6.862730000000001,
+   "search_class": "6<=V<8",
+   "qualifying_nights": 21,
+   "examined_nights": 20,
+   "skybot_queries": 20,
+   "outcome": "no triggering night",
+   "nights": []
+  },
+  {
+   "star": "TYC 1241-149-1",
+   "v_mag": 6.80617,
+   "search_class": "6<=V<8",
+   "qualifying_nights": 1,
+   "examined_nights": 1,
+   "skybot_queries": 1,
+   "outcome": "no triggering night",
+   "nights": []
+  },
+  {
+   "star": "TYC 6813-1435-1",
+   "v_mag": 7.67977,
+   "search_class": "6<=V<8",
+   "qualifying_nights": 14,
+   "examined_nights": 14,
+   "skybot_queries": 14,
+   "outcome": "selected C24-2019-06-29-279-c5-q2",
+   "nights": [
+    {
+     "night_index": 5,
+     "key": [
+      "279",
+      "5",
+      "2",
+      "2019-06-29"
+     ],
+     "outcome": "selected as C24-2019-06-29-279-c5-q2",
+     "triggers": 1
+    }
+   ]
+  },
+  {
+   "star": "TYC 6189-1190-1",
+   "v_mag": 7.14104,
+   "search_class": "6<=V<8",
+   "qualifying_nights": 0,
+   "examined_nights": 0,
+   "skybot_queries": 0,
+   "outcome": "no triggering night",
+   "nights": []
+  },
+  {
+   "star": "TYC 744-1639-1",
+   "v_mag": 7.9159,
+   "search_class": "6<=V<8",
+   "qualifying_nights": 36,
+   "examined_nights": 20,
+   "skybot_queries": 20,
+   "outcome": "no triggering night",
+   "nights": []
+  },
+  {
+   "star": "TYC 6160-1997-1",
+   "v_mag": 7.150829999999999,
+   "search_class": "6<=V<8",
+   "qualifying_nights": 4,
+   "examined_nights": 4,
+   "skybot_queries": 4,
+   "outcome": "no triggering night",
+   "nights": []
+  },
+  {
+   "star": "TYC 5834-787-1",
+   "v_mag": 7.65919,
+   "search_class": "6<=V<8",
+   "qualifying_nights": 3,
+   "examined_nights": 3,
+   "skybot_queries": 3,
+   "outcome": "no triggering night",
+   "nights": []
+  },
+  {
+   "star": "TYC 1878-1430-1",
+   "v_mag": 6.29019,
+   "search_class": "6<=V<8",
+   "qualifying_nights": 16,
+   "examined_nights": 16,
+   "skybot_queries": 16,
+   "outcome": "no triggering night",
+   "nights": []
+  },
+  {
+   "star": "TYC 6169-1298-1",
+   "v_mag": 7.97136,
+   "search_class": "6<=V<8",
+   "qualifying_nights": 1,
+   "examined_nights": 1,
+   "skybot_queries": 1,
+   "outcome": "no triggering night",
+   "nights": []
+  },
+  {
+   "star": "TYC 1392-1082-1",
+   "v_mag": 7.9958800000000005,
+   "search_class": "6<=V<8",
+   "qualifying_nights": 2,
+   "examined_nights": 2,
+   "skybot_queries": 2,
+   "outcome": "no triggering night",
+   "nights": []
+  },
+  {
+   "star": "TYC 5720-530-1",
+   "v_mag": 7.80055,
+   "search_class": "6<=V<8",
+   "qualifying_nights": 0,
+   "examined_nights": 0,
+   "skybot_queries": 0,
+   "outcome": "no triggering night",
+   "nights": []
+  },
+  {
+   "star": "TYC 1269-294-1",
+   "v_mag": 7.02286,
+   "search_class": "6<=V<8",
+   "qualifying_nights": 16,
+   "examined_nights": 16,
+   "skybot_queries": 16,
+   "outcome": "no triggering night",
+   "nights": []
+  },
+  {
+   "star": "TYC 1830-2127-1",
+   "v_mag": 6.160699999999999,
+   "search_class": "6<=V<8",
+   "qualifying_nights": 7,
+   "examined_nights": 7,
+   "skybot_queries": 7,
+   "outcome": "no triggering night",
+   "nights": []
+  },
+  {
+   "star": "TYC 1298-892-1",
+   "v_mag": 7.73475,
+   "search_class": "6<=V<8",
+   "qualifying_nights": 10,
+   "examined_nights": 10,
+   "skybot_queries": 10,
+   "outcome": "no triggering night",
+   "nights": [
+    {
+     "night_index": 8,
+     "key": [
+      "561",
+      "1",
+      "4",
+      "2020-03-01"
+     ],
+     "outcome": "SkyBoT error: SkyBoT reported an error: SkyBoT asteroid conesearch -> numIntAstromJ2000_para[1]: computeEphemeris: \nProgram received signal SIGBUS: Access to an undefined por",
+     "triggers": 0
+    }
+   ]
+  },
+  {
+   "star": "TYC 590-1421-1",
+   "v_mag": 7.73331,
+   "search_class": "6<=V<8",
+   "qualifying_nights": 23,
+   "examined_nights": 20,
+   "skybot_queries": 20,
+   "outcome": "no triggering night",
+   "nights": []
+  },
+  {
+   "star": "TYC 1926-234-1",
+   "v_mag": 7.29319,
+   "search_class": "6<=V<8",
+   "qualifying_nights": 49,
+   "examined_nights": 20,
+   "skybot_queries": 20,
+   "outcome": "no triggering night",
+   "nights": []
+  },
+  {
+   "star": "TYC 29-1021-1",
+   "v_mag": 7.906569999999999,
+   "search_class": "6<=V<8",
+   "qualifying_nights": 45,
+   "examined_nights": 20,
+   "skybot_queries": 20,
+   "outcome": "no triggering night",
+   "nights": []
+  },
+  {
+   "star": "TYC 5558-1711-1",
+   "v_mag": 7.45384,
+   "search_class": "6<=V<8",
+   "qualifying_nights": 6,
+   "examined_nights": 6,
+   "skybot_queries": 6,
+   "outcome": "no triggering night",
+   "nights": []
+  },
+  {
+   "star": "TYC 1280-898-1",
+   "v_mag": 7.62505,
+   "search_class": "6<=V<8",
+   "qualifying_nights": 15,
+   "examined_nights": 15,
+   "skybot_queries": 15,
+   "outcome": "no triggering night",
+   "nights": []
+  },
+  {
+   "star": "TYC 6112-397-1",
+   "v_mag": 7.74984,
+   "search_class": "6<=V<8",
+   "qualifying_nights": 0,
+   "examined_nights": 0,
+   "skybot_queries": 0,
+   "outcome": "no triggering night",
+   "nights": []
+  },
+  {
+   "star": "TYC 6249-564-1",
+   "v_mag": 7.5002200000000006,
+   "search_class": "6<=V<8",
+   "qualifying_nights": 51,
+   "examined_nights": 20,
+   "skybot_queries": 20,
+   "outcome": "selected C25-2018-07-05-331-c9-q4",
+   "nights": [
+    {
+     "night_index": 0,
+     "key": [
+      "331",
+      "9",
+      "4",
+      "2018-07-05"
+     ],
+     "outcome": "selected as C25-2018-07-05-331-c9-q4",
+     "triggers": 1
+    }
+   ]
+  },
+  {
+   "star": "TYC 1355-359-1",
+   "v_mag": 7.7315,
+   "search_class": "6<=V<8",
+   "qualifying_nights": 15,
+   "examined_nights": 15,
+   "skybot_queries": 15,
+   "outcome": "no triggering night",
+   "nights": []
+  },
+  {
+   "star": "TYC 1864-564-1",
+   "v_mag": 7.34614,
+   "search_class": "6<=V<8",
+   "qualifying_nights": 17,
+   "examined_nights": 17,
+   "skybot_queries": 17,
+   "outcome": "selected C26-2020-11-26-612-c3-q1",
+   "nights": [
+    {
+     "night_index": 16,
+     "key": [
+      "612",
+      "3",
+      "1",
+      "2020-11-26"
+     ],
+     "outcome": "selected as C26-2020-11-26-612-c3-q1",
+     "triggers": 1
+    }
+   ]
+  },
+  {
+   "star": "TYC 1862-2075-1",
+   "v_mag": 7.55562,
+   "search_class": "6<=V<8",
+   "qualifying_nights": 0,
+   "examined_nights": 0,
+   "skybot_queries": 0,
+   "outcome": "no triggering night",
+   "nights": []
+  },
+  {
+   "star": "TYC 1380-419-1",
+   "v_mag": 7.786459999999999,
+   "search_class": "6<=V<8",
+   "qualifying_nights": 38,
+   "examined_nights": 20,
+   "skybot_queries": 20,
+   "outcome": "no triggering night",
+   "nights": []
+  },
+  {
+   "star": "TYC 1815-474-1",
+   "v_mag": 6.7904,
+   "search_class": "6<=V<8",
+   "qualifying_nights": 19,
+   "examined_nights": 19,
+   "skybot_queries": 19,
+   "outcome": "no triggering night",
+   "nights": []
+  },
+  {
+   "star": "TYC 5543-1297-1",
+   "v_mag": 7.615080000000001,
+   "search_class": "6<=V<8",
+   "qualifying_nights": 0,
+   "examined_nights": 0,
+   "skybot_queries": 0,
+   "outcome": "no triggering night",
+   "nights": []
+  },
+  {
+   "star": "TYC 5614-1002-1",
+   "v_mag": 7.0149799999999995,
+   "search_class": "6<=V<8",
+   "qualifying_nights": 0,
+   "examined_nights": 0,
+   "skybot_queries": 0,
+   "outcome": "no triggering night",
+   "nights": []
+  },
+  {
+   "star": "TYC 12-609-1",
+   "v_mag": 7.87372,
+   "search_class": "6<=V<8",
+   "qualifying_nights": 0,
+   "examined_nights": 0,
+   "skybot_queries": 0,
+   "outcome": "no triggering night",
+   "nights": []
+  },
+  {
+   "star": "TYC 6337-216-1",
+   "v_mag": 7.55167,
+   "search_class": "6<=V<8",
+   "qualifying_nights": 1,
+   "examined_nights": 1,
+   "skybot_queries": 1,
+   "outcome": "no triggering night",
+   "nights": []
+  },
+  {
+   "star": "TYC 5226-741-1",
+   "v_mag": 7.6640999999999995,
+   "search_class": "6<=V<8",
+   "qualifying_nights": 12,
+   "examined_nights": 12,
+   "skybot_queries": 12,
+   "outcome": "no triggering night",
+   "nights": []
+  },
+  {
+   "star": "TYC 859-1238-1",
+   "v_mag": 6.54928,
+   "search_class": "6<=V<8",
+   "qualifying_nights": 34,
+   "examined_nights": 20,
+   "skybot_queries": 20,
+   "outcome": "no triggering night",
+   "nights": []
+  },
+  {
+   "star": "TYC 5771-1605-1",
+   "v_mag": 6.2738,
+   "search_class": "6<=V<8",
+   "qualifying_nights": 0,
+   "examined_nights": 0,
+   "skybot_queries": 0,
+   "outcome": "no triggering night",
+   "nights": []
+  },
+  {
+   "star": "TYC 6166-1510-1",
+   "v_mag": 7.657500000000001,
+   "search_class": "6<=V<8",
+   "qualifying_nights": 0,
+   "examined_nights": 0,
+   "skybot_queries": 0,
+   "outcome": "no triggering night",
+   "nights": []
+  },
+  {
+   "star": "TYC 5807-1521-1",
+   "v_mag": 7.81062,
+   "search_class": "6<=V<8",
+   "qualifying_nights": 8,
+   "examined_nights": 8,
+   "skybot_queries": 8,
+   "outcome": "selected C27-2020-11-15-392-c7-q4",
+   "nights": [
+    {
+     "night_index": 7,
+     "key": [
+      "392",
+      "7",
+      "4",
+      "2020-11-15"
+     ],
+     "outcome": "selected as C27-2020-11-15-392-c7-q4",
+     "triggers": 1
+    }
+   ]
+  },
+  {
+   "star": "TYC 2372-2100-1",
+   "v_mag": 7.976319999999999,
+   "search_class": "6<=V<8",
+   "qualifying_nights": 16,
+   "examined_nights": 16,
+   "skybot_queries": 16,
+   "outcome": "selected C28-2020-01-04-657-c4-q3",
+   "nights": [
+    {
+     "night_index": 6,
+     "key": [
+      "657",
+      "4",
+      "3",
+      "2020-01-04"
+     ],
+     "outcome": "selected as C28-2020-01-04-657-c4-q3",
+     "triggers": 1
+    }
+   ]
+  },
+  {
+   "star": "TYC 1914-391-1",
+   "v_mag": 7.36048,
+   "search_class": "6<=V<8",
+   "qualifying_nights": 25,
+   "examined_nights": 20,
+   "skybot_queries": 20,
+   "outcome": "no triggering night",
+   "nights": []
+  },
+  {
+   "star": "TYC 5599-956-1",
+   "v_mag": 6.58891,
+   "search_class": "6<=V<8",
+   "qualifying_nights": 0,
+   "examined_nights": 0,
+   "skybot_queries": 0,
+   "outcome": "no triggering night",
+   "nights": []
+  },
+  {
+   "star": "TYC 6172-471-1",
+   "v_mag": 7.820709999999999,
+   "search_class": "6<=V<8",
+   "qualifying_nights": 1,
+   "examined_nights": 1,
+   "skybot_queries": 1,
+   "outcome": "no triggering night",
+   "nights": []
+  },
+  {
+   "star": "TYC 5731-1721-1",
+   "v_mag": 6.27771,
+   "search_class": "6<=V<8",
+   "qualifying_nights": 14,
+   "examined_nights": 14,
+   "skybot_queries": 14,
+   "outcome": "no triggering night",
+   "nights": []
+  },
+  {
+   "star": "TYC 1394-1851-1",
+   "v_mag": 6.22961,
+   "search_class": "6<=V<8",
+   "qualifying_nights": 25,
+   "examined_nights": 20,
+   "skybot_queries": 20,
+   "outcome": "no triggering night",
+   "nights": [
+    {
+     "night_index": 18,
+     "key": [
+      "568",
+      "5",
+      "3",
+      "2020-02-04"
+     ],
+     "outcome": "products missing",
+     "triggers": 1
+    }
+   ]
+  },
+  {
+   "star": "TYC 1395-2198-1",
+   "v_mag": 7.63674,
+   "search_class": "6<=V<8",
+   "qualifying_nights": 37,
+   "examined_nights": 20,
+   "skybot_queries": 20,
+   "outcome": "no triggering night",
+   "nights": []
+  },
+  {
+   "star": "TYC 822-905-1",
+   "v_mag": 7.78474,
+   "search_class": "6<=V<8",
+   "qualifying_nights": 10,
+   "examined_nights": 10,
+   "skybot_queries": 10,
+   "outcome": "no triggering night",
+   "nights": []
+  },
+  {
+   "star": "TYC 611-1089-1",
+   "v_mag": 6.29067,
+   "search_class": "6<=V<8",
+   "qualifying_nights": 0,
+   "examined_nights": 0,
+   "skybot_queries": 0,
+   "outcome": "no triggering night",
+   "nights": []
+  },
+  {
+   "star": "TYC 6843-976-1",
+   "v_mag": 7.5671100000000004,
+   "search_class": "6<=V<8",
+   "qualifying_nights": 17,
+   "examined_nights": 17,
+   "skybot_queries": 17,
+   "outcome": "no triggering night",
+   "nights": []
+  },
+  {
+   "star": "TYC 1913-930-1",
+   "v_mag": 7.5980099999999995,
+   "search_class": "6<=V<8",
+   "qualifying_nights": 0,
+   "examined_nights": 0,
+   "skybot_queries": 0,
+   "outcome": "no triggering night",
+   "nights": []
+  },
+  {
+   "star": "TYC 4923-979-1",
+   "v_mag": 6.26254,
+   "search_class": "6<=V<8",
+   "qualifying_nights": 1,
+   "examined_nights": 1,
+   "skybot_queries": 1,
+   "outcome": "no triggering night",
+   "nights": []
+  },
+  {
+   "star": "TYC 1261-380-1",
+   "v_mag": 6.83999,
+   "search_class": "6<=V<8",
+   "qualifying_nights": 15,
+   "examined_nights": 15,
+   "skybot_queries": 15,
+   "outcome": "no triggering night",
+   "nights": []
+  },
+  {
+   "star": "TYC 4664-633-1",
+   "v_mag": 7.191140000000001,
+   "search_class": "6<=V<8",
+   "qualifying_nights": 17,
+   "examined_nights": 17,
+   "skybot_queries": 17,
+   "outcome": "no triggering night",
+   "nights": []
+  },
+  {
+   "star": "TYC 5207-1019-1",
+   "v_mag": 7.13635,
+   "search_class": "6<=V<8",
+   "qualifying_nights": 3,
+   "examined_nights": 3,
+   "skybot_queries": 3,
+   "outcome": "no triggering night",
+   "nights": []
+  },
+  {
+   "star": "TYC 710-128-1",
+   "v_mag": 7.9048799999999995,
+   "search_class": "6<=V<8",
+   "qualifying_nights": 11,
+   "examined_nights": 11,
+   "skybot_queries": 11,
+   "outcome": "no triggering night",
+   "nights": []
+  },
+  {
+   "star": "TYC 859-116-1",
+   "v_mag": 6.59891,
+   "search_class": "6<=V<8",
+   "qualifying_nights": 34,
+   "examined_nights": 20,
+   "skybot_queries": 20,
+   "outcome": "no triggering night",
+   "nights": []
+  },
+  {
+   "star": "TYC 1875-708-1",
+   "v_mag": 7.90578,
+   "search_class": "6<=V<8",
+   "qualifying_nights": 15,
+   "examined_nights": 15,
+   "skybot_queries": 15,
+   "outcome": "no triggering night",
+   "nights": []
+  },
+  {
+   "star": "TYC 6274-170-1",
+   "v_mag": 7.5438,
+   "search_class": "6<=V<8",
+   "qualifying_nights": 34,
+   "examined_nights": 20,
+   "skybot_queries": 20,
+   "outcome": "no triggering night",
+   "nights": []
+  },
+  {
+   "star": "TYC 1303-186-1",
+   "v_mag": 6.740270000000001,
+   "search_class": "6<=V<8",
+   "qualifying_nights": 18,
+   "examined_nights": 18,
+   "skybot_queries": 18,
+   "outcome": "no triggering night",
+   "nights": []
+  },
+  {
+   "star": "TYC 277-708-1",
+   "v_mag": 7.62333,
+   "search_class": "6<=V<8",
+   "qualifying_nights": 4,
+   "examined_nights": 4,
+   "skybot_queries": 4,
+   "outcome": "no triggering night",
+   "nights": []
+  },
+  {
+   "star": "TYC 6385-788-1",
+   "v_mag": 7.60328,
+   "search_class": "6<=V<8",
+   "qualifying_nights": 6,
+   "examined_nights": 6,
+   "skybot_queries": 6,
+   "outcome": "no triggering night",
+   "nights": []
+  },
+  {
+   "star": "TYC 6163-1229-1",
+   "v_mag": 7.619260000000001,
+   "search_class": "6<=V<8",
+   "qualifying_nights": 0,
+   "examined_nights": 0,
+   "skybot_queries": 0,
+   "outcome": "no triggering night",
+   "nights": []
+  },
+  {
+   "star": "TYC 1261-699-1",
+   "v_mag": 7.926870000000001,
+   "search_class": "6<=V<8",
+   "qualifying_nights": 16,
+   "examined_nights": 16,
+   "skybot_queries": 16,
+   "outcome": "no triggering night",
+   "nights": [
+    {
+     "night_index": 12,
+     "key": [
+      "558",
+      "15",
+      "4",
+      "2020-01-19"
+     ],
+     "outcome": "SkyBoT error: SkyBoT reported an error: SkyBoT asteroid conesearch -> numIntAstromJ2000_para[1]: computeEphemeris: \nProgram received signal SIGBUS: Access to an undefined por",
+     "triggers": 0
+    }
+   ]
+  },
+  {
+   "star": "TYC 6205-1556-1",
+   "v_mag": 6.33469,
+   "search_class": "6<=V<8",
+   "qualifying_nights": 0,
+   "examined_nights": 0,
+   "skybot_queries": 0,
+   "outcome": "no triggering night",
+   "nights": []
+  },
+  {
+   "star": "TYC 2387-875-1",
+   "v_mag": 7.6148,
+   "search_class": "6<=V<8",
+   "qualifying_nights": 15,
+   "examined_nights": 15,
+   "skybot_queries": 15,
+   "outcome": "no triggering night",
+   "nights": []
+  },
+  {
+   "star": "TYC 283-285-1",
+   "v_mag": 7.13047,
+   "search_class": "6<=V<8",
+   "qualifying_nights": 3,
+   "examined_nights": 3,
+   "skybot_queries": 3,
+   "outcome": "no triggering night",
+   "nights": []
+  },
+  {
+   "star": "TYC 776-1197-1",
+   "v_mag": 7.895110000000001,
+   "search_class": "6<=V<8",
+   "qualifying_nights": 16,
+   "examined_nights": 16,
+   "skybot_queries": 16,
+   "outcome": "no triggering night",
+   "nights": []
+  },
+  {
+   "star": "TYC 5798-605-1",
+   "v_mag": 6.6300300000000005,
+   "search_class": "6<=V<8",
+   "qualifying_nights": 4,
+   "examined_nights": 4,
+   "skybot_queries": 4,
+   "outcome": "no triggering night",
+   "nights": []
+  },
+  {
+   "star": "TYC 267-1200-1",
+   "v_mag": 7.38984,
+   "search_class": "6<=V<8",
+   "qualifying_nights": 0,
+   "examined_nights": 0,
+   "skybot_queries": 0,
+   "outcome": "no triggering night",
+   "nights": []
+  },
+  {
+   "star": "TYC 5763-2447-1",
+   "v_mag": 6.9797,
+   "search_class": "6<=V<8",
+   "qualifying_nights": 0,
+   "examined_nights": 0,
+   "skybot_queries": 0,
+   "outcome": "no triggering night",
+   "nights": []
+  },
+  {
+   "star": "TYC 1401-855-1",
+   "v_mag": 7.58612,
+   "search_class": "6<=V<8",
+   "qualifying_nights": 10,
+   "examined_nights": 10,
+   "skybot_queries": 10,
+   "outcome": "no triggering night",
+   "nights": []
+  },
+  {
+   "star": "TYC 1356-518-1",
+   "v_mag": 7.82652,
+   "search_class": "6<=V<8",
+   "qualifying_nights": 0,
+   "examined_nights": 0,
+   "skybot_queries": 0,
+   "outcome": "no triggering night",
+   "nights": []
+  },
+  {
+   "star": "TYC 6384-1134-1",
+   "v_mag": 7.17292,
+   "search_class": "6<=V<8",
+   "qualifying_nights": 3,
+   "examined_nights": 3,
+   "skybot_queries": 3,
+   "outcome": "no triggering night",
+   "nights": []
+  },
+  {
+   "star": "TYC 1351-279-1",
+   "v_mag": 7.16933,
+   "search_class": "6<=V<8",
+   "qualifying_nights": 17,
+   "examined_nights": 17,
+   "skybot_queries": 17,
+   "outcome": "no triggering night",
+   "nights": []
+  },
+  {
+   "star": "TYC 5256-91-1",
+   "v_mag": 7.896419999999999,
+   "search_class": "6<=V<8",
+   "qualifying_nights": 7,
+   "examined_nights": 7,
+   "skybot_queries": 7,
+   "outcome": "no triggering night",
+   "nights": []
+  },
+  {
+   "star": "TYC 6841-600-1",
+   "v_mag": 7.44861,
+   "search_class": "6<=V<8",
+   "qualifying_nights": 27,
+   "examined_nights": 20,
+   "skybot_queries": 20,
+   "outcome": "no triggering night",
+   "nights": []
+  },
+  {
+   "star": "TYC 855-938-1",
+   "v_mag": 6.69738,
+   "search_class": "6<=V<8",
+   "qualifying_nights": 34,
+   "examined_nights": 20,
+   "skybot_queries": 20,
+   "outcome": "no triggering night",
+   "nights": []
+  },
+  {
+   "star": "TYC 5826-1190-1",
+   "v_mag": 6.11496,
+   "search_class": "6<=V<8",
+   "qualifying_nights": 3,
+   "examined_nights": 3,
+   "skybot_queries": 3,
+   "outcome": "no triggering night",
+   "nights": []
+  },
+  {
+   "star": "TYC 1341-641-1",
+   "v_mag": 6.08719,
+   "search_class": "6<=V<8",
+   "qualifying_nights": 14,
+   "examined_nights": 14,
+   "skybot_queries": 14,
+   "outcome": "no triggering night",
+   "nights": []
+  },
+  {
+   "star": "TYC 6318-1074-1",
+   "v_mag": 7.96255,
+   "search_class": "6<=V<8",
+   "qualifying_nights": 1,
+   "examined_nights": 1,
+   "skybot_queries": 1,
+   "outcome": "no triggering night",
+   "nights": []
+  },
+  {
+   "star": "TYC 6174-1051-1",
+   "v_mag": 6.87575,
+   "search_class": "6<=V<8",
+   "qualifying_nights": 1,
+   "examined_nights": 1,
+   "skybot_queries": 1,
+   "outcome": "no triggering night",
+   "nights": []
+  },
+  {
+   "star": "TYC 665-229-1",
+   "v_mag": 7.47508,
+   "search_class": "6<=V<8",
+   "qualifying_nights": 18,
+   "examined_nights": 18,
+   "skybot_queries": 18,
+   "outcome": "no triggering night",
+   "nights": []
+  },
+  {
+   "star": "TYC 6126-53-1",
+   "v_mag": 7.76932,
+   "search_class": "6<=V<8",
+   "qualifying_nights": 0,
+   "examined_nights": 0,
+   "skybot_queries": 0,
+   "outcome": "no triggering night",
+   "nights": []
+  },
+  {
+   "star": "TYC 6301-2237-1",
+   "v_mag": 7.48501,
+   "search_class": "6<=V<8",
+   "qualifying_nights": 13,
+   "examined_nights": 13,
+   "skybot_queries": 13,
+   "outcome": "no triggering night",
+   "nights": []
+  },
+  {
+   "star": "TYC 1869-1850-1",
+   "v_mag": 6.26633,
+   "search_class": "6<=V<8",
+   "qualifying_nights": 22,
+   "examined_nights": 20,
+   "skybot_queries": 20,
+   "outcome": "no triggering night",
+   "nights": []
+  },
+  {
+   "star": "TYC 4678-1066-1",
+   "v_mag": 6.91591,
+   "search_class": "6<=V<8",
+   "qualifying_nights": 24,
+   "examined_nights": 20,
+   "skybot_queries": 20,
+   "outcome": "no triggering night",
+   "nights": []
+  },
+  {
+   "star": "TYC 6310-1542-1",
+   "v_mag": 6.74671,
+   "search_class": "6<=V<8",
+   "qualifying_nights": 1,
+   "examined_nights": 1,
+   "skybot_queries": 1,
+   "outcome": "no triggering night",
+   "nights": []
+  },
+  {
+   "star": "TYC 4922-1220-1",
+   "v_mag": 7.8398,
+   "search_class": "6<=V<8",
+   "qualifying_nights": 1,
+   "examined_nights": 1,
+   "skybot_queries": 1,
+   "outcome": "no triggering night",
+   "nights": []
+  },
+  {
+   "star": "TYC 599-1371-1",
+   "v_mag": 7.0281899999999995,
+   "search_class": "6<=V<8",
+   "qualifying_nights": 67,
+   "examined_nights": 20,
+   "skybot_queries": 20,
+   "outcome": "no triggering night",
+   "nights": []
+  },
+  {
+   "star": "TYC 1910-345-1",
+   "v_mag": 7.61313,
+   "search_class": "6<=V<8",
+   "qualifying_nights": 35,
+   "examined_nights": 20,
+   "skybot_queries": 20,
+   "outcome": "no triggering night",
+   "nights": [
+    {
+     "night_index": 8,
+     "key": [
+      "615",
+      "3",
+      "1",
+      "2019-12-20"
+     ],
+     "outcome": "SkyBoT error: SkyBoT reported an error: SkyBoT asteroid conesearch -> numIntAstromJ2000_para[1]: computeEphemeris: \nProgram received signal SIGBUS: Access to an undefined por",
+     "triggers": 0
+    }
+   ]
+  },
+  {
+   "star": "TYC 6183-1202-1",
+   "v_mag": 7.74106,
+   "search_class": "6<=V<8",
+   "qualifying_nights": 0,
+   "examined_nights": 0,
+   "skybot_queries": 0,
+   "outcome": "no triggering night",
+   "nights": []
+  },
+  {
+   "star": "TYC 288-364-1",
+   "v_mag": 7.970119999999999,
+   "search_class": "6<=V<8",
+   "qualifying_nights": 9,
+   "examined_nights": 9,
+   "skybot_queries": 9,
+   "outcome": "no triggering night",
+   "nights": [
+    {
+     "night_index": 7,
+     "key": [
+      "473",
+      "10",
+      "3",
+      "2020-04-16"
+     ],
+     "outcome": "SkyBoT error: SkyBoT reported an error: SkyBoT asteroid conesearch -> numIntAstromJ2000_para[1]: computeEphemeris: \nProgram received signal SIGBUS: Access to an undefined por",
+     "triggers": 0
+    }
+   ]
+  },
+  {
+   "star": "TYC 5745-2395-1",
+   "v_mag": 6.83086,
+   "search_class": "6<=V<8",
+   "qualifying_nights": 1,
+   "examined_nights": 1,
+   "skybot_queries": 1,
+   "outcome": "no triggering night",
+   "nights": []
+  },
+  {
+   "star": "TYC 1404-1008-1",
+   "v_mag": 7.9289,
+   "search_class": "6<=V<8",
+   "qualifying_nights": 9,
+   "examined_nights": 9,
+   "skybot_queries": 9,
+   "outcome": "no triggering night",
+   "nights": []
+  },
+  {
+   "star": "TYC 5705-586-1",
+   "v_mag": 7.961579999999999,
+   "search_class": "6<=V<8",
+   "qualifying_nights": 17,
+   "examined_nights": 17,
+   "skybot_queries": 17,
+   "outcome": "no triggering night",
+   "nights": []
+  },
+  {
+   "star": "TYC 14-1103-1",
+   "v_mag": 7.90591,
+   "search_class": "6<=V<8",
+   "qualifying_nights": 2,
+   "examined_nights": 2,
+   "skybot_queries": 2,
+   "outcome": "no triggering night",
+   "nights": []
+  },
+  {
+   "star": "TYC 1362-1416-1",
+   "v_mag": 7.970140000000001,
+   "search_class": "6<=V<8",
+   "qualifying_nights": 33,
+   "examined_nights": 20,
+   "skybot_queries": 20,
+   "outcome": "no triggering night",
+   "nights": []
+  },
+  {
+   "star": "TYC 6382-582-1",
+   "v_mag": 7.182040000000001,
+   "search_class": "6<=V<8",
+   "qualifying_nights": 0,
+   "examined_nights": 0,
+   "skybot_queries": 0,
+   "outcome": "no triggering night",
+   "nights": []
+  },
+  {
+   "star": "TYC 1942-375-1",
+   "v_mag": 6.98163,
+   "search_class": "6<=V<8",
+   "qualifying_nights": 37,
+   "examined_nights": 20,
+   "skybot_queries": 20,
+   "outcome": "selected C29-2020-01-28-617-c2-q2, C30-2020-01-28-1613-c9-q2",
+   "nights": [
+    {
+     "night_index": 12,
+     "key": [
+      "617",
+      "2",
+      "2",
+      "2020-01-28"
+     ],
+     "outcome": "selected as C29-2020-01-28-617-c2-q2",
+     "triggers": 1
+    },
+    {
+     "night_index": 13,
+     "key": [
+      "1613",
+      "9",
+      "2",
+      "2020-01-28"
+     ],
+     "outcome": "selected as C30-2020-01-28-1613-c9-q2",
+     "triggers": 1
+    }
+   ]
+  }
+ ]
+}
