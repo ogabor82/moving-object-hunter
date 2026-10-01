@@ -128,3 +128,22 @@ fixed radial bins (0-10' in 2' steps, 10-15', >= 15' control), plus a
 hash-ordered visual sample. Evidence only — no filter, radius, score,
 rank or threshold. Interpretation: `results/as033/as033_findings.md`.
 Needs IRSA and VizieR; ~4 min, ~5.5 GB peak memory (field D).
+
+## AS-034 contamination as star magnitude × distance
+
+```
+python -m app.validation.star_contamination select --out validation/results/as034/as034_population.json
+python -m app.validation.star_contamination evidence --population validation/results/as034/as034_population.json --out-dir validation/results/as034
+python -m app.validation.star_contamination render --out-dir validation/results/as034
+```
+
+Pre-registered (commit e805002): Tycho-2 stars to V <= 11 in 2-mag
+classes, doubling annuli 0-480" around each star with 480-900" as the
+local background, isolated-star primary profiles, the 26-quadrant
+population (AS-022/033 fields + sibling quadrants), the KNOWN rule (AS-022
+target rule) and the strip rule. Produces explicit per-position proximity
+features (`StarProximity`), stacked area-normalised profiles of built /
+rejected UNKNOWN and built KNOWN tracklets with mask and quality summaries,
+KNOWN loss stages by closest approach to a star, and a reviewed strip
+sample. Evidence only — no filter, radius, score, rank or threshold.
+Interpretation: `results/as034/as034_findings.md`. ~35 min, ~8.6 GB peak.

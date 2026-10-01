@@ -387,3 +387,31 @@ def test_live_bright_star_evidence_reproduces_field_s1() -> None:
     assert radial.bins == expected.bins
     assert radial.near_to_control_density_ratio == expected.near_to_control_density_ratio
     assert radial.conditions == expected.conditions
+
+
+def test_live_star_contamination_reproduces_a_sibling_quadrant(tmp_path) -> None:
+    """AS-034: a fresh run of one small sibling quadrant (live IRSA catalogs
+    + VizieR, SkyBoT replayed from the committed snapshot) reproduces the
+    committed cells, KNOWN records and conditions of that quadrant."""
+    import shutil
+
+    from app.validation.star_contamination import Evidence, Population, run_evidence
+
+    as034 = AS022_REPORT.parent / "as034"
+    population = Population.model_validate_json(
+        (as034 / "as034_population.json").read_text()
+    )
+    field_id = "S1-2018-09-19-508-c10-q3"
+    population = population.model_copy(
+        update={"fields": [f for f in population.fields if f.field.field_id == field_id]}
+    )
+    shutil.copy(as034 / "as034_skybot.json", tmp_path / "as034_skybot.json")
+    committed = Evidence.model_validate_json((as034 / "as034_evidence.json").read_text())
+
+    fresh = run_evidence(population, tmp_path)
+
+    assert fresh.fields == [f for f in committed.fields if f.field_id == field_id]
+    assert fresh.known == [k for k in committed.known if k.field_id == field_id]
+    assert {k: c for k, c in fresh.cells.items() if not k.startswith("ALL|")} == {
+        k: c for k, c in committed.cells.items() if k.startswith(f"{field_id}|")
+    }

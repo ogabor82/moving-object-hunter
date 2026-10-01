@@ -1,0 +1,202 @@
+[
+ {
+  "field_id": "S4-2018-11-07-615-c5-q4",
+  "tracklet_id": "23139",
+  "same_source_all_epochs": "yes",
+  "source_visible_each_epoch": "yes,yes,yes",
+  "context": "clean sky; V 9.8 star 77\" away, not in view",
+  "notes": "KNOWN, recovered: clear moving point source at the predicted positions."
+ },
+ {
+  "field_id": "S3-2019-07-01-335-c7-q2",
+  "tracklet_id": "89616",
+  "same_source_all_epochs": "yes",
+  "source_visible_each_epoch": "yes,yes,yes",
+  "context": "crowded; E1-E2 1 min apart",
+  "notes": "KNOWN, not candidate: compact source at every predicted position; it barely moves between E1 and E2 (1-minute baseline), consistent with being matched as stationary. No bright-star structure at the markers."
+ },
+ {
+  "field_id": "D-2019-06-02-281-c16-q2",
+  "tracklet_id": "657605",
+  "same_source_all_epochs": "unclear",
+  "source_visible_each_epoch": "faint,faint,faint",
+  "context": "crowded star field",
+  "notes": "KNOWN, recovered: faint, hard to separate from neighbours at this stretch."
+ },
+ {
+  "field_id": "S3-2019-07-01-335-c7-q2",
+  "tracklet_id": "408599",
+  "same_source_all_epochs": "no",
+  "source_visible_each_epoch": "yes,yes,yes",
+  "context": "blend with a field star in E1/E2",
+  "notes": "KNOWN, not candidate: in E1/E2 the predicted position coincides with a source that is still there in E3 (a field star); the asteroid is blended with it. Not bright-star structure."
+ },
+ {
+  "field_id": "D-2019-06-02-281-c16-q1",
+  "tracklet_id": "2008 OD8",
+  "same_source_all_epochs": "unclear",
+  "source_visible_each_epoch": "unclear,unclear,unclear",
+  "context": "crowded star field",
+  "notes": "KNOWN marginal (V 20.3), not detected: nothing clearly separable at the markers."
+ },
+ {
+  "field_id": "D-2019-06-02-281-c16-q4",
+  "tracklet_id": "434592",
+  "same_source_all_epochs": "unclear",
+  "source_visible_each_epoch": "no,faint,no",
+  "context": "crowded; V 8.9 star glow at the strip edge",
+  "notes": "KNOWN marginal (V 20.5), not detected (2/3): markers are not on the star's glow; faint/nothing at E1/E3."
+ },
+ {
+  "field_id": "S3-2019-07-01-335-c7-q1",
+  "tracklet_id": "725711",
+  "same_source_all_epochs": "yes",
+  "source_visible_each_epoch": "yes,yes,yes",
+  "context": "crowded; E1-E2 1 min apart",
+  "notes": "KNOWN, not candidate: source visible at all predicted positions; same short-baseline pattern as 89616."
+ },
+ {
+  "field_id": "D-2019-06-02-281-c16-q4",
+  "tracklet_id": "268001",
+  "same_source_all_epochs": "unclear",
+  "source_visible_each_epoch": "faint,faint,unclear",
+  "context": "crowded; V 9.9 star in the corner",
+  "notes": "KNOWN primary (V 19.4), not detected (2/3): faint at E1/E2; E3 displayed with a different zscale, unclear."
+ },
+ {
+  "field_id": "D-2019-06-02-281-c16-q4",
+  "tracklet_id": "373923",
+  "same_source_all_epochs": "yes",
+  "source_visible_each_epoch": "faint,yes,yes",
+  "context": "crowded star field",
+  "notes": "KNOWN marginal, not detected (2/3): a source is visible at the E2/E3 positions; the missing detection is likely blending in the crowd."
+ },
+ {
+  "field_id": "S3-2019-07-01-335-c7-q2",
+  "tracklet_id": "230748",
+  "same_source_all_epochs": "unclear",
+  "source_visible_each_epoch": "faint,yes,yes",
+  "context": "crowded star field",
+  "notes": "KNOWN marginal, not detected (2/3): faint at E1."
+ },
+ {
+  "field_id": "B-2019-01-25-565-c13-q3",
+  "tracklet_id": "144741",
+  "same_source_all_epochs": "yes",
+  "source_visible_each_epoch": "faint,yes,faint",
+  "context": "clean sky",
+  "notes": "KNOWN, recovered: faint moving source."
+ },
+ {
+  "field_id": "S3-2019-07-01-335-c7-q2",
+  "tracklet_id": "288181",
+  "same_source_all_epochs": "unclear",
+  "source_visible_each_epoch": "faint,faint,no",
+  "context": "E3 position on the edge of a bright extended star",
+  "notes": "KNOWN marginal, not detected (2/3): the E3 predicted position falls on the outskirts of a bright, extended star image \u2014 a plausible bright-star loss."
+ },
+ {
+  "field_id": "B-2019-01-25-565-c13-q2",
+  "tracklet_id": "trk-0165",
+  "same_source_all_epochs": "no",
+  "source_visible_each_epoch": "no,no,no",
+  "context": "saturated core, spikes, bleed (V 7.9)",
+  "notes": "Markers on the core and spikes of the V 7.9 star; no moving source."
+ },
+ {
+  "field_id": "S4-2018-11-07-615-c5-q2",
+  "tracklet_id": "trk-1034",
+  "same_source_all_epochs": "no",
+  "source_visible_each_epoch": "no,no,no",
+  "context": "glow and spike of a V 7.4 star",
+  "notes": "Markers on the star's glow and horizontal spike."
+ },
+ {
+  "field_id": "S1-2018-09-19-508-c10-q2",
+  "tracklet_id": "trk-0093",
+  "same_source_all_epochs": "no",
+  "source_visible_each_epoch": "no,no,no",
+  "context": "bleed column of a V 7.5 star",
+  "notes": "All markers on the bleed column / core."
+ },
+ {
+  "field_id": "B-2019-01-25-565-c13-q1",
+  "tracklet_id": "trk-0130",
+  "same_source_all_epochs": "no",
+  "source_visible_each_epoch": "no,no,no",
+  "context": "core / bleed / spike of a V 9.4 star",
+  "notes": "Markers on the saturated core, bleed and glow of a V 9.4 star."
+ },
+ {
+  "field_id": "S4-2018-11-07-615-c5-q3",
+  "tracklet_id": "trk-6808",
+  "same_source_all_epochs": "no",
+  "source_visible_each_epoch": "no,no,no",
+  "context": "glow / spikes of a V 9.1 star",
+  "notes": "Markers in the glow around a V 9.1 star."
+ },
+ {
+  "field_id": "D-2019-06-02-281-c16-q3",
+  "tracklet_id": "trk-1114",
+  "same_source_all_epochs": "no",
+  "source_visible_each_epoch": "no,no,no",
+  "context": "glow of a V 9.3 star",
+  "notes": "E1/E2 markers on the star's glow, E3 on empty sky."
+ },
+ {
+  "field_id": "S4-2018-11-07-615-c5-q3",
+  "tracklet_id": "trk-7083",
+  "same_source_all_epochs": "no",
+  "source_visible_each_epoch": "no,no,no",
+  "context": "broad diffuse vertical band (S4 ghost), V 10.6 star nearby",
+  "notes": "Markers on a wide smooth light band crossing the strip, not on the faint star's light; same band type as AS-033 S4 bit 6."
+ },
+ {
+  "field_id": "D-2019-06-02-281-c16-q3",
+  "tracklet_id": "trk-1645",
+  "same_source_all_epochs": "unclear",
+  "source_visible_each_epoch": "unclear,unclear,unclear",
+  "context": "crowded star field; V 10.7 star",
+  "notes": "Nothing distinctive at the markers."
+ },
+ {
+  "field_id": "S4-2018-11-07-615-c5-q3",
+  "tracklet_id": "trk-1295",
+  "same_source_all_epochs": "no",
+  "source_visible_each_epoch": "no,no,no",
+  "context": "broad diffuse vertical band (S4 ghost), V 10.6 star nearby",
+  "notes": "As trk-7083."
+ },
+ {
+  "field_id": "D-2019-06-02-281-c16-q1",
+  "tracklet_id": "trk-4006",
+  "same_source_all_epochs": "unclear",
+  "source_visible_each_epoch": "faint,faint,no",
+  "context": "crowded star field (background)",
+  "notes": "Faint blobs at E1/E2, nothing at E3."
+ },
+ {
+  "field_id": "S4-2018-11-07-615-c5-q3",
+  "tracklet_id": "trk-2920",
+  "same_source_all_epochs": "no",
+  "source_visible_each_epoch": "no,no,no",
+  "context": "diffuse ghost band / image edge (background)",
+  "notes": "Markers on diffuse band structure near the image edge."
+ },
+ {
+  "field_id": "D-2019-06-02-281-c16-q1",
+  "tracklet_id": "trk-1287",
+  "same_source_all_epochs": "unclear",
+  "source_visible_each_epoch": "unclear,unclear,unclear",
+  "context": "crowded star field (background)",
+  "notes": "Nothing separable at the markers."
+ },
+ {
+  "field_id": "D-2019-06-02-281-c16-q3",
+  "tracklet_id": "trk-0264",
+  "same_source_all_epochs": "unclear",
+  "source_visible_each_epoch": "faint,faint,yes",
+  "context": "crowded star field (background)",
+  "notes": "Faint compact source at each crosshair, absent at the other rings in E3: could be a real faint mover; not judged."
+ }
+]
