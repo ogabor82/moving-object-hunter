@@ -27,6 +27,24 @@ class TrackletPipelineResult:
     candidate_frames: list[CandidateFrame]
     build: TrackletBuildResult
 
+    def sharp_by_source_id(self) -> dict[str, float]:
+        """Raw `sharp` of the build's tracklet detections, by source_id
+        (from the frames; detections without a finite value are absent)."""
+        by_frame = {
+            frame.observation.product_id: frame.sharp_by_source_id
+            for frame in self.frames
+        }
+        sharp = {}
+        for tracklet in self.build.tracklets:
+            for item in tracklet.detections:
+                detection = item.detection
+                value = by_frame[detection.observation_product_id].get(
+                    detection.source_id
+                )
+                if value is not None:
+                    sharp[detection.source_id] = value
+        return sharp
+
 
 def build_tracklets_from_frames(
     frames: list[FrameSources],

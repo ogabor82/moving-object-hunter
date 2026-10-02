@@ -1,3 +1,4 @@
+import math
 from collections.abc import Mapping, Sequence
 from dataclasses import dataclass
 
@@ -68,24 +69,46 @@ def normalize_psf_catalog(
     return CatalogNormalizationResult(detections, rejected_rows)
 
 
+def psf_sharp_by_source_id(
+    observation: Observation,
+    catalog: ZTFPSFCatalog,
+) -> dict[str, float]:
+    """Raw `sharp` of every catalog row with a finite value, by source_id.
+
+    The single definition of the per-detection `sharp` used by the quality
+    features (AS-031), the research tables (AS-038/040) and the M1 review
+    ranking (AS-041). Non-finite values are left out (the detection's
+    `sharp` is then missing); nothing is estimated. The key is the
+    SourceDetection.source_id the row maps to.
+    """
+    sharp_by_source_id: dict[str, float] = {}
+    for row in catalog.rows:
+        sharp = float(row["sharp"])
+        if math.isfinite(sharp):
+            sharp_by_source_id[_source_id(observation, row)] = sharp
+    return sharp_by_source_id
+
+
 def load_frame_sources(
     observations: Sequence[Observation],
     client: httpx.Client | None = None,
 ) -> list[FrameSources]:
     """Fetch and normalize the PSF catalog of every observation, in order.
 
-    A frame whose catalog cannot be fetched or normalized fails the load.
+    Each frame keeps the raw `sharp` values beside its detections
+    (`psf_sharp_by_source_id`). A frame whose catalog cannot be fetched or
+    normalized fails the load.
     """
     frames = []
     for observation in observations:
-        result = normalize_psf_catalog(
-            observation, fetch_psf_catalog(observation, client)
-        )
+        catalog = fetch_psf_catalog(observation, client)
+        result = normalize_psf_catalog(observation, catalog)
         frames.append(
             FrameSources(
                 observation=observation,
                 detections=result.detections,
                 rejected_row_count=len(result.rejected_rows),
+                sharp_by_source_id=psf_sharp_by_source_id(observation, catalog),
             )
         )
     return frames
@@ -98,7 +121,7 @@ def _map_psf_row(
 ) -> SourceDetection:
     flags = int(row["flags"])
     return SourceDetection(
-        source_id=f"{observation.product_id}-{int(row['sourceid'])}",
+        source_id=_source_id(observation, row),
         observation_product_id=observation.product_id,
         ra=row["ra"],
         dec=row["dec"],
@@ -110,6 +133,10 @@ def _map_psf_row(
         on_image_edge=flags == ZTF_EDGE_FLAG,
         mask_bits=max(flags, 0),
     )
+
+
+def _source_id(observation: Observation, row: Mapping[str, float | int]) -> str:
+    return f"{observation.product_id}-{int(row['sourceid'])}"
 
 
 def _describe_validation_error(exc: ValidationError) -> str:

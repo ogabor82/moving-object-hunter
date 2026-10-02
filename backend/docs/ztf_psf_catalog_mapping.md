@@ -53,7 +53,7 @@ Worked example (POC observation, field 535 / c11 / q3, 2018-04-11):
 |------------|--------------------|
 | `flux`, `sigflux` | Detector DN; the calibrated magnitude and snr carry the same information for matching. |
 | `chi`      | DAOPhot PSF-fit residual ratio; no downstream consumer yet. |
-| `sharp`    | DAOPhot shape metric (`<< 0` cosmic ray, `>> 0` extended). May become a false-positive filter later; not applied now. |
+| `sharp`    | DAOPhot shape metric (`<< 0` cosmic ray, `>> 0` extended). Not a SourceDetection field, but kept beside the detections: `catalog_service.psf_sharp_by_source_id` → `FrameSources.sharp_by_source_id` (finite values, by `source_id`; AS-041). Used only by the M1 review ranking (`sharp_abs_max`, `docs/review_ranking.md`); never a filter. |
 
 ## Row validation (AS-009)
 

@@ -38,6 +38,7 @@ from pathlib import Path
 
 from pydantic import BaseModel
 
+from app.services.quality_service import shared_detection_tracklets, sharp_abs_max
 from app.validation import ranking_design as rd
 
 # ---------------------------------------------------------------------------
@@ -222,24 +223,9 @@ def replay_field(root: Path, manifest: Mapping, field_id: str, product_ids, clie
 # ---------------------------------------------------------------------------
 
 
-def sharp_abs_max(sharp_values: Sequence[float | None], complete: bool) -> float | None:
-    """max |sharp| over the detections; None unless sharp is complete."""
-    if not complete or not sharp_values:
-        return None
-    return max(abs(v) for v in sharp_values)
-
-
-def shared_detection_tracklets(detections_by_tracklet: Mapping[str, Sequence[str]]) -> dict[str, int]:
-    """Per built tracklet: number of OTHER built tracklets that share at
-    least one detection (source id) with it (AS-032 O3)."""
-    owners: dict[str, set[str]] = defaultdict(set)
-    for tracklet_id, sources in detections_by_tracklet.items():
-        for source in sources:
-            owners[source].add(tracklet_id)
-    return {
-        tracklet_id: len(set().union(*(owners[s] for s in sources)) - {tracklet_id})
-        for tracklet_id, sources in detections_by_tracklet.items()
-    }
+# sharp_abs_max and shared_detection_tracklets are defined once, in
+# app.services.quality_service (moved there unchanged in AS-041 so the API
+# review ranking computes exactly these features); imported above.
 
 
 # ---------------------------------------------------------------------------

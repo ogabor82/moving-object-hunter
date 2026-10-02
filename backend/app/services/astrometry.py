@@ -1,3 +1,6 @@
+import math
+from collections.abc import Sequence
+
 import astropy.units as u
 import numpy
 from astropy.coordinates import SkyCoord, angular_separation
@@ -14,6 +17,42 @@ def angular_distance_arcsec(
     first = SkyCoord(ra1_degrees * u.deg, dec1_degrees * u.deg, frame="icrs")
     second = SkyCoord(ra2_degrees * u.deg, dec2_degrees * u.deg, frame="icrs")
     return float(first.separation(second).to_value(u.arcsec))
+
+
+def mean_position(positions: Sequence[tuple[float, float]]) -> tuple[float, float]:
+    """Mean of (ra, dec) positions via unit vectors (safe across RA = 0)."""
+    x = y = z = 0.0
+    for ra, dec in positions:
+        ra_rad, dec_rad = math.radians(ra), math.radians(dec)
+        x += math.cos(dec_rad) * math.cos(ra_rad)
+        y += math.cos(dec_rad) * math.sin(ra_rad)
+        z += math.sin(dec_rad)
+    ra = math.degrees(math.atan2(y, x)) % 360.0
+    dec = math.degrees(math.atan2(z, math.hypot(x, y)))
+    return ra, dec
+
+
+# Margin around a track and the smallest cutout of a track window [arcsec].
+TRACK_MARGIN_ARCSEC = 30.0
+MIN_TRACK_WINDOW_ARCSEC = 60.0
+
+
+def track_window(
+    positions: Sequence[tuple[float, float]],
+) -> tuple[float, float, float]:
+    """(centre ra, centre dec, square size in arcsec) of a cutout holding
+    the whole track plus TRACK_MARGIN_ARCSEC, rounded up to 10", at least
+    MIN_TRACK_WINDOW_ARCSEC (the blink-comparator cutout rule)."""
+    center_ra, center_dec = mean_position(positions)
+    extent = max(
+        angular_distance_arcsec(center_ra, center_dec, ra, dec)
+        for ra, dec in positions
+    )
+    size = max(
+        MIN_TRACK_WINDOW_ARCSEC,
+        10.0 * math.ceil((2 * extent + 2 * TRACK_MARGIN_ARCSEC) / 10.0),
+    )
+    return center_ra, center_dec, size
 
 
 def find_pairs_within(

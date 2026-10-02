@@ -26,6 +26,7 @@ python3 -m venv .venv
 
 API: `GET /api/health`, `GET /api/observations/search`,
 `POST /api/tracklets/build`, `POST /api/tracklets/{tracklet_id}/identify`,
+`GET /api/tracklets/builds/{build_id}/review-ranking`,
 `GET /api/frames/presets`, `GET /api/frames/cutout`,
 `POST /api/frames/project`
 (interactive docs at http://127.0.0.1:8000/docs). The pipeline endpoints
@@ -73,6 +74,18 @@ and identifies the selected one with `POST /api/tracklets/{id}/identify`
 SkyBoT failure is shown as an error, never as unknown). The overlay marks
 this epoch's detection with an open crosshair, the other epochs with rings,
 and the motion with a dashed arrow; toggle it with `o`.
+
+Ranked candidate review (AS-041):
+`GET /api/tracklets/builds/{build_id}/review-ranking` returns every
+tracklet of a build, the built ones ordered by the validated M1 review
+priority (AS-039 frozen, AS-040 USEFUL, PROTECTED), the rejected ones
+unranked. The rank is review priority only: M1 is not a classifier, its
+score is not a probability or confidence, and no candidate is filtered by
+score, rank, mask/flag state, faintness or star proximity. Each candidate
+carries its 8 feature values and percentiles, its tracklet and a cutout
+`view` for the blink comparator. See `backend/docs/review_ranking.md`;
+production-vs-research equivalence evidence is in
+`backend/validation/results/as041/`.
 
 ## Tests
 

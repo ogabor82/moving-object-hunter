@@ -1,7 +1,6 @@
 """Live loading of a frozen validation field (IRSA + SkyBoT)."""
 
 import csv
-import math
 from collections import Counter
 from dataclasses import dataclass
 from io import StringIO
@@ -13,7 +12,7 @@ from astropy.coordinates import SkyCoord
 from app.models.frame_sources import FrameSources
 from app.models.known_object import KnownObjectField
 from app.models.observation import Observation
-from app.services.catalog_service import normalize_psf_catalog
+from app.services.catalog_service import normalize_psf_catalog, psf_sharp_by_source_id
 from app.services.identification_service import mid_exposure_jd_utc
 from app.services.skybot_service import ZTF_OBSERVATORY_CODE, query_known_objects
 from app.services.ztf_service import (
@@ -99,8 +98,9 @@ class CatalogFrames:
     """Normalized frames plus raw PSF catalog values the domain drops.
 
     `sharp` is not mapped to SourceDetection (docs/ztf_psf_catalog_mapping
-    .md), so it is kept here by source_id for research use; non-finite
-    values are left out. `negative_flag_counts` counts raw `flags` values
+    .md); `sharp_by_source_id` merges the frames' values
+    (catalog_service.psf_sharp_by_source_id, the same definition the API
+    path uses); non-finite values are left out. `negative_flag_counts` counts raw `flags` values
     below 0: -1 becomes on_image_edge, any other negative value would map
     to on_image_edge=False, mask_bits=0 and so be lost.
     """
@@ -121,18 +121,17 @@ def load_catalog_frames(
     for observation in observations:
         catalog = fetch_psf_catalog(observation, client)
         result = normalize_psf_catalog(observation, catalog)
+        sharp = psf_sharp_by_source_id(observation, catalog)
         frames.append(
             FrameSources(
                 observation=observation,
                 detections=result.detections,
                 rejected_row_count=len(result.rejected_rows),
+                sharp_by_source_id=sharp,
             )
         )
+        sharp_by_source_id.update(sharp)
         for row in catalog.rows:
-            source_id = f"{observation.product_id}-{int(row['sourceid'])}"
-            sharp = float(row["sharp"])
-            if math.isfinite(sharp):
-                sharp_by_source_id[source_id] = sharp
             if int(row["flags"]) < 0:
                 negative_flags[int(row["flags"])] += 1
     return CatalogFrames(

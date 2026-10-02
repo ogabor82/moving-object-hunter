@@ -9,10 +9,12 @@ from app.models.identification import IdentificationConfig, TrackletIdentificati
 from app.models.known_object import KnownObjectField
 from app.models.observation import Observation
 from app.models.pipeline_config import EXPERIMENTAL_DEFAULT_CONFIG, PipelineConfig
+from app.models.review_ranking import ReviewRanking
 from app.models.tracklet import Tracklet, TrackletBuildDiagnostics
 from app.services.catalog_service import CatalogNormalizationError
 from app.services.identification_service import identify_tracklets
 from app.services.pipeline_service import build_tracklets_from_observations
+from app.services.review_ranking_service import rank_for_review
 from app.services.skybot_service import SkyBoTServiceError
 from app.services.ztf_service import (
     InsufficientFramesError,
@@ -75,7 +77,9 @@ def build(
     """Build tracklets from a ZTF frame sequence (synchronous).
 
     Tracklet ids are `<build_id>.<tracklet id>` and stay available for
-    POST /api/tracklets/{tracklet_id}/identify while the build is kept.
+    POST /api/tracklets/{tracklet_id}/identify, and the build for
+    GET /api/tracklets/builds/{build_id}/review-ranking, while the build is
+    kept.
     """
     try:
         observations = _observations(request.observation_ids)
@@ -100,7 +104,9 @@ def build(
         )
         for tracklet in result.build.tracklets
     ]
-    store.add_build(build_id, tracklets, observations, request.config)
+    store.add_build(
+        build_id, tracklets, observations, request.config, result.sharp_by_source_id()
+    )
     return TrackletBuildResponse(
         build_id=build_id,
         config=request.config,
@@ -122,6 +128,65 @@ def _observations(product_ids: list[int]) -> list[Observation]:
             key=lambda observation: (observation.observed_at, observation.product_id),
         )
     return fetch_observations(product_ids)
+
+
+class ReviewRankingResponse(ReviewRanking):
+    """Every tracklet of one build for human review, M1 order first.
+
+    `candidates` holds ALL built tracklets (`candidate_count` of them) in
+    review order; `unranked` holds every rejected tracklet. Nothing is
+    filtered: `candidate_count + unranked_count == tracklet_count`.
+    """
+
+    build_id: str
+    config: PipelineConfig
+    observations: list[Observation]
+    tracklet_count: int
+    candidate_count: int
+    unranked_count: int
+
+
+@router.get(
+    "/builds/{build_id}/review-ranking",
+    response_model=ReviewRankingResponse,
+    responses={404: {"model": ErrorResponse}},
+)
+def review_ranking(
+    build_id: str,
+    store: TrackletStore = Depends(get_tracklet_store),
+) -> ReviewRankingResponse:
+    """All candidates of a build in M1 review-priority order (AS-041).
+
+    Rank orders human review only: M1 is not a classifier, its score is not
+    a probability or confidence, and no candidate is removed for its score,
+    rank, mask / flag state, faintness or star proximity; there is no
+    cutoff. Inputs are only the 8 frozen M1 features; identity (SkyBoT,
+    designation, known / unknown) and star proximity are never used. Each
+    candidate carries its tracklet and a `view` (frame sequence, cutout
+    centre and size) to open it in the blink comparator / overlay; its
+    `tracklet_id` works with POST /api/tracklets/{tracklet_id}/identify.
+    Deterministic; offline (no IRSA or SkyBoT call).
+    """
+    stored = store.get_build(build_id)
+    if stored is None:
+        raise ApiError(
+            404,
+            "BUILD_NOT_FOUND",
+            f"Build {build_id} is not known (builds are kept in memory for "
+            "the most recent builds only).",
+        )
+    ranking = rank_for_review(
+        stored.tracklets, stored.sharp_by_source_id, stored.observations, stored.config
+    )
+    return ReviewRankingResponse(
+        **dict(ranking),
+        build_id=build_id,
+        config=stored.config,
+        observations=stored.observations,
+        tracklet_count=len(stored.tracklets),
+        candidate_count=len(ranking.candidates),
+        unranked_count=len(ranking.unranked),
+    )
 
 
 class IdentifyRequest(BaseModel):

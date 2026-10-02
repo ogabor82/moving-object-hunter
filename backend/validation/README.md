@@ -298,3 +298,21 @@ a descriptive development-vs-validation comparison. Implementation
 decisions V1–V14 (block in the module) were committed before any
 validation feature existed. Interpretation:
 `results/as040/as040_findings.md`.
+
+## AS-041 production M1 vs the frozen research M1 (equivalence only)
+
+```
+python -m app.validation.review_ranking_equivalence --out-dir validation/results/as041          # offline
+python -m app.validation.review_ranking_equivalence --out-dir validation/results/as041 --live   # + live IRSA
+```
+
+Checks that the API review ranking (`app/services/review_ranking_service.py`,
+`docs/review_ranking.md`) computes exactly the frozen M1. Offline: the
+production scorer on the committed AS-038 and AS-040 tables against
+`sealed_validation.frozen_scores` (bit-identical scores and order per
+quadrant-night; the committed AS-039 / AS-040 M1 recall@5 % and AUC
+recomputed from the production scores). Live: the API build path from raw
+IRSA PSF catalogs on representative quadrant-nights against the committed
+table rows (same built tracklets, 8 feature values, scores and order).
+Nothing is tuned, selected or re-evaluated. Output:
+`results/as041/as041_equivalence.json` / `.md`.

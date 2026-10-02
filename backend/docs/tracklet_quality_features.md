@@ -52,11 +52,16 @@ count as masked, but they do not occur in the AS-022 catalogs. See
   (`ztf_service.PSF_CATALOG_COLUMNS`) but deliberately not mapped to the
   provider-independent `SourceDetection` (`catalog_service._map_psf_row`;
   `docs/ztf_psf_catalog_mapping.md`, "Not mapped";
-  `test_source_detection_exposes_no_ztf_specific_fields`). The production
-  path (API build, AS-023/024 tooling) therefore has no `sharp`: features
-  say `unavailable`. The research tooling keeps the raw values by
-  `source_id` (`validation.data.load_catalog_frames`) and passes them in;
-  non-finite raw values become null. Nothing is estimated.
+  `test_source_detection_exposes_no_ztf_specific_fields`). Since AS-041
+  the raw `sharp` is kept beside the detections in both paths, by one
+  function (`catalog_service.psf_sharp_by_source_id`, finite values by
+  `source_id`): the API build path stores it on
+  `FrameSources.sharp_by_source_id` and passes it to the review ranking
+  (`docs/review_ranking.md`); the research tooling
+  (`validation.data.load_catalog_frames`) passes the same values in.
+  Callers that pass nothing (AS-023/024 tooling) still get `unavailable`.
+  Non-finite raw values become null. Nothing is estimated. `chi` is still
+  dropped.
 - **Raw `flags` below −1.** `flags == -1` becomes `on_image_edge`,
   `flags ≥ 0` becomes `mask_bits`; any other negative value would reach the
   domain as a clean detection. `load_catalog_frames` counts such raw values

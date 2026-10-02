@@ -6,7 +6,8 @@ tracklet, its fit or any identification, and applies no threshold.
 
 import math
 import statistics
-from collections.abc import Mapping
+from collections import defaultdict
+from collections.abc import Mapping, Sequence
 from functools import reduce
 
 from app.models.quality import SharpAvailability, TrackletQualityFeatures
@@ -78,3 +79,28 @@ def extract_quality_features(
 
 def _finite(value: float | None) -> float | None:
     return float(value) if value is not None and math.isfinite(value) else None
+
+
+# Derived tracklet features of the AS-037 pre-registration, used by the
+# AS-038/039/040 research tables and the M1 review ranking (AS-041). They
+# are defined only here; app.validation.feature_evaluation imports them.
+
+
+def sharp_abs_max(sharp_values: Sequence[float | None], complete: bool) -> float | None:
+    """max |sharp| over the detections; None unless sharp is complete."""
+    if not complete or not sharp_values:
+        return None
+    return max(abs(v) for v in sharp_values)
+
+
+def shared_detection_tracklets(detections_by_tracklet: Mapping[str, Sequence[str]]) -> dict[str, int]:
+    """Per built tracklet: number of OTHER built tracklets that share at
+    least one detection (source id) with it (AS-032 O3)."""
+    owners: dict[str, set[str]] = defaultdict(set)
+    for tracklet_id, sources in detections_by_tracklet.items():
+        for source in sources:
+            owners[source].add(tracklet_id)
+    return {
+        tracklet_id: len(set().union(*(owners[s] for s in sources)) - {tracklet_id})
+        for tracklet_id, sources in detections_by_tracklet.items()
+    }

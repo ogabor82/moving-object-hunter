@@ -1,0 +1,193 @@
+{
+ "generated_at": "2026-10-02T22:25:41.219543Z",
+ "offline": {
+  "spec": {
+   "frozen_ranker_sha256": "875a0647a61f9bac25f5932e2f5f3b5d6b0d082de0ffc3944c4a1824f4eda897",
+   "equal": true
+  },
+  "splits": {
+   "development (AS-038 table)": {
+    "quadrant_nights": 56,
+    "tracklets": 18366,
+    "scores_identical_fields": 56,
+    "order_identical_fields": 56,
+    "max_abs_difference": 0.0,
+    "m1_committed": {
+     "recall_5": 0.9552238805970149,
+     "auc": 0.9898809821237633
+    },
+    "m1_from_production_scores": {
+     "recall_5": 0.9552238805970149,
+     "auc": 0.9898809821237633
+    },
+    "metrics_identical": true
+   },
+   "validation (AS-040 table)": {
+    "quadrant_nights": 24,
+    "tracklets": 10817,
+    "scores_identical_fields": 24,
+    "order_identical_fields": 24,
+    "max_abs_difference": 0.0,
+    "m1_committed": {
+     "recall_5": 0.9386617100371747,
+     "auc": 0.9897524009165861
+    },
+    "m1_from_production_scores": {
+     "recall_5": 0.9386617100371747,
+     "auc": 0.9897524009165861
+    },
+    "metrics_identical": true
+   }
+  }
+ },
+ "live": [
+  {
+   "field_id": "POC-2018-04-11-535-c11-q3",
+   "split": "development",
+   "frames": 3,
+   "sources_per_frame": [
+    13455,
+    12553,
+    8678
+   ],
+   "tracklets": 80,
+   "built_production": 14,
+   "built_research": 14,
+   "unranked_rejected": 66,
+   "same_built_tracklets": true,
+   "sharp_complete": 14,
+   "feature_mismatches": [],
+   "score_mismatches": [],
+   "order_identical": true,
+   "domain_notes": [],
+   "seconds": 26.7
+  },
+  {
+   "field_id": "C-2018-10-06-448-c9-q3",
+   "split": "development",
+   "frames": 3,
+   "sources_per_frame": [
+    7863,
+    7569,
+    5117
+   ],
+   "tracklets": 154,
+   "built_production": 39,
+   "built_research": 39,
+   "unranked_rejected": 115,
+   "same_built_tracklets": true,
+   "sharp_complete": 39,
+   "feature_mismatches": [],
+   "score_mismatches": [],
+   "order_identical": true,
+   "domain_notes": [],
+   "seconds": 12.4
+  },
+  {
+   "field_id": "D-2019-06-02-281-c16-q3",
+   "split": "development",
+   "frames": 3,
+   "sources_per_frame": [
+    150253,
+    131401,
+    149649
+   ],
+   "tracklets": 5634,
+   "built_production": 842,
+   "built_research": 842,
+   "unranked_rejected": 4792,
+   "same_built_tracklets": true,
+   "sharp_complete": 842,
+   "feature_mismatches": [],
+   "score_mismatches": [],
+   "order_identical": true,
+   "domain_notes": [],
+   "seconds": 82.5
+  },
+  {
+   "field_id": "C15-2019-01-04-500-c15-q4",
+   "split": "validation",
+   "frames": 3,
+   "sources_per_frame": [
+    7144,
+    3973,
+    4478
+   ],
+   "tracklets": 524,
+   "built_production": 29,
+   "built_research": 29,
+   "unranked_rejected": 495,
+   "same_built_tracklets": true,
+   "sharp_complete": 29,
+   "feature_mismatches": [],
+   "score_mismatches": [],
+   "order_identical": true,
+   "domain_notes": [],
+   "seconds": 15.7
+  },
+  {
+   "field_id": "C27-2020-11-15-392-c7-q4",
+   "split": "validation",
+   "frames": 3,
+   "sources_per_frame": [
+    3275,
+    6524,
+    6424
+   ],
+   "tracklets": 193,
+   "built_production": 44,
+   "built_research": 44,
+   "unranked_rejected": 149,
+   "same_built_tracklets": true,
+   "sharp_complete": 44,
+   "feature_mismatches": [],
+   "score_mismatches": [],
+   "order_identical": true,
+   "domain_notes": [],
+   "seconds": 12.8
+  },
+  {
+   "field_id": "C11-2020-08-27-447-c2-q1",
+   "split": "validation",
+   "frames": 3,
+   "sources_per_frame": [
+    6557,
+    5006,
+    3600
+   ],
+   "tracklets": 591,
+   "built_production": 110,
+   "built_research": 110,
+   "unranked_rejected": 481,
+   "same_built_tracklets": true,
+   "sharp_complete": 110,
+   "feature_mismatches": [],
+   "score_mismatches": [],
+   "order_identical": true,
+   "domain_notes": [],
+   "seconds": 19.5
+  },
+  {
+   "field_id": "C24-2019-06-29-279-c5-q2",
+   "split": "validation",
+   "frames": 3,
+   "sources_per_frame": [
+    95532,
+    85912,
+    102293
+   ],
+   "tracklets": 555,
+   "built_production": 76,
+   "built_research": 76,
+   "unranked_rejected": 479,
+   "same_built_tracklets": true,
+   "sharp_complete": 76,
+   "feature_mismatches": [],
+   "score_mismatches": [],
+   "order_identical": true,
+   "domain_notes": [],
+   "seconds": 52.4
+  }
+ ],
+ "equivalent": true
+}
