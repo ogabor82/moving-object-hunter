@@ -1,0 +1,122 @@
+{
+ "checked_at": "2026-10-02T21:13:04.980662Z",
+ "file_sha256": {
+  "validation/results/as037/as037_manifest.json": "63e12b9feb8bc3761a0b43ecebd1a68b6bbe00ef83de3e627cf7baaa4b9f423c",
+  "validation/results/as038/as038_feature_table.csv.gz": "da670e38357503fe6d6d5239097523d08e939d8c8c28c133a0d873d7d6dd5fd9",
+  "validation/results/as038/as038_frozen_features.json": "a8182bc63649f6f035ca3b19a4db9dcc1c9701abc07df149b68d52c82de0cf42",
+  "validation/results/as039/as039_frozen_ranker.json": "875a0647a61f9bac25f5932e2f5f3b5d6b0d082de0ffc3944c4a1824f4eda897"
+ },
+ "validation_digest": "a549b6bc22a54f14d136b41de3047cce627ce792d8f5308b69e22f96e603aa3d",
+ "validation_fields": 24,
+ "validation_groups": 22,
+ "ranker": {
+  "ranker": "M1",
+  "kind": "unweighted mean of oriented within-quadrant-night percentiles",
+  "inputs": [
+   {
+    "feature": "min_snr",
+    "direction": 1
+   },
+   {
+    "feature": "median_snr",
+    "direction": 1
+   },
+   {
+    "feature": "fit_rms_residual_arcsec",
+    "direction": -1
+   },
+   {
+    "feature": "magnitude_range_mag",
+    "direction": -1
+   },
+   {
+    "feature": "flagged_detection_count",
+    "direction": -1
+   },
+   {
+    "feature": "masked_detection_count",
+    "direction": -1
+   },
+   {
+    "feature": "sharp_abs_max",
+    "direction": -1
+   },
+   {
+    "feature": "shared_detection_tracklets",
+    "direction": -1
+   }
+  ],
+  "weights": {
+   "min_snr": 0.125,
+   "median_snr": 0.125,
+   "fit_rms_residual_arcsec": 0.125,
+   "magnitude_range_mag": 0.125,
+   "flagged_detection_count": 0.125,
+   "masked_detection_count": 0.125,
+   "sharp_abs_max": 0.125,
+   "shared_detection_tracklets": 0.125
+  },
+  "intercept": 0.0,
+  "fitted": false
+ },
+ "comparator": {
+  "ranker": "B1:sharp_abs_max",
+  "kind": "single frozen feature, oriented within-quadrant-night percentile",
+  "inputs": [
+   {
+    "feature": "sharp_abs_max",
+    "direction": -1
+   }
+  ],
+  "weights": {
+   "sharp_abs_max": 1.0
+  },
+  "intercept": 0.0,
+  "fitted": false
+ },
+ "selection": {
+  "outcome": "ADVANCE",
+  "selected": "M1",
+  "comparator": "B1:sharp_abs_max",
+  "eligible": [
+   "M1",
+   "M2:C=0.01",
+   "M2:C=0.1",
+   "M2:C=1",
+   "M2:C=10"
+  ],
+  "excluded": {},
+  "best_eligible": "M1",
+  "tie_rule_applied": false,
+  "reasons": [
+   "selected M1: highest CV recall@5 % among guard-passing M1/M2"
+  ]
+ },
+ "checks": [
+  "validation/results/as037/as037_manifest.json SHA-256 = 63e12b9feb8bc376…",
+  "validation/results/as038/as038_feature_table.csv.gz SHA-256 = da670e38357503fe…",
+  "validation/results/as038/as038_frozen_features.json SHA-256 = a8182bc63649f6f0…",
+  "validation/results/as039/as039_frozen_ranker.json SHA-256 = 875a0647a61f9bac…",
+  "frozen ranker bound to this manifest",
+  "frozen ranker bound to this AS-038 table",
+  "frozen ranker bound to this AS-038 feature list",
+  "frozen ranker from a clean commit",
+  "AS-038 frozen list = the 8 AS-039 features",
+  "manifest input validation/results/as033/as033_fields.json unchanged",
+  "manifest input validation/results/as034/as034_population.json unchanged",
+  "manifest input validation/results/as035/as035_selection.json unchanged",
+  "manifest input validation/results/as035/as035_traces_N.json unchanged",
+  "manifest input validation/results/as035/as035_traces_R.json unchanged",
+  "manifest input validation/results/as036/as036_selection.json unchanged",
+  "manifest input validation/results/as036/as036_traces_C.json unchanged",
+  "manifest rebuilds identically from its inputs",
+  "validation digest = a549b6bc22a5…",
+  "24 validation quadrant-nights",
+  "22 validation groups",
+  "no group spans both splits",
+  "ranker = M1, 8 features, weight 1/8, intercept 0, no fit",
+  "comparator = B1 sharp_abs_max (-), weight 1, intercept 0",
+  "AS-039 selection ADVANCE, M1, comparator B1:sharp_abs_max",
+  "missing percentile 0.0"
+ ]
+}

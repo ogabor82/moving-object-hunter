@@ -273,3 +273,28 @@ by `require_split(..., "ranking_construction")`.
 Implementation decisions E1–E12 (block in the module) were committed
 before any outcome. Identity, proximity, speed and PA are never inputs.
 Interpretation: `results/as039/as039_findings.md`.
+
+## AS-040 sealed validation of the frozen ranker (stage 3, validation only, once)
+
+```
+python -m app.validation.sealed_validation verify    # frozen inputs only, offline
+python -m app.validation.sealed_validation table     # IRSA + VizieR, resumable (.cache/as040)
+python -m app.validation.sealed_validation evaluate  # offline, from the committed table
+python -m app.validation.sealed_validation strips    # evidence strips (IRSA cutouts)
+```
+
+Executes AS-037 stage 3 unchanged with the AS-039 frozen M1 and comparator
+B1 `sharp_abs_max` (`as039_frozen_ranker.json`). Every command first
+verifies the frozen inputs (file hashes of the manifest, AS-038 table and
+list, AS-039 frozen ranker; manifest rebuild; validation digest, 24
+quadrant-nights / 22 groups; the exact M1 / comparator spec) and stops on
+any mismatch. The validation table is built with the unchanged AS-038
+pipeline under `require_split(..., "validation")`; scores are the frozen
+spec applied as is (nothing fitted or selected); the verdict is
+`ranking_design.decide()` verbatim. Secondary: all AS-037 metrics with
+group-bootstrap intervals, paired M1 − comparator difference, strata,
+end-to-end recall, sensitivity, failure analysis with evidence strips and
+a descriptive development-vs-validation comparison. Implementation
+decisions V1–V14 (block in the module) were committed before any
+validation feature existed. Interpretation:
+`results/as040/as040_findings.md`.

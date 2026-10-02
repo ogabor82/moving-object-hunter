@@ -191,14 +191,15 @@ def eligible_targets(traces: Sequence[Mapping]) -> dict[str, str]:
     }
 
 
-def replay_field(root: Path, manifest: Mapping, field_id: str, product_ids, client=None):
-    """Observations, frame metadata and SkyBoT fields; SkyBoT replay only."""
+def replay_field(root: Path, manifest: Mapping, field_id: str, product_ids, client=None, stage: str = STAGE):
+    """Observations, frame metadata and SkyBoT fields; SkyBoT replay only.
+    `stage` is the split guard applied (AS-040 passes the validation stage)."""
     from app.models.known_object import KnownObjectField
     from app.validation.data import fetch_frame_metadata
     from app.validation.presets import AS022_REPORT
     from app.validation.runner import ValidationReport
 
-    rd.require_split(manifest, field_id, STAGE)
+    rd.require_split(manifest, field_id, stage)
     report = ValidationReport.model_validate_json(AS022_REPORT.read_text())
     frozen = {s.field.field_id: s for s in report.snapshots}
     if field_id in frozen:
@@ -250,9 +251,18 @@ def _round(value: float | None, digits: int = 6) -> float | None:
     return None if value is None else round(float(value), digits)
 
 
-def field_rows(root: Path, manifest: Mapping, night: Mapping, traces: Sequence[Mapping]) -> tuple[list[dict], dict]:
-    """Run the unchanged pipeline on one development quadrant-night and
-    return its built-tracklet rows and field conditions."""
+def field_rows(
+    root: Path,
+    manifest: Mapping,
+    night: Mapping,
+    traces: Sequence[Mapping],
+    stage: str = STAGE,
+    positions: bool = False,
+) -> tuple[list[dict], dict]:
+    """Run the unchanged pipeline on one quadrant-night of `stage`'s split
+    and return its built-tracklet rows and field conditions. positions=True
+    adds "product_id ra dec" of each detection (`det_positions`, evaluation
+    only: evidence strips)."""
     from app.models.pipeline_config import EXPERIMENTAL_DEFAULT_CONFIG as CONFIG
     from app.models.quality import SharpAvailability
     from app.models.tracklet import TrackletStatus
@@ -264,8 +274,10 @@ def field_rows(root: Path, manifest: Mapping, night: Mapping, traces: Sequence[M
     from app.validation.star_contamination import field_stars, min_proximity
 
     field_id = night["field_id"]
-    rd.require_split(manifest, field_id, STAGE)
-    observations, metadata, skybot = replay_field(root, manifest, field_id, night["product_ids"])
+    rd.require_split(manifest, field_id, stage)
+    observations, metadata, skybot = replay_field(
+        root, manifest, field_id, night["product_ids"], stage=stage
+    )
     catalogs = load_catalog_frames(observations)
     pipeline = build_tracklets_from_frames(catalogs.frames, CONFIG)
     tracklets = pipeline.build.tracklets
@@ -335,6 +347,10 @@ def field_rows(root: Path, manifest: Mapping, night: Mapping, traces: Sequence[M
                 "_sources": [d.source_id for d in detections],
             }
         )
+        if positions:
+            rows[-1]["det_positions"] = ";".join(
+                f"{d.observation_product_id} {d.ra:.7f} {d.dec:.7f}" for d in detections
+            )
     positive_sources = {s for r in rows if r["label"] == rd.POSITIVE for s in r["_sources"]}
     for r in rows:
         sources = set(r.pop("_sources"))
