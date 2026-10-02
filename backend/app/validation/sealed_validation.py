@@ -977,7 +977,7 @@ def render_strips(root: Path, out_dir: Path, progress: Callable[[str], None] = l
         product_ids = products[pick["field_id"]]
         positions = [(float(ra), float(dec)) for _, ra, dec in detections]
         epochs = [product_ids.index(int(pid)) for pid, _, _ in detections]
-        name = pick.get("designation") or f"t{pick['tracklet_id']}"
+        name = pick.get("designation") or pick["tracklet_id"]
         image = f"strips/{pick['reason']}_{pick['field_id'].split('-')[0]}_{name.replace(' ', '_')}.png"
         progress(f"strip {image}")
         center, size = strip_geometry(positions)
@@ -1161,7 +1161,7 @@ def render_markdown(v: Validation, review: Sequence[Mapping] = ()) -> str:
         lines += ["| strip | field | tracklet | q | label | notes |", "|---|---|---|---|---|---|"]
         for p in v.strips:
             x = reviewed.get((p["field_id"], p["tracklet_id"]), {})
-            name = p.get("designation") or f"t{p['tracklet_id']}"
+            name = p.get("designation") or p["tracklet_id"]
             lines.append(
                 f"| {p['reason']} {name} | {p['field_id'].split('-')[0]} | {p['tracklet_id']} | {p['q']:.3f} "
                 f"| {x.get('label', '–')} | {x.get('notes', '')} |"
