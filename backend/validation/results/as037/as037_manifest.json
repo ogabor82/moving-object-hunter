@@ -1,0 +1,2302 @@
+{
+ "generated_at": "2026-10-02T13:30:43.883927Z",
+ "preregistration": "AS-037 candidate-ranking design. Population: every BUILT tracklet of the 80 frozen quadrant-nights (AS-034 R 26, AS-035 N 24, AS-036 C 30), unchanged pipeline, identity-blind ranking per quadrant-night. Groups: union of shared UTC night, shared search/selection star, same ZTF field within 3 nights. Split: groups with any R or N member = development, others = validation (sealed until a ranker is frozen). Stages: feature evaluation and ranking construction on development only (grouped CV), validation once. Positive = built KNOWN tracklet of a rate- and baseline-eligible AS-022-rule target (PRIMARY/MARGINAL); auxiliary = other KNOWN and AMBIGUOUS; background = built UNKNOWN. Primary metric: recall of positive object-nights (designation, night; weight 1 split over copies) whose background-rank fraction q <= 0.05 in their own quadrant-night (ties half); secondary 1/2/10/20 %, K = 10/25/50, enrichment, within-field AUC; 95 % group bootstrap (2000, SHA-256 seed). Decision on validation: USEFUL if recall@5% >= 0.50 and lower bound >= 0.30; NOT USEFUL if upper bound < 0.50; else INCONCLUSIVE (also if < 100 positive object-nights or < 15 fields with a positive). Guards: zone recall >= control - 0.20 (zone n >= 10), MARGINAL recall >= PRIMARY - 0.20 (n >= 30); bright-star proximity is context only, never a ranker input or rejection rule. No ranking outcome was looked at.",
+ "inputs": {
+  "validation/results/as033/as033_fields.json": "59370745dcbbdff74b1041c63b1171d50186a573e9410decd08635484cdbdea2",
+  "validation/results/as034/as034_population.json": "234b07baf574341019b37e826de79d0454e4f69470b26d0735eb970835d9c968",
+  "validation/results/as035/as035_selection.json": "4fc9b3de309330cbd14efced09b99fa080754c46381e70ab6a17868fd7807ce6",
+  "validation/results/as035/as035_traces_N.json": "36c9cd02f1e8b1b142022af78f24b4facd03b67e03492b67b715bab445d4b9ad",
+  "validation/results/as035/as035_traces_R.json": "e392c03378290464bb144796cb8a26800bd6db145c6917fcd7bb3ac853daeaa2",
+  "validation/results/as036/as036_selection.json": "35076e7cfa87e8d2be60d0dae40fb5247cfbf2cb0487b46fe2007436fb8743f6",
+  "validation/results/as036/as036_traces_C.json": "0562a82bf7ee311e0df94a98643c04d75c0125da0127b20440ece6d7561b6e97"
+ },
+ "split_counts": {
+  "development": 56,
+  "validation": 24
+ },
+ "validation_digest": "a549b6bc22a54f14d136b41de3047cce627ce792d8f5308b69e22f96e603aa3d",
+ "quadrant_nights": [
+  {
+   "field_id": "POC-2018-04-11-535-c11-q3",
+   "population": "R",
+   "night": "2018-04-11",
+   "ztf_field": 535,
+   "ccd": 11,
+   "quadrant": 3,
+   "product_ids": [
+    465423434215,
+    465467854215,
+    465495204215
+   ],
+   "stars": [],
+   "group": "G-POC-2018-04-11-535-c11-q3",
+   "split": "development"
+  },
+  {
+   "field_id": "B-2019-01-25-565-c13-q3",
+   "population": "R",
+   "night": "2019-01-25",
+   "ztf_field": 565,
+   "ccd": 13,
+   "quadrant": 3,
+   "product_ids": [
+    754204845015,
+    754226595015,
+    754256675015
+   ],
+   "stars": [],
+   "group": "G-B-2019-01-25-565-c13-q1",
+   "split": "development"
+  },
+  {
+   "field_id": "C-2018-10-06-448-c9-q3",
+   "population": "R",
+   "night": "2018-10-06",
+   "ztf_field": 448,
+   "ccd": 9,
+   "quadrant": 3,
+   "product_ids": [
+    643291653415,
+    643328593415,
+    643339443415
+   ],
+   "stars": [],
+   "group": "G-C-2018-10-06-448-c9-q3",
+   "split": "development"
+  },
+  {
+   "field_id": "D-2019-06-02-281-c16-q3",
+   "population": "R",
+   "night": "2019-06-02",
+   "ztf_field": 281,
+   "ccd": 16,
+   "quadrant": 3,
+   "product_ids": [
+    882334526215,
+    882366576215,
+    882398636215
+   ],
+   "stars": [],
+   "group": "G-D-2019-06-02-281-c16-q1",
+   "split": "development"
+  },
+  {
+   "field_id": "S1-2018-09-19-508-c10-q4",
+   "population": "R",
+   "night": "2018-09-19",
+   "ztf_field": 508,
+   "ccd": 10,
+   "quadrant": 4,
+   "product_ids": [
+    626461093915,
+    626497953915,
+    626526633915
+   ],
+   "stars": [
+    "TYC 676-1224-1"
+   ],
+   "group": "G-S1-2018-09-19-508-c10-q1",
+   "split": "development"
+  },
+  {
+   "field_id": "S2-2018-09-27-509-c14-q4",
+   "population": "R",
+   "night": "2018-09-27",
+   "ztf_field": 509,
+   "ccd": 14,
+   "quadrant": 4,
+   "product_ids": [
+    634427845515,
+    634459815515,
+    634499005515
+   ],
+   "stars": [
+    "TYC 696-1788-1"
+   ],
+   "group": "G-N20-2018-09-27-499-c1-q2",
+   "split": "development"
+  },
+  {
+   "field_id": "S3-2019-07-01-335-c7-q1",
+   "population": "R",
+   "night": "2019-07-01",
+   "ztf_field": 335,
+   "ccd": 7,
+   "quadrant": 1,
+   "product_ids": [
+    911296442415,
+    911296892415,
+    911336412415
+   ],
+   "stars": [
+    "TYC 6301-2457-1"
+   ],
+   "group": "G-S3-2019-07-01-335-c7-q1",
+   "split": "development"
+  },
+  {
+   "field_id": "S4-2018-11-07-615-c5-q3",
+   "population": "R",
+   "night": "2018-11-07",
+   "ztf_field": 615,
+   "ccd": 5,
+   "quadrant": 3,
+   "product_ids": [
+    675388211815,
+    675453921815,
+    675505501815
+   ],
+   "stars": [
+    "TYC 1916-2156-1"
+   ],
+   "group": "G-S4-2018-11-07-615-c5-q1",
+   "split": "development"
+  },
+  {
+   "field_id": "B-2019-01-25-565-c13-q1",
+   "population": "R",
+   "night": "2019-01-25",
+   "ztf_field": 565,
+   "ccd": 13,
+   "quadrant": 1,
+   "product_ids": [
+    754204844815,
+    754226594815,
+    754256674815
+   ],
+   "stars": [],
+   "group": "G-B-2019-01-25-565-c13-q1",
+   "split": "development"
+  },
+  {
+   "field_id": "B-2019-01-25-565-c13-q2",
+   "population": "R",
+   "night": "2019-01-25",
+   "ztf_field": 565,
+   "ccd": 13,
+   "quadrant": 2,
+   "product_ids": [
+    754204844915,
+    754226594915,
+    754256674915
+   ],
+   "stars": [],
+   "group": "G-B-2019-01-25-565-c13-q1",
+   "split": "development"
+  },
+  {
+   "field_id": "B-2019-01-25-565-c13-q4",
+   "population": "R",
+   "night": "2019-01-25",
+   "ztf_field": 565,
+   "ccd": 13,
+   "quadrant": 4,
+   "product_ids": [
+    754204845115,
+    754226595115,
+    754256675115
+   ],
+   "stars": [],
+   "group": "G-B-2019-01-25-565-c13-q1",
+   "split": "development"
+  },
+  {
+   "field_id": "D-2019-06-02-281-c16-q1",
+   "population": "R",
+   "night": "2019-06-02",
+   "ztf_field": 281,
+   "ccd": 16,
+   "quadrant": 1,
+   "product_ids": [
+    882334526015,
+    882366576015,
+    882398636015
+   ],
+   "stars": [],
+   "group": "G-D-2019-06-02-281-c16-q1",
+   "split": "development"
+  },
+  {
+   "field_id": "D-2019-06-02-281-c16-q2",
+   "population": "R",
+   "night": "2019-06-02",
+   "ztf_field": 281,
+   "ccd": 16,
+   "quadrant": 2,
+   "product_ids": [
+    882334526115,
+    882366576115,
+    882398636115
+   ],
+   "stars": [],
+   "group": "G-D-2019-06-02-281-c16-q1",
+   "split": "development"
+  },
+  {
+   "field_id": "D-2019-06-02-281-c16-q4",
+   "population": "R",
+   "night": "2019-06-02",
+   "ztf_field": 281,
+   "ccd": 16,
+   "quadrant": 4,
+   "product_ids": [
+    882334526315,
+    882366576315,
+    882398636315
+   ],
+   "stars": [],
+   "group": "G-D-2019-06-02-281-c16-q1",
+   "split": "development"
+  },
+  {
+   "field_id": "S1-2018-09-19-508-c10-q1",
+   "population": "R",
+   "night": "2018-09-19",
+   "ztf_field": 508,
+   "ccd": 10,
+   "quadrant": 1,
+   "product_ids": [
+    626461093615,
+    626497953615,
+    626526633615
+   ],
+   "stars": [
+    "TYC 676-1224-1"
+   ],
+   "group": "G-S1-2018-09-19-508-c10-q1",
+   "split": "development"
+  },
+  {
+   "field_id": "S1-2018-09-19-508-c10-q2",
+   "population": "R",
+   "night": "2018-09-19",
+   "ztf_field": 508,
+   "ccd": 10,
+   "quadrant": 2,
+   "product_ids": [
+    626461093715,
+    626497953715,
+    626526633715
+   ],
+   "stars": [
+    "TYC 676-1224-1"
+   ],
+   "group": "G-S1-2018-09-19-508-c10-q1",
+   "split": "development"
+  },
+  {
+   "field_id": "S1-2018-09-19-508-c10-q3",
+   "population": "R",
+   "night": "2018-09-19",
+   "ztf_field": 508,
+   "ccd": 10,
+   "quadrant": 3,
+   "product_ids": [
+    626461093815,
+    626497953815,
+    626526633815
+   ],
+   "stars": [
+    "TYC 676-1224-1"
+   ],
+   "group": "G-S1-2018-09-19-508-c10-q1",
+   "split": "development"
+  },
+  {
+   "field_id": "S2-2018-09-27-509-c14-q1",
+   "population": "R",
+   "night": "2018-09-27",
+   "ztf_field": 509,
+   "ccd": 14,
+   "quadrant": 1,
+   "product_ids": [
+    634427845215,
+    634459815215,
+    634499005215
+   ],
+   "stars": [
+    "TYC 696-1788-1"
+   ],
+   "group": "G-N20-2018-09-27-499-c1-q2",
+   "split": "development"
+  },
+  {
+   "field_id": "S2-2018-09-27-509-c14-q2",
+   "population": "R",
+   "night": "2018-09-27",
+   "ztf_field": 509,
+   "ccd": 14,
+   "quadrant": 2,
+   "product_ids": [
+    634427845315,
+    634459815315,
+    634499005315
+   ],
+   "stars": [
+    "TYC 696-1788-1"
+   ],
+   "group": "G-N20-2018-09-27-499-c1-q2",
+   "split": "development"
+  },
+  {
+   "field_id": "S2-2018-09-27-509-c14-q3",
+   "population": "R",
+   "night": "2018-09-27",
+   "ztf_field": 509,
+   "ccd": 14,
+   "quadrant": 3,
+   "product_ids": [
+    634427845415,
+    634459815415,
+    634499005415
+   ],
+   "stars": [
+    "TYC 696-1788-1"
+   ],
+   "group": "G-N20-2018-09-27-499-c1-q2",
+   "split": "development"
+  },
+  {
+   "field_id": "S3-2019-07-01-335-c7-q2",
+   "population": "R",
+   "night": "2019-07-01",
+   "ztf_field": 335,
+   "ccd": 7,
+   "quadrant": 2,
+   "product_ids": [
+    911296442515,
+    911296892515,
+    911336412515
+   ],
+   "stars": [
+    "TYC 6301-2457-1"
+   ],
+   "group": "G-S3-2019-07-01-335-c7-q1",
+   "split": "development"
+  },
+  {
+   "field_id": "S3-2019-07-01-335-c7-q3",
+   "population": "R",
+   "night": "2019-07-01",
+   "ztf_field": 335,
+   "ccd": 7,
+   "quadrant": 3,
+   "product_ids": [
+    911296442615,
+    911296892615,
+    911336412615
+   ],
+   "stars": [
+    "TYC 6301-2457-1"
+   ],
+   "group": "G-S3-2019-07-01-335-c7-q1",
+   "split": "development"
+  },
+  {
+   "field_id": "S3-2019-07-01-335-c7-q4",
+   "population": "R",
+   "night": "2019-07-01",
+   "ztf_field": 335,
+   "ccd": 7,
+   "quadrant": 4,
+   "product_ids": [
+    911296442715,
+    911296892715,
+    911336412715
+   ],
+   "stars": [
+    "TYC 6301-2457-1"
+   ],
+   "group": "G-S3-2019-07-01-335-c7-q1",
+   "split": "development"
+  },
+  {
+   "field_id": "S4-2018-11-07-615-c5-q1",
+   "population": "R",
+   "night": "2018-11-07",
+   "ztf_field": 615,
+   "ccd": 5,
+   "quadrant": 1,
+   "product_ids": [
+    675388211615,
+    675453921615,
+    675505501615
+   ],
+   "stars": [
+    "TYC 1916-2156-1"
+   ],
+   "group": "G-S4-2018-11-07-615-c5-q1",
+   "split": "development"
+  },
+  {
+   "field_id": "S4-2018-11-07-615-c5-q2",
+   "population": "R",
+   "night": "2018-11-07",
+   "ztf_field": 615,
+   "ccd": 5,
+   "quadrant": 2,
+   "product_ids": [
+    675388211715,
+    675453921715,
+    675505501715
+   ],
+   "stars": [
+    "TYC 1916-2156-1"
+   ],
+   "group": "G-S4-2018-11-07-615-c5-q1",
+   "split": "development"
+  },
+  {
+   "field_id": "S4-2018-11-07-615-c5-q4",
+   "population": "R",
+   "night": "2018-11-07",
+   "ztf_field": 615,
+   "ccd": 5,
+   "quadrant": 4,
+   "product_ids": [
+    675388211915,
+    675453921915,
+    675505501915
+   ],
+   "stars": [
+    "TYC 1916-2156-1"
+   ],
+   "group": "G-S4-2018-11-07-615-c5-q1",
+   "split": "development"
+  },
+  {
+   "field_id": "N1-2018-11-25-468-c12-q1",
+   "population": "N",
+   "night": "2018-11-25",
+   "ztf_field": 468,
+   "ccd": 12,
+   "quadrant": 1,
+   "product_ids": [
+    693460084415,
+    693521994415,
+    693541754415
+   ],
+   "stars": [
+    "TYC 243-1975-1"
+   ],
+   "group": "G-N1-2018-11-25-468-c12-q1",
+   "split": "development"
+  },
+  {
+   "field_id": "N2-2019-11-05-564-c1-q2",
+   "population": "N",
+   "night": "2019-11-05",
+   "ztf_field": 564,
+   "ccd": 1,
+   "quadrant": 2,
+   "product_ids": [
+    1038377240115,
+    1038422430115,
+    1038468050115
+   ],
+   "stars": [
+    "TYC 1344-1281-1"
+   ],
+   "group": "G-N2-2019-11-05-564-c1-q2",
+   "split": "development"
+  },
+  {
+   "field_id": "N3-2019-09-23-1441-c5-q4",
+   "population": "N",
+   "night": "2019-09-23",
+   "ztf_field": 1441,
+   "ccd": 5,
+   "quadrant": 4,
+   "product_ids": [
+    995334401915,
+    995363281915,
+    995434941915
+   ],
+   "stars": [
+    "TYC 4672-1255-1"
+   ],
+   "group": "G-N3-2019-09-23-1441-c5-q4",
+   "split": "development"
+  },
+  {
+   "field_id": "N4-2020-09-15-447-c3-q4",
+   "population": "N",
+   "night": "2020-09-15",
+   "ztf_field": 447,
+   "ccd": 3,
+   "quadrant": 4,
+   "product_ids": [
+    1353310621115,
+    1353355841115,
+    1353385211115
+   ],
+   "stars": [
+    "TYC 2-1641-1"
+   ],
+   "group": "G-N4-2020-09-15-447-c3-q4",
+   "split": "development"
+  },
+  {
+   "field_id": "N5-2019-08-27-335-c7-q4",
+   "population": "N",
+   "night": "2019-08-27",
+   "ztf_field": 335,
+   "ccd": 7,
+   "quadrant": 4,
+   "product_ids": [
+    968174502715,
+    968203532715,
+    968232692715
+   ],
+   "stars": [
+    "TYC 6301-2322-1"
+   ],
+   "group": "G-N5-2019-08-27-335-c7-q4",
+   "split": "development"
+  },
+  {
+   "field_id": "N6-2019-07-29-338-c6-q1",
+   "population": "N",
+   "night": "2019-07-29",
+   "ztf_field": 338,
+   "ccd": 6,
+   "quadrant": 1,
+   "product_ids": [
+    939313592015,
+    939328682015,
+    939341212015
+   ],
+   "stars": [
+    "TYC 6348-1259-1"
+   ],
+   "group": "G-N15-2019-07-29-338-c13-q3",
+   "split": "development"
+  },
+  {
+   "field_id": "N7-2019-12-29-611-c9-q3",
+   "population": "N",
+   "night": "2019-12-29",
+   "ztf_field": 611,
+   "ccd": 9,
+   "quadrant": 3,
+   "product_ids": [
+    1092147123415,
+    1092187633415,
+    1092228463415
+   ],
+   "stars": [
+    "TYC 1870-903-1"
+   ],
+   "group": "G-N16-2019-12-29-568-c15-q4",
+   "split": "development"
+  },
+  {
+   "field_id": "N8-2019-07-24-333-c8-q1",
+   "population": "N",
+   "night": "2019-07-24",
+   "ztf_field": 333,
+   "ccd": 8,
+   "quadrant": 1,
+   "product_ids": [
+    934217292815,
+    934248252815,
+    934281642815
+   ],
+   "stars": [
+    "TYC 6269-4008-1"
+   ],
+   "group": "G-C18-2018-07-14-333-c3-q4",
+   "split": "development"
+  },
+  {
+   "field_id": "N9-2019-08-31-334-c4-q3",
+   "population": "N",
+   "night": "2019-08-31",
+   "ztf_field": 334,
+   "ccd": 4,
+   "quadrant": 3,
+   "product_ids": [
+    972175371415,
+    972211491415,
+    972247801415
+   ],
+   "stars": [
+    "TYC 6288-1682-1"
+   ],
+   "group": "G-N9-2019-08-31-334-c4-q3",
+   "split": "development"
+  },
+  {
+   "field_id": "N10-2018-11-12-504-c2-q3",
+   "population": "N",
+   "night": "2018-11-12",
+   "ztf_field": 504,
+   "ccd": 2,
+   "quadrant": 3,
+   "product_ids": [
+    680243630615,
+    680281250615,
+    680307560615
+   ],
+   "stars": [
+    "TYC 632-1491-1"
+   ],
+   "group": "G-N10-2018-11-12-504-c2-q3",
+   "split": "development"
+  },
+  {
+   "field_id": "N11-2018-10-31-559-c3-q1",
+   "population": "N",
+   "night": "2018-10-31",
+   "ztf_field": 559,
+   "ccd": 3,
+   "quadrant": 1,
+   "product_ids": [
+    668346700815,
+    668395940815,
+    668429760815
+   ],
+   "stars": [
+    "TYC 1264-758-1"
+   ],
+   "group": "G-N11-2018-10-31-559-c3-q1",
+   "split": "development"
+  },
+  {
+   "field_id": "N12-2019-11-01-607-c1-q2",
+   "population": "N",
+   "night": "2019-11-01",
+   "ztf_field": 607,
+   "ccd": 1,
+   "quadrant": 2,
+   "product_ids": [
+    1034298280115,
+    1034333040115,
+    1034400200115
+   ],
+   "stars": [
+    "TYC 1799-1441-1"
+   ],
+   "group": "G-C12-2019-11-01-558-c7-q3",
+   "split": "development"
+  },
+  {
+   "field_id": "N13-2018-08-21-394-c12-q4",
+   "population": "N",
+   "night": "2018-08-21",
+   "ztf_field": 394,
+   "ccd": 12,
+   "quadrant": 4,
+   "product_ids": [
+    597335914715,
+    597373584715,
+    597401464715
+   ],
+   "stars": [
+    "TYC 5821-453-1"
+   ],
+   "group": "G-N13-2018-08-21-394-c12-q4",
+   "split": "development"
+  },
+  {
+   "field_id": "N14-2018-11-02-562-c3-q3",
+   "population": "N",
+   "night": "2018-11-02",
+   "ztf_field": 562,
+   "ccd": 3,
+   "quadrant": 3,
+   "product_ids": [
+    670352401015,
+    670372631015,
+    670420241015
+   ],
+   "stars": [
+    "TYC 1299-1090-1"
+   ],
+   "group": "G-N14-2018-11-02-562-c3-q3",
+   "split": "development"
+  },
+  {
+   "field_id": "N15-2019-07-29-338-c13-q3",
+   "population": "N",
+   "night": "2019-07-29",
+   "ztf_field": 338,
+   "ccd": 13,
+   "quadrant": 3,
+   "product_ids": [
+    939313595015,
+    939328685015,
+    939341215015
+   ],
+   "stars": [
+    "TYC 5782-1505-1"
+   ],
+   "group": "G-N15-2019-07-29-338-c13-q3",
+   "split": "development"
+  },
+  {
+   "field_id": "N16-2019-12-29-568-c15-q4",
+   "population": "N",
+   "night": "2019-12-29",
+   "ztf_field": 568,
+   "ccd": 15,
+   "quadrant": 4,
+   "product_ids": [
+    1092409825915,
+    1092439565915,
+    1092483025915
+   ],
+   "stars": [
+    "TYC 1399-2905-1"
+   ],
+   "group": "G-N16-2019-12-29-568-c15-q4",
+   "split": "development"
+  },
+  {
+   "field_id": "N17-2019-06-27-330-c9-q2",
+   "population": "N",
+   "night": "2019-06-27",
+   "ztf_field": 330,
+   "ccd": 9,
+   "quadrant": 2,
+   "product_ids": [
+    907241563315,
+    907273533315,
+    907302853315
+   ],
+   "stars": [
+    "TYC 6232-1333-1"
+   ],
+   "group": "G-N17-2019-06-27-330-c9-q2",
+   "split": "development"
+  },
+  {
+   "field_id": "N18-2018-07-16-333-c13-q2",
+   "population": "N",
+   "night": "2018-07-16",
+   "ztf_field": 333,
+   "ccd": 13,
+   "quadrant": 2,
+   "product_ids": [
+    561251204915,
+    561282254915,
+    561312874915
+   ],
+   "stars": [
+    "TYC 5703-3416-1"
+   ],
+   "group": "G-C18-2018-07-14-333-c3-q4",
+   "split": "development"
+  },
+  {
+   "field_id": "N19-2019-01-25-614-c2-q1",
+   "population": "N",
+   "night": "2019-01-25",
+   "ztf_field": 614,
+   "ccd": 2,
+   "quadrant": 1,
+   "product_ids": [
+    754204390415,
+    754226140415,
+    754257120415
+   ],
+   "stars": [
+    "TYC 1896-63-1"
+   ],
+   "group": "G-B-2019-01-25-565-c13-q1",
+   "split": "development"
+  },
+  {
+   "field_id": "N20-2018-09-27-499-c1-q2",
+   "population": "N",
+   "night": "2018-09-27",
+   "ztf_field": 499,
+   "ccd": 1,
+   "quadrant": 2,
+   "product_ids": [
+    634273470115,
+    634358270115,
+    634369210115
+   ],
+   "stars": [
+    "TYC 595-1125-1"
+   ],
+   "group": "G-N20-2018-09-27-499-c1-q2",
+   "split": "development"
+  },
+  {
+   "field_id": "N21-2019-01-28-474-c8-q4",
+   "population": "N",
+   "night": "2019-01-28",
+   "ztf_field": 474,
+   "ccd": 8,
+   "quadrant": 4,
+   "product_ids": [
+    757443403115,
+    757496663115,
+    757541653115
+   ],
+   "stars": [
+    "TYC 292-377-1"
+   ],
+   "group": "G-N21-2019-01-28-474-c8-q4",
+   "split": "development"
+  },
+  {
+   "field_id": "N22-2018-09-06-553-c4-q4",
+   "population": "N",
+   "night": "2018-09-06",
+   "ztf_field": 553,
+   "ccd": 4,
+   "quadrant": 4,
+   "product_ids": [
+    613380241515,
+    613405251515,
+    613454721515
+   ],
+   "stars": [
+    "TYC 1197-491-1"
+   ],
+   "group": "G-N22-2018-09-06-553-c4-q4",
+   "split": "development"
+  },
+  {
+   "field_id": "N23-2019-06-01-279-c6-q1",
+   "population": "N",
+   "night": "2019-06-01",
+   "ztf_field": 279,
+   "ccd": 6,
+   "quadrant": 1,
+   "product_ids": [
+    881293392015,
+    881325452015,
+    881357492015
+   ],
+   "stars": [
+    "TYC 6813-809-1"
+   ],
+   "group": "G-N23-2019-06-01-279-c6-q1",
+   "split": "development"
+  },
+  {
+   "field_id": "N24-2019-08-21-335-c10-q3",
+   "population": "N",
+   "night": "2019-08-21",
+   "ztf_field": 335,
+   "ccd": 10,
+   "quadrant": 3,
+   "product_ids": [
+    962192183815,
+    962224053815,
+    962253333815
+   ],
+   "stars": [
+    "TYC 6297-25-1"
+   ],
+   "group": "G-C4-2019-08-20-335-c11-q1",
+   "split": "development"
+  },
+  {
+   "field_id": "C1-2020-06-17-333-c11-q1",
+   "population": "C",
+   "night": "2020-06-17",
+   "ztf_field": 333,
+   "ccd": 11,
+   "quadrant": 1,
+   "product_ids": [
+    1263313564015,
+    1263345934015,
+    1263374094015
+   ],
+   "stars": [
+    "TYC 6266-1670-1"
+   ],
+   "group": "G-C1-2020-06-17-333-c11-q1",
+   "split": "validation"
+  },
+  {
+   "field_id": "C2-2019-08-01-553-c11-q3",
+   "population": "C",
+   "night": "2019-08-01",
+   "ztf_field": 553,
+   "ccd": 11,
+   "quadrant": 3,
+   "product_ids": [
+    942428634215,
+    942466454215,
+    942477524215
+   ],
+   "stars": [
+    "TYC 1201-1725-1"
+   ],
+   "group": "G-C2-2019-08-01-553-c11-q3",
+   "split": "validation"
+  },
+  {
+   "field_id": "C3-2018-12-13-559-c9-q2",
+   "population": "C",
+   "night": "2018-12-13",
+   "ztf_field": 559,
+   "ccd": 9,
+   "quadrant": 2,
+   "product_ids": [
+    711219613315,
+    711255743315,
+    711271623315
+   ],
+   "stars": [
+    "TYC 1278-2001-1"
+   ],
+   "group": "G-C3-2018-12-13-559-c9-q2",
+   "split": "validation"
+  },
+  {
+   "field_id": "C4-2019-08-20-335-c11-q1",
+   "population": "C",
+   "night": "2019-08-20",
+   "ztf_field": 335,
+   "ccd": 11,
+   "quadrant": 1,
+   "product_ids": [
+    961182284015,
+    961198184015,
+    961233724015
+   ],
+   "stars": [
+    "TYC 6297-1419-1"
+   ],
+   "group": "G-C4-2019-08-20-335-c11-q1",
+   "split": "development"
+  },
+  {
+   "field_id": "C5-2020-09-21-447-c9-q1",
+   "population": "C",
+   "night": "2020-09-21",
+   "ztf_field": 447,
+   "ccd": 9,
+   "quadrant": 1,
+   "product_ids": [
+    1359303843215,
+    1359315603215,
+    1359359133215
+   ],
+   "stars": [
+    "TYC 16-724-1"
+   ],
+   "group": "G-C5-2020-09-21-447-c9-q1",
+   "split": "validation"
+  },
+  {
+   "field_id": "C6-2018-07-12-283-c15-q1",
+   "population": "C",
+   "night": "2018-07-12",
+   "ztf_field": 283,
+   "ccd": 15,
+   "quadrant": 1,
+   "product_ids": [
+    557263445615,
+    557293135615,
+    557323255615
+   ],
+   "stars": [
+    "TYC 6279-1723-1"
+   ],
+   "group": "G-C6-2018-07-12-283-c15-q1",
+   "split": "validation"
+  },
+  {
+   "field_id": "C7-2019-01-25-565-c3-q2",
+   "population": "C",
+   "night": "2019-01-25",
+   "ztf_field": 565,
+   "ccd": 3,
+   "quadrant": 2,
+   "product_ids": [
+    754204840915,
+    754226590915,
+    754256670915
+   ],
+   "stars": [
+    "TYC 1346-1397-1"
+   ],
+   "group": "G-B-2019-01-25-565-c13-q1",
+   "split": "development"
+  },
+  {
+   "field_id": "C8-2020-11-14-613-c4-q2",
+   "population": "C",
+   "night": "2020-11-14",
+   "ztf_field": 613,
+   "ccd": 4,
+   "quadrant": 2,
+   "product_ids": [
+    1413458071315,
+    1413476341315,
+    1413506971315
+   ],
+   "stars": [
+    "TYC 1878-363-1"
+   ],
+   "group": "G-C8-2020-11-14-613-c4-q2",
+   "split": "validation"
+  },
+  {
+   "field_id": "C9-2020-04-17-373-c1-q1",
+   "population": "C",
+   "night": "2020-04-17",
+   "ztf_field": 373,
+   "ccd": 1,
+   "quadrant": 1,
+   "product_ids": [
+    1202273350015,
+    1202316370015,
+    1202354060015
+   ],
+   "stars": [
+    "TYC 5549-1342-1"
+   ],
+   "group": "G-C9-2020-04-17-373-c1-q1",
+   "split": "validation"
+  },
+  {
+   "field_id": "C10-2020-08-14-447-c2-q1",
+   "population": "C",
+   "night": "2020-08-14",
+   "ztf_field": 447,
+   "ccd": 2,
+   "quadrant": 1,
+   "product_ids": [
+    1321375900415,
+    1321406570415,
+    1321460870415
+   ],
+   "stars": [
+    "TYC 3-1464-1"
+   ],
+   "group": "G-C10-2020-08-14-447-c2-q1",
+   "split": "validation"
+  },
+  {
+   "field_id": "C11-2020-08-27-447-c2-q1",
+   "population": "C",
+   "night": "2020-08-27",
+   "ztf_field": 447,
+   "ccd": 2,
+   "quadrant": 1,
+   "product_ids": [
+    1334400080415,
+    1334437880415,
+    1334473270415
+   ],
+   "stars": [
+    "TYC 3-1464-1"
+   ],
+   "group": "G-C10-2020-08-14-447-c2-q1",
+   "split": "validation"
+  },
+  {
+   "field_id": "C12-2019-11-01-558-c7-q3",
+   "population": "C",
+   "night": "2019-11-01",
+   "ztf_field": 558,
+   "ccd": 7,
+   "quadrant": 3,
+   "product_ids": [
+    1034232612615,
+    1034294472615,
+    1034331622615
+   ],
+   "stars": [
+    "TYC 1252-844-1"
+   ],
+   "group": "G-C12-2019-11-01-558-c7-q3",
+   "split": "development"
+  },
+  {
+   "field_id": "C13-2018-09-16-393-c14-q1",
+   "population": "C",
+   "night": "2018-09-16",
+   "ztf_field": 393,
+   "ccd": 14,
+   "quadrant": 1,
+   "product_ids": [
+    623251355215,
+    623293565215,
+    623319715215
+   ],
+   "stars": [
+    "TYC 5248-1384-1"
+   ],
+   "group": "G-C13-2018-09-16-393-c14-q1",
+   "split": "validation"
+  },
+  {
+   "field_id": "C14-2019-02-08-518-c16-q4",
+   "population": "C",
+   "night": "2019-02-08",
+   "ztf_field": 518,
+   "ccd": 16,
+   "quadrant": 4,
+   "product_ids": [
+    768231356315,
+    768281706315,
+    768334186315
+   ],
+   "stars": [
+    "TYC 817-1299-1"
+   ],
+   "group": "G-C14-2019-02-08-518-c16-q4",
+   "split": "validation"
+  },
+  {
+   "field_id": "C15-2019-01-04-500-c15-q4",
+   "population": "C",
+   "night": "2019-01-04",
+   "ztf_field": 500,
+   "ccd": 15,
+   "quadrant": 4,
+   "product_ids": [
+    733099215915,
+    733153915915,
+    733164645915
+   ],
+   "stars": [
+    "TYC 609-359-1"
+   ],
+   "group": "G-C15-2019-01-04-500-c15-q4",
+   "split": "validation"
+  },
+  {
+   "field_id": "C16-2020-01-29-511-c13-q3",
+   "population": "C",
+   "night": "2020-01-29",
+   "ztf_field": 511,
+   "ccd": 13,
+   "quadrant": 3,
+   "product_ids": [
+    1123150495015,
+    1123166135015,
+    1123213475015
+   ],
+   "stars": [
+    "TYC 728-3138-1"
+   ],
+   "group": "G-C16-2020-01-29-511-c13-q3",
+   "split": "validation"
+  },
+  {
+   "field_id": "C17-2020-09-22-561-c15-q2",
+   "population": "C",
+   "night": "2020-09-22",
+   "ztf_field": 561,
+   "ccd": 15,
+   "quadrant": 2,
+   "product_ids": [
+    1360473495715,
+    1360485615715,
+    1360523415715
+   ],
+   "stars": [
+    "TYC 1295-1998-1"
+   ],
+   "group": "G-C17-2020-09-22-561-c15-q2",
+   "split": "validation"
+  },
+  {
+   "field_id": "C18-2018-07-14-333-c3-q4",
+   "population": "C",
+   "night": "2018-07-14",
+   "ztf_field": 333,
+   "ccd": 3,
+   "quadrant": 4,
+   "product_ids": [
+    559252501115,
+    559282621115,
+    559312751115
+   ],
+   "stars": [
+    "TYC 6274-1663-1"
+   ],
+   "group": "G-C18-2018-07-14-333-c3-q4",
+   "split": "development"
+  },
+  {
+   "field_id": "C19-2019-07-22-333-c3-q4",
+   "population": "C",
+   "night": "2019-07-22",
+   "ztf_field": 333,
+   "ccd": 3,
+   "quadrant": 4,
+   "product_ids": [
+    932217041115,
+    932248541115,
+    932279931115
+   ],
+   "stars": [
+    "TYC 6274-1663-1"
+   ],
+   "group": "G-C18-2018-07-14-333-c3-q4",
+   "split": "development"
+  },
+  {
+   "field_id": "C20-2019-07-28-282-c13-q1",
+   "population": "C",
+   "night": "2019-07-28",
+   "ztf_field": 282,
+   "ccd": 13,
+   "quadrant": 1,
+   "product_ids": [
+    938232444815,
+    938277624815,
+    938315314815
+   ],
+   "stars": [
+    "TYC 6274-1663-1"
+   ],
+   "group": "G-C18-2018-07-14-333-c3-q4",
+   "split": "development"
+  },
+  {
+   "field_id": "C21-2020-08-23-452-c15-q3",
+   "population": "C",
+   "night": "2020-08-23",
+   "ztf_field": 452,
+   "ccd": 15,
+   "quadrant": 3,
+   "product_ids": [
+    1330395905815,
+    1330461675815,
+    1330483425815
+   ],
+   "stars": [
+    "TYC 52-1686-1"
+   ],
+   "group": "G-C21-2020-08-23-452-c15-q3",
+   "split": "validation"
+  },
+  {
+   "field_id": "C22-2020-02-24-517-c15-q3",
+   "population": "C",
+   "night": "2020-02-24",
+   "ztf_field": 517,
+   "ccd": 15,
+   "quadrant": 3,
+   "product_ids": [
+    1149210495815,
+    1149251235815,
+    1149291195815
+   ],
+   "stars": [
+    "TYC 808-1546-1"
+   ],
+   "group": "G-C22-2020-02-24-517-c15-q3",
+   "split": "validation"
+  },
+  {
+   "field_id": "C23-2020-11-17-659-c4-q2",
+   "population": "C",
+   "night": "2020-11-17",
+   "ztf_field": 659,
+   "ccd": 4,
+   "quadrant": 2,
+   "product_ids": [
+    1416319391315,
+    1416351951315,
+    1416414881315
+   ],
+   "stars": [
+    "TYC 2403-1182-1"
+   ],
+   "group": "G-C23-2020-11-17-659-c4-q2",
+   "split": "validation"
+  },
+  {
+   "field_id": "C24-2019-06-29-279-c5-q2",
+   "population": "C",
+   "night": "2019-06-29",
+   "ztf_field": 279,
+   "ccd": 5,
+   "quadrant": 2,
+   "product_ids": [
+    909241721715,
+    909268841715,
+    909295471715
+   ],
+   "stars": [
+    "TYC 6813-1435-1"
+   ],
+   "group": "G-C24-2019-06-29-279-c5-q2",
+   "split": "validation"
+  },
+  {
+   "field_id": "C25-2018-07-05-331-c9-q4",
+   "population": "C",
+   "night": "2018-07-05",
+   "ztf_field": 331,
+   "ccd": 9,
+   "quadrant": 4,
+   "product_ids": [
+    550231343515,
+    550282933515,
+    550334173515
+   ],
+   "stars": [
+    "TYC 6249-564-1"
+   ],
+   "group": "G-C25-2018-07-05-331-c9-q4",
+   "split": "validation"
+  },
+  {
+   "field_id": "C26-2020-11-26-612-c3-q1",
+   "population": "C",
+   "night": "2020-11-26",
+   "ztf_field": 612,
+   "ccd": 3,
+   "quadrant": 1,
+   "product_ids": [
+    1425358720815,
+    1425409150815,
+    1425443650815
+   ],
+   "stars": [
+    "TYC 1864-564-1"
+   ],
+   "group": "G-C26-2020-11-26-612-c3-q1",
+   "split": "validation"
+  },
+  {
+   "field_id": "C27-2020-11-15-392-c7-q4",
+   "population": "C",
+   "night": "2020-11-15",
+   "ztf_field": 392,
+   "ccd": 7,
+   "quadrant": 4,
+   "product_ids": [
+    1414100982715,
+    1414124292715,
+    1414166602715
+   ],
+   "stars": [
+    "TYC 5807-1521-1"
+   ],
+   "group": "G-C27-2020-11-15-392-c7-q4",
+   "split": "validation"
+  },
+  {
+   "field_id": "C28-2020-01-04-657-c4-q3",
+   "population": "C",
+   "night": "2020-01-04",
+   "ztf_field": 657,
+   "ccd": 4,
+   "quadrant": 3,
+   "product_ids": [
+    1098132061415,
+    1098172451415,
+    1098183211415
+   ],
+   "stars": [
+    "TYC 2372-2100-1"
+   ],
+   "group": "G-C28-2020-01-04-657-c4-q3",
+   "split": "validation"
+  },
+  {
+   "field_id": "C29-2020-01-28-617-c2-q2",
+   "population": "C",
+   "night": "2020-01-28",
+   "ztf_field": 617,
+   "ccd": 2,
+   "quadrant": 2,
+   "product_ids": [
+    1122232630515,
+    1122260420515,
+    1122289570515
+   ],
+   "stars": [
+    "TYC 1942-375-1"
+   ],
+   "group": "G-C29-2020-01-28-617-c2-q2",
+   "split": "validation"
+  },
+  {
+   "field_id": "C30-2020-01-28-1613-c9-q2",
+   "population": "C",
+   "night": "2020-01-28",
+   "ztf_field": 1613,
+   "ccd": 9,
+   "quadrant": 2,
+   "product_ids": [
+    1122257773315,
+    1122273273315,
+    1122318053315
+   ],
+   "stars": [
+    "TYC 1942-375-1"
+   ],
+   "group": "G-C29-2020-01-28-617-c2-q2",
+   "split": "validation"
+  }
+ ],
+ "groups": [
+  {
+   "group": "G-B-2019-01-25-565-c13-q1",
+   "split": "development",
+   "members": [
+    "B-2019-01-25-565-c13-q1",
+    "B-2019-01-25-565-c13-q2",
+    "B-2019-01-25-565-c13-q3",
+    "B-2019-01-25-565-c13-q4",
+    "C7-2019-01-25-565-c3-q2",
+    "N19-2019-01-25-614-c2-q1"
+   ]
+  },
+  {
+   "group": "G-C-2018-10-06-448-c9-q3",
+   "split": "development",
+   "members": [
+    "C-2018-10-06-448-c9-q3"
+   ]
+  },
+  {
+   "group": "G-C1-2020-06-17-333-c11-q1",
+   "split": "validation",
+   "members": [
+    "C1-2020-06-17-333-c11-q1"
+   ]
+  },
+  {
+   "group": "G-C10-2020-08-14-447-c2-q1",
+   "split": "validation",
+   "members": [
+    "C10-2020-08-14-447-c2-q1",
+    "C11-2020-08-27-447-c2-q1"
+   ]
+  },
+  {
+   "group": "G-C12-2019-11-01-558-c7-q3",
+   "split": "development",
+   "members": [
+    "C12-2019-11-01-558-c7-q3",
+    "N12-2019-11-01-607-c1-q2"
+   ]
+  },
+  {
+   "group": "G-C13-2018-09-16-393-c14-q1",
+   "split": "validation",
+   "members": [
+    "C13-2018-09-16-393-c14-q1"
+   ]
+  },
+  {
+   "group": "G-C14-2019-02-08-518-c16-q4",
+   "split": "validation",
+   "members": [
+    "C14-2019-02-08-518-c16-q4"
+   ]
+  },
+  {
+   "group": "G-C15-2019-01-04-500-c15-q4",
+   "split": "validation",
+   "members": [
+    "C15-2019-01-04-500-c15-q4"
+   ]
+  },
+  {
+   "group": "G-C16-2020-01-29-511-c13-q3",
+   "split": "validation",
+   "members": [
+    "C16-2020-01-29-511-c13-q3"
+   ]
+  },
+  {
+   "group": "G-C17-2020-09-22-561-c15-q2",
+   "split": "validation",
+   "members": [
+    "C17-2020-09-22-561-c15-q2"
+   ]
+  },
+  {
+   "group": "G-C18-2018-07-14-333-c3-q4",
+   "split": "development",
+   "members": [
+    "C18-2018-07-14-333-c3-q4",
+    "C19-2019-07-22-333-c3-q4",
+    "C20-2019-07-28-282-c13-q1",
+    "N18-2018-07-16-333-c13-q2",
+    "N8-2019-07-24-333-c8-q1"
+   ]
+  },
+  {
+   "group": "G-C2-2019-08-01-553-c11-q3",
+   "split": "validation",
+   "members": [
+    "C2-2019-08-01-553-c11-q3"
+   ]
+  },
+  {
+   "group": "G-C21-2020-08-23-452-c15-q3",
+   "split": "validation",
+   "members": [
+    "C21-2020-08-23-452-c15-q3"
+   ]
+  },
+  {
+   "group": "G-C22-2020-02-24-517-c15-q3",
+   "split": "validation",
+   "members": [
+    "C22-2020-02-24-517-c15-q3"
+   ]
+  },
+  {
+   "group": "G-C23-2020-11-17-659-c4-q2",
+   "split": "validation",
+   "members": [
+    "C23-2020-11-17-659-c4-q2"
+   ]
+  },
+  {
+   "group": "G-C24-2019-06-29-279-c5-q2",
+   "split": "validation",
+   "members": [
+    "C24-2019-06-29-279-c5-q2"
+   ]
+  },
+  {
+   "group": "G-C25-2018-07-05-331-c9-q4",
+   "split": "validation",
+   "members": [
+    "C25-2018-07-05-331-c9-q4"
+   ]
+  },
+  {
+   "group": "G-C26-2020-11-26-612-c3-q1",
+   "split": "validation",
+   "members": [
+    "C26-2020-11-26-612-c3-q1"
+   ]
+  },
+  {
+   "group": "G-C27-2020-11-15-392-c7-q4",
+   "split": "validation",
+   "members": [
+    "C27-2020-11-15-392-c7-q4"
+   ]
+  },
+  {
+   "group": "G-C28-2020-01-04-657-c4-q3",
+   "split": "validation",
+   "members": [
+    "C28-2020-01-04-657-c4-q3"
+   ]
+  },
+  {
+   "group": "G-C29-2020-01-28-617-c2-q2",
+   "split": "validation",
+   "members": [
+    "C29-2020-01-28-617-c2-q2",
+    "C30-2020-01-28-1613-c9-q2"
+   ]
+  },
+  {
+   "group": "G-C3-2018-12-13-559-c9-q2",
+   "split": "validation",
+   "members": [
+    "C3-2018-12-13-559-c9-q2"
+   ]
+  },
+  {
+   "group": "G-C4-2019-08-20-335-c11-q1",
+   "split": "development",
+   "members": [
+    "C4-2019-08-20-335-c11-q1",
+    "N24-2019-08-21-335-c10-q3"
+   ]
+  },
+  {
+   "group": "G-C5-2020-09-21-447-c9-q1",
+   "split": "validation",
+   "members": [
+    "C5-2020-09-21-447-c9-q1"
+   ]
+  },
+  {
+   "group": "G-C6-2018-07-12-283-c15-q1",
+   "split": "validation",
+   "members": [
+    "C6-2018-07-12-283-c15-q1"
+   ]
+  },
+  {
+   "group": "G-C8-2020-11-14-613-c4-q2",
+   "split": "validation",
+   "members": [
+    "C8-2020-11-14-613-c4-q2"
+   ]
+  },
+  {
+   "group": "G-C9-2020-04-17-373-c1-q1",
+   "split": "validation",
+   "members": [
+    "C9-2020-04-17-373-c1-q1"
+   ]
+  },
+  {
+   "group": "G-D-2019-06-02-281-c16-q1",
+   "split": "development",
+   "members": [
+    "D-2019-06-02-281-c16-q1",
+    "D-2019-06-02-281-c16-q2",
+    "D-2019-06-02-281-c16-q3",
+    "D-2019-06-02-281-c16-q4"
+   ]
+  },
+  {
+   "group": "G-N1-2018-11-25-468-c12-q1",
+   "split": "development",
+   "members": [
+    "N1-2018-11-25-468-c12-q1"
+   ]
+  },
+  {
+   "group": "G-N10-2018-11-12-504-c2-q3",
+   "split": "development",
+   "members": [
+    "N10-2018-11-12-504-c2-q3"
+   ]
+  },
+  {
+   "group": "G-N11-2018-10-31-559-c3-q1",
+   "split": "development",
+   "members": [
+    "N11-2018-10-31-559-c3-q1"
+   ]
+  },
+  {
+   "group": "G-N13-2018-08-21-394-c12-q4",
+   "split": "development",
+   "members": [
+    "N13-2018-08-21-394-c12-q4"
+   ]
+  },
+  {
+   "group": "G-N14-2018-11-02-562-c3-q3",
+   "split": "development",
+   "members": [
+    "N14-2018-11-02-562-c3-q3"
+   ]
+  },
+  {
+   "group": "G-N15-2019-07-29-338-c13-q3",
+   "split": "development",
+   "members": [
+    "N15-2019-07-29-338-c13-q3",
+    "N6-2019-07-29-338-c6-q1"
+   ]
+  },
+  {
+   "group": "G-N16-2019-12-29-568-c15-q4",
+   "split": "development",
+   "members": [
+    "N16-2019-12-29-568-c15-q4",
+    "N7-2019-12-29-611-c9-q3"
+   ]
+  },
+  {
+   "group": "G-N17-2019-06-27-330-c9-q2",
+   "split": "development",
+   "members": [
+    "N17-2019-06-27-330-c9-q2"
+   ]
+  },
+  {
+   "group": "G-N2-2019-11-05-564-c1-q2",
+   "split": "development",
+   "members": [
+    "N2-2019-11-05-564-c1-q2"
+   ]
+  },
+  {
+   "group": "G-N20-2018-09-27-499-c1-q2",
+   "split": "development",
+   "members": [
+    "N20-2018-09-27-499-c1-q2",
+    "S2-2018-09-27-509-c14-q1",
+    "S2-2018-09-27-509-c14-q2",
+    "S2-2018-09-27-509-c14-q3",
+    "S2-2018-09-27-509-c14-q4"
+   ]
+  },
+  {
+   "group": "G-N21-2019-01-28-474-c8-q4",
+   "split": "development",
+   "members": [
+    "N21-2019-01-28-474-c8-q4"
+   ]
+  },
+  {
+   "group": "G-N22-2018-09-06-553-c4-q4",
+   "split": "development",
+   "members": [
+    "N22-2018-09-06-553-c4-q4"
+   ]
+  },
+  {
+   "group": "G-N23-2019-06-01-279-c6-q1",
+   "split": "development",
+   "members": [
+    "N23-2019-06-01-279-c6-q1"
+   ]
+  },
+  {
+   "group": "G-N3-2019-09-23-1441-c5-q4",
+   "split": "development",
+   "members": [
+    "N3-2019-09-23-1441-c5-q4"
+   ]
+  },
+  {
+   "group": "G-N4-2020-09-15-447-c3-q4",
+   "split": "development",
+   "members": [
+    "N4-2020-09-15-447-c3-q4"
+   ]
+  },
+  {
+   "group": "G-N5-2019-08-27-335-c7-q4",
+   "split": "development",
+   "members": [
+    "N5-2019-08-27-335-c7-q4"
+   ]
+  },
+  {
+   "group": "G-N9-2019-08-31-334-c4-q3",
+   "split": "development",
+   "members": [
+    "N9-2019-08-31-334-c4-q3"
+   ]
+  },
+  {
+   "group": "G-POC-2018-04-11-535-c11-q3",
+   "split": "development",
+   "members": [
+    "POC-2018-04-11-535-c11-q3"
+   ]
+  },
+  {
+   "group": "G-S1-2018-09-19-508-c10-q1",
+   "split": "development",
+   "members": [
+    "S1-2018-09-19-508-c10-q1",
+    "S1-2018-09-19-508-c10-q2",
+    "S1-2018-09-19-508-c10-q3",
+    "S1-2018-09-19-508-c10-q4"
+   ]
+  },
+  {
+   "group": "G-S3-2019-07-01-335-c7-q1",
+   "split": "development",
+   "members": [
+    "S3-2019-07-01-335-c7-q1",
+    "S3-2019-07-01-335-c7-q2",
+    "S3-2019-07-01-335-c7-q3",
+    "S3-2019-07-01-335-c7-q4"
+   ]
+  },
+  {
+   "group": "G-S4-2018-11-07-615-c5-q1",
+   "split": "development",
+   "members": [
+    "S4-2018-11-07-615-c5-q1",
+    "S4-2018-11-07-615-c5-q2",
+    "S4-2018-11-07-615-c5-q3",
+    "S4-2018-11-07-615-c5-q4"
+   ]
+  }
+ ],
+ "links": [
+  {
+   "a": "B-2019-01-25-565-c13-q3",
+   "b": "B-2019-01-25-565-c13-q1",
+   "reasons": [
+    "same night"
+   ]
+  },
+  {
+   "a": "B-2019-01-25-565-c13-q3",
+   "b": "B-2019-01-25-565-c13-q2",
+   "reasons": [
+    "same night"
+   ]
+  },
+  {
+   "a": "B-2019-01-25-565-c13-q3",
+   "b": "B-2019-01-25-565-c13-q4",
+   "reasons": [
+    "same night"
+   ]
+  },
+  {
+   "a": "B-2019-01-25-565-c13-q3",
+   "b": "N19-2019-01-25-614-c2-q1",
+   "reasons": [
+    "same night"
+   ]
+  },
+  {
+   "a": "B-2019-01-25-565-c13-q3",
+   "b": "C7-2019-01-25-565-c3-q2",
+   "reasons": [
+    "same night"
+   ]
+  },
+  {
+   "a": "D-2019-06-02-281-c16-q3",
+   "b": "D-2019-06-02-281-c16-q1",
+   "reasons": [
+    "same night"
+   ]
+  },
+  {
+   "a": "D-2019-06-02-281-c16-q3",
+   "b": "D-2019-06-02-281-c16-q2",
+   "reasons": [
+    "same night"
+   ]
+  },
+  {
+   "a": "D-2019-06-02-281-c16-q3",
+   "b": "D-2019-06-02-281-c16-q4",
+   "reasons": [
+    "same night"
+   ]
+  },
+  {
+   "a": "S1-2018-09-19-508-c10-q4",
+   "b": "S1-2018-09-19-508-c10-q1",
+   "reasons": [
+    "same night",
+    "same star TYC 676-1224-1"
+   ]
+  },
+  {
+   "a": "S1-2018-09-19-508-c10-q4",
+   "b": "S1-2018-09-19-508-c10-q2",
+   "reasons": [
+    "same night",
+    "same star TYC 676-1224-1"
+   ]
+  },
+  {
+   "a": "S1-2018-09-19-508-c10-q4",
+   "b": "S1-2018-09-19-508-c10-q3",
+   "reasons": [
+    "same night",
+    "same star TYC 676-1224-1"
+   ]
+  },
+  {
+   "a": "S2-2018-09-27-509-c14-q4",
+   "b": "S2-2018-09-27-509-c14-q1",
+   "reasons": [
+    "same night",
+    "same star TYC 696-1788-1"
+   ]
+  },
+  {
+   "a": "S2-2018-09-27-509-c14-q4",
+   "b": "S2-2018-09-27-509-c14-q2",
+   "reasons": [
+    "same night",
+    "same star TYC 696-1788-1"
+   ]
+  },
+  {
+   "a": "S2-2018-09-27-509-c14-q4",
+   "b": "S2-2018-09-27-509-c14-q3",
+   "reasons": [
+    "same night",
+    "same star TYC 696-1788-1"
+   ]
+  },
+  {
+   "a": "S2-2018-09-27-509-c14-q4",
+   "b": "N20-2018-09-27-499-c1-q2",
+   "reasons": [
+    "same night"
+   ]
+  },
+  {
+   "a": "S3-2019-07-01-335-c7-q1",
+   "b": "S3-2019-07-01-335-c7-q2",
+   "reasons": [
+    "same night",
+    "same star TYC 6301-2457-1"
+   ]
+  },
+  {
+   "a": "S3-2019-07-01-335-c7-q1",
+   "b": "S3-2019-07-01-335-c7-q3",
+   "reasons": [
+    "same night",
+    "same star TYC 6301-2457-1"
+   ]
+  },
+  {
+   "a": "S3-2019-07-01-335-c7-q1",
+   "b": "S3-2019-07-01-335-c7-q4",
+   "reasons": [
+    "same night",
+    "same star TYC 6301-2457-1"
+   ]
+  },
+  {
+   "a": "S4-2018-11-07-615-c5-q3",
+   "b": "S4-2018-11-07-615-c5-q1",
+   "reasons": [
+    "same night",
+    "same star TYC 1916-2156-1"
+   ]
+  },
+  {
+   "a": "S4-2018-11-07-615-c5-q3",
+   "b": "S4-2018-11-07-615-c5-q2",
+   "reasons": [
+    "same night",
+    "same star TYC 1916-2156-1"
+   ]
+  },
+  {
+   "a": "S4-2018-11-07-615-c5-q3",
+   "b": "S4-2018-11-07-615-c5-q4",
+   "reasons": [
+    "same night",
+    "same star TYC 1916-2156-1"
+   ]
+  },
+  {
+   "a": "B-2019-01-25-565-c13-q1",
+   "b": "B-2019-01-25-565-c13-q2",
+   "reasons": [
+    "same night"
+   ]
+  },
+  {
+   "a": "B-2019-01-25-565-c13-q1",
+   "b": "B-2019-01-25-565-c13-q4",
+   "reasons": [
+    "same night"
+   ]
+  },
+  {
+   "a": "B-2019-01-25-565-c13-q1",
+   "b": "N19-2019-01-25-614-c2-q1",
+   "reasons": [
+    "same night"
+   ]
+  },
+  {
+   "a": "B-2019-01-25-565-c13-q1",
+   "b": "C7-2019-01-25-565-c3-q2",
+   "reasons": [
+    "same night"
+   ]
+  },
+  {
+   "a": "B-2019-01-25-565-c13-q2",
+   "b": "B-2019-01-25-565-c13-q4",
+   "reasons": [
+    "same night"
+   ]
+  },
+  {
+   "a": "B-2019-01-25-565-c13-q2",
+   "b": "N19-2019-01-25-614-c2-q1",
+   "reasons": [
+    "same night"
+   ]
+  },
+  {
+   "a": "B-2019-01-25-565-c13-q2",
+   "b": "C7-2019-01-25-565-c3-q2",
+   "reasons": [
+    "same night"
+   ]
+  },
+  {
+   "a": "B-2019-01-25-565-c13-q4",
+   "b": "N19-2019-01-25-614-c2-q1",
+   "reasons": [
+    "same night"
+   ]
+  },
+  {
+   "a": "B-2019-01-25-565-c13-q4",
+   "b": "C7-2019-01-25-565-c3-q2",
+   "reasons": [
+    "same night"
+   ]
+  },
+  {
+   "a": "D-2019-06-02-281-c16-q1",
+   "b": "D-2019-06-02-281-c16-q2",
+   "reasons": [
+    "same night"
+   ]
+  },
+  {
+   "a": "D-2019-06-02-281-c16-q1",
+   "b": "D-2019-06-02-281-c16-q4",
+   "reasons": [
+    "same night"
+   ]
+  },
+  {
+   "a": "D-2019-06-02-281-c16-q2",
+   "b": "D-2019-06-02-281-c16-q4",
+   "reasons": [
+    "same night"
+   ]
+  },
+  {
+   "a": "S1-2018-09-19-508-c10-q1",
+   "b": "S1-2018-09-19-508-c10-q2",
+   "reasons": [
+    "same night",
+    "same star TYC 676-1224-1"
+   ]
+  },
+  {
+   "a": "S1-2018-09-19-508-c10-q1",
+   "b": "S1-2018-09-19-508-c10-q3",
+   "reasons": [
+    "same night",
+    "same star TYC 676-1224-1"
+   ]
+  },
+  {
+   "a": "S1-2018-09-19-508-c10-q2",
+   "b": "S1-2018-09-19-508-c10-q3",
+   "reasons": [
+    "same night",
+    "same star TYC 676-1224-1"
+   ]
+  },
+  {
+   "a": "S2-2018-09-27-509-c14-q1",
+   "b": "S2-2018-09-27-509-c14-q2",
+   "reasons": [
+    "same night",
+    "same star TYC 696-1788-1"
+   ]
+  },
+  {
+   "a": "S2-2018-09-27-509-c14-q1",
+   "b": "S2-2018-09-27-509-c14-q3",
+   "reasons": [
+    "same night",
+    "same star TYC 696-1788-1"
+   ]
+  },
+  {
+   "a": "S2-2018-09-27-509-c14-q1",
+   "b": "N20-2018-09-27-499-c1-q2",
+   "reasons": [
+    "same night"
+   ]
+  },
+  {
+   "a": "S2-2018-09-27-509-c14-q2",
+   "b": "S2-2018-09-27-509-c14-q3",
+   "reasons": [
+    "same night",
+    "same star TYC 696-1788-1"
+   ]
+  },
+  {
+   "a": "S2-2018-09-27-509-c14-q2",
+   "b": "N20-2018-09-27-499-c1-q2",
+   "reasons": [
+    "same night"
+   ]
+  },
+  {
+   "a": "S2-2018-09-27-509-c14-q3",
+   "b": "N20-2018-09-27-499-c1-q2",
+   "reasons": [
+    "same night"
+   ]
+  },
+  {
+   "a": "S3-2019-07-01-335-c7-q2",
+   "b": "S3-2019-07-01-335-c7-q3",
+   "reasons": [
+    "same night",
+    "same star TYC 6301-2457-1"
+   ]
+  },
+  {
+   "a": "S3-2019-07-01-335-c7-q2",
+   "b": "S3-2019-07-01-335-c7-q4",
+   "reasons": [
+    "same night",
+    "same star TYC 6301-2457-1"
+   ]
+  },
+  {
+   "a": "S3-2019-07-01-335-c7-q3",
+   "b": "S3-2019-07-01-335-c7-q4",
+   "reasons": [
+    "same night",
+    "same star TYC 6301-2457-1"
+   ]
+  },
+  {
+   "a": "S4-2018-11-07-615-c5-q1",
+   "b": "S4-2018-11-07-615-c5-q2",
+   "reasons": [
+    "same night",
+    "same star TYC 1916-2156-1"
+   ]
+  },
+  {
+   "a": "S4-2018-11-07-615-c5-q1",
+   "b": "S4-2018-11-07-615-c5-q4",
+   "reasons": [
+    "same night",
+    "same star TYC 1916-2156-1"
+   ]
+  },
+  {
+   "a": "S4-2018-11-07-615-c5-q2",
+   "b": "S4-2018-11-07-615-c5-q4",
+   "reasons": [
+    "same night",
+    "same star TYC 1916-2156-1"
+   ]
+  },
+  {
+   "a": "N6-2019-07-29-338-c6-q1",
+   "b": "N15-2019-07-29-338-c13-q3",
+   "reasons": [
+    "same night"
+   ]
+  },
+  {
+   "a": "N7-2019-12-29-611-c9-q3",
+   "b": "N16-2019-12-29-568-c15-q4",
+   "reasons": [
+    "same night"
+   ]
+  },
+  {
+   "a": "N8-2019-07-24-333-c8-q1",
+   "b": "C19-2019-07-22-333-c3-q4",
+   "reasons": [
+    "ZTF field 333 2 d apart"
+   ]
+  },
+  {
+   "a": "N12-2019-11-01-607-c1-q2",
+   "b": "C12-2019-11-01-558-c7-q3",
+   "reasons": [
+    "same night"
+   ]
+  },
+  {
+   "a": "N18-2018-07-16-333-c13-q2",
+   "b": "C18-2018-07-14-333-c3-q4",
+   "reasons": [
+    "ZTF field 333 2 d apart"
+   ]
+  },
+  {
+   "a": "N19-2019-01-25-614-c2-q1",
+   "b": "C7-2019-01-25-565-c3-q2",
+   "reasons": [
+    "same night"
+   ]
+  },
+  {
+   "a": "N24-2019-08-21-335-c10-q3",
+   "b": "C4-2019-08-20-335-c11-q1",
+   "reasons": [
+    "ZTF field 335 1 d apart"
+   ]
+  },
+  {
+   "a": "C10-2020-08-14-447-c2-q1",
+   "b": "C11-2020-08-27-447-c2-q1",
+   "reasons": [
+    "same star TYC 3-1464-1"
+   ]
+  },
+  {
+   "a": "C18-2018-07-14-333-c3-q4",
+   "b": "C19-2019-07-22-333-c3-q4",
+   "reasons": [
+    "same star TYC 6274-1663-1"
+   ]
+  },
+  {
+   "a": "C18-2018-07-14-333-c3-q4",
+   "b": "C20-2019-07-28-282-c13-q1",
+   "reasons": [
+    "same star TYC 6274-1663-1"
+   ]
+  },
+  {
+   "a": "C19-2019-07-22-333-c3-q4",
+   "b": "C20-2019-07-28-282-c13-q1",
+   "reasons": [
+    "same star TYC 6274-1663-1"
+   ]
+  },
+  {
+   "a": "C29-2020-01-28-617-c2-q2",
+   "b": "C30-2020-01-28-1613-c9-q2",
+   "reasons": [
+    "same night",
+    "same star TYC 1942-375-1"
+   ]
+  }
+ ],
+ "positive_availability": {
+  "development": {
+   "positive_tracklet_targets": 402,
+   "positive_object_nights": 402,
+   "fields_with_positive": 49,
+   "zone": 6,
+   "zone_or_outer": 54,
+   "marginal": 149,
+   "by_role_group": {
+    "marginal/control": 81,
+    "marginal/intermediate": 47,
+    "marginal/outer": 21,
+    "primary/control": 142,
+    "primary/intermediate": 78,
+    "primary/outer": 27,
+    "primary/zone": 6
+   }
+  },
+  "validation": {
+   "positive_tracklet_targets": 283,
+   "positive_object_nights": 269,
+   "fields_with_positive": 24,
+   "zone": 14,
+   "zone_or_outer": 45,
+   "marginal": 97,
+   "by_role_group": {
+    "marginal/control": 58,
+    "marginal/intermediate": 28,
+    "marginal/outer": 11,
+    "primary/control": 103,
+    "primary/intermediate": 49,
+    "primary/outer": 20,
+    "primary/zone": 14
+   }
+  }
+ },
+ "cross_split_designations": [
+  "105890"
+ ]
+}

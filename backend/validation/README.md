@@ -199,3 +199,27 @@ NOT REPRODUCED (minimums met, Newcombe 95 % lower bound of zone - control
 C SkyBoT predictions are stored in `as036_skybot.json` and replayed.
 Evidence only — no filter, radius, score, rank or threshold.
 Interpretation: `results/as036/as036_findings.md`.
+
+## AS-037 candidate-ranking experiment design (pre-registration)
+
+```
+python -m app.validation.ranking_design manifest --out validation/results/as037/as037_manifest.json
+```
+
+Design only — no ranking model, score, threshold, filter, exclusion
+radius, rejection rule or UI, and no ranking outcome. The PRE-REGISTRATION
+block of `app/validation/ranking_design.py` and
+`results/as037/as037_preregistration.md` fix the evaluation population
+(every built tracklet of the 80 frozen R/N/C quadrant-nights, ranked
+identity-blind per quadrant-night), independence groups (shared night,
+star, or ZTF field within 3 days) and the frozen split (groups with an R or
+N member = development, 56 quadrant-nights; remaining C = validation, 24,
+sealed by `require_split` until a ranker is frozen), positive controls
+(built KNOWN tracklets of eligible AS-022-rule targets), metrics (recall
+of positive object-nights within the top 5 % of their quadrant-night's
+UNKNOWN background, enrichment, recall@K, within-field AUC, group
+bootstrap), stage separation (AS-038 feature evaluation, AS-039
+construction, AS-040 one-shot validation), and the decision rule with
+near-star and faint-object guards. Bright-star proximity is context only.
+The manifest is offline and deterministic (inputs hashed); a test rebuilds
+and compares it.
