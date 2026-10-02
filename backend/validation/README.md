@@ -246,3 +246,30 @@ mechanical stage-1 gate and the frozen AS-039 feature list
 Implementation decisions D1–D9 (block in the module) were committed
 before any outcome. No ranker, combined score, weight, threshold or
 filter. Interpretation: `results/as038/as038_findings.md`.
+
+## AS-039 candidate ranker construction (stage 2, development only)
+
+```
+python -m app.validation.ranker_construction evaluate --out-dir validation/results/as039  # offline, ~5 s
+```
+
+Executes AS-037 stage 2 unchanged on the AS-038 development table and
+its 8 frozen features (hash-checked), with every quadrant-night guarded
+by `require_split(..., "ranking_construction")`.
+
+- **Ranker family**: only the pre-registered B0 (hash), B1 (each frozen
+  feature), M1 (unweighted mean of within-quadrant-night percentiles) and
+  M2 (L2 logistic regression, C ∈ {0.01, 0.1, 1, 10}, each quadrant-night
+  weight 1).
+- **CV**: grouped 5-fold over the 27 development groups, folds in
+  SHA-256 order; pooled out-of-fold metrics with group bootstrap.
+- **Guards**: faint (MARGINAL vs PRIMARY) and near-star (zone+outer vs
+  control), 0.20 margin.
+- **Selection**: the mechanical AS-037 rule (0.02 M1 tie rule, best B1
+  as comparator, no advance if no M1/M2 passes both guards).
+- **Outputs**: `as039_construction.json` / `.md`, `as039_selection.json`
+  and, if a ranker advances, `as039_frozen_ranker.json` for AS-040.
+
+Implementation decisions E1–E12 (block in the module) were committed
+before any outcome. Identity, proximity, speed and PA are never inputs.
+Interpretation: `results/as039/as039_findings.md`.

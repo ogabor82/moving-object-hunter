@@ -253,3 +253,58 @@ def test_logistic_fit_converges_on_the_development_training_set() -> None:
             w, b = rc.logistic_fit(x, y, s, c)
             p = 1 / (1 + np.exp(-(x @ w + b)))
             assert np.max(np.abs(w + c * x.T @ (s * (p - y)))) < 1e-8
+
+
+# --- committed AS-039 outcome is reproducible ------------------------------------
+
+OUT = ROOT / "validation/results/as039"
+
+
+@pytest.fixture(scope="module")
+def committed() -> dict:
+    import json
+
+    return {
+        "construction": json.loads((OUT / rc.RESULTS_FILE).read_text()),
+        "selection": json.loads((OUT / rc.SELECTION_FILE).read_text()),
+        "frozen": json.loads((OUT / rc.FROZEN_FILE).read_text()),
+    }
+
+
+@pytest.fixture(scope="module")
+def rerun():
+    # Point estimates, guards and selection do not depend on the resample count.
+    return rc.construct(ROOT, resamples=20)
+
+
+def test_rerun_reproduces_every_point_estimate_and_the_selection(committed, rerun) -> None:
+    construction, _, frozen = rerun
+    by_name = {r["ranker"]: r for r in committed["construction"]["rankers"]}
+    assert [r.ranker for r in construction.rankers] == list(by_name)
+    for r in construction.rankers:
+        c = by_name[r.ranker]
+        assert r.recall_5.point == c["recall_5"]["point"]
+        assert r.auc.point == c["auc"]["point"]
+        assert r.recall == c["recall"]
+        assert [g.model_dump(mode="json") for g in r.guards] == c["guards"]
+        assert r.guards_passed == c["guards_passed"]
+    assert construction.selection.model_dump() == committed["selection"]
+    assert frozen["ranker"] == committed["frozen"]["ranker"]
+    assert frozen["comparator"] == committed["frozen"]["comparator"]
+
+
+def test_selection_follows_from_the_committed_metrics(committed) -> None:
+    results = [rc.RankerResult.model_validate(r) for r in committed["construction"]["rankers"]]
+    assert rc.select(results).model_dump() == committed["selection"]
+
+
+def test_frozen_spec_is_bound_to_the_committed_inputs(committed) -> None:
+    frozen = committed["frozen"]
+    assert frozen["table_sha256"] == rd.file_sha256(ROOT / rc.AS038_DIR / fe.TABLE_FILE)
+    assert frozen["manifest_sha256"] == rd.file_sha256(ROOT / fe.MANIFEST_FILE)
+    assert frozen["frozen_features_sha256"] == rd.file_sha256(ROOT / rc.FROZEN_FEATURES_FILE)
+    for spec in (frozen["ranker"], frozen["comparator"]):
+        assert {i["feature"] for i in spec["inputs"]} <= set(rc.FROZEN_FEATURES)
+        assert all(rd.CANDIDATE_FEATURES[i["feature"]] == i["direction"] for i in spec["inputs"])
+        assert set(spec["weights"]) == {i["feature"] for i in spec["inputs"]}
+    assert not frozen["code_commit"].endswith("+dirty")

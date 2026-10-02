@@ -1,0 +1,18 @@
+{
+ "outcome": "ADVANCE",
+ "selected": "M1",
+ "comparator": "B1:sharp_abs_max",
+ "eligible": [
+  "M1",
+  "M2:C=0.01",
+  "M2:C=0.1",
+  "M2:C=1",
+  "M2:C=10"
+ ],
+ "excluded": {},
+ "best_eligible": "M1",
+ "tie_rule_applied": false,
+ "reasons": [
+  "selected M1: highest CV recall@5 % among guard-passing M1/M2"
+ ]
+}

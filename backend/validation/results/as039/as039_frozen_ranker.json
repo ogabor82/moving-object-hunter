@@ -1,0 +1,192 @@
+{
+ "ticket": "AS-039",
+ "stage": "ranking_construction",
+ "for": "AS-040 one-shot validation (validation split only, AS-037 section 7 unchanged)",
+ "code_commit": "f041720b3d4a0dd17d9482b204d7fcd0dc49d4e2",
+ "manifest_sha256": "63e12b9feb8bc3761a0b43ecebd1a68b6bbe00ef83de3e627cf7baaa4b9f423c",
+ "table_sha256": "da670e38357503fe6d6d5239097523d08e939d8c8c28c133a0d873d7d6dd5fd9",
+ "frozen_features_sha256": "a8182bc63649f6f035ca3b19a4db9dcc1c9701abc07df149b68d52c82de0cf42",
+ "representation": {
+  "unit": "one quadrant-night; every BUILT tracklet is ranked",
+  "percentile": "ranking_design.within_field_percentile(values, direction) over all built tracklets of the quadrant-night, label-free (mid-rank, higher = reviewed earlier)",
+  "missing": "percentile 0.0 (after every present value)",
+  "score": "sum_k weight_k * percentile_k + intercept; higher = reviewed earlier",
+  "q": "ranking_design.background_rank_fraction (ties count half); best-scored positive per object"
+ },
+ "ranker": {
+  "ranker": "M1",
+  "kind": "unweighted mean of oriented within-quadrant-night percentiles",
+  "inputs": [
+   {
+    "feature": "min_snr",
+    "direction": 1
+   },
+   {
+    "feature": "median_snr",
+    "direction": 1
+   },
+   {
+    "feature": "fit_rms_residual_arcsec",
+    "direction": -1
+   },
+   {
+    "feature": "magnitude_range_mag",
+    "direction": -1
+   },
+   {
+    "feature": "flagged_detection_count",
+    "direction": -1
+   },
+   {
+    "feature": "masked_detection_count",
+    "direction": -1
+   },
+   {
+    "feature": "sharp_abs_max",
+    "direction": -1
+   },
+   {
+    "feature": "shared_detection_tracklets",
+    "direction": -1
+   }
+  ],
+  "weights": {
+   "min_snr": 0.125,
+   "median_snr": 0.125,
+   "fit_rms_residual_arcsec": 0.125,
+   "magnitude_range_mag": 0.125,
+   "flagged_detection_count": 0.125,
+   "masked_detection_count": 0.125,
+   "sharp_abs_max": 0.125,
+   "shared_detection_tracklets": 0.125
+  },
+  "intercept": 0.0,
+  "fitted": false
+ },
+ "comparator": {
+  "ranker": "B1:sharp_abs_max",
+  "kind": "single frozen feature, oriented within-quadrant-night percentile",
+  "inputs": [
+   {
+    "feature": "sharp_abs_max",
+    "direction": -1
+   }
+  ],
+  "weights": {
+   "sharp_abs_max": 1.0
+  },
+  "intercept": 0.0,
+  "fitted": false
+ },
+ "development_cv": {
+  "M1": {
+   "recall_5": {
+    "point": 0.9552238805970149,
+    "lower": 0.9406307977736549,
+    "upper": 0.973568281938326
+   },
+   "auc": {
+    "point": 0.9898809821237633,
+    "lower": 0.9841248214010956,
+    "upper": 0.9947408046774916
+   },
+   "guards": [
+    {
+     "name": "faint (MARGINAL) vs PRIMARY",
+     "protected_n": 149.0,
+     "reference_n": 253.0,
+     "protected_recall": 0.8791946308724832,
+     "reference_recall": 1.0,
+     "difference": -0.12080536912751683,
+     "newcombe_95": [
+      -0.18287454177145324,
+      -0.07527081926860452
+     ],
+     "evaluable": true,
+     "passed": true
+    },
+    {
+     "name": "near-star (zone+outer) vs control",
+     "protected_n": 54.0,
+     "reference_n": 223.0,
+     "protected_recall": 0.9629629629629629,
+     "reference_recall": 0.9641255605381166,
+     "difference": -0.0011625975751536899,
+     "newcombe_95": [
+      -0.09121129589329731,
+      0.04159979380452163
+     ],
+     "evaluable": true,
+     "passed": true
+    }
+   ]
+  },
+  "B1:sharp_abs_max": {
+   "recall_5": {
+    "point": 0.7089552238805971,
+    "lower": 0.6279863481228669,
+    "upper": 0.7732558139534884
+   },
+   "auc": {
+    "point": 0.9299318187964472,
+    "lower": 0.895572328071652,
+    "upper": 0.9520809723781085
+   },
+   "guards": [
+    {
+     "name": "faint (MARGINAL) vs PRIMARY",
+     "protected_n": 149.0,
+     "reference_n": 253.0,
+     "protected_recall": 0.4429530201342282,
+     "reference_recall": 0.8656126482213439,
+     "difference": -0.42265962808711566,
+     "newcombe_95": [
+      -0.5082133214659508,
+      -0.3294323287662949
+     ],
+     "evaluable": true,
+     "passed": false
+    },
+    {
+     "name": "near-star (zone+outer) vs control",
+     "protected_n": 54.0,
+     "reference_n": 223.0,
+     "protected_recall": 0.6666666666666666,
+     "reference_recall": 0.7443946188340808,
+     "difference": -0.07772795216741413,
+     "newcombe_95": [
+      -0.22086943107183188,
+      0.048884000721813314
+     ],
+     "evaluable": true,
+     "passed": true
+    }
+   ]
+  }
+ },
+ "selection": {
+  "outcome": "ADVANCE",
+  "selected": "M1",
+  "comparator": "B1:sharp_abs_max",
+  "eligible": [
+   "M1",
+   "M2:C=0.01",
+   "M2:C=0.1",
+   "M2:C=1",
+   "M2:C=10"
+  ],
+  "excluded": {},
+  "best_eligible": "M1",
+  "tie_rule_applied": false,
+  "reasons": [
+   "selected M1: highest CV recall@5 % among guard-passing M1/M2"
+  ]
+ },
+ "not_allowed": [
+  "any feature, transform, weight, intercept or C other than the above",
+  "bright-star proximity / proximity group / star separations (context only)",
+  "speed and position angle (context only)",
+  "identification status, designation, SkyBoT prediction or residual",
+  "re-selection or tuning on validation"
+ ]
+}
