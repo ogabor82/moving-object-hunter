@@ -1,0 +1,5455 @@
+{
+ "generated_at": "2026-10-02T21:33:22.167490Z",
+ "manifest_sha256": "63e12b9feb8bc3761a0b43ecebd1a68b6bbe00ef83de3e627cf7baaa4b9f423c",
+ "stage": "validation",
+ "fields": [
+  {
+   "field_id": "C1-2020-06-17-333-c11-q1",
+   "population": "C",
+   "group": "G-C1-2020-06-17-333-c11-q1",
+   "night": "2020-06-17",
+   "filters": [
+    "zg",
+    "zi",
+    "zi"
+   ],
+   "sources_per_frame": [
+    54251,
+    172320,
+    133790
+   ],
+   "tracklets": 2454,
+   "built_tracklets": 372,
+   "labels": {
+    "positive": 3,
+    "auxiliary": 1,
+    "background": 368
+   },
+   "eligible_targets": 15,
+   "targets": [
+    {
+     "designation": "115254",
+     "role": "marginal",
+     "group": "outer",
+     "rate_arcsec_per_min": 0.5799,
+     "min_global_margin_mag": 0.498,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "136176",
+     "role": "marginal",
+     "group": "intermediate",
+     "rate_arcsec_per_min": 0.5421,
+     "min_global_margin_mag": 0.598,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "163342",
+     "role": "primary",
+     "group": "control",
+     "rate_arcsec_per_min": 0.5727,
+     "min_global_margin_mag": 1.398,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "205059",
+     "role": "marginal",
+     "group": "control",
+     "rate_arcsec_per_min": 0.6594,
+     "min_global_margin_mag": 0.398,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "247411",
+     "role": "marginal",
+     "group": "control",
+     "rate_arcsec_per_min": 0.6388,
+     "min_global_margin_mag": 0.498,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "31302",
+     "role": "primary",
+     "group": "zone",
+     "rate_arcsec_per_min": 0.5102,
+     "min_global_margin_mag": 1.498,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-1628"
+    },
+    {
+     "designation": "330847",
+     "role": "marginal",
+     "group": "control",
+     "rate_arcsec_per_min": 0.5919,
+     "min_global_margin_mag": 0.098,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "364634",
+     "role": "marginal",
+     "group": "control",
+     "rate_arcsec_per_min": 0.6107,
+     "min_global_margin_mag": 0.798,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-1436"
+    },
+    {
+     "designation": "393090",
+     "role": "marginal",
+     "group": "intermediate",
+     "rate_arcsec_per_min": 0.5028,
+     "min_global_margin_mag": -0.102,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "41377",
+     "role": "primary",
+     "group": "control",
+     "rate_arcsec_per_min": 0.4821,
+     "min_global_margin_mag": 1.698,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "440297",
+     "role": "marginal",
+     "group": "intermediate",
+     "rate_arcsec_per_min": 0.5519,
+     "min_global_margin_mag": -0.102,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "605640",
+     "role": "marginal",
+     "group": "intermediate",
+     "rate_arcsec_per_min": 0.5605,
+     "min_global_margin_mag": 0.298,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "64688",
+     "role": "primary",
+     "group": "intermediate",
+     "rate_arcsec_per_min": 0.4983,
+     "min_global_margin_mag": 0.998,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "68687",
+     "role": "primary",
+     "group": "outer",
+     "rate_arcsec_per_min": 0.5457,
+     "min_global_margin_mag": 1.398,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0070"
+    },
+    {
+     "designation": "87214",
+     "role": "marginal",
+     "group": "outer",
+     "rate_arcsec_per_min": 0.5826,
+     "min_global_margin_mag": 0.598,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    }
+   ]
+  },
+  {
+   "field_id": "C2-2019-08-01-553-c11-q3",
+   "population": "C",
+   "group": "G-C2-2019-08-01-553-c11-q3",
+   "night": "2019-08-01",
+   "filters": [
+    "zg",
+    "zr",
+    "zr"
+   ],
+   "sources_per_frame": [
+    7180,
+    11721,
+    12222
+   ],
+   "tracklets": 7521,
+   "built_tracklets": 1347,
+   "labels": {
+    "positive": 7,
+    "auxiliary": 0,
+    "background": 1340
+   },
+   "eligible_targets": 8,
+   "targets": [
+    {
+     "designation": "226382",
+     "role": "marginal",
+     "group": "control",
+     "rate_arcsec_per_min": 0.4071,
+     "min_global_margin_mag": -0.091,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0008"
+    },
+    {
+     "designation": "230664",
+     "role": "primary",
+     "group": "control",
+     "rate_arcsec_per_min": 0.4436,
+     "min_global_margin_mag": 0.409,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0261"
+    },
+    {
+     "designation": "24649",
+     "role": "primary",
+     "group": "intermediate",
+     "rate_arcsec_per_min": 0.4165,
+     "min_global_margin_mag": 3.009,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0004"
+    },
+    {
+     "designation": "298561",
+     "role": "primary",
+     "group": "control",
+     "rate_arcsec_per_min": 0.8445,
+     "min_global_margin_mag": 1.109,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0241"
+    },
+    {
+     "designation": "322132",
+     "role": "marginal",
+     "group": "control",
+     "rate_arcsec_per_min": 0.3357,
+     "min_global_margin_mag": -0.791,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "331819",
+     "role": "primary",
+     "group": "control",
+     "rate_arcsec_per_min": 0.4201,
+     "min_global_margin_mag": 0.409,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-1694"
+    },
+    {
+     "designation": "368472",
+     "role": "marginal",
+     "group": "control",
+     "rate_arcsec_per_min": 0.3271,
+     "min_global_margin_mag": -0.591,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0616"
+    },
+    {
+     "designation": "51775",
+     "role": "primary",
+     "group": "zone",
+     "rate_arcsec_per_min": 0.267,
+     "min_global_margin_mag": 1.409,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0235"
+    }
+   ]
+  },
+  {
+   "field_id": "C3-2018-12-13-559-c9-q2",
+   "population": "C",
+   "group": "G-C3-2018-12-13-559-c9-q2",
+   "night": "2018-12-13",
+   "filters": [
+    "zg",
+    "zr",
+    "zr"
+   ],
+   "sources_per_frame": [
+    5947,
+    10739,
+    14124
+   ],
+   "tracklets": 3426,
+   "built_tracklets": 525,
+   "labels": {
+    "positive": 6,
+    "auxiliary": 0,
+    "background": 519
+   },
+   "eligible_targets": 34,
+   "targets": [
+    {
+     "designation": "103070",
+     "role": "primary",
+     "group": "control",
+     "rate_arcsec_per_min": 0.6282,
+     "min_global_margin_mag": 0.857,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "113626",
+     "role": "primary",
+     "group": "zone",
+     "rate_arcsec_per_min": 0.5355,
+     "min_global_margin_mag": 0.957,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "114019",
+     "role": "primary",
+     "group": "control",
+     "rate_arcsec_per_min": 0.5591,
+     "min_global_margin_mag": 1.257,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "12510",
+     "role": "primary",
+     "group": "control",
+     "rate_arcsec_per_min": 0.642,
+     "min_global_margin_mag": 2.657,
+     "trace_recovered": false,
+     "trace_tracklet_id": "trk-0032"
+    },
+    {
+     "designation": "165757",
+     "role": "primary",
+     "group": "control",
+     "rate_arcsec_per_min": 0.5185,
+     "min_global_margin_mag": 2.157,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0058"
+    },
+    {
+     "designation": "168365",
+     "role": "primary",
+     "group": "control",
+     "rate_arcsec_per_min": 0.6043,
+     "min_global_margin_mag": 0.757,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0490"
+    },
+    {
+     "designation": "170117",
+     "role": "primary",
+     "group": "control",
+     "rate_arcsec_per_min": 0.537,
+     "min_global_margin_mag": 1.257,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0069"
+    },
+    {
+     "designation": "183635",
+     "role": "marginal",
+     "group": "intermediate",
+     "rate_arcsec_per_min": 0.6397,
+     "min_global_margin_mag": -0.143,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "190091",
+     "role": "primary",
+     "group": "control",
+     "rate_arcsec_per_min": 0.5797,
+     "min_global_margin_mag": 1.157,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "198804",
+     "role": "marginal",
+     "group": "control",
+     "rate_arcsec_per_min": 0.5469,
+     "min_global_margin_mag": -0.143,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "2011 QS106",
+     "role": "marginal",
+     "group": "control",
+     "rate_arcsec_per_min": 0.7071,
+     "min_global_margin_mag": -0.043,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "2011 SL333",
+     "role": "marginal",
+     "group": "control",
+     "rate_arcsec_per_min": 0.6458,
+     "min_global_margin_mag": -0.743,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "217950",
+     "role": "primary",
+     "group": "control",
+     "rate_arcsec_per_min": 0.5914,
+     "min_global_margin_mag": 0.857,
+     "trace_recovered": false,
+     "trace_tracklet_id": "trk-0071"
+    },
+    {
+     "designation": "236159",
+     "role": "marginal",
+     "group": "control",
+     "rate_arcsec_per_min": 0.6945,
+     "min_global_margin_mag": -0.743,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "244638",
+     "role": "marginal",
+     "group": "control",
+     "rate_arcsec_per_min": 0.6848,
+     "min_global_margin_mag": -0.543,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "26983",
+     "role": "primary",
+     "group": "control",
+     "rate_arcsec_per_min": 0.5256,
+     "min_global_margin_mag": 3.857,
+     "trace_recovered": false,
+     "trace_tracklet_id": "trk-0073"
+    },
+    {
+     "designation": "303367",
+     "role": "primary",
+     "group": "control",
+     "rate_arcsec_per_min": 0.6313,
+     "min_global_margin_mag": 1.257,
+     "trace_recovered": false,
+     "trace_tracklet_id": "trk-0051"
+    },
+    {
+     "designation": "31334",
+     "role": "primary",
+     "group": "outer",
+     "rate_arcsec_per_min": 0.5122,
+     "min_global_margin_mag": 2.057,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0251"
+    },
+    {
+     "designation": "337538",
+     "role": "marginal",
+     "group": "control",
+     "rate_arcsec_per_min": 0.5186,
+     "min_global_margin_mag": -0.743,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "366847",
+     "role": "marginal",
+     "group": "control",
+     "rate_arcsec_per_min": 0.6026,
+     "min_global_margin_mag": -0.443,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "37312",
+     "role": "primary",
+     "group": "outer",
+     "rate_arcsec_per_min": 0.5474,
+     "min_global_margin_mag": 2.857,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0081"
+    },
+    {
+     "designation": "374436",
+     "role": "marginal",
+     "group": "control",
+     "rate_arcsec_per_min": 0.6067,
+     "min_global_margin_mag": -0.043,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "429188",
+     "role": "primary",
+     "group": "control",
+     "rate_arcsec_per_min": 0.5599,
+     "min_global_margin_mag": 0.457,
+     "trace_recovered": false,
+     "trace_tracklet_id": "trk-0064"
+    },
+    {
+     "designation": "436343",
+     "role": "marginal",
+     "group": "control",
+     "rate_arcsec_per_min": 0.5235,
+     "min_global_margin_mag": -0.743,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "457513",
+     "role": "marginal",
+     "group": "control",
+     "rate_arcsec_per_min": 0.6502,
+     "min_global_margin_mag": 0.157,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "459471",
+     "role": "marginal",
+     "group": "control",
+     "rate_arcsec_per_min": 0.6974,
+     "min_global_margin_mag": -0.643,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "462610",
+     "role": "marginal",
+     "group": "control",
+     "rate_arcsec_per_min": 0.6676,
+     "min_global_margin_mag": -0.343,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "504358",
+     "role": "primary",
+     "group": "outer",
+     "rate_arcsec_per_min": 0.5784,
+     "min_global_margin_mag": 0.557,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "51882",
+     "role": "primary",
+     "group": "control",
+     "rate_arcsec_per_min": 0.5242,
+     "min_global_margin_mag": 2.657,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0049"
+    },
+    {
+     "designation": "531804",
+     "role": "marginal",
+     "group": "control",
+     "rate_arcsec_per_min": 0.5017,
+     "min_global_margin_mag": -0.143,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "55520",
+     "role": "primary",
+     "group": "control",
+     "rate_arcsec_per_min": 0.6536,
+     "min_global_margin_mag": 2.457,
+     "trace_recovered": false,
+     "trace_tracklet_id": "trk-0062"
+    },
+    {
+     "designation": "658157",
+     "role": "marginal",
+     "group": "control",
+     "rate_arcsec_per_min": 0.5414,
+     "min_global_margin_mag": -0.743,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "759479",
+     "role": "marginal",
+     "group": "control",
+     "rate_arcsec_per_min": 0.6469,
+     "min_global_margin_mag": 0.057,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "87908",
+     "role": "primary",
+     "group": "intermediate",
+     "rate_arcsec_per_min": 0.7617,
+     "min_global_margin_mag": 2.757,
+     "trace_recovered": false,
+     "trace_tracklet_id": "trk-0015"
+    }
+   ]
+  },
+  {
+   "field_id": "C5-2020-09-21-447-c9-q1",
+   "population": "C",
+   "group": "G-C5-2020-09-21-447-c9-q1",
+   "night": "2020-09-21",
+   "filters": [
+    "zr",
+    "zr",
+    "zg"
+   ],
+   "sources_per_frame": [
+    6465,
+    6003,
+    4496
+   ],
+   "tracklets": 207,
+   "built_tracklets": 57,
+   "labels": {
+    "positive": 12,
+    "auxiliary": 3,
+    "background": 42
+   },
+   "eligible_targets": 25,
+   "targets": [
+    {
+     "designation": "173184",
+     "role": "marginal",
+     "group": "control",
+     "rate_arcsec_per_min": 0.6533,
+     "min_global_margin_mag": 0.106,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "176770",
+     "role": "primary",
+     "group": "control",
+     "rate_arcsec_per_min": 0.6555,
+     "min_global_margin_mag": 1.106,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "181825",
+     "role": "primary",
+     "group": "control",
+     "rate_arcsec_per_min": 0.6226,
+     "min_global_margin_mag": 1.606,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0034"
+    },
+    {
+     "designation": "192942",
+     "role": "marginal",
+     "group": "control",
+     "rate_arcsec_per_min": 0.3272,
+     "min_global_margin_mag": 0.406,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0117"
+    },
+    {
+     "designation": "2020 RO45",
+     "role": "marginal",
+     "group": "control",
+     "rate_arcsec_per_min": 0.5621,
+     "min_global_margin_mag": 0.306,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "241958",
+     "role": "primary",
+     "group": "control",
+     "rate_arcsec_per_min": 0.3524,
+     "min_global_margin_mag": 0.706,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0016"
+    },
+    {
+     "designation": "246550",
+     "role": "primary",
+     "group": "control",
+     "rate_arcsec_per_min": 0.3662,
+     "min_global_margin_mag": 2.006,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0042"
+    },
+    {
+     "designation": "251697",
+     "role": "marginal",
+     "group": "control",
+     "rate_arcsec_per_min": 0.509,
+     "min_global_margin_mag": -0.294,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "257393",
+     "role": "marginal",
+     "group": "intermediate",
+     "rate_arcsec_per_min": 0.3237,
+     "min_global_margin_mag": -0.194,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "257464",
+     "role": "marginal",
+     "group": "intermediate",
+     "rate_arcsec_per_min": 0.6142,
+     "min_global_margin_mag": -0.294,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "275457",
+     "role": "marginal",
+     "group": "control",
+     "rate_arcsec_per_min": 0.6121,
+     "min_global_margin_mag": 0.006,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "275508",
+     "role": "primary",
+     "group": "intermediate",
+     "rate_arcsec_per_min": 0.5543,
+     "min_global_margin_mag": 1.906,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0017"
+    },
+    {
+     "designation": "292969",
+     "role": "primary",
+     "group": "control",
+     "rate_arcsec_per_min": 0.5889,
+     "min_global_margin_mag": 0.606,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0006"
+    },
+    {
+     "designation": "294281",
+     "role": "marginal",
+     "group": "intermediate",
+     "rate_arcsec_per_min": 0.5478,
+     "min_global_margin_mag": 0.106,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "319436",
+     "role": "primary",
+     "group": "zone",
+     "rate_arcsec_per_min": 0.6022,
+     "min_global_margin_mag": 1.206,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0054"
+    },
+    {
+     "designation": "361354",
+     "role": "marginal",
+     "group": "intermediate",
+     "rate_arcsec_per_min": 0.5377,
+     "min_global_margin_mag": -0.094,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "37962",
+     "role": "primary",
+     "group": "outer",
+     "rate_arcsec_per_min": 0.5875,
+     "min_global_margin_mag": 1.706,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0010"
+    },
+    {
+     "designation": "429475",
+     "role": "marginal",
+     "group": "control",
+     "rate_arcsec_per_min": 0.6443,
+     "min_global_margin_mag": -0.294,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "468139",
+     "role": "marginal",
+     "group": "control",
+     "rate_arcsec_per_min": 0.6748,
+     "min_global_margin_mag": -0.394,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "54219",
+     "role": "primary",
+     "group": "control",
+     "rate_arcsec_per_min": 0.5528,
+     "min_global_margin_mag": 1.906,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0037"
+    },
+    {
+     "designation": "588676",
+     "role": "marginal",
+     "group": "intermediate",
+     "rate_arcsec_per_min": 0.3633,
+     "min_global_margin_mag": -0.194,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0071"
+    },
+    {
+     "designation": "637019",
+     "role": "marginal",
+     "group": "control",
+     "rate_arcsec_per_min": 0.6577,
+     "min_global_margin_mag": -0.294,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "64114",
+     "role": "primary",
+     "group": "control",
+     "rate_arcsec_per_min": 0.5954,
+     "min_global_margin_mag": 0.906,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0029"
+    },
+    {
+     "designation": "66206",
+     "role": "primary",
+     "group": "intermediate",
+     "rate_arcsec_per_min": 0.6792,
+     "min_global_margin_mag": 0.906,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0014"
+    },
+    {
+     "designation": "729961",
+     "role": "marginal",
+     "group": "control",
+     "rate_arcsec_per_min": 0.5323,
+     "min_global_margin_mag": -0.294,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    }
+   ]
+  },
+  {
+   "field_id": "C6-2018-07-12-283-c15-q1",
+   "population": "C",
+   "group": "G-C6-2018-07-12-283-c15-q1",
+   "night": "2018-07-12",
+   "filters": [
+    "zr",
+    "zr",
+    "zr"
+   ],
+   "sources_per_frame": [
+    181164,
+    184795,
+    182932
+   ],
+   "tracklets": 2347,
+   "built_tracklets": 349,
+   "labels": {
+    "positive": 1,
+    "auxiliary": 0,
+    "background": 348
+   },
+   "eligible_targets": 16,
+   "targets": [
+    {
+     "designation": "127508",
+     "role": "primary",
+     "group": "control",
+     "rate_arcsec_per_min": 0.5165,
+     "min_global_margin_mag": 0.985,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "195695",
+     "role": "primary",
+     "group": "zone",
+     "rate_arcsec_per_min": 0.5099,
+     "min_global_margin_mag": 1.285,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "197971",
+     "role": "primary",
+     "group": "intermediate",
+     "rate_arcsec_per_min": 0.5648,
+     "min_global_margin_mag": 1.485,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-1059"
+    },
+    {
+     "designation": "2014 HM299",
+     "role": "primary",
+     "group": "control",
+     "rate_arcsec_per_min": 0.5978,
+     "min_global_margin_mag": 0.785,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "2014 QL388",
+     "role": "marginal",
+     "group": "control",
+     "rate_arcsec_per_min": 0.5312,
+     "min_global_margin_mag": -0.115,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "202097",
+     "role": "primary",
+     "group": "intermediate",
+     "rate_arcsec_per_min": 0.56,
+     "min_global_margin_mag": 0.885,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "276496",
+     "role": "marginal",
+     "group": "outer",
+     "rate_arcsec_per_min": 0.5408,
+     "min_global_margin_mag": 0.685,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "283309",
+     "role": "marginal",
+     "group": "intermediate",
+     "rate_arcsec_per_min": 0.6193,
+     "min_global_margin_mag": 0.185,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "305686",
+     "role": "marginal",
+     "group": "intermediate",
+     "rate_arcsec_per_min": 0.5678,
+     "min_global_margin_mag": -0.015,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "338072",
+     "role": "primary",
+     "group": "intermediate",
+     "rate_arcsec_per_min": 0.5756,
+     "min_global_margin_mag": 1.185,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "361751",
+     "role": "marginal",
+     "group": "intermediate",
+     "rate_arcsec_per_min": 0.6227,
+     "min_global_margin_mag": 0.385,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "400200",
+     "role": "marginal",
+     "group": "control",
+     "rate_arcsec_per_min": 0.6295,
+     "min_global_margin_mag": -0.015,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "407444",
+     "role": "marginal",
+     "group": "intermediate",
+     "rate_arcsec_per_min": 0.558,
+     "min_global_margin_mag": -0.115,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "46401",
+     "role": "primary",
+     "group": "control",
+     "rate_arcsec_per_min": 0.5202,
+     "min_global_margin_mag": 1.085,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "495657",
+     "role": "marginal",
+     "group": "control",
+     "rate_arcsec_per_min": 0.4897,
+     "min_global_margin_mag": -0.115,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "656035",
+     "role": "marginal",
+     "group": "control",
+     "rate_arcsec_per_min": 0.614,
+     "min_global_margin_mag": 0.285,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    }
+   ]
+  },
+  {
+   "field_id": "C8-2020-11-14-613-c4-q2",
+   "population": "C",
+   "group": "G-C8-2020-11-14-613-c4-q2",
+   "night": "2020-11-14",
+   "filters": [
+    "zi",
+    "zr",
+    "zg"
+   ],
+   "sources_per_frame": [
+    26774,
+    22341,
+    14256
+   ],
+   "tracklets": 680,
+   "built_tracklets": 128,
+   "labels": {
+    "positive": 9,
+    "auxiliary": 1,
+    "background": 118
+   },
+   "eligible_targets": 13,
+   "targets": [
+    {
+     "designation": "10860",
+     "role": "marginal",
+     "group": "outer",
+     "rate_arcsec_per_min": 0.6427,
+     "min_global_margin_mag": 0.425,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0297"
+    },
+    {
+     "designation": "115753",
+     "role": "marginal",
+     "group": "outer",
+     "rate_arcsec_per_min": 0.2004,
+     "min_global_margin_mag": 0.625,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0166"
+    },
+    {
+     "designation": "146292",
+     "role": "marginal",
+     "group": "intermediate",
+     "rate_arcsec_per_min": 0.2905,
+     "min_global_margin_mag": 0.525,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0009"
+    },
+    {
+     "designation": "193541",
+     "role": "primary",
+     "group": "outer",
+     "rate_arcsec_per_min": 0.321,
+     "min_global_margin_mag": 1.325,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0016"
+    },
+    {
+     "designation": "197050",
+     "role": "marginal",
+     "group": "intermediate",
+     "rate_arcsec_per_min": 0.225,
+     "min_global_margin_mag": 0.025,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "226091",
+     "role": "marginal",
+     "group": "outer",
+     "rate_arcsec_per_min": 0.2717,
+     "min_global_margin_mag": -0.175,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "226203",
+     "role": "marginal",
+     "group": "intermediate",
+     "rate_arcsec_per_min": 0.1757,
+     "min_global_margin_mag": 0.325,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0007"
+    },
+    {
+     "designation": "23700",
+     "role": "marginal",
+     "group": "control",
+     "rate_arcsec_per_min": 0.2672,
+     "min_global_margin_mag": 0.025,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "269380",
+     "role": "marginal",
+     "group": "outer",
+     "rate_arcsec_per_min": 0.1986,
+     "min_global_margin_mag": -0.175,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "44535",
+     "role": "primary",
+     "group": "intermediate",
+     "rate_arcsec_per_min": 0.2446,
+     "min_global_margin_mag": 1.125,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0024"
+    },
+    {
+     "designation": "60660",
+     "role": "marginal",
+     "group": "intermediate",
+     "rate_arcsec_per_min": 0.3264,
+     "min_global_margin_mag": 0.625,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0003"
+    },
+    {
+     "designation": "71563",
+     "role": "marginal",
+     "group": "control",
+     "rate_arcsec_per_min": 0.2196,
+     "min_global_margin_mag": 0.425,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0001"
+    },
+    {
+     "designation": "74293",
+     "role": "primary",
+     "group": "zone",
+     "rate_arcsec_per_min": 0.2194,
+     "min_global_margin_mag": 0.825,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0369"
+    }
+   ]
+  },
+  {
+   "field_id": "C9-2020-04-17-373-c1-q1",
+   "population": "C",
+   "group": "G-C9-2020-04-17-373-c1-q1",
+   "night": "2020-04-17",
+   "filters": [
+    "zr",
+    "zr",
+    "zr"
+   ],
+   "sources_per_frame": [
+    11617,
+    11621,
+    10011
+   ],
+   "tracklets": 2631,
+   "built_tracklets": 440,
+   "labels": {
+    "positive": 39,
+    "auxiliary": 4,
+    "background": 397
+   },
+   "eligible_targets": 51,
+   "targets": [
+    {
+     "designation": "102725",
+     "role": "primary",
+     "group": "control",
+     "rate_arcsec_per_min": 0.6431,
+     "min_global_margin_mag": 1.41,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0168"
+    },
+    {
+     "designation": "111406",
+     "role": "primary",
+     "group": "control",
+     "rate_arcsec_per_min": 0.5145,
+     "min_global_margin_mag": 1.61,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0020"
+    },
+    {
+     "designation": "11208",
+     "role": "primary",
+     "group": "control",
+     "rate_arcsec_per_min": 0.5554,
+     "min_global_margin_mag": 3.71,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0139"
+    },
+    {
+     "designation": "121359",
+     "role": "primary",
+     "group": "intermediate",
+     "rate_arcsec_per_min": 0.581,
+     "min_global_margin_mag": 1.61,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "129264",
+     "role": "primary",
+     "group": "control",
+     "rate_arcsec_per_min": 0.5169,
+     "min_global_margin_mag": 1.01,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0021"
+    },
+    {
+     "designation": "136398",
+     "role": "primary",
+     "group": "control",
+     "rate_arcsec_per_min": 0.5624,
+     "min_global_margin_mag": 1.31,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "149213",
+     "role": "primary",
+     "group": "outer",
+     "rate_arcsec_per_min": 0.6343,
+     "min_global_margin_mag": 1.21,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0003"
+    },
+    {
+     "designation": "181950",
+     "role": "marginal",
+     "group": "control",
+     "rate_arcsec_per_min": 0.4968,
+     "min_global_margin_mag": 0.71,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0024"
+    },
+    {
+     "designation": "189487",
+     "role": "primary",
+     "group": "control",
+     "rate_arcsec_per_min": 0.7029,
+     "min_global_margin_mag": 0.81,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0009"
+    },
+    {
+     "designation": "2020 HC68",
+     "role": "marginal",
+     "group": "control",
+     "rate_arcsec_per_min": 0.5307,
+     "min_global_margin_mag": -0.09,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0026"
+    },
+    {
+     "designation": "2020 HU150",
+     "role": "marginal",
+     "group": "control",
+     "rate_arcsec_per_min": 0.5504,
+     "min_global_margin_mag": 0.31,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "2020 HW113",
+     "role": "marginal",
+     "group": "control",
+     "rate_arcsec_per_min": 0.3829,
+     "min_global_margin_mag": 0.01,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0141"
+    },
+    {
+     "designation": "207328",
+     "role": "primary",
+     "group": "control",
+     "rate_arcsec_per_min": 0.5429,
+     "min_global_margin_mag": 0.91,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "208431",
+     "role": "marginal",
+     "group": "control",
+     "rate_arcsec_per_min": 0.5169,
+     "min_global_margin_mag": 0.61,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0169"
+    },
+    {
+     "designation": "214310",
+     "role": "primary",
+     "group": "control",
+     "rate_arcsec_per_min": 0.636,
+     "min_global_margin_mag": 1.81,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0798"
+    },
+    {
+     "designation": "240034",
+     "role": "primary",
+     "group": "outer",
+     "rate_arcsec_per_min": 0.6825,
+     "min_global_margin_mag": 0.81,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-1293"
+    },
+    {
+     "designation": "256757",
+     "role": "primary",
+     "group": "control",
+     "rate_arcsec_per_min": 0.6461,
+     "min_global_margin_mag": 1.01,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0004"
+    },
+    {
+     "designation": "257677",
+     "role": "marginal",
+     "group": "control",
+     "rate_arcsec_per_min": 0.6372,
+     "min_global_margin_mag": 0.21,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "26024",
+     "role": "primary",
+     "group": "outer",
+     "rate_arcsec_per_min": 0.7154,
+     "min_global_margin_mag": 3.51,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0002"
+    },
+    {
+     "designation": "265268",
+     "role": "marginal",
+     "group": "control",
+     "rate_arcsec_per_min": 0.4368,
+     "min_global_margin_mag": 0.61,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0011"
+    },
+    {
+     "designation": "26761",
+     "role": "primary",
+     "group": "control",
+     "rate_arcsec_per_min": 0.4157,
+     "min_global_margin_mag": 3.01,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0010"
+    },
+    {
+     "designation": "268389",
+     "role": "marginal",
+     "group": "control",
+     "rate_arcsec_per_min": 0.5942,
+     "min_global_margin_mag": 0.21,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0014"
+    },
+    {
+     "designation": "283732",
+     "role": "marginal",
+     "group": "intermediate",
+     "rate_arcsec_per_min": 0.3388,
+     "min_global_margin_mag": 0.41,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0017"
+    },
+    {
+     "designation": "289385",
+     "role": "marginal",
+     "group": "control",
+     "rate_arcsec_per_min": 0.655,
+     "min_global_margin_mag": -0.09,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "29400",
+     "role": "primary",
+     "group": "zone",
+     "rate_arcsec_per_min": 0.5289,
+     "min_global_margin_mag": 1.91,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0108"
+    },
+    {
+     "designation": "300004",
+     "role": "marginal",
+     "group": "outer",
+     "rate_arcsec_per_min": 0.5533,
+     "min_global_margin_mag": 0.61,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0043"
+    },
+    {
+     "designation": "300108",
+     "role": "primary",
+     "group": "outer",
+     "rate_arcsec_per_min": 0.5298,
+     "min_global_margin_mag": 0.91,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "300961",
+     "role": "primary",
+     "group": "intermediate",
+     "rate_arcsec_per_min": 0.5302,
+     "min_global_margin_mag": 1.41,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0188"
+    },
+    {
+     "designation": "333874",
+     "role": "primary",
+     "group": "control",
+     "rate_arcsec_per_min": 0.6209,
+     "min_global_margin_mag": 1.61,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0015"
+    },
+    {
+     "designation": "349552",
+     "role": "marginal",
+     "group": "control",
+     "rate_arcsec_per_min": 0.5757,
+     "min_global_margin_mag": -0.19,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0126"
+    },
+    {
+     "designation": "366238",
+     "role": "primary",
+     "group": "control",
+     "rate_arcsec_per_min": 0.5326,
+     "min_global_margin_mag": 0.81,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0501"
+    },
+    {
+     "designation": "36804",
+     "role": "primary",
+     "group": "zone",
+     "rate_arcsec_per_min": 0.5996,
+     "min_global_margin_mag": 2.81,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "375930",
+     "role": "marginal",
+     "group": "control",
+     "rate_arcsec_per_min": 0.6441,
+     "min_global_margin_mag": 0.11,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0154"
+    },
+    {
+     "designation": "377764",
+     "role": "marginal",
+     "group": "control",
+     "rate_arcsec_per_min": 0.5838,
+     "min_global_margin_mag": 0.11,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0007"
+    },
+    {
+     "designation": "402822",
+     "role": "primary",
+     "group": "intermediate",
+     "rate_arcsec_per_min": 0.6925,
+     "min_global_margin_mag": 1.01,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0025"
+    },
+    {
+     "designation": "406827",
+     "role": "marginal",
+     "group": "outer",
+     "rate_arcsec_per_min": 0.6655,
+     "min_global_margin_mag": 0.01,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-1549"
+    },
+    {
+     "designation": "438378",
+     "role": "marginal",
+     "group": "intermediate",
+     "rate_arcsec_per_min": 0.5071,
+     "min_global_margin_mag": -0.19,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "467420",
+     "role": "primary",
+     "group": "control",
+     "rate_arcsec_per_min": 0.6086,
+     "min_global_margin_mag": 0.81,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0145"
+    },
+    {
+     "designation": "499925",
+     "role": "marginal",
+     "group": "control",
+     "rate_arcsec_per_min": 0.5916,
+     "min_global_margin_mag": 0.51,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0115"
+    },
+    {
+     "designation": "509634",
+     "role": "marginal",
+     "group": "outer",
+     "rate_arcsec_per_min": 0.3665,
+     "min_global_margin_mag": 0.41,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0099"
+    },
+    {
+     "designation": "571046",
+     "role": "marginal",
+     "group": "control",
+     "rate_arcsec_per_min": 0.6106,
+     "min_global_margin_mag": 0.21,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "576488",
+     "role": "marginal",
+     "group": "control",
+     "rate_arcsec_per_min": 0.5866,
+     "min_global_margin_mag": 0.11,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0023"
+    },
+    {
+     "designation": "652819",
+     "role": "marginal",
+     "group": "control",
+     "rate_arcsec_per_min": 0.5533,
+     "min_global_margin_mag": 0.01,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0022"
+    },
+    {
+     "designation": "662780",
+     "role": "marginal",
+     "group": "intermediate",
+     "rate_arcsec_per_min": 0.5327,
+     "min_global_margin_mag": -0.09,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0162"
+    },
+    {
+     "designation": "673121",
+     "role": "marginal",
+     "group": "intermediate",
+     "rate_arcsec_per_min": 0.5836,
+     "min_global_margin_mag": 0.01,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "673372",
+     "role": "marginal",
+     "group": "control",
+     "rate_arcsec_per_min": 0.6148,
+     "min_global_margin_mag": -0.19,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0152"
+    },
+    {
+     "designation": "691924",
+     "role": "marginal",
+     "group": "control",
+     "rate_arcsec_per_min": 0.7167,
+     "min_global_margin_mag": 0.71,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0008"
+    },
+    {
+     "designation": "705639",
+     "role": "marginal",
+     "group": "control",
+     "rate_arcsec_per_min": 0.6318,
+     "min_global_margin_mag": 0.51,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0028"
+    },
+    {
+     "designation": "91427",
+     "role": "primary",
+     "group": "control",
+     "rate_arcsec_per_min": 0.5114,
+     "min_global_margin_mag": 2.61,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0164"
+    },
+    {
+     "designation": "93711",
+     "role": "primary",
+     "group": "intermediate",
+     "rate_arcsec_per_min": 0.5778,
+     "min_global_margin_mag": 1.61,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0012"
+    },
+    {
+     "designation": "96754",
+     "role": "primary",
+     "group": "control",
+     "rate_arcsec_per_min": 0.5716,
+     "min_global_margin_mag": 1.41,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    }
+   ]
+  },
+  {
+   "field_id": "C10-2020-08-14-447-c2-q1",
+   "population": "C",
+   "group": "G-C10-2020-08-14-447-c2-q1",
+   "night": "2020-08-14",
+   "filters": [
+    "zg",
+    "zg",
+    "zr"
+   ],
+   "sources_per_frame": [
+    4648,
+    4476,
+    7318
+   ],
+   "tracklets": 703,
+   "built_tracklets": 148,
+   "labels": {
+    "positive": 19,
+    "auxiliary": 1,
+    "background": 128
+   },
+   "eligible_targets": 27,
+   "targets": [
+    {
+     "designation": "123398",
+     "role": "primary",
+     "group": "zone",
+     "rate_arcsec_per_min": 0.1409,
+     "min_global_margin_mag": 1.135,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0035"
+    },
+    {
+     "designation": "125044",
+     "role": "marginal",
+     "group": "control",
+     "rate_arcsec_per_min": 0.0755,
+     "min_global_margin_mag": -0.065,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0013"
+    },
+    {
+     "designation": "141694",
+     "role": "marginal",
+     "group": "control",
+     "rate_arcsec_per_min": 0.2129,
+     "min_global_margin_mag": 0.035,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "145203",
+     "role": "marginal",
+     "group": "intermediate",
+     "rate_arcsec_per_min": 0.1552,
+     "min_global_margin_mag": -0.165,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "145996",
+     "role": "primary",
+     "group": "control",
+     "rate_arcsec_per_min": 0.1069,
+     "min_global_margin_mag": 0.635,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0058"
+    },
+    {
+     "designation": "150226",
+     "role": "marginal",
+     "group": "intermediate",
+     "rate_arcsec_per_min": 0.1714,
+     "min_global_margin_mag": 0.035,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "181694",
+     "role": "primary",
+     "group": "control",
+     "rate_arcsec_per_min": 0.2738,
+     "min_global_margin_mag": 0.335,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0009"
+    },
+    {
+     "designation": "183822",
+     "role": "marginal",
+     "group": "outer",
+     "rate_arcsec_per_min": 0.1868,
+     "min_global_margin_mag": -0.565,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0139"
+    },
+    {
+     "designation": "189002",
+     "role": "primary",
+     "group": "outer",
+     "rate_arcsec_per_min": 0.1364,
+     "min_global_margin_mag": 0.735,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0014"
+    },
+    {
+     "designation": "2013 TL26",
+     "role": "marginal",
+     "group": "intermediate",
+     "rate_arcsec_per_min": 0.0877,
+     "min_global_margin_mag": -0.465,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0010"
+    },
+    {
+     "designation": "203046",
+     "role": "marginal",
+     "group": "control",
+     "rate_arcsec_per_min": 0.2611,
+     "min_global_margin_mag": -0.065,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0023"
+    },
+    {
+     "designation": "211808",
+     "role": "marginal",
+     "group": "intermediate",
+     "rate_arcsec_per_min": 0.1807,
+     "min_global_margin_mag": -0.265,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "229826",
+     "role": "marginal",
+     "group": "control",
+     "rate_arcsec_per_min": 0.1477,
+     "min_global_margin_mag": -0.165,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0001"
+    },
+    {
+     "designation": "264327",
+     "role": "marginal",
+     "group": "outer",
+     "rate_arcsec_per_min": 0.0827,
+     "min_global_margin_mag": -0.565,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "320750",
+     "role": "marginal",
+     "group": "outer",
+     "rate_arcsec_per_min": 0.2094,
+     "min_global_margin_mag": -0.665,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "34732",
+     "role": "primary",
+     "group": "control",
+     "rate_arcsec_per_min": 0.106,
+     "min_global_margin_mag": 0.435,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0003"
+    },
+    {
+     "designation": "352659",
+     "role": "marginal",
+     "group": "outer",
+     "rate_arcsec_per_min": 0.1801,
+     "min_global_margin_mag": -0.265,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "4230",
+     "role": "primary",
+     "group": "control",
+     "rate_arcsec_per_min": 0.1866,
+     "min_global_margin_mag": 2.035,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0049"
+    },
+    {
+     "designation": "50583",
+     "role": "primary",
+     "group": "control",
+     "rate_arcsec_per_min": 0.1796,
+     "min_global_margin_mag": 1.735,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0005"
+    },
+    {
+     "designation": "52534",
+     "role": "primary",
+     "group": "intermediate",
+     "rate_arcsec_per_min": 0.5461,
+     "min_global_margin_mag": 2.435,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0046"
+    },
+    {
+     "designation": "525690",
+     "role": "marginal",
+     "group": "control",
+     "rate_arcsec_per_min": 0.2069,
+     "min_global_margin_mag": -0.265,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0002"
+    },
+    {
+     "designation": "627137",
+     "role": "marginal",
+     "group": "control",
+     "rate_arcsec_per_min": 0.3431,
+     "min_global_margin_mag": -0.465,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "77634",
+     "role": "primary",
+     "group": "control",
+     "rate_arcsec_per_min": 0.21,
+     "min_global_margin_mag": 0.735,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0065"
+    },
+    {
+     "designation": "79249",
+     "role": "primary",
+     "group": "intermediate",
+     "rate_arcsec_per_min": 0.0937,
+     "min_global_margin_mag": 2.635,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0045"
+    },
+    {
+     "designation": "80737",
+     "role": "primary",
+     "group": "intermediate",
+     "rate_arcsec_per_min": 0.1207,
+     "min_global_margin_mag": 0.635,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0019"
+    },
+    {
+     "designation": "85401",
+     "role": "primary",
+     "group": "control",
+     "rate_arcsec_per_min": 0.0962,
+     "min_global_margin_mag": 1.735,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0059"
+    },
+    {
+     "designation": "86176",
+     "role": "primary",
+     "group": "control",
+     "rate_arcsec_per_min": 0.2055,
+     "min_global_margin_mag": 2.035,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0015"
+    }
+   ]
+  },
+  {
+   "field_id": "C11-2020-08-27-447-c2-q1",
+   "population": "C",
+   "group": "G-C10-2020-08-14-447-c2-q1",
+   "night": "2020-08-27",
+   "filters": [
+    "zr",
+    "zr",
+    "zg"
+   ],
+   "sources_per_frame": [
+    6557,
+    5006,
+    3600
+   ],
+   "tracklets": 591,
+   "built_tracklets": 110,
+   "labels": {
+    "positive": 14,
+    "auxiliary": 0,
+    "background": 96
+   },
+   "eligible_targets": 15,
+   "targets": [
+    {
+     "designation": "103084",
+     "role": "marginal",
+     "group": "control",
+     "rate_arcsec_per_min": 0.3893,
+     "min_global_margin_mag": -0.241,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0005"
+    },
+    {
+     "designation": "105890",
+     "role": "primary",
+     "group": "outer",
+     "rate_arcsec_per_min": 0.3364,
+     "min_global_margin_mag": 0.859,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0013"
+    },
+    {
+     "designation": "117415",
+     "role": "marginal",
+     "group": "intermediate",
+     "rate_arcsec_per_min": 0.324,
+     "min_global_margin_mag": -0.541,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0017"
+    },
+    {
+     "designation": "163193",
+     "role": "marginal",
+     "group": "control",
+     "rate_arcsec_per_min": 0.6024,
+     "min_global_margin_mag": 0.059,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0004"
+    },
+    {
+     "designation": "183009",
+     "role": "primary",
+     "group": "intermediate",
+     "rate_arcsec_per_min": 0.3698,
+     "min_global_margin_mag": 0.359,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0138"
+    },
+    {
+     "designation": "2148",
+     "role": "primary",
+     "group": "outer",
+     "rate_arcsec_per_min": 0.2462,
+     "min_global_margin_mag": 2.259,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0023"
+    },
+    {
+     "designation": "24558",
+     "role": "primary",
+     "group": "intermediate",
+     "rate_arcsec_per_min": 0.3956,
+     "min_global_margin_mag": 2.059,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0036"
+    },
+    {
+     "designation": "373647",
+     "role": "marginal",
+     "group": "control",
+     "rate_arcsec_per_min": 0.2104,
+     "min_global_margin_mag": -0.641,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0047"
+    },
+    {
+     "designation": "42037",
+     "role": "marginal",
+     "group": "control",
+     "rate_arcsec_per_min": 0.3434,
+     "min_global_margin_mag": 0.259,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0049"
+    },
+    {
+     "designation": "47273",
+     "role": "marginal",
+     "group": "control",
+     "rate_arcsec_per_min": 0.421,
+     "min_global_margin_mag": 0.059,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "50567",
+     "role": "primary",
+     "group": "control",
+     "rate_arcsec_per_min": 0.3806,
+     "min_global_margin_mag": 1.859,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0045"
+    },
+    {
+     "designation": "53565",
+     "role": "marginal",
+     "group": "control",
+     "rate_arcsec_per_min": 0.4072,
+     "min_global_margin_mag": -0.041,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0001"
+    },
+    {
+     "designation": "56824",
+     "role": "primary",
+     "group": "intermediate",
+     "rate_arcsec_per_min": 0.3289,
+     "min_global_margin_mag": 0.759,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0040"
+    },
+    {
+     "designation": "82840",
+     "role": "primary",
+     "group": "zone",
+     "rate_arcsec_per_min": 0.3258,
+     "min_global_margin_mag": 0.359,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0025"
+    },
+    {
+     "designation": "91",
+     "role": "primary",
+     "group": "intermediate",
+     "rate_arcsec_per_min": 0.3387,
+     "min_global_margin_mag": 7.059,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0058"
+    }
+   ]
+  },
+  {
+   "field_id": "C13-2018-09-16-393-c14-q1",
+   "population": "C",
+   "group": "G-C13-2018-09-16-393-c14-q1",
+   "night": "2018-09-16",
+   "filters": [
+    "zg",
+    "zr",
+    "zi"
+   ],
+   "sources_per_frame": [
+    3884,
+    6725,
+    6499
+   ],
+   "tracklets": 727,
+   "built_tracklets": 142,
+   "labels": {
+    "positive": 16,
+    "auxiliary": 0,
+    "background": 126
+   },
+   "eligible_targets": 26,
+   "targets": [
+    {
+     "designation": "109794",
+     "role": "primary",
+     "group": "control",
+     "rate_arcsec_per_min": 0.5769,
+     "min_global_margin_mag": 1.698,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0011"
+    },
+    {
+     "designation": "121767",
+     "role": "marginal",
+     "group": "control",
+     "rate_arcsec_per_min": 0.5296,
+     "min_global_margin_mag": 0.698,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0137"
+    },
+    {
+     "designation": "131603",
+     "role": "marginal",
+     "group": "control",
+     "rate_arcsec_per_min": 0.6337,
+     "min_global_margin_mag": 0.198,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0026"
+    },
+    {
+     "designation": "163142",
+     "role": "marginal",
+     "group": "control",
+     "rate_arcsec_per_min": 0.6159,
+     "min_global_margin_mag": -0.002,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "163285",
+     "role": "marginal",
+     "group": "outer",
+     "rate_arcsec_per_min": 0.6519,
+     "min_global_margin_mag": 0.398,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0053"
+    },
+    {
+     "designation": "164131",
+     "role": "marginal",
+     "group": "intermediate",
+     "rate_arcsec_per_min": 0.4969,
+     "min_global_margin_mag": 0.298,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "17139",
+     "role": "primary",
+     "group": "control",
+     "rate_arcsec_per_min": 0.6241,
+     "min_global_margin_mag": 3.798,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0003"
+    },
+    {
+     "designation": "1788",
+     "role": "primary",
+     "group": "control",
+     "rate_arcsec_per_min": 0.4966,
+     "min_global_margin_mag": 4.998,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0024"
+    },
+    {
+     "designation": "200613",
+     "role": "marginal",
+     "group": "intermediate",
+     "rate_arcsec_per_min": 0.5009,
+     "min_global_margin_mag": 0.598,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0424"
+    },
+    {
+     "designation": "209935",
+     "role": "marginal",
+     "group": "control",
+     "rate_arcsec_per_min": 0.6198,
+     "min_global_margin_mag": 0.098,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "227641",
+     "role": "marginal",
+     "group": "intermediate",
+     "rate_arcsec_per_min": 0.536,
+     "min_global_margin_mag": 0.298,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0136"
+    },
+    {
+     "designation": "24435",
+     "role": "primary",
+     "group": "intermediate",
+     "rate_arcsec_per_min": 0.5135,
+     "min_global_margin_mag": 3.298,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0021"
+    },
+    {
+     "designation": "26635",
+     "role": "primary",
+     "group": "control",
+     "rate_arcsec_per_min": 0.4913,
+     "min_global_margin_mag": 3.498,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0046"
+    },
+    {
+     "designation": "272977",
+     "role": "marginal",
+     "group": "intermediate",
+     "rate_arcsec_per_min": 0.558,
+     "min_global_margin_mag": 0.198,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0040"
+    },
+    {
+     "designation": "298961",
+     "role": "marginal",
+     "group": "control",
+     "rate_arcsec_per_min": 0.6702,
+     "min_global_margin_mag": 0.598,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "322304",
+     "role": "marginal",
+     "group": "intermediate",
+     "rate_arcsec_per_min": 0.4979,
+     "min_global_margin_mag": -0.002,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "345934",
+     "role": "marginal",
+     "group": "control",
+     "rate_arcsec_per_min": 0.4983,
+     "min_global_margin_mag": 0.698,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "359177",
+     "role": "marginal",
+     "group": "control",
+     "rate_arcsec_per_min": 0.6105,
+     "min_global_margin_mag": -0.102,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "377025",
+     "role": "marginal",
+     "group": "control",
+     "rate_arcsec_per_min": 0.5375,
+     "min_global_margin_mag": 0.398,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "488036",
+     "role": "marginal",
+     "group": "control",
+     "rate_arcsec_per_min": 0.6643,
+     "min_global_margin_mag": 0.098,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0038"
+    },
+    {
+     "designation": "77431",
+     "role": "primary",
+     "group": "zone",
+     "rate_arcsec_per_min": 0.5168,
+     "min_global_margin_mag": 1.398,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "78813",
+     "role": "primary",
+     "group": "intermediate",
+     "rate_arcsec_per_min": 0.528,
+     "min_global_margin_mag": 1.298,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0091"
+    },
+    {
+     "designation": "812989",
+     "role": "marginal",
+     "group": "intermediate",
+     "rate_arcsec_per_min": 0.6477,
+     "min_global_margin_mag": 0.198,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "83482",
+     "role": "primary",
+     "group": "control",
+     "rate_arcsec_per_min": 0.5069,
+     "min_global_margin_mag": 1.098,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0045"
+    },
+    {
+     "designation": "89176",
+     "role": "primary",
+     "group": "intermediate",
+     "rate_arcsec_per_min": 0.6338,
+     "min_global_margin_mag": 1.098,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0023"
+    },
+    {
+     "designation": "89763",
+     "role": "primary",
+     "group": "intermediate",
+     "rate_arcsec_per_min": 0.6408,
+     "min_global_margin_mag": 2.598,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0020"
+    }
+   ]
+  },
+  {
+   "field_id": "C14-2019-02-08-518-c16-q4",
+   "population": "C",
+   "group": "G-C14-2019-02-08-518-c16-q4",
+   "night": "2019-02-08",
+   "filters": [
+    "zr",
+    "zr",
+    "zr"
+   ],
+   "sources_per_frame": [
+    7981,
+    9210,
+    8885
+   ],
+   "tracklets": 721,
+   "built_tracklets": 133,
+   "labels": {
+    "positive": 18,
+    "auxiliary": 1,
+    "background": 114
+   },
+   "eligible_targets": 25,
+   "targets": [
+    {
+     "designation": "107073",
+     "role": "primary",
+     "group": "intermediate",
+     "rate_arcsec_per_min": 0.6352,
+     "min_global_margin_mag": 2.272,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0005"
+    },
+    {
+     "designation": "12893",
+     "role": "primary",
+     "group": "intermediate",
+     "rate_arcsec_per_min": 0.5645,
+     "min_global_margin_mag": 2.972,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0014"
+    },
+    {
+     "designation": "137322",
+     "role": "marginal",
+     "group": "control",
+     "rate_arcsec_per_min": 0.6511,
+     "min_global_margin_mag": 0.072,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "138572",
+     "role": "primary",
+     "group": "control",
+     "rate_arcsec_per_min": 0.5301,
+     "min_global_margin_mag": 2.372,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0076"
+    },
+    {
+     "designation": "139090",
+     "role": "primary",
+     "group": "intermediate",
+     "rate_arcsec_per_min": 0.7092,
+     "min_global_margin_mag": 2.972,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0132"
+    },
+    {
+     "designation": "153125",
+     "role": "marginal",
+     "group": "intermediate",
+     "rate_arcsec_per_min": 0.5868,
+     "min_global_margin_mag": 0.372,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0335"
+    },
+    {
+     "designation": "190690",
+     "role": "primary",
+     "group": "outer",
+     "rate_arcsec_per_min": 0.603,
+     "min_global_margin_mag": 1.772,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0257"
+    },
+    {
+     "designation": "195181",
+     "role": "marginal",
+     "group": "control",
+     "rate_arcsec_per_min": 0.6015,
+     "min_global_margin_mag": 0.472,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0010"
+    },
+    {
+     "designation": "2012 FX4",
+     "role": "marginal",
+     "group": "intermediate",
+     "rate_arcsec_per_min": 0.6406,
+     "min_global_margin_mag": 0.472,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0654"
+    },
+    {
+     "designation": "2015 BB501",
+     "role": "marginal",
+     "group": "control",
+     "rate_arcsec_per_min": 0.7762,
+     "min_global_margin_mag": -0.028,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "204844",
+     "role": "marginal",
+     "group": "control",
+     "rate_arcsec_per_min": 0.5732,
+     "min_global_margin_mag": 0.372,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "213070",
+     "role": "marginal",
+     "group": "intermediate",
+     "rate_arcsec_per_min": 0.6676,
+     "min_global_margin_mag": -0.128,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0383"
+    },
+    {
+     "designation": "216750",
+     "role": "marginal",
+     "group": "intermediate",
+     "rate_arcsec_per_min": 0.6254,
+     "min_global_margin_mag": 0.572,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "268368",
+     "role": "marginal",
+     "group": "control",
+     "rate_arcsec_per_min": 0.6128,
+     "min_global_margin_mag": 0.672,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0576"
+    },
+    {
+     "designation": "270457",
+     "role": "primary",
+     "group": "control",
+     "rate_arcsec_per_min": 0.6342,
+     "min_global_margin_mag": 0.872,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0077"
+    },
+    {
+     "designation": "377373",
+     "role": "marginal",
+     "group": "control",
+     "rate_arcsec_per_min": 0.6103,
+     "min_global_margin_mag": 0.372,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0016"
+    },
+    {
+     "designation": "462255",
+     "role": "marginal",
+     "group": "intermediate",
+     "rate_arcsec_per_min": 0.6793,
+     "min_global_margin_mag": 0.672,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0096"
+    },
+    {
+     "designation": "500666",
+     "role": "marginal",
+     "group": "control",
+     "rate_arcsec_per_min": 0.5531,
+     "min_global_margin_mag": -0.228,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "527818",
+     "role": "marginal",
+     "group": "control",
+     "rate_arcsec_per_min": 0.5299,
+     "min_global_margin_mag": -0.128,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "544",
+     "role": "primary",
+     "group": "zone",
+     "rate_arcsec_per_min": 0.6213,
+     "min_global_margin_mag": 6.972,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0553"
+    },
+    {
+     "designation": "592749",
+     "role": "marginal",
+     "group": "intermediate",
+     "rate_arcsec_per_min": 0.6158,
+     "min_global_margin_mag": 0.072,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0231"
+    },
+    {
+     "designation": "594615",
+     "role": "marginal",
+     "group": "intermediate",
+     "rate_arcsec_per_min": 0.686,
+     "min_global_margin_mag": -0.028,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "6987",
+     "role": "primary",
+     "group": "control",
+     "rate_arcsec_per_min": 0.5755,
+     "min_global_margin_mag": 3.372,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0246"
+    },
+    {
+     "designation": "93403",
+     "role": "primary",
+     "group": "control",
+     "rate_arcsec_per_min": 0.5985,
+     "min_global_margin_mag": 1.372,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0066"
+    },
+    {
+     "designation": "9667",
+     "role": "primary",
+     "group": "intermediate",
+     "rate_arcsec_per_min": 0.6295,
+     "min_global_margin_mag": 2.672,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0061"
+    }
+   ]
+  },
+  {
+   "field_id": "C15-2019-01-04-500-c15-q4",
+   "population": "C",
+   "group": "G-C15-2019-01-04-500-c15-q4",
+   "night": "2019-01-04",
+   "filters": [
+    "zr",
+    "zg",
+    "zg"
+   ],
+   "sources_per_frame": [
+    7144,
+    3973,
+    4478
+   ],
+   "tracklets": 524,
+   "built_tracklets": 29,
+   "labels": {
+    "positive": 3,
+    "auxiliary": 0,
+    "background": 26
+   },
+   "eligible_targets": 8,
+   "targets": [
+    {
+     "designation": "101651",
+     "role": "marginal",
+     "group": "intermediate",
+     "rate_arcsec_per_min": 0.4354,
+     "min_global_margin_mag": -0.194,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "120257",
+     "role": "marginal",
+     "group": "intermediate",
+     "rate_arcsec_per_min": 0.4534,
+     "min_global_margin_mag": -0.694,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "14203",
+     "role": "primary",
+     "group": "control",
+     "rate_arcsec_per_min": 0.4704,
+     "min_global_margin_mag": 1.806,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0018"
+    },
+    {
+     "designation": "17343",
+     "role": "primary",
+     "group": "control",
+     "rate_arcsec_per_min": 0.4243,
+     "min_global_margin_mag": 1.306,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0027"
+    },
+    {
+     "designation": "299531",
+     "role": "marginal",
+     "group": "intermediate",
+     "rate_arcsec_per_min": 0.6111,
+     "min_global_margin_mag": -0.694,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "435593",
+     "role": "marginal",
+     "group": "intermediate",
+     "rate_arcsec_per_min": 0.5635,
+     "min_global_margin_mag": -0.494,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "550543",
+     "role": "marginal",
+     "group": "control",
+     "rate_arcsec_per_min": 0.7341,
+     "min_global_margin_mag": -0.494,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "71493",
+     "role": "primary",
+     "group": "zone",
+     "rate_arcsec_per_min": 0.6473,
+     "min_global_margin_mag": 1.206,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0017"
+    }
+   ]
+  },
+  {
+   "field_id": "C16-2020-01-29-511-c13-q3",
+   "population": "C",
+   "group": "G-C16-2020-01-29-511-c13-q3",
+   "night": "2020-01-29",
+   "filters": [
+    "zr",
+    "zr",
+    "zg"
+   ],
+   "sources_per_frame": [
+    30058,
+    28813,
+    22617
+   ],
+   "tracklets": 1153,
+   "built_tracklets": 213,
+   "labels": {
+    "positive": 3,
+    "auxiliary": 0,
+    "background": 210
+   },
+   "eligible_targets": 14,
+   "targets": [
+    {
+     "designation": "104374",
+     "role": "primary",
+     "group": "control",
+     "rate_arcsec_per_min": 0.2962,
+     "min_global_margin_mag": 1.862,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "107923",
+     "role": "primary",
+     "group": "control",
+     "rate_arcsec_per_min": 0.3074,
+     "min_global_margin_mag": 0.762,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "183825",
+     "role": "primary",
+     "group": "intermediate",
+     "rate_arcsec_per_min": 0.2478,
+     "min_global_margin_mag": 0.662,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "215005",
+     "role": "marginal",
+     "group": "intermediate",
+     "rate_arcsec_per_min": 0.3478,
+     "min_global_margin_mag": -0.238,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "266748",
+     "role": "primary",
+     "group": "intermediate",
+     "rate_arcsec_per_min": 0.2222,
+     "min_global_margin_mag": 0.562,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0044"
+    },
+    {
+     "designation": "2974",
+     "role": "primary",
+     "group": "intermediate",
+     "rate_arcsec_per_min": 0.2772,
+     "min_global_margin_mag": 3.662,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0022"
+    },
+    {
+     "designation": "310716",
+     "role": "marginal",
+     "group": "outer",
+     "rate_arcsec_per_min": 0.3108,
+     "min_global_margin_mag": -0.138,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "433707",
+     "role": "marginal",
+     "group": "intermediate",
+     "rate_arcsec_per_min": 0.1959,
+     "min_global_margin_mag": 0.362,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "468088",
+     "role": "marginal",
+     "group": "control",
+     "rate_arcsec_per_min": 0.2612,
+     "min_global_margin_mag": 0.062,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "620321",
+     "role": "marginal",
+     "group": "intermediate",
+     "rate_arcsec_per_min": 0.2675,
+     "min_global_margin_mag": 0.162,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "693034",
+     "role": "marginal",
+     "group": "intermediate",
+     "rate_arcsec_per_min": 0.2969,
+     "min_global_margin_mag": -0.438,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "727464",
+     "role": "marginal",
+     "group": "intermediate",
+     "rate_arcsec_per_min": 0.2575,
+     "min_global_margin_mag": -0.438,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "83616",
+     "role": "primary",
+     "group": "zone",
+     "rate_arcsec_per_min": 0.3344,
+     "min_global_margin_mag": 1.462,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "88431",
+     "role": "primary",
+     "group": "intermediate",
+     "rate_arcsec_per_min": 0.3297,
+     "min_global_margin_mag": 0.562,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0047"
+    }
+   ]
+  },
+  {
+   "field_id": "C17-2020-09-22-561-c15-q2",
+   "population": "C",
+   "group": "G-C17-2020-09-22-561-c15-q2",
+   "night": "2020-09-22",
+   "filters": [
+    "zr",
+    "zr",
+    "zg"
+   ],
+   "sources_per_frame": [
+    19170,
+    18842,
+    10818
+   ],
+   "tracklets": 610,
+   "built_tracklets": 132,
+   "labels": {
+    "positive": 15,
+    "auxiliary": 1,
+    "background": 116
+   },
+   "eligible_targets": 27,
+   "targets": [
+    {
+     "designation": "104232",
+     "role": "marginal",
+     "group": "control",
+     "rate_arcsec_per_min": 0.3565,
+     "min_global_margin_mag": 0.093,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "110159",
+     "role": "marginal",
+     "group": "control",
+     "rate_arcsec_per_min": 0.4696,
+     "min_global_margin_mag": -0.407,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "126776",
+     "role": "marginal",
+     "group": "control",
+     "rate_arcsec_per_min": 0.3738,
+     "min_global_margin_mag": -0.607,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "127470",
+     "role": "marginal",
+     "group": "control",
+     "rate_arcsec_per_min": 0.2275,
+     "min_global_margin_mag": -0.507,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "134777",
+     "role": "marginal",
+     "group": "intermediate",
+     "rate_arcsec_per_min": 0.4923,
+     "min_global_margin_mag": -0.607,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "137543",
+     "role": "marginal",
+     "group": "intermediate",
+     "rate_arcsec_per_min": 0.6123,
+     "min_global_margin_mag": -0.607,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0032"
+    },
+    {
+     "designation": "142910",
+     "role": "marginal",
+     "group": "control",
+     "rate_arcsec_per_min": 0.4687,
+     "min_global_margin_mag": -0.207,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "156803",
+     "role": "marginal",
+     "group": "intermediate",
+     "rate_arcsec_per_min": 0.7824,
+     "min_global_margin_mag": -0.507,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "157715",
+     "role": "marginal",
+     "group": "control",
+     "rate_arcsec_per_min": 0.4119,
+     "min_global_margin_mag": -0.407,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0031"
+    },
+    {
+     "designation": "176965",
+     "role": "marginal",
+     "group": "intermediate",
+     "rate_arcsec_per_min": 0.4054,
+     "min_global_margin_mag": -0.407,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0029"
+    },
+    {
+     "designation": "18118",
+     "role": "primary",
+     "group": "control",
+     "rate_arcsec_per_min": 0.7559,
+     "min_global_margin_mag": 1.193,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0008"
+    },
+    {
+     "designation": "203001",
+     "role": "marginal",
+     "group": "control",
+     "rate_arcsec_per_min": 0.6563,
+     "min_global_margin_mag": 0.093,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "21297",
+     "role": "primary",
+     "group": "control",
+     "rate_arcsec_per_min": 0.52,
+     "min_global_margin_mag": 1.193,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0080"
+    },
+    {
+     "designation": "22577",
+     "role": "primary",
+     "group": "control",
+     "rate_arcsec_per_min": 0.4639,
+     "min_global_margin_mag": 0.993,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0014"
+    },
+    {
+     "designation": "228995",
+     "role": "marginal",
+     "group": "control",
+     "rate_arcsec_per_min": 0.3646,
+     "min_global_margin_mag": -0.107,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0010"
+    },
+    {
+     "designation": "24822",
+     "role": "primary",
+     "group": "zone",
+     "rate_arcsec_per_min": 0.2864,
+     "min_global_margin_mag": 0.893,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0017"
+    },
+    {
+     "designation": "29295",
+     "role": "marginal",
+     "group": "control",
+     "rate_arcsec_per_min": 0.4292,
+     "min_global_margin_mag": -0.407,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "335354",
+     "role": "marginal",
+     "group": "intermediate",
+     "rate_arcsec_per_min": 0.8203,
+     "min_global_margin_mag": -0.807,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "40442",
+     "role": "primary",
+     "group": "control",
+     "rate_arcsec_per_min": 0.5553,
+     "min_global_margin_mag": 1.193,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0002"
+    },
+    {
+     "designation": "41306",
+     "role": "marginal",
+     "group": "control",
+     "rate_arcsec_per_min": 0.2882,
+     "min_global_margin_mag": -0.607,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "43928",
+     "role": "marginal",
+     "group": "control",
+     "rate_arcsec_per_min": 0.2292,
+     "min_global_margin_mag": -0.507,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0023"
+    },
+    {
+     "designation": "47465",
+     "role": "primary",
+     "group": "control",
+     "rate_arcsec_per_min": 0.5892,
+     "min_global_margin_mag": 1.093,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0026"
+    },
+    {
+     "designation": "48317",
+     "role": "primary",
+     "group": "control",
+     "rate_arcsec_per_min": 0.479,
+     "min_global_margin_mag": 1.093,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0078"
+    },
+    {
+     "designation": "48929",
+     "role": "primary",
+     "group": "control",
+     "rate_arcsec_per_min": 0.466,
+     "min_global_margin_mag": 0.593,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0007"
+    },
+    {
+     "designation": "747682",
+     "role": "marginal",
+     "group": "control",
+     "rate_arcsec_per_min": 0.7452,
+     "min_global_margin_mag": -0.707,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "8883",
+     "role": "primary",
+     "group": "control",
+     "rate_arcsec_per_min": 0.5587,
+     "min_global_margin_mag": 1.393,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0027"
+    },
+    {
+     "designation": "89879",
+     "role": "marginal",
+     "group": "control",
+     "rate_arcsec_per_min": 0.3533,
+     "min_global_margin_mag": -0.507,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0037"
+    }
+   ]
+  },
+  {
+   "field_id": "C21-2020-08-23-452-c15-q3",
+   "population": "C",
+   "group": "G-C21-2020-08-23-452-c15-q3",
+   "night": "2020-08-23",
+   "filters": [
+    "zg",
+    "zg",
+    "zr"
+   ],
+   "sources_per_frame": [
+    4580,
+    4527,
+    8256
+   ],
+   "tracklets": 1984,
+   "built_tracklets": 356,
+   "labels": {
+    "positive": 9,
+    "auxiliary": 0,
+    "background": 347
+   },
+   "eligible_targets": 20,
+   "targets": [
+    {
+     "designation": "110966",
+     "role": "primary",
+     "group": "control",
+     "rate_arcsec_per_min": 0.1333,
+     "min_global_margin_mag": 0.642,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0173"
+    },
+    {
+     "designation": "15009",
+     "role": "primary",
+     "group": "zone",
+     "rate_arcsec_per_min": 0.9551,
+     "min_global_margin_mag": 1.142,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0119"
+    },
+    {
+     "designation": "157653",
+     "role": "marginal",
+     "group": "outer",
+     "rate_arcsec_per_min": 0.1389,
+     "min_global_margin_mag": -0.458,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "163233",
+     "role": "marginal",
+     "group": "intermediate",
+     "rate_arcsec_per_min": 0.2803,
+     "min_global_margin_mag": -0.558,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "2013 RE123",
+     "role": "marginal",
+     "group": "control",
+     "rate_arcsec_per_min": 0.7809,
+     "min_global_margin_mag": -0.658,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "201497",
+     "role": "primary",
+     "group": "intermediate",
+     "rate_arcsec_per_min": 0.3056,
+     "min_global_margin_mag": 0.442,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0102"
+    },
+    {
+     "designation": "202732",
+     "role": "primary",
+     "group": "outer",
+     "rate_arcsec_per_min": 0.2631,
+     "min_global_margin_mag": 0.442,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0087"
+    },
+    {
+     "designation": "232649",
+     "role": "marginal",
+     "group": "control",
+     "rate_arcsec_per_min": 0.1909,
+     "min_global_margin_mag": -0.158,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0005"
+    },
+    {
+     "designation": "343230",
+     "role": "marginal",
+     "group": "control",
+     "rate_arcsec_per_min": 0.4508,
+     "min_global_margin_mag": -0.658,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "394537",
+     "role": "marginal",
+     "group": "zone",
+     "rate_arcsec_per_min": 0.3153,
+     "min_global_margin_mag": -0.758,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "400491",
+     "role": "marginal",
+     "group": "control",
+     "rate_arcsec_per_min": 0.3756,
+     "min_global_margin_mag": -0.558,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "461596",
+     "role": "marginal",
+     "group": "intermediate",
+     "rate_arcsec_per_min": 0.7139,
+     "min_global_margin_mag": -0.358,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "46794",
+     "role": "primary",
+     "group": "control",
+     "rate_arcsec_per_min": 0.2558,
+     "min_global_margin_mag": 1.042,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0044"
+    },
+    {
+     "designation": "506810",
+     "role": "marginal",
+     "group": "control",
+     "rate_arcsec_per_min": 0.6088,
+     "min_global_margin_mag": -0.358,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "55918",
+     "role": "primary",
+     "group": "control",
+     "rate_arcsec_per_min": 0.2202,
+     "min_global_margin_mag": 0.542,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0049"
+    },
+    {
+     "designation": "5724",
+     "role": "primary",
+     "group": "control",
+     "rate_arcsec_per_min": 0.2456,
+     "min_global_margin_mag": 2.142,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0170"
+    },
+    {
+     "designation": "668053",
+     "role": "marginal",
+     "group": "control",
+     "rate_arcsec_per_min": 0.3397,
+     "min_global_margin_mag": -0.558,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "703585",
+     "role": "marginal",
+     "group": "control",
+     "rate_arcsec_per_min": 0.3951,
+     "min_global_margin_mag": -0.658,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "721255",
+     "role": "marginal",
+     "group": "intermediate",
+     "rate_arcsec_per_min": 0.5336,
+     "min_global_margin_mag": -0.758,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "86946",
+     "role": "primary",
+     "group": "control",
+     "rate_arcsec_per_min": 0.2755,
+     "min_global_margin_mag": 1.442,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0176"
+    }
+   ]
+  },
+  {
+   "field_id": "C22-2020-02-24-517-c15-q3",
+   "population": "C",
+   "group": "G-C22-2020-02-24-517-c15-q3",
+   "night": "2020-02-24",
+   "filters": [
+    "zr",
+    "zg",
+    "zg"
+   ],
+   "sources_per_frame": [
+    9242,
+    6089,
+    6824
+   ],
+   "tracklets": 849,
+   "built_tracklets": 150,
+   "labels": {
+    "positive": 9,
+    "auxiliary": 0,
+    "background": 141
+   },
+   "eligible_targets": 32,
+   "targets": [
+    {
+     "designation": "104471",
+     "role": "marginal",
+     "group": "outer",
+     "rate_arcsec_per_min": 0.4721,
+     "min_global_margin_mag": -0.049,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0012"
+    },
+    {
+     "designation": "105166",
+     "role": "primary",
+     "group": "control",
+     "rate_arcsec_per_min": 0.4875,
+     "min_global_margin_mag": 2.851,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0068"
+    },
+    {
+     "designation": "117222",
+     "role": "marginal",
+     "group": "control",
+     "rate_arcsec_per_min": 0.4378,
+     "min_global_margin_mag": 0.251,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "122649",
+     "role": "primary",
+     "group": "intermediate",
+     "rate_arcsec_per_min": 0.4142,
+     "min_global_margin_mag": 0.551,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0601"
+    },
+    {
+     "designation": "130701",
+     "role": "primary",
+     "group": "control",
+     "rate_arcsec_per_min": 0.4466,
+     "min_global_margin_mag": 1.551,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0025"
+    },
+    {
+     "designation": "143174",
+     "role": "primary",
+     "group": "intermediate",
+     "rate_arcsec_per_min": 0.4569,
+     "min_global_margin_mag": 0.551,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "144429",
+     "role": "marginal",
+     "group": "control",
+     "rate_arcsec_per_min": 0.3959,
+     "min_global_margin_mag": -0.249,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "145772",
+     "role": "primary",
+     "group": "control",
+     "rate_arcsec_per_min": 0.4235,
+     "min_global_margin_mag": 0.851,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "165127",
+     "role": "marginal",
+     "group": "intermediate",
+     "rate_arcsec_per_min": 0.4044,
+     "min_global_margin_mag": -0.049,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "168515",
+     "role": "marginal",
+     "group": "intermediate",
+     "rate_arcsec_per_min": 0.4675,
+     "min_global_margin_mag": -0.449,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "179961",
+     "role": "primary",
+     "group": "intermediate",
+     "rate_arcsec_per_min": 0.4312,
+     "min_global_margin_mag": 0.651,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "187875",
+     "role": "marginal",
+     "group": "outer",
+     "rate_arcsec_per_min": 0.4411,
+     "min_global_margin_mag": -0.149,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "2009 YY30",
+     "role": "marginal",
+     "group": "control",
+     "rate_arcsec_per_min": 0.4687,
+     "min_global_margin_mag": -0.449,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "2010 RK204",
+     "role": "marginal",
+     "group": "control",
+     "rate_arcsec_per_min": 0.427,
+     "min_global_margin_mag": -0.649,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "223718",
+     "role": "primary",
+     "group": "zone",
+     "rate_arcsec_per_min": 0.4227,
+     "min_global_margin_mag": 0.451,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "230508",
+     "role": "primary",
+     "group": "control",
+     "rate_arcsec_per_min": 0.4851,
+     "min_global_margin_mag": 0.451,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "253212",
+     "role": "marginal",
+     "group": "outer",
+     "rate_arcsec_per_min": 0.4572,
+     "min_global_margin_mag": -0.549,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "264688",
+     "role": "marginal",
+     "group": "control",
+     "rate_arcsec_per_min": 0.3862,
+     "min_global_margin_mag": 0.151,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "274567",
+     "role": "marginal",
+     "group": "intermediate",
+     "rate_arcsec_per_min": 0.448,
+     "min_global_margin_mag": -0.249,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "275406",
+     "role": "marginal",
+     "group": "intermediate",
+     "rate_arcsec_per_min": 0.4213,
+     "min_global_margin_mag": -0.349,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "280266",
+     "role": "marginal",
+     "group": "intermediate",
+     "rate_arcsec_per_min": 0.4119,
+     "min_global_margin_mag": 0.051,
+     "trace_recovered": false,
+     "trace_tracklet_id": "trk-0054"
+    },
+    {
+     "designation": "361541",
+     "role": "marginal",
+     "group": "control",
+     "rate_arcsec_per_min": 0.4941,
+     "min_global_margin_mag": -0.049,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "413048",
+     "role": "marginal",
+     "group": "outer",
+     "rate_arcsec_per_min": 0.4518,
+     "min_global_margin_mag": -0.549,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "49409",
+     "role": "primary",
+     "group": "intermediate",
+     "rate_arcsec_per_min": 0.3983,
+     "min_global_margin_mag": 1.851,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0086"
+    },
+    {
+     "designation": "535616",
+     "role": "marginal",
+     "group": "control",
+     "rate_arcsec_per_min": 0.4267,
+     "min_global_margin_mag": -0.449,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "53808",
+     "role": "primary",
+     "group": "intermediate",
+     "rate_arcsec_per_min": 0.4357,
+     "min_global_margin_mag": 1.451,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0106"
+    },
+    {
+     "designation": "554226",
+     "role": "marginal",
+     "group": "outer",
+     "rate_arcsec_per_min": 0.417,
+     "min_global_margin_mag": -0.649,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "557955",
+     "role": "marginal",
+     "group": "control",
+     "rate_arcsec_per_min": 0.4413,
+     "min_global_margin_mag": -0.249,
+     "trace_recovered": false,
+     "trace_tracklet_id": "trk-0126"
+    },
+    {
+     "designation": "63351",
+     "role": "primary",
+     "group": "control",
+     "rate_arcsec_per_min": 0.5293,
+     "min_global_margin_mag": 0.651,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0085"
+    },
+    {
+     "designation": "676512",
+     "role": "marginal",
+     "group": "intermediate",
+     "rate_arcsec_per_min": 0.4181,
+     "min_global_margin_mag": -0.449,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "682258",
+     "role": "marginal",
+     "group": "control",
+     "rate_arcsec_per_min": 0.467,
+     "min_global_margin_mag": -0.549,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0220"
+    },
+    {
+     "designation": "744057",
+     "role": "primary",
+     "group": "intermediate",
+     "rate_arcsec_per_min": 0.4515,
+     "min_global_margin_mag": 0.351,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0069"
+    }
+   ]
+  },
+  {
+   "field_id": "C23-2020-11-17-659-c4-q2",
+   "population": "C",
+   "group": "G-C23-2020-11-17-659-c4-q2",
+   "night": "2020-11-17",
+   "filters": [
+    "zi",
+    "zi",
+    "zr"
+   ],
+   "sources_per_frame": [
+    30812,
+    30880,
+    25447
+   ],
+   "tracklets": 448,
+   "built_tracklets": 89,
+   "labels": {
+    "positive": 8,
+    "auxiliary": 1,
+    "background": 80
+   },
+   "eligible_targets": 18,
+   "targets": [
+    {
+     "designation": "128068",
+     "role": "primary",
+     "group": "zone",
+     "rate_arcsec_per_min": 0.4226,
+     "min_global_margin_mag": 1.179,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "136575",
+     "role": "marginal",
+     "group": "outer",
+     "rate_arcsec_per_min": 0.4714,
+     "min_global_margin_mag": 0.179,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "147467",
+     "role": "marginal",
+     "group": "control",
+     "rate_arcsec_per_min": 0.4872,
+     "min_global_margin_mag": 0.579,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0129"
+    },
+    {
+     "designation": "152022",
+     "role": "marginal",
+     "group": "intermediate",
+     "rate_arcsec_per_min": 0.4947,
+     "min_global_margin_mag": 0.379,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "195881",
+     "role": "marginal",
+     "group": "outer",
+     "rate_arcsec_per_min": 0.4043,
+     "min_global_margin_mag": 0.479,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0006"
+    },
+    {
+     "designation": "2016 QA8",
+     "role": "marginal",
+     "group": "outer",
+     "rate_arcsec_per_min": 0.5394,
+     "min_global_margin_mag": -0.121,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "23257",
+     "role": "primary",
+     "group": "control",
+     "rate_arcsec_per_min": 0.4177,
+     "min_global_margin_mag": 2.379,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0007"
+    },
+    {
+     "designation": "289318",
+     "role": "marginal",
+     "group": "intermediate",
+     "rate_arcsec_per_min": 0.3928,
+     "min_global_margin_mag": 0.379,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0023"
+    },
+    {
+     "designation": "326781",
+     "role": "marginal",
+     "group": "intermediate",
+     "rate_arcsec_per_min": 0.4237,
+     "min_global_margin_mag": 0.079,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "334057",
+     "role": "marginal",
+     "group": "outer",
+     "rate_arcsec_per_min": 0.5776,
+     "min_global_margin_mag": 0.479,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0008"
+    },
+    {
+     "designation": "343331",
+     "role": "marginal",
+     "group": "control",
+     "rate_arcsec_per_min": 0.4306,
+     "min_global_margin_mag": 0.379,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "356341",
+     "role": "marginal",
+     "group": "control",
+     "rate_arcsec_per_min": 0.4496,
+     "min_global_margin_mag": -0.021,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "47176",
+     "role": "primary",
+     "group": "control",
+     "rate_arcsec_per_min": 0.4746,
+     "min_global_margin_mag": 1.679,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0030"
+    },
+    {
+     "designation": "635554",
+     "role": "marginal",
+     "group": "control",
+     "rate_arcsec_per_min": 0.4694,
+     "min_global_margin_mag": -0.121,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "657909",
+     "role": "marginal",
+     "group": "intermediate",
+     "rate_arcsec_per_min": 0.3901,
+     "min_global_margin_mag": -0.121,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "756462",
+     "role": "marginal",
+     "group": "outer",
+     "rate_arcsec_per_min": 0.5231,
+     "min_global_margin_mag": 0.679,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "86050",
+     "role": "marginal",
+     "group": "intermediate",
+     "rate_arcsec_per_min": 0.4443,
+     "min_global_margin_mag": 0.579,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0162"
+    },
+    {
+     "designation": "90344",
+     "role": "primary",
+     "group": "intermediate",
+     "rate_arcsec_per_min": 0.4746,
+     "min_global_margin_mag": 1.679,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0028"
+    }
+   ]
+  },
+  {
+   "field_id": "C24-2019-06-29-279-c5-q2",
+   "population": "C",
+   "group": "G-C24-2019-06-29-279-c5-q2",
+   "night": "2019-06-29",
+   "filters": [
+    "zr",
+    "zr",
+    "zr"
+   ],
+   "sources_per_frame": [
+    95532,
+    85912,
+    102293
+   ],
+   "tracklets": 555,
+   "built_tracklets": 76,
+   "labels": {
+    "positive": 7,
+    "auxiliary": 0,
+    "background": 69
+   },
+   "eligible_targets": 11,
+   "targets": [
+    {
+     "designation": "100039",
+     "role": "primary",
+     "group": "control",
+     "rate_arcsec_per_min": 0.5848,
+     "min_global_margin_mag": 1.213,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0035"
+    },
+    {
+     "designation": "11039",
+     "role": "primary",
+     "group": "control",
+     "rate_arcsec_per_min": 0.4427,
+     "min_global_margin_mag": 2.513,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "136004",
+     "role": "primary",
+     "group": "control",
+     "rate_arcsec_per_min": 0.4878,
+     "min_global_margin_mag": 0.813,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0325"
+    },
+    {
+     "designation": "141464",
+     "role": "marginal",
+     "group": "intermediate",
+     "rate_arcsec_per_min": 0.4435,
+     "min_global_margin_mag": 0.313,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0420"
+    },
+    {
+     "designation": "146081",
+     "role": "primary",
+     "group": "zone",
+     "rate_arcsec_per_min": 0.5128,
+     "min_global_margin_mag": 0.813,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0479"
+    },
+    {
+     "designation": "175250",
+     "role": "primary",
+     "group": "intermediate",
+     "rate_arcsec_per_min": 0.488,
+     "min_global_margin_mag": 1.313,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "200997",
+     "role": "marginal",
+     "group": "control",
+     "rate_arcsec_per_min": 0.4869,
+     "min_global_margin_mag": -0.087,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "258712",
+     "role": "primary",
+     "group": "intermediate",
+     "rate_arcsec_per_min": 0.4634,
+     "min_global_margin_mag": 1.113,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0023"
+    },
+    {
+     "designation": "58065",
+     "role": "primary",
+     "group": "control",
+     "rate_arcsec_per_min": 0.4296,
+     "min_global_margin_mag": 1.113,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0395"
+    },
+    {
+     "designation": "81367",
+     "role": "primary",
+     "group": "intermediate",
+     "rate_arcsec_per_min": 0.4471,
+     "min_global_margin_mag": 0.813,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "96963",
+     "role": "primary",
+     "group": "intermediate",
+     "rate_arcsec_per_min": 0.5105,
+     "min_global_margin_mag": 1.413,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0272"
+    }
+   ]
+  },
+  {
+   "field_id": "C25-2018-07-05-331-c9-q4",
+   "population": "C",
+   "group": "G-C25-2018-07-05-331-c9-q4",
+   "night": "2018-07-05",
+   "filters": [
+    "zr",
+    "zr",
+    "zr"
+   ],
+   "sources_per_frame": [
+    184390,
+    180605,
+    184514
+   ],
+   "tracklets": 8029,
+   "built_tracklets": 1162,
+   "labels": {
+    "positive": 3,
+    "auxiliary": 0,
+    "background": 1159
+   },
+   "eligible_targets": 9,
+   "targets": [
+    {
+     "designation": "196057",
+     "role": "marginal",
+     "group": "control",
+     "rate_arcsec_per_min": 0.4628,
+     "min_global_margin_mag": 0.158,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "230658",
+     "role": "marginal",
+     "group": "control",
+     "rate_arcsec_per_min": 0.4683,
+     "min_global_margin_mag": -0.242,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "27054",
+     "role": "primary",
+     "group": "control",
+     "rate_arcsec_per_min": 0.5854,
+     "min_global_margin_mag": 2.858,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "37518",
+     "role": "primary",
+     "group": "intermediate",
+     "rate_arcsec_per_min": 0.5371,
+     "min_global_margin_mag": 2.758,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-2282"
+    },
+    {
+     "designation": "39296",
+     "role": "primary",
+     "group": "intermediate",
+     "rate_arcsec_per_min": 0.5151,
+     "min_global_margin_mag": 2.058,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0899"
+    },
+    {
+     "designation": "487419",
+     "role": "marginal",
+     "group": "control",
+     "rate_arcsec_per_min": 0.5183,
+     "min_global_margin_mag": 0.158,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "71686",
+     "role": "primary",
+     "group": "intermediate",
+     "rate_arcsec_per_min": 0.4416,
+     "min_global_margin_mag": 0.858,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "76166",
+     "role": "primary",
+     "group": "zone",
+     "rate_arcsec_per_min": 0.6012,
+     "min_global_margin_mag": 1.758,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "88278",
+     "role": "primary",
+     "group": "outer",
+     "rate_arcsec_per_min": 0.5846,
+     "min_global_margin_mag": 2.558,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0333"
+    }
+   ]
+  },
+  {
+   "field_id": "C26-2020-11-26-612-c3-q1",
+   "population": "C",
+   "group": "G-C26-2020-11-26-612-c3-q1",
+   "night": "2020-11-26",
+   "filters": [
+    "zr",
+    "zi",
+    "zg"
+   ],
+   "sources_per_frame": [
+    23519,
+    35837,
+    14716
+   ],
+   "tracklets": 365,
+   "built_tracklets": 62,
+   "labels": {
+    "positive": 9,
+    "auxiliary": 0,
+    "background": 53
+   },
+   "eligible_targets": 20,
+   "targets": [
+    {
+     "designation": "100954",
+     "role": "marginal",
+     "group": "intermediate",
+     "rate_arcsec_per_min": 0.4975,
+     "min_global_margin_mag": 0.312,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0040"
+    },
+    {
+     "designation": "112784",
+     "role": "primary",
+     "group": "intermediate",
+     "rate_arcsec_per_min": 0.43,
+     "min_global_margin_mag": 0.412,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0022"
+    },
+    {
+     "designation": "127087",
+     "role": "marginal",
+     "group": "outer",
+     "rate_arcsec_per_min": 0.4228,
+     "min_global_margin_mag": -0.388,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "149116",
+     "role": "marginal",
+     "group": "intermediate",
+     "rate_arcsec_per_min": 0.4327,
+     "min_global_margin_mag": 0.012,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "16078",
+     "role": "primary",
+     "group": "intermediate",
+     "rate_arcsec_per_min": 0.4756,
+     "min_global_margin_mag": 1.312,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "161235",
+     "role": "primary",
+     "group": "outer",
+     "rate_arcsec_per_min": 0.4661,
+     "min_global_margin_mag": 1.412,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0033"
+    },
+    {
+     "designation": "16263",
+     "role": "marginal",
+     "group": "control",
+     "rate_arcsec_per_min": 0.3956,
+     "min_global_margin_mag": 0.012,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "219220",
+     "role": "marginal",
+     "group": "intermediate",
+     "rate_arcsec_per_min": 0.4321,
+     "min_global_margin_mag": -0.388,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "24193",
+     "role": "primary",
+     "group": "intermediate",
+     "rate_arcsec_per_min": 0.5369,
+     "min_global_margin_mag": 2.812,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0024"
+    },
+    {
+     "designation": "256578",
+     "role": "marginal",
+     "group": "control",
+     "rate_arcsec_per_min": 0.5964,
+     "min_global_margin_mag": -0.588,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "269553",
+     "role": "marginal",
+     "group": "control",
+     "rate_arcsec_per_min": 0.5139,
+     "min_global_margin_mag": -0.488,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "31293",
+     "role": "primary",
+     "group": "control",
+     "rate_arcsec_per_min": 0.3876,
+     "min_global_margin_mag": 0.712,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "334054",
+     "role": "marginal",
+     "group": "control",
+     "rate_arcsec_per_min": 0.5493,
+     "min_global_margin_mag": 0.012,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0004"
+    },
+    {
+     "designation": "386717",
+     "role": "marginal",
+     "group": "intermediate",
+     "rate_arcsec_per_min": 0.4348,
+     "min_global_margin_mag": -0.188,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0008"
+    },
+    {
+     "designation": "40131",
+     "role": "primary",
+     "group": "intermediate",
+     "rate_arcsec_per_min": 0.4181,
+     "min_global_margin_mag": 1.312,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "4979",
+     "role": "primary",
+     "group": "zone",
+     "rate_arcsec_per_min": 0.5606,
+     "min_global_margin_mag": 1.812,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "52333",
+     "role": "primary",
+     "group": "control",
+     "rate_arcsec_per_min": 0.4235,
+     "min_global_margin_mag": 1.412,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0003"
+    },
+    {
+     "designation": "70946",
+     "role": "primary",
+     "group": "intermediate",
+     "rate_arcsec_per_min": 0.4205,
+     "min_global_margin_mag": 1.712,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0011"
+    },
+    {
+     "designation": "8097",
+     "role": "primary",
+     "group": "outer",
+     "rate_arcsec_per_min": 0.4611,
+     "min_global_margin_mag": 2.912,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "92074",
+     "role": "primary",
+     "group": "control",
+     "rate_arcsec_per_min": 0.4573,
+     "min_global_margin_mag": 1.212,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0001"
+    }
+   ]
+  },
+  {
+   "field_id": "C27-2020-11-15-392-c7-q4",
+   "population": "C",
+   "group": "G-C27-2020-11-15-392-c7-q4",
+   "night": "2020-11-15",
+   "filters": [
+    "zg",
+    "zr",
+    "zr"
+   ],
+   "sources_per_frame": [
+    3275,
+    6524,
+    6424
+   ],
+   "tracklets": 193,
+   "built_tracklets": 44,
+   "labels": {
+    "positive": 8,
+    "auxiliary": 0,
+    "background": 36
+   },
+   "eligible_targets": 22,
+   "targets": [
+    {
+     "designation": "10011",
+     "role": "primary",
+     "group": "zone",
+     "rate_arcsec_per_min": 0.5672,
+     "min_global_margin_mag": 2.025,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0008"
+    },
+    {
+     "designation": "101171",
+     "role": "marginal",
+     "group": "control",
+     "rate_arcsec_per_min": 0.5817,
+     "min_global_margin_mag": 0.025,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "123422",
+     "role": "marginal",
+     "group": "control",
+     "rate_arcsec_per_min": 0.6896,
+     "min_global_margin_mag": 0.025,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "126538",
+     "role": "marginal",
+     "group": "control",
+     "rate_arcsec_per_min": 0.3766,
+     "min_global_margin_mag": -0.075,
+     "trace_recovered": false,
+     "trace_tracklet_id": "trk-0020"
+    },
+    {
+     "designation": "145662",
+     "role": "marginal",
+     "group": "control",
+     "rate_arcsec_per_min": 0.5839,
+     "min_global_margin_mag": -0.475,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "148050",
+     "role": "marginal",
+     "group": "control",
+     "rate_arcsec_per_min": 0.5661,
+     "min_global_margin_mag": -0.575,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0083"
+    },
+    {
+     "designation": "163005",
+     "role": "marginal",
+     "group": "control",
+     "rate_arcsec_per_min": 0.7105,
+     "min_global_margin_mag": -0.575,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "175181",
+     "role": "marginal",
+     "group": "control",
+     "rate_arcsec_per_min": 0.5576,
+     "min_global_margin_mag": -0.575,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "217564",
+     "role": "marginal",
+     "group": "control",
+     "rate_arcsec_per_min": 0.5917,
+     "min_global_margin_mag": -0.675,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "220727",
+     "role": "marginal",
+     "group": "outer",
+     "rate_arcsec_per_min": 0.4219,
+     "min_global_margin_mag": -0.475,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "24055",
+     "role": "marginal",
+     "group": "intermediate",
+     "rate_arcsec_per_min": 0.3627,
+     "min_global_margin_mag": 0.125,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0021"
+    },
+    {
+     "designation": "264405",
+     "role": "marginal",
+     "group": "control",
+     "rate_arcsec_per_min": 0.6603,
+     "min_global_margin_mag": -0.575,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "267663",
+     "role": "marginal",
+     "group": "control",
+     "rate_arcsec_per_min": 0.7192,
+     "min_global_margin_mag": -0.375,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0053"
+    },
+    {
+     "designation": "37230",
+     "role": "primary",
+     "group": "control",
+     "rate_arcsec_per_min": 0.2773,
+     "min_global_margin_mag": 0.225,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0052"
+    },
+    {
+     "designation": "40988",
+     "role": "marginal",
+     "group": "control",
+     "rate_arcsec_per_min": 0.2865,
+     "min_global_margin_mag": -0.175,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "51564",
+     "role": "marginal",
+     "group": "control",
+     "rate_arcsec_per_min": 0.4905,
+     "min_global_margin_mag": -0.275,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "550646",
+     "role": "marginal",
+     "group": "control",
+     "rate_arcsec_per_min": 0.8761,
+     "min_global_margin_mag": -0.775,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "67216",
+     "role": "primary",
+     "group": "intermediate",
+     "rate_arcsec_per_min": 0.4146,
+     "min_global_margin_mag": 1.125,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0016"
+    },
+    {
+     "designation": "69588",
+     "role": "marginal",
+     "group": "intermediate",
+     "rate_arcsec_per_min": 0.5165,
+     "min_global_margin_mag": -0.475,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "70959",
+     "role": "marginal",
+     "group": "control",
+     "rate_arcsec_per_min": 0.4196,
+     "min_global_margin_mag": -0.575,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0019"
+    },
+    {
+     "designation": "74116",
+     "role": "primary",
+     "group": "intermediate",
+     "rate_arcsec_per_min": 0.6657,
+     "min_global_margin_mag": 1.225,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0017"
+    },
+    {
+     "designation": "76211",
+     "role": "marginal",
+     "group": "control",
+     "rate_arcsec_per_min": 0.4216,
+     "min_global_margin_mag": -0.175,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    }
+   ]
+  },
+  {
+   "field_id": "C28-2020-01-04-657-c4-q3",
+   "population": "C",
+   "group": "G-C28-2020-01-04-657-c4-q3",
+   "night": "2020-01-04",
+   "filters": [
+    "zg",
+    "zr",
+    "zr"
+   ],
+   "sources_per_frame": [
+    8556,
+    12990,
+    14157
+   ],
+   "tracklets": 3227,
+   "built_tracklets": 1066,
+   "labels": {
+    "positive": 4,
+    "auxiliary": 0,
+    "background": 1062
+   },
+   "eligible_targets": 13,
+   "targets": [
+    {
+     "designation": "108211",
+     "role": "marginal",
+     "group": "control",
+     "rate_arcsec_per_min": 0.437,
+     "min_global_margin_mag": -0.413,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0054"
+    },
+    {
+     "designation": "125734",
+     "role": "primary",
+     "group": "control",
+     "rate_arcsec_per_min": 0.3972,
+     "min_global_margin_mag": 0.387,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-2889"
+    },
+    {
+     "designation": "135224",
+     "role": "primary",
+     "group": "zone",
+     "rate_arcsec_per_min": 0.23,
+     "min_global_margin_mag": 1.087,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "155402",
+     "role": "marginal",
+     "group": "control",
+     "rate_arcsec_per_min": 0.354,
+     "min_global_margin_mag": -0.813,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "163466",
+     "role": "primary",
+     "group": "outer",
+     "rate_arcsec_per_min": 0.3679,
+     "min_global_margin_mag": 0.687,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0007"
+    },
+    {
+     "designation": "201759",
+     "role": "marginal",
+     "group": "outer",
+     "rate_arcsec_per_min": 0.3368,
+     "min_global_margin_mag": -0.113,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "251185",
+     "role": "marginal",
+     "group": "control",
+     "rate_arcsec_per_min": 0.3481,
+     "min_global_margin_mag": -0.613,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "344565",
+     "role": "marginal",
+     "group": "control",
+     "rate_arcsec_per_min": 0.3064,
+     "min_global_margin_mag": -0.513,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "348188",
+     "role": "marginal",
+     "group": "control",
+     "rate_arcsec_per_min": 0.3976,
+     "min_global_margin_mag": -0.513,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "458318",
+     "role": "marginal",
+     "group": "control",
+     "rate_arcsec_per_min": 0.3528,
+     "min_global_margin_mag": -0.813,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "556540",
+     "role": "marginal",
+     "group": "control",
+     "rate_arcsec_per_min": 0.4451,
+     "min_global_margin_mag": -0.613,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "559997",
+     "role": "marginal",
+     "group": "control",
+     "rate_arcsec_per_min": 0.3363,
+     "min_global_margin_mag": -0.513,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "8108",
+     "role": "primary",
+     "group": "control",
+     "rate_arcsec_per_min": 0.4161,
+     "min_global_margin_mag": 2.087,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0010"
+    }
+   ]
+  },
+  {
+   "field_id": "C29-2020-01-28-617-c2-q2",
+   "population": "C",
+   "group": "G-C29-2020-01-28-617-c2-q2",
+   "night": "2020-01-28",
+   "filters": [
+    "zg",
+    "zr",
+    "zr"
+   ],
+   "sources_per_frame": [
+    5523,
+    8748,
+    8645
+   ],
+   "tracklets": 2010,
+   "built_tracklets": 100,
+   "labels": {
+    "positive": 25,
+    "auxiliary": 4,
+    "background": 71
+   },
+   "eligible_targets": 34,
+   "targets": [
+    {
+     "designation": "123725",
+     "role": "primary",
+     "group": "control",
+     "rate_arcsec_per_min": 0.6075,
+     "min_global_margin_mag": 1.46,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0843"
+    },
+    {
+     "designation": "125093",
+     "role": "primary",
+     "group": "zone",
+     "rate_arcsec_per_min": 0.7178,
+     "min_global_margin_mag": 2.06,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "126866",
+     "role": "primary",
+     "group": "control",
+     "rate_arcsec_per_min": 0.5849,
+     "min_global_margin_mag": 0.96,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0848"
+    },
+    {
+     "designation": "136991",
+     "role": "marginal",
+     "group": "intermediate",
+     "rate_arcsec_per_min": 0.6267,
+     "min_global_margin_mag": 0.06,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-1297"
+    },
+    {
+     "designation": "155616",
+     "role": "primary",
+     "group": "control",
+     "rate_arcsec_per_min": 0.6909,
+     "min_global_margin_mag": 1.26,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0858"
+    },
+    {
+     "designation": "165514",
+     "role": "primary",
+     "group": "intermediate",
+     "rate_arcsec_per_min": 0.6582,
+     "min_global_margin_mag": 1.86,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0883"
+    },
+    {
+     "designation": "165901",
+     "role": "primary",
+     "group": "outer",
+     "rate_arcsec_per_min": 0.5397,
+     "min_global_margin_mag": 0.96,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0875"
+    },
+    {
+     "designation": "170127",
+     "role": "primary",
+     "group": "outer",
+     "rate_arcsec_per_min": 0.7694,
+     "min_global_margin_mag": 2.56,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0834"
+    },
+    {
+     "designation": "182632",
+     "role": "marginal",
+     "group": "intermediate",
+     "rate_arcsec_per_min": 0.6101,
+     "min_global_margin_mag": -0.24,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0880"
+    },
+    {
+     "designation": "194559",
+     "role": "primary",
+     "group": "control",
+     "rate_arcsec_per_min": 0.7219,
+     "min_global_margin_mag": 0.96,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0872"
+    },
+    {
+     "designation": "2014 OG423",
+     "role": "marginal",
+     "group": "control",
+     "rate_arcsec_per_min": 0.6879,
+     "min_global_margin_mag": -0.74,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "202161",
+     "role": "primary",
+     "group": "control",
+     "rate_arcsec_per_min": 0.6609,
+     "min_global_margin_mag": 1.56,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0847"
+    },
+    {
+     "designation": "229140",
+     "role": "marginal",
+     "group": "intermediate",
+     "rate_arcsec_per_min": 0.5657,
+     "min_global_margin_mag": -0.54,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "272629",
+     "role": "marginal",
+     "group": "control",
+     "rate_arcsec_per_min": 0.597,
+     "min_global_margin_mag": -0.04,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0867"
+    },
+    {
+     "designation": "288997",
+     "role": "primary",
+     "group": "intermediate",
+     "rate_arcsec_per_min": 0.7161,
+     "min_global_margin_mag": 0.46,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0871"
+    },
+    {
+     "designation": "334948",
+     "role": "primary",
+     "group": "control",
+     "rate_arcsec_per_min": 0.5906,
+     "min_global_margin_mag": 1.06,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0842"
+    },
+    {
+     "designation": "350602",
+     "role": "primary",
+     "group": "control",
+     "rate_arcsec_per_min": 0.7152,
+     "min_global_margin_mag": 0.66,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "363803",
+     "role": "marginal",
+     "group": "control",
+     "rate_arcsec_per_min": 0.6472,
+     "min_global_margin_mag": -0.24,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0879"
+    },
+    {
+     "designation": "379482",
+     "role": "marginal",
+     "group": "outer",
+     "rate_arcsec_per_min": 0.5418,
+     "min_global_margin_mag": -0.14,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0852"
+    },
+    {
+     "designation": "412124",
+     "role": "marginal",
+     "group": "intermediate",
+     "rate_arcsec_per_min": 0.6514,
+     "min_global_margin_mag": -0.04,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "417011",
+     "role": "marginal",
+     "group": "outer",
+     "rate_arcsec_per_min": 0.6015,
+     "min_global_margin_mag": -0.54,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "450990",
+     "role": "marginal",
+     "group": "intermediate",
+     "rate_arcsec_per_min": 0.6911,
+     "min_global_margin_mag": -0.64,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-1319"
+    },
+    {
+     "designation": "470924",
+     "role": "marginal",
+     "group": "control",
+     "rate_arcsec_per_min": 0.5427,
+     "min_global_margin_mag": -0.04,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-1470"
+    },
+    {
+     "designation": "520875",
+     "role": "marginal",
+     "group": "control",
+     "rate_arcsec_per_min": 0.603,
+     "min_global_margin_mag": -0.54,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-1448"
+    },
+    {
+     "designation": "527008",
+     "role": "marginal",
+     "group": "intermediate",
+     "rate_arcsec_per_min": 0.6759,
+     "min_global_margin_mag": -0.14,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "571525",
+     "role": "marginal",
+     "group": "control",
+     "rate_arcsec_per_min": 0.6738,
+     "min_global_margin_mag": -0.54,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "630552",
+     "role": "marginal",
+     "group": "control",
+     "rate_arcsec_per_min": 0.596,
+     "min_global_margin_mag": -0.44,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-1456"
+    },
+    {
+     "designation": "632936",
+     "role": "marginal",
+     "group": "control",
+     "rate_arcsec_per_min": 0.5322,
+     "min_global_margin_mag": -0.54,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0859"
+    },
+    {
+     "designation": "722076",
+     "role": "primary",
+     "group": "control",
+     "rate_arcsec_per_min": 0.75,
+     "min_global_margin_mag": 0.96,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0851"
+    },
+    {
+     "designation": "746762",
+     "role": "marginal",
+     "group": "control",
+     "rate_arcsec_per_min": 0.6328,
+     "min_global_margin_mag": -0.74,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "792421",
+     "role": "marginal",
+     "group": "control",
+     "rate_arcsec_per_min": 0.5378,
+     "min_global_margin_mag": -0.74,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0877"
+    },
+    {
+     "designation": "87869",
+     "role": "primary",
+     "group": "control",
+     "rate_arcsec_per_min": 0.6002,
+     "min_global_margin_mag": 1.36,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0850"
+    },
+    {
+     "designation": "98191",
+     "role": "primary",
+     "group": "control",
+     "rate_arcsec_per_min": 0.6889,
+     "min_global_margin_mag": 1.36,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0855"
+    },
+    {
+     "designation": "99P",
+     "role": "primary",
+     "group": "control",
+     "rate_arcsec_per_min": 0.3213,
+     "min_global_margin_mag": 3.16,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0845"
+    }
+   ]
+  },
+  {
+   "field_id": "C30-2020-01-28-1613-c9-q2",
+   "population": "C",
+   "group": "G-C29-2020-01-28-617-c2-q2",
+   "night": "2020-01-28",
+   "filters": [
+    "zr",
+    "zr",
+    "zr"
+   ],
+   "sources_per_frame": [
+    14913,
+    14734,
+    14594
+   ],
+   "tracklets": 20989,
+   "built_tracklets": 3587,
+   "labels": {
+    "positive": 37,
+    "auxiliary": 5,
+    "background": 3545
+   },
+   "eligible_targets": 53,
+   "targets": [
+    {
+     "designation": "122836",
+     "role": "primary",
+     "group": "outer",
+     "rate_arcsec_per_min": 0.6608,
+     "min_global_margin_mag": 1.195,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0019"
+    },
+    {
+     "designation": "123725",
+     "role": "primary",
+     "group": "control",
+     "rate_arcsec_per_min": 0.6086,
+     "min_global_margin_mag": 2.995,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0036"
+    },
+    {
+     "designation": "125093",
+     "role": "primary",
+     "group": "zone",
+     "rate_arcsec_per_min": 0.7198,
+     "min_global_margin_mag": 3.595,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-18233"
+    },
+    {
+     "designation": "126866",
+     "role": "primary",
+     "group": "control",
+     "rate_arcsec_per_min": 0.5859,
+     "min_global_margin_mag": 2.495,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0049"
+    },
+    {
+     "designation": "155616",
+     "role": "primary",
+     "group": "control",
+     "rate_arcsec_per_min": 0.6928,
+     "min_global_margin_mag": 2.795,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0066"
+    },
+    {
+     "designation": "157871",
+     "role": "primary",
+     "group": "control",
+     "rate_arcsec_per_min": 0.8073,
+     "min_global_margin_mag": 3.295,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "170127",
+     "role": "primary",
+     "group": "outer",
+     "rate_arcsec_per_min": 0.7696,
+     "min_global_margin_mag": 4.095,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0025"
+    },
+    {
+     "designation": "194559",
+     "role": "primary",
+     "group": "control",
+     "rate_arcsec_per_min": 0.7231,
+     "min_global_margin_mag": 2.495,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-15616"
+    },
+    {
+     "designation": "2014 OG423",
+     "role": "primary",
+     "group": "control",
+     "rate_arcsec_per_min": 0.6891,
+     "min_global_margin_mag": 0.795,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "2014 OT108",
+     "role": "marginal",
+     "group": "control",
+     "rate_arcsec_per_min": 0.6561,
+     "min_global_margin_mag": -0.205,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "2015 RJ328",
+     "role": "marginal",
+     "group": "intermediate",
+     "rate_arcsec_per_min": 0.7214,
+     "min_global_margin_mag": -0.005,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "2016 JU15",
+     "role": "marginal",
+     "group": "intermediate",
+     "rate_arcsec_per_min": 0.5696,
+     "min_global_margin_mag": 0.195,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-16458"
+    },
+    {
+     "designation": "2018 MR9",
+     "role": "primary",
+     "group": "outer",
+     "rate_arcsec_per_min": 0.6233,
+     "min_global_margin_mag": 0.895,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "2021 KO21",
+     "role": "primary",
+     "group": "outer",
+     "rate_arcsec_per_min": 0.6004,
+     "min_global_margin_mag": 0.795,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "202161",
+     "role": "primary",
+     "group": "control",
+     "rate_arcsec_per_min": 0.6625,
+     "min_global_margin_mag": 3.095,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0133"
+    },
+    {
+     "designation": "2022 QK81",
+     "role": "marginal",
+     "group": "intermediate",
+     "rate_arcsec_per_min": 0.5971,
+     "min_global_margin_mag": 0.095,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "2022 QT26",
+     "role": "marginal",
+     "group": "intermediate",
+     "rate_arcsec_per_min": 0.6928,
+     "min_global_margin_mag": 0.195,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "2025 FZ18",
+     "role": "marginal",
+     "group": "control",
+     "rate_arcsec_per_min": 0.6359,
+     "min_global_margin_mag": 0.295,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "2025 HJ43",
+     "role": "marginal",
+     "group": "control",
+     "rate_arcsec_per_min": 0.628,
+     "min_global_margin_mag": 0.095,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0078"
+    },
+    {
+     "designation": "203619",
+     "role": "primary",
+     "group": "intermediate",
+     "rate_arcsec_per_min": 0.6941,
+     "min_global_margin_mag": 2.795,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0041"
+    },
+    {
+     "designation": "229140",
+     "role": "primary",
+     "group": "intermediate",
+     "rate_arcsec_per_min": 0.5664,
+     "min_global_margin_mag": 0.995,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0026"
+    },
+    {
+     "designation": "245049",
+     "role": "primary",
+     "group": "control",
+     "rate_arcsec_per_min": 0.5314,
+     "min_global_margin_mag": 1.495,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0074"
+    },
+    {
+     "designation": "287983",
+     "role": "primary",
+     "group": "control",
+     "rate_arcsec_per_min": 0.6445,
+     "min_global_margin_mag": 1.095,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-15579"
+    },
+    {
+     "designation": "288997",
+     "role": "primary",
+     "group": "intermediate",
+     "rate_arcsec_per_min": 0.7171,
+     "min_global_margin_mag": 1.995,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0077"
+    },
+    {
+     "designation": "29578",
+     "role": "primary",
+     "group": "control",
+     "rate_arcsec_per_min": 0.5359,
+     "min_global_margin_mag": 3.995,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0064"
+    },
+    {
+     "designation": "334948",
+     "role": "primary",
+     "group": "control",
+     "rate_arcsec_per_min": 0.5913,
+     "min_global_margin_mag": 2.595,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0033"
+    },
+    {
+     "designation": "350602",
+     "role": "primary",
+     "group": "control",
+     "rate_arcsec_per_min": 0.7173,
+     "min_global_margin_mag": 2.195,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0150"
+    },
+    {
+     "designation": "412124",
+     "role": "primary",
+     "group": "intermediate",
+     "rate_arcsec_per_min": 0.6524,
+     "min_global_margin_mag": 1.495,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0065"
+    },
+    {
+     "designation": "414437",
+     "role": "primary",
+     "group": "control",
+     "rate_arcsec_per_min": 0.664,
+     "min_global_margin_mag": 0.795,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0008"
+    },
+    {
+     "designation": "48372",
+     "role": "primary",
+     "group": "intermediate",
+     "rate_arcsec_per_min": 0.5683,
+     "min_global_margin_mag": 3.695,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-15578"
+    },
+    {
+     "designation": "520875",
+     "role": "primary",
+     "group": "control",
+     "rate_arcsec_per_min": 0.6043,
+     "min_global_margin_mag": 0.995,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0029"
+    },
+    {
+     "designation": "529619",
+     "role": "primary",
+     "group": "control",
+     "rate_arcsec_per_min": 0.5749,
+     "min_global_margin_mag": 1.295,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0055"
+    },
+    {
+     "designation": "531941",
+     "role": "primary",
+     "group": "control",
+     "rate_arcsec_per_min": 0.7849,
+     "min_global_margin_mag": 1.295,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0132"
+    },
+    {
+     "designation": "533784",
+     "role": "marginal",
+     "group": "control",
+     "rate_arcsec_per_min": 0.668,
+     "min_global_margin_mag": -0.105,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0128"
+    },
+    {
+     "designation": "553006",
+     "role": "primary",
+     "group": "intermediate",
+     "rate_arcsec_per_min": 0.6273,
+     "min_global_margin_mag": 0.895,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "559935",
+     "role": "marginal",
+     "group": "control",
+     "rate_arcsec_per_min": 0.5511,
+     "min_global_margin_mag": 0.695,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "560401",
+     "role": "primary",
+     "group": "zone",
+     "rate_arcsec_per_min": 0.5468,
+     "min_global_margin_mag": 1.495,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "563225",
+     "role": "primary",
+     "group": "control",
+     "rate_arcsec_per_min": 0.7074,
+     "min_global_margin_mag": 1.795,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "571525",
+     "role": "primary",
+     "group": "control",
+     "rate_arcsec_per_min": 0.6753,
+     "min_global_margin_mag": 0.995,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0138"
+    },
+    {
+     "designation": "576396",
+     "role": "marginal",
+     "group": "control",
+     "rate_arcsec_per_min": 0.5447,
+     "min_global_margin_mag": 0.595,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "630552",
+     "role": "primary",
+     "group": "control",
+     "rate_arcsec_per_min": 0.597,
+     "min_global_margin_mag": 1.095,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "632936",
+     "role": "primary",
+     "group": "control",
+     "rate_arcsec_per_min": 0.5328,
+     "min_global_margin_mag": 0.995,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0148"
+    },
+    {
+     "designation": "722076",
+     "role": "primary",
+     "group": "control",
+     "rate_arcsec_per_min": 0.7503,
+     "min_global_margin_mag": 2.495,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-12439"
+    },
+    {
+     "designation": "746762",
+     "role": "primary",
+     "group": "control",
+     "rate_arcsec_per_min": 0.6341,
+     "min_global_margin_mag": 0.795,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0141"
+    },
+    {
+     "designation": "784480",
+     "role": "marginal",
+     "group": "outer",
+     "rate_arcsec_per_min": 0.568,
+     "min_global_margin_mag": 0.495,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "790303",
+     "role": "marginal",
+     "group": "intermediate",
+     "rate_arcsec_per_min": 0.5763,
+     "min_global_margin_mag": 0.595,
+     "trace_recovered": false,
+     "trace_tracklet_id": null
+    },
+    {
+     "designation": "790328",
+     "role": "marginal",
+     "group": "control",
+     "rate_arcsec_per_min": 0.6355,
+     "min_global_margin_mag": 0.595,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0089"
+    },
+    {
+     "designation": "791661",
+     "role": "marginal",
+     "group": "control",
+     "rate_arcsec_per_min": 0.5023,
+     "min_global_margin_mag": 0.695,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0034"
+    },
+    {
+     "designation": "805337",
+     "role": "primary",
+     "group": "control",
+     "rate_arcsec_per_min": 0.6108,
+     "min_global_margin_mag": 0.795,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0052"
+    },
+    {
+     "designation": "87869",
+     "role": "primary",
+     "group": "control",
+     "rate_arcsec_per_min": 0.6012,
+     "min_global_margin_mag": 2.895,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0139"
+    },
+    {
+     "designation": "93983",
+     "role": "primary",
+     "group": "intermediate",
+     "rate_arcsec_per_min": 0.606,
+     "min_global_margin_mag": 3.195,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0016"
+    },
+    {
+     "designation": "98191",
+     "role": "primary",
+     "group": "control",
+     "rate_arcsec_per_min": 0.6903,
+     "min_global_margin_mag": 2.895,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0147"
+    },
+    {
+     "designation": "99P",
+     "role": "primary",
+     "group": "control",
+     "rate_arcsec_per_min": 0.3218,
+     "min_global_margin_mag": 4.695,
+     "trace_recovered": true,
+     "trace_tracklet_id": "trk-0038"
+    }
+   ]
+  }
+ ]
+}

@@ -246,3 +246,29 @@ def test_evaluate_runs_end_to_end_on_a_synthetic_validation_table(tmp_path, mani
     assert len(v.strips) <= sv.STRIP_MISSED + sv.STRIP_BACKGROUND
     text = sv.render_markdown(v, [])
     assert "Confirmatory verdict" in text and v.verdict in text
+
+
+# --- committed AS-040 outcome is reproducible ------------------------------------------
+
+OUT = ROOT / "validation/results/as040"
+
+
+@pytest.mark.skipif(not (OUT / sv.RESULTS_FILE).exists(), reason="AS-040 not run")
+def test_rerun_reproduces_the_committed_verdict_and_point_estimates() -> None:
+    committed = json.loads((OUT / sv.RESULTS_FILE).read_text())
+    # Point estimates, guards and the verdict do not depend on the resample count,
+    # except the decision interval, which is checked against the committed one.
+    v = sv.evaluate(ROOT, OUT, resamples=20)
+    assert v.table_sha256 == committed["table_sha256"]
+    assert v.decision.recall == committed["decision"]["recall"]
+    assert [g.model_dump(mode="json") for g in v.decision.guards] == committed["decision"]["guards"]
+    for r, c in zip(v.rankers, committed["rankers"]):
+        assert r.ranker == c["ranker"]
+        assert {k: i.point for k, i in r.recall.items()} == {k: i["point"] for k, i in c["recall"].items()}
+        assert r.auc.point == c["auc"]["point"]
+    assert v.missed == committed["missed"]
+    assert v.strips == committed["strips"]
+    lo, hi = committed["decision"]["ci_95"]
+    assert committed["verdict"] == rd.USEFUL_PROTECTED
+    assert committed["decision"]["recall"] >= rd.USEFUL_RECALL and lo >= rd.USEFUL_LOWER
+    assert all(g["evaluable"] and g["passed"] for g in committed["decision"]["guards"])

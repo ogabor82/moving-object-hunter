@@ -1,0 +1,4579 @@
+{
+ "generated_at": "2026-10-02T21:47:34.733199Z",
+ "stage": "validation",
+ "code_commit": "d012f52c3872c73c8c99d7d6bee46fc6a254272c",
+ "frozen_check": {
+  "checked_at": "2026-10-02T21:47:31.987774Z",
+  "file_sha256": {
+   "validation/results/as037/as037_manifest.json": "63e12b9feb8bc3761a0b43ecebd1a68b6bbe00ef83de3e627cf7baaa4b9f423c",
+   "validation/results/as038/as038_feature_table.csv.gz": "da670e38357503fe6d6d5239097523d08e939d8c8c28c133a0d873d7d6dd5fd9",
+   "validation/results/as038/as038_frozen_features.json": "a8182bc63649f6f035ca3b19a4db9dcc1c9701abc07df149b68d52c82de0cf42",
+   "validation/results/as039/as039_frozen_ranker.json": "875a0647a61f9bac25f5932e2f5f3b5d6b0d082de0ffc3944c4a1824f4eda897"
+  },
+  "validation_digest": "a549b6bc22a54f14d136b41de3047cce627ce792d8f5308b69e22f96e603aa3d",
+  "validation_fields": 24,
+  "validation_groups": 22,
+  "ranker": {
+   "ranker": "M1",
+   "kind": "unweighted mean of oriented within-quadrant-night percentiles",
+   "inputs": [
+    {
+     "feature": "min_snr",
+     "direction": 1
+    },
+    {
+     "feature": "median_snr",
+     "direction": 1
+    },
+    {
+     "feature": "fit_rms_residual_arcsec",
+     "direction": -1
+    },
+    {
+     "feature": "magnitude_range_mag",
+     "direction": -1
+    },
+    {
+     "feature": "flagged_detection_count",
+     "direction": -1
+    },
+    {
+     "feature": "masked_detection_count",
+     "direction": -1
+    },
+    {
+     "feature": "sharp_abs_max",
+     "direction": -1
+    },
+    {
+     "feature": "shared_detection_tracklets",
+     "direction": -1
+    }
+   ],
+   "weights": {
+    "min_snr": 0.125,
+    "median_snr": 0.125,
+    "fit_rms_residual_arcsec": 0.125,
+    "magnitude_range_mag": 0.125,
+    "flagged_detection_count": 0.125,
+    "masked_detection_count": 0.125,
+    "sharp_abs_max": 0.125,
+    "shared_detection_tracklets": 0.125
+   },
+   "intercept": 0.0,
+   "fitted": false
+  },
+  "comparator": {
+   "ranker": "B1:sharp_abs_max",
+   "kind": "single frozen feature, oriented within-quadrant-night percentile",
+   "inputs": [
+    {
+     "feature": "sharp_abs_max",
+     "direction": -1
+    }
+   ],
+   "weights": {
+    "sharp_abs_max": 1.0
+   },
+   "intercept": 0.0,
+   "fitted": false
+  },
+  "selection": {
+   "outcome": "ADVANCE",
+   "selected": "M1",
+   "comparator": "B1:sharp_abs_max",
+   "eligible": [
+    "M1",
+    "M2:C=0.01",
+    "M2:C=0.1",
+    "M2:C=1",
+    "M2:C=10"
+   ],
+   "excluded": {},
+   "best_eligible": "M1",
+   "tie_rule_applied": false,
+   "reasons": [
+    "selected M1: highest CV recall@5 % among guard-passing M1/M2"
+   ]
+  },
+  "checks": [
+   "validation/results/as037/as037_manifest.json SHA-256 = 63e12b9feb8bc376…",
+   "validation/results/as038/as038_feature_table.csv.gz SHA-256 = da670e38357503fe…",
+   "validation/results/as038/as038_frozen_features.json SHA-256 = a8182bc63649f6f0…",
+   "validation/results/as039/as039_frozen_ranker.json SHA-256 = 875a0647a61f9bac…",
+   "frozen ranker bound to this manifest",
+   "frozen ranker bound to this AS-038 table",
+   "frozen ranker bound to this AS-038 feature list",
+   "frozen ranker from a clean commit",
+   "AS-038 frozen list = the 8 AS-039 features",
+   "manifest input validation/results/as033/as033_fields.json unchanged",
+   "manifest input validation/results/as034/as034_population.json unchanged",
+   "manifest input validation/results/as035/as035_selection.json unchanged",
+   "manifest input validation/results/as035/as035_traces_N.json unchanged",
+   "manifest input validation/results/as035/as035_traces_R.json unchanged",
+   "manifest input validation/results/as036/as036_selection.json unchanged",
+   "manifest input validation/results/as036/as036_traces_C.json unchanged",
+   "manifest rebuilds identically from its inputs",
+   "validation digest = a549b6bc22a5…",
+   "24 validation quadrant-nights",
+   "22 validation groups",
+   "no group spans both splits",
+   "ranker = M1, 8 features, weight 1/8, intercept 0, no fit",
+   "comparator = B1 sharp_abs_max (-), weight 1, intercept 0",
+   "AS-039 selection ADVANCE, M1, comparator B1:sharp_abs_max",
+   "missing percentile 0.0"
+  ]
+ },
+ "table_sha256": "efa5713392519099da45390aff6511d9d9c8de0f5de4af0c77992d63e0677151",
+ "validation_fields": 24,
+ "validation_groups": 22,
+ "ranked_tracklets": 10817,
+ "labels": {
+  "background": 10511,
+  "positive": 284,
+  "auxiliary": 22
+ },
+ "positive_objects": 269.0,
+ "positive_fields": 24,
+ "verdict": "USEFUL, PROTECTED",
+ "decision": {
+  "verdict": "USEFUL, PROTECTED",
+  "recall": 0.9386617100371747,
+  "ci_95": [
+   0.902135231316726,
+   0.975177304964539
+  ],
+  "positive_objects": 269.0,
+  "positive_fields": 24,
+  "guards": [
+   {
+    "name": "near-star zone vs control",
+    "protected_n": 14.0,
+    "reference_n": 149.0,
+    "protected_recall": 0.7857142857142857,
+    "reference_recall": 0.9362416107382551,
+    "difference": -0.15052732502396937,
+    "newcombe_95": [
+     -0.4170161502530609,
+     -0.006430335354630723
+    ],
+    "evaluable": true,
+    "passed": true
+   },
+   {
+    "name": "faint (MARGINAL) vs PRIMARY",
+    "protected_n": 96.0,
+    "reference_n": 173.0,
+    "protected_recall": 0.8697916666666666,
+    "reference_recall": 0.976878612716763,
+    "difference": -0.10708694605009639,
+    "newcombe_95": [
+     -0.18398204739543497,
+     -0.03927831288491476
+    ],
+    "evaluable": true,
+    "passed": true
+   }
+  ],
+  "reasons": []
+ },
+ "rankers": [
+  {
+   "ranker": "M1",
+   "role": "frozen ranker",
+   "objects": 269.0,
+   "fields_with_positive": 24,
+   "recall": {
+    "0.05": {
+     "point": 0.9386617100371747,
+     "lower": 0.9038461538461539,
+     "upper": 0.9744680851063829
+    },
+    "0.01": {
+     "point": 0.8810408921933085,
+     "lower": 0.845771144278607,
+     "upper": 0.9233870967741935
+    },
+    "0.02": {
+     "point": 0.912639405204461,
+     "lower": 0.8810810810810811,
+     "upper": 0.9468085106382979
+    },
+    "0.1": {
+     "point": 0.966542750929368,
+     "lower": 0.9386503067484663,
+     "upper": 0.9924812030075187
+    },
+    "0.2": {
+     "point": 0.9888475836431226,
+     "lower": 0.9744897959183674,
+     "upper": 1.0
+    }
+   },
+   "recall_at_budget": {
+    "10": {
+     "point": 0.9516728624535316,
+     "lower": 0.9194630872483222,
+     "upper": 0.9841897233201581
+    },
+    "25": {
+     "point": 0.9814126394052045,
+     "lower": 0.9598393574297188,
+     "upper": 1.0
+    },
+    "50": {
+     "point": 0.9814126394052045,
+     "lower": 0.9590643274853801,
+     "upper": 1.0
+    }
+   },
+   "enrichment": {
+    "0.05": 18.77323420074349,
+    "0.01": 88.10408921933085,
+    "0.02": 45.63197026022305,
+    "0.1": 9.66542750929368,
+    "0.2": 4.944237918215613
+   },
+   "auc": {
+    "point": 0.9897524009165861,
+    "lower": 0.9821847919833246,
+    "upper": 0.9953527477343201
+   },
+   "median_q": {
+    "point": 0.0,
+    "lower": 0.0,
+    "upper": 0.0
+   },
+   "decision_level": {
+    "verdict": "USEFUL, PROTECTED",
+    "recall": 0.9386617100371747,
+    "ci_95": [
+     0.902135231316726,
+     0.975177304964539
+    ],
+    "positive_objects": 269.0,
+    "positive_fields": 24,
+    "guards": [
+     {
+      "name": "near-star zone vs control",
+      "protected_n": 14.0,
+      "reference_n": 149.0,
+      "protected_recall": 0.7857142857142857,
+      "reference_recall": 0.9362416107382551,
+      "difference": -0.15052732502396937,
+      "newcombe_95": [
+       -0.4170161502530609,
+       -0.006430335354630723
+      ],
+      "evaluable": true,
+      "passed": true
+     },
+     {
+      "name": "faint (MARGINAL) vs PRIMARY",
+      "protected_n": 96.0,
+      "reference_n": 173.0,
+      "protected_recall": 0.8697916666666666,
+      "reference_recall": 0.976878612716763,
+      "difference": -0.10708694605009639,
+      "newcombe_95": [
+       -0.18398204739543497,
+       -0.03927831288491476
+      ],
+      "evaluable": true,
+      "passed": true
+     }
+    ],
+    "reasons": []
+   },
+   "descriptive_guards": [
+    {
+     "name": "near-star (zone+outer) vs control [AS-039 development definition]",
+     "protected_n": 44.0,
+     "reference_n": 149.0,
+     "protected_recall": 0.9318181818181818,
+     "reference_recall": 0.9362416107382551,
+     "difference": -0.004423428920073302,
+     "newcombe_95": [
+      -0.12530649576771774,
+      0.05960213348937682
+     ],
+     "evaluable": true,
+     "passed": true
+    },
+    {
+     "name": "near-star (zone+outer) vs intermediate+control",
+     "protected_n": 44.0,
+     "reference_n": 225.0,
+     "protected_recall": 0.9318181818181818,
+     "reference_recall": 0.94,
+     "difference": -0.008181818181818179,
+     "newcombe_95": [
+      -0.12690968305303052,
+      0.048640956524880985
+     ],
+     "evaluable": true,
+     "passed": true
+    },
+    {
+     "name": "zone PRIMARY vs control PRIMARY",
+     "protected_n": 14.0,
+     "reference_n": 92.0,
+     "protected_recall": 0.7857142857142857,
+     "reference_recall": 1.0,
+     "difference": -0.2142857142857143,
+     "newcombe_95": [
+      -0.4758923079830535,
+      -0.07003359192579439
+     ],
+     "evaluable": true,
+     "passed": false
+    },
+    {
+     "name": "control MARGINAL vs control PRIMARY",
+     "protected_n": 57.0,
+     "reference_n": 92.0,
+     "protected_recall": 0.8333333333333334,
+     "reference_recall": 1.0,
+     "difference": -0.16666666666666663,
+     "newcombe_95": [
+      -0.273631770457906,
+      -0.0750207245506087
+     ],
+     "evaluable": true,
+     "passed": true
+    }
+   ],
+   "strata": [
+    {
+     "key": "role",
+     "value": "marginal",
+     "objects": 96.0,
+     "recall_5": 0.8697916666666666,
+     "auc": 0.9773044173455586
+    },
+    {
+     "key": "role",
+     "value": "primary",
+     "objects": 173.0,
+     "recall_5": 0.976878612716763,
+     "auc": 0.9966599524935723
+    },
+    {
+     "key": "near_star",
+     "value": "intermediate+control",
+     "objects": 225.0,
+     "recall_5": 0.94,
+     "auc": 0.9897538668645187
+    },
+    {
+     "key": "near_star",
+     "value": "zone+outer",
+     "objects": 44.0,
+     "recall_5": 0.9318181818181818,
+     "auc": 0.9897449045919288
+    },
+    {
+     "key": "proximity_group",
+     "value": "control",
+     "objects": 149.0,
+     "recall_5": 0.9362416107382551,
+     "auc": 0.9894934000663187
+    },
+    {
+     "key": "proximity_group",
+     "value": "intermediate",
+     "objects": 76.0,
+     "recall_5": 0.9473684210526315,
+     "auc": 0.9902645188767791
+    },
+    {
+     "key": "proximity_group",
+     "value": "outer",
+     "objects": 30.0,
+     "recall_5": 1.0,
+     "auc": 0.9971522717282763
+    },
+    {
+     "key": "proximity_group",
+     "value": "zone",
+     "objects": 14.0,
+     "recall_5": 0.7857142857142857,
+     "auc": 0.9738719750140415
+    },
+    {
+     "key": "depth_margin",
+     "value": "0.5-1.5",
+     "objects": 106.0,
+     "recall_5": 0.9716981132075472,
+     "auc": 0.9947361521303998
+    },
+    {
+     "key": "depth_margin",
+     "value": "<0.5",
+     "objects": 89.5,
+     "recall_5": 0.8491620111731844,
+     "auc": 0.9755826820102805
+    },
+    {
+     "key": "depth_margin",
+     "value": ">=1.5",
+     "objects": 73.5,
+     "recall_5": 1.0,
+     "auc": 0.9998192337526411
+    },
+    {
+     "key": "crowding",
+     "value": "20-80k",
+     "objects": 29.0,
+     "recall_5": 0.9655172413793104,
+     "auc": 0.9969135287078011
+    },
+    {
+     "key": "crowding",
+     "value": "<20k",
+     "objects": 226.0,
+     "recall_5": 0.9446902654867256,
+     "auc": 0.9903486429534986
+    },
+    {
+     "key": "crowding",
+     "value": ">=80k",
+     "objects": 14.0,
+     "recall_5": 0.7857142857142857,
+     "auc": 0.9652935861817643
+    },
+    {
+     "key": "filters",
+     "value": "mixed",
+     "objects": 172.0,
+     "recall_5": 0.9331395348837209,
+     "auc": 0.9888719734646992
+    },
+    {
+     "key": "filters",
+     "value": "single",
+     "objects": 97.0,
+     "recall_5": 0.9484536082474226,
+     "auc": 0.991313571243643
+    },
+    {
+     "key": "speed",
+     "value": "0.25-0.5",
+     "objects": 85.0,
+     "recall_5": 0.9647058823529412,
+     "auc": 0.9949849465988826
+    },
+    {
+     "key": "speed",
+     "value": "0.5-1.0",
+     "objects": 155.0,
+     "recall_5": 0.9258064516129032,
+     "auc": 0.9863956998507043
+    },
+    {
+     "key": "speed",
+     "value": "<0.25",
+     "objects": 29.0,
+     "recall_5": 0.9310344827586207,
+     "auc": 0.9923566175447385
+    },
+    {
+     "key": "mask_state",
+     "value": "all",
+     "objects": 14.0,
+     "recall_5": 0.8571428571428571,
+     "auc": 0.9843016865951191
+    },
+    {
+     "key": "mask_state",
+     "value": "partial",
+     "objects": 6.0,
+     "recall_5": 0.6666666666666666,
+     "auc": 0.9468777263910417
+    },
+    {
+     "key": "mask_state",
+     "value": "unmasked",
+     "objects": 249.0,
+     "recall_5": 0.9497991967871486,
+     "auc": 0.9910919914694124
+    },
+    {
+     "key": "population",
+     "value": "C",
+     "objects": 269.0,
+     "recall_5": 0.9386617100371747,
+     "auc": 0.9897524009165861
+    },
+    {
+     "key": "star_class",
+     "value": "6-8",
+     "objects": 55.0,
+     "recall_5": 0.9454545454545454,
+     "auc": 0.989474664313409
+    },
+    {
+     "key": "star_class",
+     "value": "8-10",
+     "objects": 193.0,
+     "recall_5": 0.9404145077720207,
+     "auc": 0.9897724140811697
+    },
+    {
+     "key": "star_class",
+     "value": "V<6",
+     "objects": 21.0,
+     "recall_5": 0.9047619047619048,
+     "auc": 0.9902958757932543
+    }
+   ],
+   "sensitivity": {
+    "without background sharing a detection with a positive (recall@5%)": 0.9386617100371747,
+    "without background sharing a detection with a positive (AUC)": 0.9897420818532732,
+    "without 105890 (recall@5%)": 0.9384328358208955,
+    "without 105890 (AUC)": 0.9897141636065732
+   },
+   "paired_difference": {
+    "- B1:sharp_abs_max": {
+     "point": 0.24349442379182157,
+     "lower": 0.15981012658227847,
+     "upper": 0.3389121338912134
+    },
+    "- B0": {
+     "point": 0.9070631970260223,
+     "lower": 0.865979381443299,
+     "upper": 0.9444444444444444
+    }
+   }
+  },
+  {
+   "ranker": "B1:sharp_abs_max",
+   "role": "frozen comparator",
+   "objects": 269.0,
+   "fields_with_positive": 24,
+   "recall": {
+    "0.05": {
+     "point": 0.6951672862453532,
+     "lower": 0.605,
+     "upper": 0.7655367231638418
+    },
+    "0.01": {
+     "point": 0.35315985130111527,
+     "lower": 0.189873417721519,
+     "upper": 0.5131195335276968
+    },
+    "0.02": {
+     "point": 0.5148698884758365,
+     "lower": 0.3651315789473684,
+     "upper": 0.6389891696750902
+    },
+    "0.1": {
+     "point": 0.8605947955390335,
+     "lower": 0.8171296296296297,
+     "upper": 0.9035714285714286
+    },
+    "0.2": {
+     "point": 0.929368029739777,
+     "lower": 0.8901098901098901,
+     "upper": 0.9585062240663901
+    }
+   },
+   "recall_at_budget": {
+    "10": {
+     "point": 0.6877323420074349,
+     "lower": 0.5826086956521739,
+     "upper": 0.8287937743190662
+    },
+    "25": {
+     "point": 0.8810408921933085,
+     "lower": 0.8275862068965517,
+     "upper": 0.9364548494983278
+    },
+    "50": {
+     "point": 0.9628252788104089,
+     "lower": 0.925,
+     "upper": 0.9870550161812298
+    }
+   },
+   "enrichment": {
+    "0.05": 13.903345724907062,
+    "0.01": 35.31598513011153,
+    "0.02": 25.743494423791823,
+    "0.1": 8.605947955390334,
+    "0.2": 4.646840148698884
+   },
+   "auc": {
+    "point": 0.9390765176880065,
+    "lower": 0.9205227033154986,
+    "upper": 0.9512339661549897
+   },
+   "median_q": {
+    "point": 0.018867924528301886,
+    "lower": 0.008645533141210375,
+    "upper": 0.028985507246376812
+   },
+   "decision_level": {
+    "verdict": "USEFUL, NOT PROTECTED",
+    "recall": 0.6951672862453532,
+    "ci_95": [
+     0.6144200626959248,
+     0.7640845070422535
+    ],
+    "positive_objects": 269.0,
+    "positive_fields": 24,
+    "guards": [
+     {
+      "name": "near-star zone vs control",
+      "protected_n": 14.0,
+      "reference_n": 149.0,
+      "protected_recall": 0.7142857142857143,
+      "reference_recall": 0.7080536912751678,
+      "difference": 0.0062320230105464836,
+      "newcombe_95": [
+       -0.2662992831479424,
+       0.188279741062644
+      ],
+      "evaluable": true,
+      "passed": true
+     },
+     {
+      "name": "faint (MARGINAL) vs PRIMARY",
+      "protected_n": 96.0,
+      "reference_n": 173.0,
+      "protected_recall": 0.40625,
+      "reference_recall": 0.8554913294797688,
+      "difference": -0.4492413294797688,
+      "newcombe_95": [
+       -0.5522308010239997,
+       -0.33255300806067617
+      ],
+      "evaluable": true,
+      "passed": false
+     }
+    ],
+    "reasons": []
+   },
+   "descriptive_guards": [
+    {
+     "name": "near-star (zone+outer) vs control [AS-039 development definition]",
+     "protected_n": 44.0,
+     "reference_n": 149.0,
+     "protected_recall": 0.6818181818181818,
+     "reference_recall": 0.7080536912751678,
+     "difference": -0.02623550945698605,
+     "newcombe_95": [
+      -0.19137520755233645,
+      0.1116553409699674
+     ],
+     "evaluable": true,
+     "passed": true
+    },
+    {
+     "name": "near-star (zone+outer) vs intermediate+control",
+     "protected_n": 44.0,
+     "reference_n": 225.0,
+     "protected_recall": 0.6818181818181818,
+     "reference_recall": 0.6977777777777778,
+     "difference": -0.015959595959596062,
+     "newcombe_95": [
+      -0.1737231754458615,
+      0.11792961222466711
+     ],
+     "evaluable": true,
+     "passed": true
+    },
+    {
+     "name": "zone PRIMARY vs control PRIMARY",
+     "protected_n": 14.0,
+     "reference_n": 92.0,
+     "protected_recall": 0.7142857142857143,
+     "reference_recall": 0.8641304347826086,
+     "difference": -0.14984472049689435,
+     "newcombe_95": [
+      -0.4216330654162069,
+      0.03292905668322013
+     ],
+     "evaluable": true,
+     "passed": true
+    },
+    {
+     "name": "control MARGINAL vs control PRIMARY",
+     "protected_n": 57.0,
+     "reference_n": 92.0,
+     "protected_recall": 0.45614035087719296,
+     "reference_recall": 0.8641304347826086,
+     "difference": -0.4079900839054157,
+     "newcombe_95": [
+      -0.5473093913678881,
+      -0.26044787480233966
+     ],
+     "evaluable": true,
+     "passed": false
+    }
+   ],
+   "strata": [
+    {
+     "key": "role",
+     "value": "marginal",
+     "objects": 96.0,
+     "recall_5": 0.40625,
+     "auc": 0.8888143510970905
+    },
+    {
+     "key": "role",
+     "value": "primary",
+     "objects": 173.0,
+     "recall_5": 0.8554913294797688,
+     "auc": 0.9669676621546427
+    },
+    {
+     "key": "near_star",
+     "value": "intermediate+control",
+     "objects": 225.0,
+     "recall_5": 0.6977777777777778,
+     "auc": 0.9388147542293478
+    },
+    {
+     "key": "near_star",
+     "value": "zone+outer",
+     "objects": 44.0,
+     "recall_5": 0.6818181818181818,
+     "auc": 0.9404150808288751
+    },
+    {
+     "key": "proximity_group",
+     "value": "control",
+     "objects": 149.0,
+     "recall_5": 0.7080536912751678,
+     "auc": 0.940190394265846
+    },
+    {
+     "key": "proximity_group",
+     "value": "intermediate",
+     "objects": 76.0,
+     "recall_5": 0.6776315789473685,
+     "auc": 0.9361177757367417
+    },
+    {
+     "key": "proximity_group",
+     "value": "outer",
+     "objects": 30.0,
+     "recall_5": 0.6666666666666666,
+     "auc": 0.9439534734244807
+    },
+    {
+     "key": "proximity_group",
+     "value": "zone",
+     "objects": 14.0,
+     "recall_5": 0.7142857142857143,
+     "auc": 0.9328328109811483
+    },
+    {
+     "key": "depth_margin",
+     "value": "0.5-1.5",
+     "objects": 106.0,
+     "recall_5": 0.7547169811320755,
+     "auc": 0.9552946616332775
+    },
+    {
+     "key": "depth_margin",
+     "value": "<0.5",
+     "objects": 89.5,
+     "recall_5": 0.4022346368715084,
+     "auc": 0.8842266650101999
+    },
+    {
+     "key": "depth_margin",
+     "value": ">=1.5",
+     "objects": 73.5,
+     "recall_5": 0.9659863945578231,
+     "auc": 0.9824770422657636
+    },
+    {
+     "key": "crowding",
+     "value": "20-80k",
+     "objects": 29.0,
+     "recall_5": 0.5517241379310345,
+     "auc": 0.9396813855224612
+    },
+    {
+     "key": "crowding",
+     "value": "<20k",
+     "objects": 226.0,
+     "recall_5": 0.7212389380530974,
+     "auc": 0.9447634251148713
+    },
+    {
+     "key": "crowding",
+     "value": ">=80k",
+     "objects": 14.0,
+     "recall_5": 0.5714285714285714,
+     "auc": 0.8460206429972491
+    },
+    {
+     "key": "filters",
+     "value": "mixed",
+     "objects": 172.0,
+     "recall_5": 0.6569767441860465,
+     "auc": 0.9309234095344291
+    },
+    {
+     "key": "filters",
+     "value": "single",
+     "objects": 97.0,
+     "recall_5": 0.7628865979381443,
+     "auc": 0.953533575444867
+    },
+    {
+     "key": "speed",
+     "value": "0.25-0.5",
+     "objects": 85.0,
+     "recall_5": 0.7235294117647059,
+     "auc": 0.9349460686203651
+    },
+    {
+     "key": "speed",
+     "value": "0.5-1.0",
+     "objects": 155.0,
+     "recall_5": 0.7,
+     "auc": 0.9382698566496219
+    },
+    {
+     "key": "speed",
+     "value": "<0.25",
+     "objects": 29.0,
+     "recall_5": 0.5862068965517241,
+     "auc": 0.9554944705052251
+    },
+    {
+     "key": "mask_state",
+     "value": "all",
+     "objects": 14.0,
+     "recall_5": 0.7857142857142857,
+     "auc": 0.9673528540959891
+    },
+    {
+     "key": "mask_state",
+     "value": "partial",
+     "objects": 6.0,
+     "recall_5": 0.3333333333333333,
+     "auc": 0.8859268618650051
+    },
+    {
+     "key": "mask_state",
+     "value": "unmasked",
+     "objects": 249.0,
+     "recall_5": 0.6987951807228916,
+     "auc": 0.9387673981106018
+    },
+    {
+     "key": "population",
+     "value": "C",
+     "objects": 269.0,
+     "recall_5": 0.6951672862453532,
+     "auc": 0.9390765176880065
+    },
+    {
+     "key": "star_class",
+     "value": "6-8",
+     "objects": 55.0,
+     "recall_5": 0.6545454545454545,
+     "auc": 0.9380991229615281
+    },
+    {
+     "key": "star_class",
+     "value": "8-10",
+     "objects": 193.0,
+     "recall_5": 0.7046632124352331,
+     "auc": 0.9365858857341028
+    },
+    {
+     "key": "star_class",
+     "value": "V<6",
+     "objects": 21.0,
+     "recall_5": 0.7142857142857143,
+     "auc": 0.9645264546908568
+    }
+   ],
+   "sensitivity": {
+    "without background sharing a detection with a positive (recall@5%)": 0.6914498141263941,
+    "without background sharing a detection with a positive (AUC)": 0.939747645153133,
+    "without 105890 (recall@5%)": 0.6940298507462687,
+    "without 105890 (AUC)": 0.9388880594206732
+   },
+   "paired_difference": {}
+  },
+  {
+   "ranker": "B0",
+   "role": "null reference",
+   "objects": 269.0,
+   "fields_with_positive": 24,
+   "recall": {
+    "0.05": {
+     "point": 0.031598513011152414,
+     "lower": 0.013636363636363636,
+     "upper": 0.0502092050209205
+    },
+    "0.01": {
+     "point": 0.0037174721189591076,
+     "lower": 0.0,
+     "upper": 0.01090909090909091
+    },
+    "0.02": {
+     "point": 0.00929368029739777,
+     "lower": 0.0,
+     "upper": 0.019138755980861243
+    },
+    "0.1": {
+     "point": 0.0762081784386617,
+     "lower": 0.04484304932735426,
+     "upper": 0.11059907834101383
+    },
+    "0.2": {
+     "point": 0.17472118959107807,
+     "lower": 0.12109375,
+     "upper": 0.22456140350877193
+    }
+   },
+   "recall_at_budget": {
+    "10": {
+     "point": 0.04460966542750929,
+     "lower": 0.017391304347826087,
+     "upper": 0.07725321888412018
+    },
+    "25": {
+     "point": 0.19516728624535315,
+     "lower": 0.13189448441247004,
+     "upper": 0.28888888888888886
+    },
+    "50": {
+     "point": 0.3996282527881041,
+     "lower": 0.2923076923076923,
+     "upper": 0.5425531914893617
+    }
+   },
+   "enrichment": {
+    "0.05": 0.6319702602230483,
+    "0.01": 0.37174721189591076,
+    "0.02": 0.4646840148698885,
+    "0.1": 0.762081784386617,
+    "0.2": 0.8736059479553904
+   },
+   "auc": {
+    "point": 0.46697606836480354,
+    "lower": 0.434412312026336,
+    "upper": 0.49324712166820905
+   },
+   "median_q": {
+    "point": 0.5417910447761194,
+    "lower": 0.4927536231884058,
+    "upper": 0.603448275862069
+   },
+   "decision_level": {
+    "verdict": "NOT USEFUL",
+    "recall": 0.031598513011152414,
+    "ci_95": [
+     0.012552301255230125,
+     0.04918032786885246
+    ],
+    "positive_objects": 269.0,
+    "positive_fields": 24,
+    "guards": [
+     {
+      "name": "near-star zone vs control",
+      "protected_n": 14.0,
+      "reference_n": 149.0,
+      "protected_recall": 0.0,
+      "reference_recall": 0.030201342281879196,
+      "difference": -0.030201342281879196,
+      "newcombe_95": [
+       -0.06698725138715024,
+       0.18908562264684323
+      ],
+      "evaluable": true,
+      "passed": true
+     },
+     {
+      "name": "faint (MARGINAL) vs PRIMARY",
+      "protected_n": 96.0,
+      "reference_n": 173.0,
+      "protected_recall": 0.020833333333333332,
+      "reference_recall": 0.03757225433526012,
+      "difference": -0.016738921001926785,
+      "newcombe_95": [
+       -0.05558433733071852,
+       0.04138404360132829
+      ],
+      "evaluable": true,
+      "passed": true
+     }
+    ],
+    "reasons": []
+   },
+   "descriptive_guards": [
+    {
+     "name": "near-star (zone+outer) vs control [AS-039 development definition]",
+     "protected_n": 44.0,
+     "reference_n": 149.0,
+     "protected_recall": 0.045454545454545456,
+     "reference_recall": 0.030201342281879196,
+     "difference": 0.01525320317266626,
+     "newcombe_95": [
+      -0.03329217133507467,
+      0.12576025155917242
+     ],
+     "evaluable": true,
+     "passed": true
+    },
+    {
+     "name": "near-star (zone+outer) vs intermediate+control",
+     "protected_n": 44.0,
+     "reference_n": 225.0,
+     "protected_recall": 0.045454545454545456,
+     "reference_recall": 0.028888888888888888,
+     "difference": 0.016565656565656568,
+     "newcombe_95": [
+      -0.02592531314641956,
+      0.12565643593743986
+     ],
+     "evaluable": true,
+     "passed": true
+    },
+    {
+     "name": "zone PRIMARY vs control PRIMARY",
+     "protected_n": 14.0,
+     "reference_n": 92.0,
+     "protected_recall": 0.0,
+     "reference_recall": 0.03804347826086957,
+     "difference": -0.03804347826086957,
+     "newcombe_95": [
+      -0.10651685722550971,
+      0.17345018607614698
+     ],
+     "evaluable": true,
+     "passed": true
+    },
+    {
+     "name": "control MARGINAL vs control PRIMARY",
+     "protected_n": 57.0,
+     "reference_n": 92.0,
+     "protected_recall": 0.017543859649122806,
+     "reference_recall": 0.03804347826086957,
+     "difference": -0.02049961861174676,
+     "newcombe_95": [
+      -0.0906057539439693,
+      0.0539335232593149
+     ],
+     "evaluable": true,
+     "passed": true
+    }
+   ],
+   "strata": [
+    {
+     "key": "role",
+     "value": "marginal",
+     "objects": 96.0,
+     "recall_5": 0.020833333333333332,
+     "auc": 0.4901229081399187
+    },
+    {
+     "key": "role",
+     "value": "primary",
+     "objects": 173.0,
+     "recall_5": 0.03757225433526012,
+     "auc": 0.45413157924104053
+    },
+    {
+     "key": "near_star",
+     "value": "intermediate+control",
+     "objects": 225.0,
+     "recall_5": 0.028888888888888888,
+     "auc": 0.46664159473480193
+    },
+    {
+     "key": "near_star",
+     "value": "zone+outer",
+     "objects": 44.0,
+     "recall_5": 0.045454545454545456,
+     "auc": 0.4686864448818568
+    },
+    {
+     "key": "proximity_group",
+     "value": "control",
+     "objects": 149.0,
+     "recall_5": 0.030201342281879196,
+     "auc": 0.4749244918243437
+    },
+    {
+     "key": "proximity_group",
+     "value": "intermediate",
+     "objects": 76.0,
+     "recall_5": 0.02631578947368421,
+     "auc": 0.45040275701977955
+    },
+    {
+     "key": "proximity_group",
+     "value": "outer",
+     "objects": 30.0,
+     "recall_5": 0.06666666666666667,
+     "auc": 0.4484642376702342
+    },
+    {
+     "key": "proximity_group",
+     "value": "zone",
+     "objects": 14.0,
+     "recall_5": 0.0,
+     "auc": 0.5120197460496196
+    },
+    {
+     "key": "depth_margin",
+     "value": "0.5-1.5",
+     "objects": 106.0,
+     "recall_5": 0.03773584905660377,
+     "auc": 0.46022251443401724
+    },
+    {
+     "key": "depth_margin",
+     "value": "<0.5",
+     "objects": 89.5,
+     "recall_5": 0.0111731843575419,
+     "auc": 0.4928899895764628
+    },
+    {
+     "key": "depth_margin",
+     "value": ">=1.5",
+     "objects": 73.5,
+     "recall_5": 0.047619047619047616,
+     "auc": 0.4451608407215365
+    },
+    {
+     "key": "crowding",
+     "value": "20-80k",
+     "objects": 29.0,
+     "recall_5": 0.0,
+     "auc": 0.3838952069033782
+    },
+    {
+     "key": "crowding",
+     "value": "<20k",
+     "objects": 226.0,
+     "recall_5": 0.033185840707964605,
+     "auc": 0.47632163361781665
+    },
+    {
+     "key": "crowding",
+     "value": ">=80k",
+     "objects": 14.0,
+     "recall_5": 0.07142857142857142,
+     "auc": 0.48820801373626016
+    },
+    {
+     "key": "filters",
+     "value": "mixed",
+     "objects": 172.0,
+     "recall_5": 0.020348837209302327,
+     "auc": 0.4697875328420045
+    },
+    {
+     "key": "filters",
+     "value": "single",
+     "objects": 97.0,
+     "recall_5": 0.05154639175257732,
+     "auc": 0.46199079114749925
+    },
+    {
+     "key": "speed",
+     "value": "0.25-0.5",
+     "objects": 85.0,
+     "recall_5": 0.047058823529411764,
+     "auc": 0.4750859173182887
+    },
+    {
+     "key": "speed",
+     "value": "0.5-1.0",
+     "objects": 155.0,
+     "recall_5": 0.02258064516129032,
+     "auc": 0.45736164324529394
+    },
+    {
+     "key": "speed",
+     "value": "<0.25",
+     "objects": 29.0,
+     "recall_5": 0.034482758620689655,
+     "auc": 0.4945932660364498
+    },
+    {
+     "key": "mask_state",
+     "value": "all",
+     "objects": 14.0,
+     "recall_5": 0.07142857142857142,
+     "auc": 0.6240141129639948
+    },
+    {
+     "key": "mask_state",
+     "value": "partial",
+     "objects": 6.0,
+     "recall_5": 0.0,
+     "auc": 0.3993004632671558
+    },
+    {
+     "key": "mask_state",
+     "value": "unmasked",
+     "objects": 249.0,
+     "recall_5": 0.030120481927710843,
+     "auc": 0.45977735754631843
+    },
+    {
+     "key": "population",
+     "value": "C",
+     "objects": 269.0,
+     "recall_5": 0.031598513011152414,
+     "auc": 0.46697606836480354
+    },
+    {
+     "key": "star_class",
+     "value": "6-8",
+     "objects": 55.0,
+     "recall_5": 0.03636363636363636,
+     "auc": 0.49524079621780387
+    },
+    {
+     "key": "star_class",
+     "value": "8-10",
+     "objects": 193.0,
+     "recall_5": 0.02849740932642487,
+     "auc": 0.4489143145206986
+    },
+    {
+     "key": "star_class",
+     "value": "V<6",
+     "objects": 21.0,
+     "recall_5": 0.047619047619047616,
+     "auc": 0.5589455188408627
+    }
+   ],
+   "sensitivity": {
+    "without background sharing a detection with a positive (recall@5%)": 0.031598513011152414,
+    "without background sharing a detection with a positive (AUC)": 0.4662677610220166,
+    "without 105890 (recall@5%)": 0.03171641791044776,
+    "without 105890 (AUC)": 0.4674747352865628
+   },
+   "paired_difference": {}
+  }
+ ],
+ "fields": [
+  {
+   "field_id": "C1-2020-06-17-333-c11-q1",
+   "group": "G-C1-2020-06-17-333-c11-q1",
+   "positives": 3.0,
+   "background": 368,
+   "auxiliary": 1,
+   "recall_5": 0.6666666666666666,
+   "auc": 0.9211956521739131,
+   "comparator_recall_5": 0.0
+  },
+  {
+   "field_id": "C2-2019-08-01-553-c11-q3",
+   "group": "G-C2-2019-08-01-553-c11-q3",
+   "positives": 7.0,
+   "background": 1340,
+   "auxiliary": 0,
+   "recall_5": 1.0,
+   "auc": 0.9996801705756929,
+   "comparator_recall_5": 0.8571428571428571
+  },
+  {
+   "field_id": "C3-2018-12-13-559-c9-q2",
+   "group": "G-C3-2018-12-13-559-c9-q2",
+   "positives": 6.0,
+   "background": 519,
+   "auxiliary": 0,
+   "recall_5": 1.0,
+   "auc": 0.9977520873474631,
+   "comparator_recall_5": 1.0
+  },
+  {
+   "field_id": "C5-2020-09-21-447-c9-q1",
+   "group": "G-C5-2020-09-21-447-c9-q1",
+   "positives": 12.0,
+   "background": 42,
+   "auxiliary": 3,
+   "recall_5": 1.0,
+   "auc": 0.996031746031746,
+   "comparator_recall_5": 0.9166666666666666
+  },
+  {
+   "field_id": "C6-2018-07-12-283-c15-q1",
+   "group": "G-C6-2018-07-12-283-c15-q1",
+   "positives": 1.0,
+   "background": 348,
+   "auxiliary": 0,
+   "recall_5": 0.0,
+   "auc": 0.8247126436781609,
+   "comparator_recall_5": 0.0
+  },
+  {
+   "field_id": "C8-2020-11-14-613-c4-q2",
+   "group": "G-C8-2020-11-14-613-c4-q2",
+   "positives": 9.0,
+   "background": 118,
+   "auxiliary": 1,
+   "recall_5": 0.8888888888888888,
+   "auc": 0.9905838041431261,
+   "comparator_recall_5": 0.0
+  },
+  {
+   "field_id": "C9-2020-04-17-373-c1-q1",
+   "group": "G-C9-2020-04-17-373-c1-q1",
+   "positives": 39.0,
+   "background": 397,
+   "auxiliary": 4,
+   "recall_5": 1.0,
+   "auc": 0.9972227604469419,
+   "comparator_recall_5": 0.6666666666666666
+  },
+  {
+   "field_id": "C10-2020-08-14-447-c2-q1",
+   "group": "G-C10-2020-08-14-447-c2-q1",
+   "positives": 19.0,
+   "background": 128,
+   "auxiliary": 1,
+   "recall_5": 1.0,
+   "auc": 0.9975328947368421,
+   "comparator_recall_5": 0.6842105263157895
+  },
+  {
+   "field_id": "C11-2020-08-27-447-c2-q1",
+   "group": "G-C10-2020-08-14-447-c2-q1",
+   "positives": 14.0,
+   "background": 96,
+   "auxiliary": 0,
+   "recall_5": 0.8571428571428571,
+   "auc": 0.9858630952380952,
+   "comparator_recall_5": 0.7142857142857143
+  },
+  {
+   "field_id": "C13-2018-09-16-393-c14-q1",
+   "group": "G-C13-2018-09-16-393-c14-q1",
+   "positives": 16.0,
+   "background": 126,
+   "auxiliary": 0,
+   "recall_5": 1.0,
+   "auc": 0.998015873015873,
+   "comparator_recall_5": 0.6875
+  },
+  {
+   "field_id": "C14-2019-02-08-518-c16-q4",
+   "group": "G-C14-2019-02-08-518-c16-q4",
+   "positives": 18.0,
+   "background": 114,
+   "auxiliary": 1,
+   "recall_5": 1.0,
+   "auc": 0.9995126705653021,
+   "comparator_recall_5": 0.6111111111111112
+  },
+  {
+   "field_id": "C15-2019-01-04-500-c15-q4",
+   "group": "G-C15-2019-01-04-500-c15-q4",
+   "positives": 3.0,
+   "background": 26,
+   "auxiliary": 0,
+   "recall_5": 1.0,
+   "auc": 1.0,
+   "comparator_recall_5": 1.0
+  },
+  {
+   "field_id": "C16-2020-01-29-511-c13-q3",
+   "group": "G-C16-2020-01-29-511-c13-q3",
+   "positives": 3.0,
+   "background": 210,
+   "auxiliary": 0,
+   "recall_5": 1.0,
+   "auc": 0.9984126984126984,
+   "comparator_recall_5": 1.0
+  },
+  {
+   "field_id": "C17-2020-09-22-561-c15-q2",
+   "group": "G-C17-2020-09-22-561-c15-q2",
+   "positives": 15.0,
+   "background": 116,
+   "auxiliary": 1,
+   "recall_5": 0.9333333333333333,
+   "auc": 0.9908045977011495,
+   "comparator_recall_5": 0.5333333333333333
+  },
+  {
+   "field_id": "C21-2020-08-23-452-c15-q3",
+   "group": "G-C21-2020-08-23-452-c15-q3",
+   "positives": 9.0,
+   "background": 347,
+   "auxiliary": 0,
+   "recall_5": 1.0,
+   "auc": 0.9993595901376882,
+   "comparator_recall_5": 1.0
+  },
+  {
+   "field_id": "C22-2020-02-24-517-c15-q3",
+   "group": "G-C22-2020-02-24-517-c15-q3",
+   "positives": 9.0,
+   "background": 141,
+   "auxiliary": 0,
+   "recall_5": 0.8888888888888888,
+   "auc": 0.9913317572892042,
+   "comparator_recall_5": 0.5555555555555556
+  },
+  {
+   "field_id": "C23-2020-11-17-659-c4-q2",
+   "group": "G-C23-2020-11-17-659-c4-q2",
+   "positives": 8.0,
+   "background": 80,
+   "auxiliary": 1,
+   "recall_5": 1.0,
+   "auc": 1.0,
+   "comparator_recall_5": 0.875
+  },
+  {
+   "field_id": "C24-2019-06-29-279-c5-q2",
+   "group": "G-C24-2019-06-29-279-c5-q2",
+   "positives": 7.0,
+   "background": 69,
+   "auxiliary": 0,
+   "recall_5": 0.8571428571428571,
+   "auc": 0.9896480331262941,
+   "comparator_recall_5": 0.7142857142857143
+  },
+  {
+   "field_id": "C25-2018-07-05-331-c9-q4",
+   "group": "G-C25-2018-07-05-331-c9-q4",
+   "positives": 3.0,
+   "background": 1159,
+   "auxiliary": 0,
+   "recall_5": 1.0,
+   "auc": 0.999424791486914,
+   "comparator_recall_5": 1.0
+  },
+  {
+   "field_id": "C26-2020-11-26-612-c3-q1",
+   "group": "G-C26-2020-11-26-612-c3-q1",
+   "positives": 9.0,
+   "background": 53,
+   "auxiliary": 0,
+   "recall_5": 1.0,
+   "auc": 1.0,
+   "comparator_recall_5": 0.6666666666666666
+  },
+  {
+   "field_id": "C27-2020-11-15-392-c7-q4",
+   "group": "G-C27-2020-11-15-392-c7-q4",
+   "positives": 8.0,
+   "background": 36,
+   "auxiliary": 0,
+   "recall_5": 0.75,
+   "auc": 0.9184027777777778,
+   "comparator_recall_5": 0.5
+  },
+  {
+   "field_id": "C28-2020-01-04-657-c4-q3",
+   "group": "G-C28-2020-01-04-657-c4-q3",
+   "positives": 4.0,
+   "background": 1062,
+   "auxiliary": 0,
+   "recall_5": 1.0,
+   "auc": 0.9981167608286252,
+   "comparator_recall_5": 0.75
+  },
+  {
+   "field_id": "C29-2020-01-28-617-c2-q2",
+   "group": "G-C29-2020-01-28-617-c2-q2",
+   "positives": 18.0,
+   "background": 71,
+   "auxiliary": 4,
+   "recall_5": 0.8055555555555556,
+   "auc": 0.9796557120500782,
+   "comparator_recall_5": 0.4444444444444444
+  },
+  {
+   "field_id": "C30-2020-01-28-1613-c9-q2",
+   "group": "G-C29-2020-01-28-617-c2-q2",
+   "positives": 29.0,
+   "background": 3545,
+   "auxiliary": 5,
+   "recall_5": 0.896551724137931,
+   "auc": 0.9835854287242839,
+   "comparator_recall_5": 1.0
+  }
+ ],
+ "end_to_end": {
+  "all": {
+   "eligible_object_nights": 514.0,
+   "top5_object_nights": 249.0,
+   "end_to_end_recall_5": 0.48443579766536965
+  },
+  "zone": {
+   "eligible_object_nights": 26.0,
+   "top5_object_nights": 10.5,
+   "end_to_end_recall_5": 0.40384615384615385
+  },
+  "outer": {
+   "eligible_object_nights": 57.0,
+   "top5_object_nights": 30.0,
+   "end_to_end_recall_5": 0.5263157894736842
+  },
+  "intermediate": {
+   "eligible_object_nights": 146.0,
+   "top5_object_nights": 71.0,
+   "end_to_end_recall_5": 0.4863013698630137
+  },
+  "control": {
+   "eligible_object_nights": 285.0,
+   "top5_object_nights": 137.5,
+   "end_to_end_recall_5": 0.4824561403508772
+  },
+  "primary": {
+   "eligible_object_nights": 229.0,
+   "top5_object_nights": 166.0,
+   "end_to_end_recall_5": 0.7248908296943232
+  },
+  "marginal": {
+   "eligible_object_nights": 285.0,
+   "top5_object_nights": 83.0,
+   "end_to_end_recall_5": 0.2912280701754386
+  }
+ },
+ "shortlist_background": 525,
+ "shortlist_by_field": {
+  "C1-2020-06-17-333-c11-q1": 18,
+  "C10-2020-08-14-447-c2-q1": 6,
+  "C11-2020-08-27-447-c2-q1": 5,
+  "C13-2018-09-16-393-c14-q1": 6,
+  "C14-2019-02-08-518-c16-q4": 6,
+  "C15-2019-01-04-500-c15-q4": 1,
+  "C16-2020-01-29-511-c13-q3": 11,
+  "C17-2020-09-22-561-c15-q2": 6,
+  "C2-2019-08-01-553-c11-q3": 67,
+  "C21-2020-08-23-452-c15-q3": 17,
+  "C22-2020-02-24-517-c15-q3": 7,
+  "C23-2020-11-17-659-c4-q2": 4,
+  "C24-2019-06-29-279-c5-q2": 3,
+  "C25-2018-07-05-331-c9-q4": 58,
+  "C26-2020-11-26-612-c3-q1": 3,
+  "C27-2020-11-15-392-c7-q4": 2,
+  "C28-2020-01-04-657-c4-q3": 53,
+  "C29-2020-01-28-617-c2-q2": 4,
+  "C3-2018-12-13-559-c9-q2": 26,
+  "C30-2020-01-28-1613-c9-q2": 177,
+  "C5-2020-09-21-447-c9-q1": 2,
+  "C6-2018-07-12-283-c15-q1": 17,
+  "C8-2020-11-14-613-c4-q2": 6,
+  "C9-2020-04-17-373-c1-q1": 20
+ },
+ "missed": [
+  {
+   "field_id": "C27-2020-11-15-392-c7-q4",
+   "designation": "267663",
+   "tracklet_id": "trk-0053",
+   "weight": 1.0,
+   "q": 0.4861,
+   "rank": 18.5,
+   "comparator_q": 0.5556,
+   "score": 0.4616,
+   "features": {
+    "min_snr": 3.05,
+    "median_snr": 3.19,
+    "fit_rms_residual_arcsec": 0.250415,
+    "magnitude_range_mag": 1.040113,
+    "flagged_detection_count": 0.0,
+    "masked_detection_count": 0.0,
+    "sharp_abs_max": 0.505,
+    "shared_detection_tracklets": 0.0
+   },
+   "percentiles": {
+    "min_snr": 0.0341,
+    "median_snr": 0.0227,
+    "fit_rms_residual_arcsec": 0.3977,
+    "magnitude_range_mag": 0.5568,
+    "flagged_detection_count": 0.7727,
+    "masked_detection_count": 0.7727,
+    "sharp_abs_max": 0.375,
+    "shared_detection_tracklets": 0.7614
+   },
+   "strata": {
+    "role": "marginal",
+    "proximity_group": "control",
+    "near_star": "intermediate+control",
+    "depth_margin": "<0.5",
+    "crowding": "<20k",
+    "filters": "mixed",
+    "speed": "0.5-1.0",
+    "mask_state": "unmasked",
+    "population": "C",
+    "star_class": "8-10"
+   }
+  },
+  {
+   "field_id": "C1-2020-06-17-333-c11-q1",
+   "designation": "31302",
+   "tracklet_id": "trk-1628",
+   "weight": 1.0,
+   "q": 0.2228,
+   "rank": 83.0,
+   "comparator_q": 0.4198,
+   "score": 0.5837,
+   "features": {
+    "min_snr": 7.86,
+    "median_snr": 8.67,
+    "fit_rms_residual_arcsec": 0.082063,
+    "magnitude_range_mag": 0.679064,
+    "flagged_detection_count": 1.0,
+    "masked_detection_count": 1.0,
+    "sharp_abs_max": 0.303,
+    "shared_detection_tracklets": 1.0
+   },
+   "percentiles": {
+    "min_snr": 0.8763,
+    "median_snr": 0.7245,
+    "fit_rms_residual_arcsec": 0.9315,
+    "magnitude_range_mag": 0.8669,
+    "flagged_detection_count": 0.2285,
+    "masked_detection_count": 0.207,
+    "sharp_abs_max": 0.5753,
+    "shared_detection_tracklets": 0.2594
+   },
+   "strata": {
+    "role": "primary",
+    "proximity_group": "zone",
+    "near_star": "zone+outer",
+    "depth_margin": "0.5-1.5",
+    "crowding": ">=80k",
+    "filters": "mixed",
+    "speed": "0.5-1.0",
+    "mask_state": "partial",
+    "population": "C",
+    "star_class": "6-8"
+   }
+  },
+  {
+   "field_id": "C30-2020-01-28-1613-c9-q2",
+   "designation": "533784",
+   "tracklet_id": "trk-0128",
+   "weight": 1.0,
+   "q": 0.2076,
+   "rank": 737.0,
+   "comparator_q": 0.0016,
+   "score": 0.5776,
+   "features": {
+    "min_snr": 3.33,
+    "median_snr": 3.76,
+    "fit_rms_residual_arcsec": 0.142951,
+    "magnitude_range_mag": 0.439664,
+    "flagged_detection_count": 0.0,
+    "masked_detection_count": 0.0,
+    "sharp_abs_max": 0.077,
+    "shared_detection_tracklets": 0.0
+   },
+   "percentiles": {
+    "min_snr": 0.0057,
+    "median_snr": 0.0031,
+    "fit_rms_residual_arcsec": 0.972,
+    "magnitude_range_mag": 0.1089,
+    "flagged_detection_count": 0.9911,
+    "masked_detection_count": 0.5574,
+    "sharp_abs_max": 0.9964,
+    "shared_detection_tracklets": 0.9859
+   },
+   "strata": {
+    "role": "marginal",
+    "proximity_group": "control",
+    "near_star": "intermediate+control",
+    "depth_margin": "<0.5",
+    "crowding": "<20k",
+    "filters": "single",
+    "speed": "0.5-1.0",
+    "mask_state": "unmasked",
+    "population": "C",
+    "star_class": "6-8"
+   }
+  },
+  {
+   "field_id": "C6-2018-07-12-283-c15-q1",
+   "designation": "197971",
+   "tracklet_id": "trk-1059",
+   "weight": 1.0,
+   "q": 0.1753,
+   "rank": 62.0,
+   "comparator_q": 0.8362,
+   "score": 0.5981,
+   "features": {
+    "min_snr": 4.58,
+    "median_snr": 4.85,
+    "fit_rms_residual_arcsec": 0.059278,
+    "magnitude_range_mag": 0.465958,
+    "flagged_detection_count": 0.0,
+    "masked_detection_count": 0.0,
+    "sharp_abs_max": 0.483,
+    "shared_detection_tracklets": 0.0
+   },
+   "percentiles": {
+    "min_snr": 0.7951,
+    "median_snr": 0.4298,
+    "fit_rms_residual_arcsec": 0.9785,
+    "magnitude_range_mag": 0.735,
+    "flagged_detection_count": 0.5602,
+    "masked_detection_count": 0.5487,
+    "sharp_abs_max": 0.1648,
+    "shared_detection_tracklets": 0.5731
+   },
+   "strata": {
+    "role": "primary",
+    "proximity_group": "intermediate",
+    "near_star": "intermediate+control",
+    "depth_margin": "0.5-1.5",
+    "crowding": ">=80k",
+    "filters": "single",
+    "speed": "0.5-1.0",
+    "mask_state": "unmasked",
+    "population": "C",
+    "star_class": "8-10"
+   }
+  },
+  {
+   "field_id": "C27-2020-11-15-392-c7-q4",
+   "designation": "148050",
+   "tracklet_id": "trk-0083",
+   "weight": 1.0,
+   "q": 0.1667,
+   "rank": 7.0,
+   "comparator_q": 0.3611,
+   "score": 0.5597,
+   "features": {
+    "min_snr": 3.39,
+    "median_snr": 6.01,
+    "fit_rms_residual_arcsec": 0.236482,
+    "magnitude_range_mag": 0.666114,
+    "flagged_detection_count": 0.0,
+    "masked_detection_count": 0.0,
+    "sharp_abs_max": 0.349,
+    "shared_detection_tracklets": 0.0
+   },
+   "percentiles": {
+    "min_snr": 0.1932,
+    "median_snr": 0.375,
+    "fit_rms_residual_arcsec": 0.4205,
+    "magnitude_range_mag": 0.625,
+    "flagged_detection_count": 0.7727,
+    "masked_detection_count": 0.7727,
+    "sharp_abs_max": 0.5568,
+    "shared_detection_tracklets": 0.7614
+   },
+   "strata": {
+    "role": "marginal",
+    "proximity_group": "control",
+    "near_star": "intermediate+control",
+    "depth_margin": "<0.5",
+    "crowding": "<20k",
+    "filters": "mixed",
+    "speed": "0.5-1.0",
+    "mask_state": "unmasked",
+    "population": "C",
+    "star_class": "8-10"
+   }
+  },
+  {
+   "field_id": "C30-2020-01-28-1613-c9-q2",
+   "designation": "2016 JU15",
+   "tracklet_id": "trk-16458",
+   "weight": 1.0,
+   "q": 0.1522,
+   "rank": 540.5,
+   "comparator_q": 0.0073,
+   "score": 0.5974,
+   "features": {
+    "min_snr": 3.91,
+    "median_snr": 4.17,
+    "fit_rms_residual_arcsec": 0.076163,
+    "magnitude_range_mag": 0.249052,
+    "flagged_detection_count": 0.0,
+    "masked_detection_count": 0.0,
+    "sharp_abs_max": 0.317,
+    "shared_detection_tracklets": 0.0
+   },
+   "percentiles": {
+    "min_snr": 0.0099,
+    "median_snr": 0.0052,
+    "fit_rms_residual_arcsec": 0.9923,
+    "magnitude_range_mag": 0.2551,
+    "flagged_detection_count": 0.9911,
+    "masked_detection_count": 0.5574,
+    "sharp_abs_max": 0.982,
+    "shared_detection_tracklets": 0.9859
+   },
+   "strata": {
+    "role": "marginal",
+    "proximity_group": "intermediate",
+    "near_star": "intermediate+control",
+    "depth_margin": "<0.5",
+    "crowding": "<20k",
+    "filters": "single",
+    "speed": "0.5-1.0",
+    "mask_state": "unmasked",
+    "population": "C",
+    "star_class": "8-10"
+   }
+  },
+  {
+   "field_id": "C29-2020-01-28-617-c2-q2",
+   "designation": "450990",
+   "tracklet_id": "trk-1319",
+   "weight": 1.0,
+   "q": 0.1338,
+   "rank": 10.5,
+   "comparator_q": 0.1549,
+   "score": 0.5156,
+   "features": {
+    "min_snr": 3.12,
+    "median_snr": 5.09,
+    "fit_rms_residual_arcsec": 0.182083,
+    "magnitude_range_mag": 0.928774,
+    "flagged_detection_count": 0.0,
+    "masked_detection_count": 0.0,
+    "sharp_abs_max": 0.203,
+    "shared_detection_tracklets": 0.0
+   },
+   "percentiles": {
+    "min_snr": 0.105,
+    "median_snr": 0.385,
+    "fit_rms_residual_arcsec": 0.565,
+    "magnitude_range_mag": 0.375,
+    "flagged_detection_count": 0.725,
+    "masked_detection_count": 0.605,
+    "sharp_abs_max": 0.695,
+    "shared_detection_tracklets": 0.67
+   },
+   "strata": {
+    "role": "marginal",
+    "proximity_group": "intermediate",
+    "near_star": "intermediate+control",
+    "depth_margin": "<0.5",
+    "crowding": "<20k",
+    "filters": "mixed",
+    "speed": "0.5-1.0",
+    "mask_state": "unmasked",
+    "population": "C",
+    "star_class": "8-10"
+   }
+  },
+  {
+   "field_id": "C30-2020-01-28-1613-c9-q2",
+   "designation": "2025 HJ43",
+   "tracklet_id": "trk-0078",
+   "weight": 1.0,
+   "q": 0.1083,
+   "rank": 385.0,
+   "comparator_q": 0.0079,
+   "score": 0.6172,
+   "features": {
+    "min_snr": 3.64,
+    "median_snr": 4.71,
+    "fit_rms_residual_arcsec": 0.313746,
+    "magnitude_range_mag": 0.126664,
+    "flagged_detection_count": 0.0,
+    "masked_detection_count": 0.0,
+    "sharp_abs_max": 0.326,
+    "shared_detection_tracklets": 0.0
+   },
+   "percentiles": {
+    "min_snr": 0.0082,
+    "median_snr": 0.0082,
+    "fit_rms_residual_arcsec": 0.8265,
+    "magnitude_range_mag": 0.5792,
+    "flagged_detection_count": 0.9911,
+    "masked_detection_count": 0.5574,
+    "sharp_abs_max": 0.9812,
+    "shared_detection_tracklets": 0.9859
+   },
+   "strata": {
+    "role": "marginal",
+    "proximity_group": "control",
+    "near_star": "intermediate+control",
+    "depth_margin": "<0.5",
+    "crowding": "<20k",
+    "filters": "single",
+    "speed": "0.5-1.0",
+    "mask_state": "unmasked",
+    "population": "C",
+    "star_class": "8-10"
+   }
+  },
+  {
+   "field_id": "C17-2020-09-22-561-c15-q2",
+   "designation": "176965",
+   "tracklet_id": "trk-0029",
+   "weight": 1.0,
+   "q": 0.1034,
+   "rank": 13.0,
+   "comparator_q": 0.1034,
+   "score": 0.571,
+   "features": {
+    "min_snr": 3.18,
+    "median_snr": 6.55,
+    "fit_rms_residual_arcsec": 0.21398,
+    "magnitude_range_mag": 0.776996,
+    "flagged_detection_count": 3.0,
+    "masked_detection_count": 3.0,
+    "sharp_abs_max": 0.251,
+    "shared_detection_tracklets": 0.0
+   },
+   "percentiles": {
+    "min_snr": 0.0644,
+    "median_snr": 0.5871,
+    "fit_rms_residual_arcsec": 0.625,
+    "magnitude_range_mag": 0.7689,
+    "flagged_detection_count": 0.428,
+    "masked_detection_count": 0.428,
+    "sharp_abs_max": 0.7992,
+    "shared_detection_tracklets": 0.8674
+   },
+   "strata": {
+    "role": "marginal",
+    "proximity_group": "intermediate",
+    "near_star": "intermediate+control",
+    "depth_margin": "<0.5",
+    "crowding": "<20k",
+    "filters": "mixed",
+    "speed": "0.25-0.5",
+    "mask_state": "all",
+    "population": "C",
+    "star_class": "V<6"
+   }
+  },
+  {
+   "field_id": "C29-2020-01-28-617-c2-q2",
+   "designation": "470924",
+   "tracklet_id": "trk-1470",
+   "weight": 1.0,
+   "q": 0.0986,
+   "rank": 8.0,
+   "comparator_q": 0.1549,
+   "score": 0.5419,
+   "features": {
+    "min_snr": 4.0,
+    "median_snr": 6.11,
+    "fit_rms_residual_arcsec": 0.281488,
+    "magnitude_range_mag": 0.979356,
+    "flagged_detection_count": 0.0,
+    "masked_detection_count": 0.0,
+    "sharp_abs_max": 0.196,
+    "shared_detection_tracklets": 0.0
+   },
+   "percentiles": {
+    "min_snr": 0.445,
+    "median_snr": 0.525,
+    "fit_rms_residual_arcsec": 0.295,
+    "magnitude_range_mag": 0.365,
+    "flagged_detection_count": 0.725,
+    "masked_detection_count": 0.605,
+    "sharp_abs_max": 0.705,
+    "shared_detection_tracklets": 0.67
+   },
+   "strata": {
+    "role": "marginal",
+    "proximity_group": "control",
+    "near_star": "intermediate+control",
+    "depth_margin": "<0.5",
+    "crowding": "<20k",
+    "filters": "mixed",
+    "speed": "0.5-1.0",
+    "mask_state": "unmasked",
+    "population": "C",
+    "star_class": "8-10"
+   }
+  },
+  {
+   "field_id": "C11-2020-08-27-447-c2-q1",
+   "designation": "373647",
+   "tracklet_id": "trk-0047",
+   "weight": 1.0,
+   "q": 0.0938,
+   "rank": 10.0,
+   "comparator_q": 0.125,
+   "score": 0.6199,
+   "features": {
+    "min_snr": 3.47,
+    "median_snr": 3.94,
+    "fit_rms_residual_arcsec": 0.136042,
+    "magnitude_range_mag": 0.807969,
+    "flagged_detection_count": 0.0,
+    "masked_detection_count": 0.0,
+    "sharp_abs_max": 0.233,
+    "shared_detection_tracklets": 0.0
+   },
+   "percentiles": {
+    "min_snr": 0.15,
+    "median_snr": 0.0455,
+    "fit_rms_residual_arcsec": 0.7409,
+    "magnitude_range_mag": 0.6409,
+    "flagged_detection_count": 0.8727,
+    "masked_detection_count": 0.8727,
+    "sharp_abs_max": 0.7773,
+    "shared_detection_tracklets": 0.8591
+   },
+   "strata": {
+    "role": "marginal",
+    "proximity_group": "control",
+    "near_star": "intermediate+control",
+    "depth_margin": "<0.5",
+    "crowding": "<20k",
+    "filters": "mixed",
+    "speed": "<0.25",
+    "mask_state": "unmasked",
+    "population": "C",
+    "star_class": "8-10"
+   }
+  },
+  {
+   "field_id": "C29-2020-01-28-617-c2-q2",
+   "designation": "520875",
+   "tracklet_id": "trk-1448",
+   "weight": 0.5,
+   "q": 0.0845,
+   "rank": 7.0,
+   "comparator_q": 0.493,
+   "score": 0.55,
+   "features": {
+    "min_snr": 3.71,
+    "median_snr": 6.69,
+    "fit_rms_residual_arcsec": 0.259844,
+    "magnitude_range_mag": 0.589356,
+    "flagged_detection_count": 0.0,
+    "masked_detection_count": 0.0,
+    "sharp_abs_max": 0.359,
+    "shared_detection_tracklets": 0.0
+   },
+   "percentiles": {
+    "min_snr": 0.36,
+    "median_snr": 0.625,
+    "fit_rms_residual_arcsec": 0.395,
+    "magnitude_range_mag": 0.655,
+    "flagged_detection_count": 0.725,
+    "masked_detection_count": 0.605,
+    "sharp_abs_max": 0.365,
+    "shared_detection_tracklets": 0.67
+   },
+   "strata": {
+    "role": "marginal",
+    "proximity_group": "control",
+    "near_star": "intermediate+control",
+    "depth_margin": "<0.5",
+    "crowding": "<20k",
+    "filters": "mixed",
+    "speed": "0.5-1.0",
+    "mask_state": "unmasked",
+    "population": "C",
+    "star_class": "8-10"
+   }
+  },
+  {
+   "field_id": "C22-2020-02-24-517-c15-q3",
+   "designation": "682258",
+   "tracklet_id": "trk-0220",
+   "weight": 1.0,
+   "q": 0.078,
+   "rank": 12.0,
+   "comparator_q": 0.4184,
+   "score": 0.6204,
+   "features": {
+    "min_snr": 3.16,
+    "median_snr": 4.84,
+    "fit_rms_residual_arcsec": 0.157279,
+    "magnitude_range_mag": 0.850337,
+    "flagged_detection_count": 0.0,
+    "masked_detection_count": 0.0,
+    "sharp_abs_max": 0.369,
+    "shared_detection_tracklets": 0.0
+   },
+   "percentiles": {
+    "min_snr": 0.1467,
+    "median_snr": 0.3033,
+    "fit_rms_residual_arcsec": 0.7767,
+    "magnitude_range_mag": 0.63,
+    "flagged_detection_count": 0.86,
+    "masked_detection_count": 0.8567,
+    "sharp_abs_max": 0.5567,
+    "shared_detection_tracklets": 0.8333
+   },
+   "strata": {
+    "role": "marginal",
+    "proximity_group": "control",
+    "near_star": "intermediate+control",
+    "depth_margin": "<0.5",
+    "crowding": "<20k",
+    "filters": "mixed",
+    "speed": "0.25-0.5",
+    "mask_state": "unmasked",
+    "population": "C",
+    "star_class": "8-10"
+   }
+  },
+  {
+   "field_id": "C24-2019-06-29-279-c5-q2",
+   "designation": "146081",
+   "tracklet_id": "trk-0479",
+   "weight": 1.0,
+   "q": 0.0725,
+   "rank": 6.0,
+   "comparator_q": 0.1884,
+   "score": 0.6061,
+   "features": {
+    "min_snr": 5.94,
+    "median_snr": 11.07,
+    "fit_rms_residual_arcsec": 0.136939,
+    "magnitude_range_mag": 0.81836,
+    "flagged_detection_count": 0.0,
+    "masked_detection_count": 0.0,
+    "sharp_abs_max": 0.189,
+    "shared_detection_tracklets": 1.0
+   },
+   "percentiles": {
+    "min_snr": 0.8355,
+    "median_snr": 0.9276,
+    "fit_rms_residual_arcsec": 0.7961,
+    "magnitude_range_mag": 0.375,
+    "flagged_detection_count": 0.5658,
+    "masked_detection_count": 0.5526,
+    "sharp_abs_max": 0.7434,
+    "shared_detection_tracklets": 0.0526
+   },
+   "strata": {
+    "role": "primary",
+    "proximity_group": "zone",
+    "near_star": "zone+outer",
+    "depth_margin": "0.5-1.5",
+    "crowding": ">=80k",
+    "filters": "single",
+    "speed": "0.5-1.0",
+    "mask_state": "unmasked",
+    "population": "C",
+    "star_class": "6-8"
+   }
+  },
+  {
+   "field_id": "C8-2020-11-14-613-c4-q2",
+   "designation": "71563",
+   "tracklet_id": "trk-0001",
+   "weight": 1.0,
+   "q": 0.0678,
+   "rank": 9.0,
+   "comparator_q": 0.0763,
+   "score": 0.6475,
+   "features": {
+    "min_snr": 4.9,
+    "median_snr": 7.56,
+    "fit_rms_residual_arcsec": 0.101786,
+    "magnitude_range_mag": 0.44862,
+    "flagged_detection_count": 1.0,
+    "masked_detection_count": 1.0,
+    "sharp_abs_max": 0.1,
+    "shared_detection_tracklets": 0.0
+   },
+   "percentiles": {
+    "min_snr": 0.4297,
+    "median_snr": 0.3945,
+    "fit_rms_residual_arcsec": 0.8633,
+    "magnitude_range_mag": 0.9219,
+    "flagged_detection_count": 0.4141,
+    "masked_detection_count": 0.4141,
+    "sharp_abs_max": 0.9023,
+    "shared_detection_tracklets": 0.8398
+   },
+   "strata": {
+    "role": "marginal",
+    "proximity_group": "control",
+    "near_star": "intermediate+control",
+    "depth_margin": "<0.5",
+    "crowding": "20-80k",
+    "filters": "mixed",
+    "speed": "<0.25",
+    "mask_state": "partial",
+    "population": "C",
+    "star_class": "8-10"
+   }
+  },
+  {
+   "field_id": "C11-2020-08-27-447-c2-q1",
+   "designation": "82840",
+   "tracklet_id": "trk-0025",
+   "weight": 1.0,
+   "q": 0.0625,
+   "rank": 7.0,
+   "comparator_q": 0.1458,
+   "score": 0.6455,
+   "features": {
+    "min_snr": 7.39,
+    "median_snr": 9.03,
+    "fit_rms_residual_arcsec": 0.099456,
+    "magnitude_range_mag": 0.560016,
+    "flagged_detection_count": 3.0,
+    "masked_detection_count": 3.0,
+    "sharp_abs_max": 0.257,
+    "shared_detection_tracklets": 1.0
+   },
+   "percentiles": {
+    "min_snr": 0.8409,
+    "median_snr": 0.6773,
+    "fit_rms_residual_arcsec": 0.8318,
+    "magnitude_range_mag": 0.7591,
+    "flagged_detection_count": 0.3455,
+    "masked_detection_count": 0.3455,
+    "sharp_abs_max": 0.75,
+    "shared_detection_tracklets": 0.6136
+   },
+   "strata": {
+    "role": "primary",
+    "proximity_group": "zone",
+    "near_star": "zone+outer",
+    "depth_margin": "<0.5",
+    "crowding": "<20k",
+    "filters": "mixed",
+    "speed": "0.25-0.5",
+    "mask_state": "all",
+    "population": "C",
+    "star_class": "V<6"
+   }
+  },
+  {
+   "field_id": "C29-2020-01-28-617-c2-q2",
+   "designation": "792421",
+   "tracklet_id": "trk-0877",
+   "weight": 1.0,
+   "q": 0.0563,
+   "rank": 5.0,
+   "comparator_q": 0.3662,
+   "score": 0.5856,
+   "features": {
+    "min_snr": 3.6,
+    "median_snr": 4.73,
+    "fit_rms_residual_arcsec": 0.048712,
+    "magnitude_range_mag": 0.552774,
+    "flagged_detection_count": 0.0,
+    "masked_detection_count": 0.0,
+    "sharp_abs_max": 0.27,
+    "shared_detection_tracklets": 0.0
+   },
+   "percentiles": {
+    "min_snr": 0.305,
+    "median_snr": 0.295,
+    "fit_rms_residual_arcsec": 0.865,
+    "magnitude_range_mag": 0.695,
+    "flagged_detection_count": 0.725,
+    "masked_detection_count": 0.605,
+    "sharp_abs_max": 0.525,
+    "shared_detection_tracklets": 0.67
+   },
+   "strata": {
+    "role": "marginal",
+    "proximity_group": "control",
+    "near_star": "intermediate+control",
+    "depth_margin": "<0.5",
+    "crowding": "<20k",
+    "filters": "mixed",
+    "speed": "0.5-1.0",
+    "mask_state": "unmasked",
+    "population": "C",
+    "star_class": "8-10"
+   }
+  }
+ ],
+ "counterexamples": {
+  "fields_auc_below_half": [],
+  "strata_recall_gap": [
+   {
+    "key": "mask_state",
+    "value": "partial",
+    "objects": 6.0,
+    "recall_5": 0.6666666666666666,
+    "auc": 0.9468777263910417
+   }
+  ],
+  "bottom_half_positives": [],
+  "missed_top5_by_stratum": {
+   "role": {
+    "marginal": 13,
+    "primary": 4
+   },
+   "proximity_group": {
+    "control": 10,
+    "intermediate": 4,
+    "zone": 3
+   },
+   "star_class": {
+    "6-8": 3,
+    "8-10": 12,
+    "V<6": 2
+   },
+   "depth_margin": {
+    "0.5-1.5": 3,
+    "<0.5": 14
+   },
+   "mask_state": {
+    "all": 2,
+    "partial": 2,
+    "unmasked": 13
+   },
+   "crowding": {
+    "20-80k": 1,
+    "<20k": 13,
+    ">=80k": 3
+   },
+   "speed": {
+    "0.25-0.5": 3,
+    "0.5-1.0": 12,
+    "<0.25": 2
+   }
+  },
+  "comparator_only_top5": [
+   {
+    "field_id": "C30-2020-01-28-1613-c9-q2",
+    "designation": "2016 JU15",
+    "q": 0.1522,
+    "comparator_q": 0.0073,
+    "strata": {
+     "role": "marginal",
+     "proximity_group": "intermediate",
+     "near_star": "intermediate+control",
+     "depth_margin": "<0.5",
+     "crowding": "<20k",
+     "filters": "single",
+     "speed": "0.5-1.0",
+     "mask_state": "unmasked",
+     "population": "C",
+     "star_class": "8-10"
+    }
+   },
+   {
+    "field_id": "C30-2020-01-28-1613-c9-q2",
+    "designation": "2025 HJ43",
+    "q": 0.1083,
+    "comparator_q": 0.0079,
+    "strata": {
+     "role": "marginal",
+     "proximity_group": "control",
+     "near_star": "intermediate+control",
+     "depth_margin": "<0.5",
+     "crowding": "<20k",
+     "filters": "single",
+     "speed": "0.5-1.0",
+     "mask_state": "unmasked",
+     "population": "C",
+     "star_class": "8-10"
+    }
+   },
+   {
+    "field_id": "C30-2020-01-28-1613-c9-q2",
+    "designation": "533784",
+    "q": 0.2076,
+    "comparator_q": 0.0016,
+    "strata": {
+     "role": "marginal",
+     "proximity_group": "control",
+     "near_star": "intermediate+control",
+     "depth_margin": "<0.5",
+     "crowding": "<20k",
+     "filters": "single",
+     "speed": "0.5-1.0",
+     "mask_state": "unmasked",
+     "population": "C",
+     "star_class": "6-8"
+    }
+   }
+  ],
+  "ranker_only_top5": [
+   {
+    "field_id": "C1-2020-06-17-333-c11-q1",
+    "designation": "364634",
+    "q": 0.0027,
+    "comparator_q": 0.3057,
+    "strata": {
+     "role": "marginal",
+     "proximity_group": "control",
+     "near_star": "intermediate+control",
+     "depth_margin": "0.5-1.5",
+     "crowding": ">=80k",
+     "filters": "mixed",
+     "speed": "0.5-1.0",
+     "mask_state": "unmasked",
+     "population": "C",
+     "star_class": "8-10"
+    }
+   },
+   {
+    "field_id": "C1-2020-06-17-333-c11-q1",
+    "designation": "68687",
+    "q": 0.0109,
+    "comparator_q": 0.0924,
+    "strata": {
+     "role": "primary",
+     "proximity_group": "outer",
+     "near_star": "zone+outer",
+     "depth_margin": "0.5-1.5",
+     "crowding": ">=80k",
+     "filters": "mixed",
+     "speed": "0.5-1.0",
+     "mask_state": "partial",
+     "population": "C",
+     "star_class": "8-10"
+    }
+   },
+   {
+    "field_id": "C2-2019-08-01-553-c11-q3",
+    "designation": "226382",
+    "q": 0.0,
+    "comparator_q": 0.0701,
+    "strata": {
+     "role": "marginal",
+     "proximity_group": "control",
+     "near_star": "intermediate+control",
+     "depth_margin": "<0.5",
+     "crowding": "<20k",
+     "filters": "mixed",
+     "speed": "0.25-0.5",
+     "mask_state": "unmasked",
+     "population": "C",
+     "star_class": "8-10"
+    }
+   },
+   {
+    "field_id": "C5-2020-09-21-447-c9-q1",
+    "designation": "588676",
+    "q": 0.0476,
+    "comparator_q": 0.1429,
+    "strata": {
+     "role": "marginal",
+     "proximity_group": "intermediate",
+     "near_star": "intermediate+control",
+     "depth_margin": "<0.5",
+     "crowding": "<20k",
+     "filters": "mixed",
+     "speed": "0.25-0.5",
+     "mask_state": "unmasked",
+     "population": "C",
+     "star_class": "8-10"
+    }
+   },
+   {
+    "field_id": "C8-2020-11-14-613-c4-q2",
+    "designation": "10860",
+    "q": 0.0,
+    "comparator_q": 0.0593,
+    "strata": {
+     "role": "marginal",
+     "proximity_group": "outer",
+     "near_star": "zone+outer",
+     "depth_margin": "<0.5",
+     "crowding": "20-80k",
+     "filters": "mixed",
+     "speed": "0.5-1.0",
+     "mask_state": "unmasked",
+     "population": "C",
+     "star_class": "8-10"
+    }
+   },
+   {
+    "field_id": "C8-2020-11-14-613-c4-q2",
+    "designation": "115753",
+    "q": 0.0085,
+    "comparator_q": 0.0763,
+    "strata": {
+     "role": "marginal",
+     "proximity_group": "outer",
+     "near_star": "zone+outer",
+     "depth_margin": "0.5-1.5",
+     "crowding": "20-80k",
+     "filters": "mixed",
+     "speed": "<0.25",
+     "mask_state": "unmasked",
+     "population": "C",
+     "star_class": "6-8"
+    }
+   },
+   {
+    "field_id": "C8-2020-11-14-613-c4-q2",
+    "designation": "146292",
+    "q": 0.0085,
+    "comparator_q": 0.3475,
+    "strata": {
+     "role": "marginal",
+     "proximity_group": "intermediate",
+     "near_star": "intermediate+control",
+     "depth_margin": "0.5-1.5",
+     "crowding": "20-80k",
+     "filters": "mixed",
+     "speed": "0.25-0.5",
+     "mask_state": "unmasked",
+     "population": "C",
+     "star_class": "8-10"
+    }
+   },
+   {
+    "field_id": "C8-2020-11-14-613-c4-q2",
+    "designation": "193541",
+    "q": 0.0,
+    "comparator_q": 0.0763,
+    "strata": {
+     "role": "primary",
+     "proximity_group": "outer",
+     "near_star": "zone+outer",
+     "depth_margin": "0.5-1.5",
+     "crowding": "20-80k",
+     "filters": "mixed",
+     "speed": "0.25-0.5",
+     "mask_state": "unmasked",
+     "population": "C",
+     "star_class": "6-8"
+    }
+   },
+   {
+    "field_id": "C8-2020-11-14-613-c4-q2",
+    "designation": "226203",
+    "q": 0.0,
+    "comparator_q": 0.0763,
+    "strata": {
+     "role": "marginal",
+     "proximity_group": "intermediate",
+     "near_star": "intermediate+control",
+     "depth_margin": "<0.5",
+     "crowding": "20-80k",
+     "filters": "mixed",
+     "speed": "<0.25",
+     "mask_state": "unmasked",
+     "population": "C",
+     "star_class": "8-10"
+    }
+   },
+   {
+    "field_id": "C8-2020-11-14-613-c4-q2",
+    "designation": "44535",
+    "q": 0.0,
+    "comparator_q": 0.0593,
+    "strata": {
+     "role": "primary",
+     "proximity_group": "intermediate",
+     "near_star": "intermediate+control",
+     "depth_margin": "0.5-1.5",
+     "crowding": "20-80k",
+     "filters": "mixed",
+     "speed": "<0.25",
+     "mask_state": "unmasked",
+     "population": "C",
+     "star_class": "6-8"
+    }
+   },
+   {
+    "field_id": "C8-2020-11-14-613-c4-q2",
+    "designation": "60660",
+    "q": 0.0,
+    "comparator_q": 0.0763,
+    "strata": {
+     "role": "marginal",
+     "proximity_group": "intermediate",
+     "near_star": "intermediate+control",
+     "depth_margin": "0.5-1.5",
+     "crowding": "20-80k",
+     "filters": "mixed",
+     "speed": "0.25-0.5",
+     "mask_state": "unmasked",
+     "population": "C",
+     "star_class": "8-10"
+    }
+   },
+   {
+    "field_id": "C8-2020-11-14-613-c4-q2",
+    "designation": "74293",
+    "q": 0.0,
+    "comparator_q": 0.0763,
+    "strata": {
+     "role": "primary",
+     "proximity_group": "zone",
+     "near_star": "zone+outer",
+     "depth_margin": "0.5-1.5",
+     "crowding": "20-80k",
+     "filters": "mixed",
+     "speed": "<0.25",
+     "mask_state": "unmasked",
+     "population": "C",
+     "star_class": "6-8"
+    }
+   },
+   {
+    "field_id": "C9-2020-04-17-373-c1-q1",
+    "designation": "102725",
+    "q": 0.0,
+    "comparator_q": 0.0844,
+    "strata": {
+     "role": "primary",
+     "proximity_group": "control",
+     "near_star": "intermediate+control",
+     "depth_margin": "0.5-1.5",
+     "crowding": "<20k",
+     "filters": "single",
+     "speed": "0.5-1.0",
+     "mask_state": "unmasked",
+     "population": "C",
+     "star_class": "6-8"
+    }
+   },
+   {
+    "field_id": "C9-2020-04-17-373-c1-q1",
+    "designation": "189487",
+    "q": 0.0,
+    "comparator_q": 0.068,
+    "strata": {
+     "role": "primary",
+     "proximity_group": "control",
+     "near_star": "intermediate+control",
+     "depth_margin": "0.5-1.5",
+     "crowding": "<20k",
+     "filters": "single",
+     "speed": "0.5-1.0",
+     "mask_state": "unmasked",
+     "population": "C",
+     "star_class": "8-10"
+    }
+   },
+   {
+    "field_id": "C9-2020-04-17-373-c1-q1",
+    "designation": "2020 HW113",
+    "q": 0.0403,
+    "comparator_q": 0.4194,
+    "strata": {
+     "role": "marginal",
+     "proximity_group": "control",
+     "near_star": "intermediate+control",
+     "depth_margin": "<0.5",
+     "crowding": "<20k",
+     "filters": "single",
+     "speed": "0.25-0.5",
+     "mask_state": "unmasked",
+     "population": "C",
+     "star_class": "8-10"
+    }
+   },
+   {
+    "field_id": "C9-2020-04-17-373-c1-q1",
+    "designation": "240034",
+    "q": 0.0025,
+    "comparator_q": 0.0781,
+    "strata": {
+     "role": "primary",
+     "proximity_group": "outer",
+     "near_star": "zone+outer",
+     "depth_margin": "0.5-1.5",
+     "crowding": "<20k",
+     "filters": "single",
+     "speed": "0.5-1.0",
+     "mask_state": "all",
+     "population": "C",
+     "star_class": "6-8"
+    }
+   },
+   {
+    "field_id": "C9-2020-04-17-373-c1-q1",
+    "designation": "26024",
+    "q": 0.0,
+    "comparator_q": 0.0756,
+    "strata": {
+     "role": "primary",
+     "proximity_group": "outer",
+     "near_star": "zone+outer",
+     "depth_margin": ">=1.5",
+     "crowding": "<20k",
+     "filters": "single",
+     "speed": "0.5-1.0",
+     "mask_state": "unmasked",
+     "population": "C",
+     "star_class": "8-10"
+    }
+   },
+   {
+    "field_id": "C9-2020-04-17-373-c1-q1",
+    "designation": "333874",
+    "q": 0.0,
+    "comparator_q": 0.0579,
+    "strata": {
+     "role": "primary",
+     "proximity_group": "control",
+     "near_star": "intermediate+control",
+     "depth_margin": ">=1.5",
+     "crowding": "<20k",
+     "filters": "single",
+     "speed": "0.5-1.0",
+     "mask_state": "unmasked",
+     "population": "C",
+     "star_class": "8-10"
+    }
+   },
+   {
+    "field_id": "C9-2020-04-17-373-c1-q1",
+    "designation": "375930",
+    "q": 0.0126,
+    "comparator_q": 0.0579,
+    "strata": {
+     "role": "marginal",
+     "proximity_group": "control",
+     "near_star": "intermediate+control",
+     "depth_margin": "<0.5",
+     "crowding": "<20k",
+     "filters": "single",
+     "speed": "0.5-1.0",
+     "mask_state": "unmasked",
+     "population": "C",
+     "star_class": "V<6"
+    }
+   },
+   {
+    "field_id": "C9-2020-04-17-373-c1-q1",
+    "designation": "377764",
+    "q": 0.0,
+    "comparator_q": 0.0781,
+    "strata": {
+     "role": "marginal",
+     "proximity_group": "control",
+     "near_star": "intermediate+control",
+     "depth_margin": "<0.5",
+     "crowding": "<20k",
+     "filters": "single",
+     "speed": "0.5-1.0",
+     "mask_state": "unmasked",
+     "population": "C",
+     "star_class": "8-10"
+    }
+   },
+   {
+    "field_id": "C9-2020-04-17-373-c1-q1",
+    "designation": "406827",
+    "q": 0.0277,
+    "comparator_q": 0.0856,
+    "strata": {
+     "role": "marginal",
+     "proximity_group": "outer",
+     "near_star": "zone+outer",
+     "depth_margin": "<0.5",
+     "crowding": "<20k",
+     "filters": "single",
+     "speed": "0.5-1.0",
+     "mask_state": "unmasked",
+     "population": "C",
+     "star_class": "8-10"
+    }
+   },
+   {
+    "field_id": "C9-2020-04-17-373-c1-q1",
+    "designation": "499925",
+    "q": 0.0,
+    "comparator_q": 0.068,
+    "strata": {
+     "role": "marginal",
+     "proximity_group": "control",
+     "near_star": "intermediate+control",
+     "depth_margin": "0.5-1.5",
+     "crowding": "<20k",
+     "filters": "single",
+     "speed": "0.5-1.0",
+     "mask_state": "unmasked",
+     "population": "C",
+     "star_class": "6-8"
+    }
+   },
+   {
+    "field_id": "C9-2020-04-17-373-c1-q1",
+    "designation": "652819",
+    "q": 0.0176,
+    "comparator_q": 0.136,
+    "strata": {
+     "role": "marginal",
+     "proximity_group": "control",
+     "near_star": "intermediate+control",
+     "depth_margin": "<0.5",
+     "crowding": "<20k",
+     "filters": "single",
+     "speed": "0.5-1.0",
+     "mask_state": "unmasked",
+     "population": "C",
+     "star_class": "8-10"
+    }
+   },
+   {
+    "field_id": "C9-2020-04-17-373-c1-q1",
+    "designation": "662780",
+    "q": 0.0025,
+    "comparator_q": 0.0579,
+    "strata": {
+     "role": "marginal",
+     "proximity_group": "intermediate",
+     "near_star": "intermediate+control",
+     "depth_margin": "<0.5",
+     "crowding": "<20k",
+     "filters": "single",
+     "speed": "0.5-1.0",
+     "mask_state": "unmasked",
+     "population": "C",
+     "star_class": "8-10"
+    }
+   },
+   {
+    "field_id": "C9-2020-04-17-373-c1-q1",
+    "designation": "673372",
+    "q": 0.0,
+    "comparator_q": 0.0529,
+    "strata": {
+     "role": "marginal",
+     "proximity_group": "control",
+     "near_star": "intermediate+control",
+     "depth_margin": "<0.5",
+     "crowding": "<20k",
+     "filters": "single",
+     "speed": "0.5-1.0",
+     "mask_state": "unmasked",
+     "population": "C",
+     "star_class": "8-10"
+    }
+   },
+   {
+    "field_id": "C10-2020-08-14-447-c2-q1",
+    "designation": "183822",
+    "q": 0.0234,
+    "comparator_q": 0.2188,
+    "strata": {
+     "role": "marginal",
+     "proximity_group": "outer",
+     "near_star": "zone+outer",
+     "depth_margin": "<0.5",
+     "crowding": "<20k",
+     "filters": "mixed",
+     "speed": "<0.25",
+     "mask_state": "unmasked",
+     "population": "C",
+     "star_class": "8-10"
+    }
+   },
+   {
+    "field_id": "C10-2020-08-14-447-c2-q1",
+    "designation": "2013 TL26",
+    "q": 0.0234,
+    "comparator_q": 0.1328,
+    "strata": {
+     "role": "marginal",
+     "proximity_group": "intermediate",
+     "near_star": "intermediate+control",
+     "depth_margin": "<0.5",
+     "crowding": "<20k",
+     "filters": "mixed",
+     "speed": "<0.25",
+     "mask_state": "unmasked",
+     "population": "C",
+     "star_class": "8-10"
+    }
+   },
+   {
+    "field_id": "C10-2020-08-14-447-c2-q1",
+    "designation": "229826",
+    "q": 0.0,
+    "comparator_q": 0.0859,
+    "strata": {
+     "role": "marginal",
+     "proximity_group": "control",
+     "near_star": "intermediate+control",
+     "depth_margin": "<0.5",
+     "crowding": "<20k",
+     "filters": "mixed",
+     "speed": "<0.25",
+     "mask_state": "unmasked",
+     "population": "C",
+     "star_class": "6-8"
+    }
+   },
+   {
+    "field_id": "C10-2020-08-14-447-c2-q1",
+    "designation": "34732",
+    "q": 0.0,
+    "comparator_q": 0.0625,
+    "strata": {
+     "role": "primary",
+     "proximity_group": "control",
+     "near_star": "intermediate+control",
+     "depth_margin": "<0.5",
+     "crowding": "<20k",
+     "filters": "mixed",
+     "speed": "<0.25",
+     "mask_state": "unmasked",
+     "population": "C",
+     "star_class": "8-10"
+    }
+   },
+   {
+    "field_id": "C10-2020-08-14-447-c2-q1",
+    "designation": "525690",
+    "q": 0.0,
+    "comparator_q": 0.0781,
+    "strata": {
+     "role": "marginal",
+     "proximity_group": "control",
+     "near_star": "intermediate+control",
+     "depth_margin": "<0.5",
+     "crowding": "<20k",
+     "filters": "mixed",
+     "speed": "<0.25",
+     "mask_state": "unmasked",
+     "population": "C",
+     "star_class": "8-10"
+    }
+   },
+   {
+    "field_id": "C10-2020-08-14-447-c2-q1",
+    "designation": "80737",
+    "q": 0.0,
+    "comparator_q": 0.0781,
+    "strata": {
+     "role": "primary",
+     "proximity_group": "intermediate",
+     "near_star": "intermediate+control",
+     "depth_margin": "0.5-1.5",
+     "crowding": "<20k",
+     "filters": "mixed",
+     "speed": "<0.25",
+     "mask_state": "unmasked",
+     "population": "C",
+     "star_class": "8-10"
+    }
+   },
+   {
+    "field_id": "C11-2020-08-27-447-c2-q1",
+    "designation": "117415",
+    "q": 0.0417,
+    "comparator_q": 0.0729,
+    "strata": {
+     "role": "marginal",
+     "proximity_group": "intermediate",
+     "near_star": "intermediate+control",
+     "depth_margin": "<0.5",
+     "crowding": "<20k",
+     "filters": "mixed",
+     "speed": "0.25-0.5",
+     "mask_state": "unmasked",
+     "population": "C",
+     "star_class": "8-10"
+    }
+   },
+   {
+    "field_id": "C11-2020-08-27-447-c2-q1",
+    "designation": "53565",
+    "q": 0.0,
+    "comparator_q": 0.0729,
+    "strata": {
+     "role": "marginal",
+     "proximity_group": "control",
+     "near_star": "intermediate+control",
+     "depth_margin": "<0.5",
+     "crowding": "<20k",
+     "filters": "mixed",
+     "speed": "0.25-0.5",
+     "mask_state": "unmasked",
+     "population": "C",
+     "star_class": "6-8"
+    }
+   },
+   {
+    "field_id": "C13-2018-09-16-393-c14-q1",
+    "designation": "121767",
+    "q": 0.0,
+    "comparator_q": 0.0595,
+    "strata": {
+     "role": "marginal",
+     "proximity_group": "control",
+     "near_star": "intermediate+control",
+     "depth_margin": "0.5-1.5",
+     "crowding": "<20k",
+     "filters": "mixed",
+     "speed": "0.5-1.0",
+     "mask_state": "unmasked",
+     "population": "C",
+     "star_class": "8-10"
+    }
+   },
+   {
+    "field_id": "C13-2018-09-16-393-c14-q1",
+    "designation": "131603",
+    "q": 0.0,
+    "comparator_q": 0.3175,
+    "strata": {
+     "role": "marginal",
+     "proximity_group": "control",
+     "near_star": "intermediate+control",
+     "depth_margin": "<0.5",
+     "crowding": "<20k",
+     "filters": "mixed",
+     "speed": "0.5-1.0",
+     "mask_state": "unmasked",
+     "population": "C",
+     "star_class": "6-8"
+    }
+   },
+   {
+    "field_id": "C13-2018-09-16-393-c14-q1",
+    "designation": "227641",
+    "q": 0.0,
+    "comparator_q": 0.0635,
+    "strata": {
+     "role": "marginal",
+     "proximity_group": "intermediate",
+     "near_star": "intermediate+control",
+     "depth_margin": "<0.5",
+     "crowding": "<20k",
+     "filters": "mixed",
+     "speed": "0.5-1.0",
+     "mask_state": "unmasked",
+     "population": "C",
+     "star_class": "8-10"
+    }
+   },
+   {
+    "field_id": "C13-2018-09-16-393-c14-q1",
+    "designation": "488036",
+    "q": 0.0,
+    "comparator_q": 0.1825,
+    "strata": {
+     "role": "marginal",
+     "proximity_group": "control",
+     "near_star": "intermediate+control",
+     "depth_margin": "<0.5",
+     "crowding": "<20k",
+     "filters": "mixed",
+     "speed": "0.5-1.0",
+     "mask_state": "unmasked",
+     "population": "C",
+     "star_class": "6-8"
+    }
+   },
+   {
+    "field_id": "C13-2018-09-16-393-c14-q1",
+    "designation": "83482",
+    "q": 0.0,
+    "comparator_q": 0.0635,
+    "strata": {
+     "role": "primary",
+     "proximity_group": "control",
+     "near_star": "intermediate+control",
+     "depth_margin": "0.5-1.5",
+     "crowding": "<20k",
+     "filters": "mixed",
+     "speed": "0.5-1.0",
+     "mask_state": "unmasked",
+     "population": "C",
+     "star_class": "6-8"
+    }
+   },
+   {
+    "field_id": "C14-2019-02-08-518-c16-q4",
+    "designation": "195181",
+    "q": 0.0088,
+    "comparator_q": 0.1404,
+    "strata": {
+     "role": "marginal",
+     "proximity_group": "control",
+     "near_star": "intermediate+control",
+     "depth_margin": "<0.5",
+     "crowding": "<20k",
+     "filters": "single",
+     "speed": "0.5-1.0",
+     "mask_state": "unmasked",
+     "population": "C",
+     "star_class": "8-10"
+    }
+   },
+   {
+    "field_id": "C14-2019-02-08-518-c16-q4",
+    "designation": "2012 FX4",
+    "q": 0.0,
+    "comparator_q": 0.0877,
+    "strata": {
+     "role": "marginal",
+     "proximity_group": "intermediate",
+     "near_star": "intermediate+control",
+     "depth_margin": "<0.5",
+     "crowding": "<20k",
+     "filters": "single",
+     "speed": "0.5-1.0",
+     "mask_state": "unmasked",
+     "population": "C",
+     "star_class": "8-10"
+    }
+   },
+   {
+    "field_id": "C14-2019-02-08-518-c16-q4",
+    "designation": "213070",
+    "q": 0.0,
+    "comparator_q": 0.2588,
+    "strata": {
+     "role": "marginal",
+     "proximity_group": "intermediate",
+     "near_star": "intermediate+control",
+     "depth_margin": "<0.5",
+     "crowding": "<20k",
+     "filters": "single",
+     "speed": "0.5-1.0",
+     "mask_state": "unmasked",
+     "population": "C",
+     "star_class": "8-10"
+    }
+   },
+   {
+    "field_id": "C14-2019-02-08-518-c16-q4",
+    "designation": "377373",
+    "q": 0.0,
+    "comparator_q": 0.1404,
+    "strata": {
+     "role": "marginal",
+     "proximity_group": "control",
+     "near_star": "intermediate+control",
+     "depth_margin": "<0.5",
+     "crowding": "<20k",
+     "filters": "single",
+     "speed": "0.5-1.0",
+     "mask_state": "unmasked",
+     "population": "C",
+     "star_class": "8-10"
+    }
+   },
+   {
+    "field_id": "C14-2019-02-08-518-c16-q4",
+    "designation": "462255",
+    "q": 0.0,
+    "comparator_q": 0.0702,
+    "strata": {
+     "role": "marginal",
+     "proximity_group": "intermediate",
+     "near_star": "intermediate+control",
+     "depth_margin": "0.5-1.5",
+     "crowding": "<20k",
+     "filters": "single",
+     "speed": "0.5-1.0",
+     "mask_state": "unmasked",
+     "population": "C",
+     "star_class": "8-10"
+    }
+   },
+   {
+    "field_id": "C14-2019-02-08-518-c16-q4",
+    "designation": "592749",
+    "q": 0.0,
+    "comparator_q": 0.1404,
+    "strata": {
+     "role": "marginal",
+     "proximity_group": "intermediate",
+     "near_star": "intermediate+control",
+     "depth_margin": "<0.5",
+     "crowding": "<20k",
+     "filters": "single",
+     "speed": "0.5-1.0",
+     "mask_state": "unmasked",
+     "population": "C",
+     "star_class": "6-8"
+    }
+   },
+   {
+    "field_id": "C14-2019-02-08-518-c16-q4",
+    "designation": "93403",
+    "q": 0.0,
+    "comparator_q": 0.0877,
+    "strata": {
+     "role": "primary",
+     "proximity_group": "control",
+     "near_star": "intermediate+control",
+     "depth_margin": "0.5-1.5",
+     "crowding": "<20k",
+     "filters": "single",
+     "speed": "0.5-1.0",
+     "mask_state": "unmasked",
+     "population": "C",
+     "star_class": "8-10"
+    }
+   },
+   {
+    "field_id": "C17-2020-09-22-561-c15-q2",
+    "designation": "137543",
+    "q": 0.0,
+    "comparator_q": 0.0776,
+    "strata": {
+     "role": "marginal",
+     "proximity_group": "intermediate",
+     "near_star": "intermediate+control",
+     "depth_margin": "<0.5",
+     "crowding": "<20k",
+     "filters": "mixed",
+     "speed": "0.5-1.0",
+     "mask_state": "unmasked",
+     "population": "C",
+     "star_class": "6-8"
+    }
+   },
+   {
+    "field_id": "C17-2020-09-22-561-c15-q2",
+    "designation": "157715",
+    "q": 0.0172,
+    "comparator_q": 0.2845,
+    "strata": {
+     "role": "marginal",
+     "proximity_group": "control",
+     "near_star": "intermediate+control",
+     "depth_margin": "<0.5",
+     "crowding": "<20k",
+     "filters": "mixed",
+     "speed": "0.25-0.5",
+     "mask_state": "unmasked",
+     "population": "C",
+     "star_class": "6-8"
+    }
+   },
+   {
+    "field_id": "C17-2020-09-22-561-c15-q2",
+    "designation": "228995",
+    "q": 0.0172,
+    "comparator_q": 0.0776,
+    "strata": {
+     "role": "marginal",
+     "proximity_group": "control",
+     "near_star": "intermediate+control",
+     "depth_margin": "<0.5",
+     "crowding": "<20k",
+     "filters": "mixed",
+     "speed": "0.25-0.5",
+     "mask_state": "partial",
+     "population": "C",
+     "star_class": "V<6"
+    }
+   },
+   {
+    "field_id": "C17-2020-09-22-561-c15-q2",
+    "designation": "47465",
+    "q": 0.0,
+    "comparator_q": 0.0603,
+    "strata": {
+     "role": "primary",
+     "proximity_group": "control",
+     "near_star": "intermediate+control",
+     "depth_margin": "0.5-1.5",
+     "crowding": "<20k",
+     "filters": "mixed",
+     "speed": "0.5-1.0",
+     "mask_state": "unmasked",
+     "population": "C",
+     "star_class": "6-8"
+    }
+   },
+   {
+    "field_id": "C17-2020-09-22-561-c15-q2",
+    "designation": "48929",
+    "q": 0.0,
+    "comparator_q": 0.0603,
+    "strata": {
+     "role": "primary",
+     "proximity_group": "control",
+     "near_star": "intermediate+control",
+     "depth_margin": "0.5-1.5",
+     "crowding": "<20k",
+     "filters": "mixed",
+     "speed": "0.25-0.5",
+     "mask_state": "unmasked",
+     "population": "C",
+     "star_class": "V<6"
+    }
+   },
+   {
+    "field_id": "C17-2020-09-22-561-c15-q2",
+    "designation": "89879",
+    "q": 0.0,
+    "comparator_q": 0.0776,
+    "strata": {
+     "role": "marginal",
+     "proximity_group": "control",
+     "near_star": "intermediate+control",
+     "depth_margin": "<0.5",
+     "crowding": "<20k",
+     "filters": "mixed",
+     "speed": "0.25-0.5",
+     "mask_state": "unmasked",
+     "population": "C",
+     "star_class": "V<6"
+    }
+   },
+   {
+    "field_id": "C22-2020-02-24-517-c15-q3",
+    "designation": "104471",
+    "q": 0.0,
+    "comparator_q": 0.1028,
+    "strata": {
+     "role": "marginal",
+     "proximity_group": "outer",
+     "near_star": "zone+outer",
+     "depth_margin": "<0.5",
+     "crowding": "<20k",
+     "filters": "mixed",
+     "speed": "0.25-0.5",
+     "mask_state": "unmasked",
+     "population": "C",
+     "star_class": "8-10"
+    }
+   },
+   {
+    "field_id": "C22-2020-02-24-517-c15-q3",
+    "designation": "63351",
+    "q": 0.0,
+    "comparator_q": 0.0993,
+    "strata": {
+     "role": "primary",
+     "proximity_group": "control",
+     "near_star": "intermediate+control",
+     "depth_margin": "0.5-1.5",
+     "crowding": "<20k",
+     "filters": "mixed",
+     "speed": "0.5-1.0",
+     "mask_state": "unmasked",
+     "population": "C",
+     "star_class": "8-10"
+    }
+   },
+   {
+    "field_id": "C22-2020-02-24-517-c15-q3",
+    "designation": "744057",
+    "q": 0.0,
+    "comparator_q": 0.4184,
+    "strata": {
+     "role": "primary",
+     "proximity_group": "intermediate",
+     "near_star": "intermediate+control",
+     "depth_margin": "<0.5",
+     "crowding": "<20k",
+     "filters": "mixed",
+     "speed": "0.25-0.5",
+     "mask_state": "unmasked",
+     "population": "C",
+     "star_class": "8-10"
+    }
+   },
+   {
+    "field_id": "C23-2020-11-17-659-c4-q2",
+    "designation": "147467",
+    "q": 0.0,
+    "comparator_q": 0.15,
+    "strata": {
+     "role": "marginal",
+     "proximity_group": "control",
+     "near_star": "intermediate+control",
+     "depth_margin": "0.5-1.5",
+     "crowding": "20-80k",
+     "filters": "mixed",
+     "speed": "0.25-0.5",
+     "mask_state": "unmasked",
+     "population": "C",
+     "star_class": "8-10"
+    }
+   },
+   {
+    "field_id": "C24-2019-06-29-279-c5-q2",
+    "designation": "100039",
+    "q": 0.0,
+    "comparator_q": 0.0725,
+    "strata": {
+     "role": "primary",
+     "proximity_group": "control",
+     "near_star": "intermediate+control",
+     "depth_margin": "0.5-1.5",
+     "crowding": ">=80k",
+     "filters": "single",
+     "speed": "0.5-1.0",
+     "mask_state": "unmasked",
+     "population": "C",
+     "star_class": "8-10"
+    }
+   },
+   {
+    "field_id": "C26-2020-11-26-612-c3-q1",
+    "designation": "100954",
+    "q": 0.0,
+    "comparator_q": 0.0943,
+    "strata": {
+     "role": "marginal",
+     "proximity_group": "intermediate",
+     "near_star": "intermediate+control",
+     "depth_margin": "<0.5",
+     "crowding": "20-80k",
+     "filters": "mixed",
+     "speed": "0.25-0.5",
+     "mask_state": "unmasked",
+     "population": "C",
+     "star_class": "8-10"
+    }
+   },
+   {
+    "field_id": "C26-2020-11-26-612-c3-q1",
+    "designation": "334054",
+    "q": 0.0,
+    "comparator_q": 0.0943,
+    "strata": {
+     "role": "marginal",
+     "proximity_group": "control",
+     "near_star": "intermediate+control",
+     "depth_margin": "<0.5",
+     "crowding": "20-80k",
+     "filters": "mixed",
+     "speed": "0.5-1.0",
+     "mask_state": "unmasked",
+     "population": "C",
+     "star_class": "8-10"
+    }
+   },
+   {
+    "field_id": "C26-2020-11-26-612-c3-q1",
+    "designation": "386717",
+    "q": 0.0,
+    "comparator_q": 0.1132,
+    "strata": {
+     "role": "marginal",
+     "proximity_group": "intermediate",
+     "near_star": "intermediate+control",
+     "depth_margin": "<0.5",
+     "crowding": "20-80k",
+     "filters": "mixed",
+     "speed": "0.25-0.5",
+     "mask_state": "unmasked",
+     "population": "C",
+     "star_class": "8-10"
+    }
+   },
+   {
+    "field_id": "C27-2020-11-15-392-c7-q4",
+    "designation": "24055",
+    "q": 0.0,
+    "comparator_q": 0.0833,
+    "strata": {
+     "role": "marginal",
+     "proximity_group": "intermediate",
+     "near_star": "intermediate+control",
+     "depth_margin": "<0.5",
+     "crowding": "<20k",
+     "filters": "mixed",
+     "speed": "0.25-0.5",
+     "mask_state": "unmasked",
+     "population": "C",
+     "star_class": "8-10"
+    }
+   },
+   {
+    "field_id": "C27-2020-11-15-392-c7-q4",
+    "designation": "37230",
+    "q": 0.0,
+    "comparator_q": 0.0833,
+    "strata": {
+     "role": "primary",
+     "proximity_group": "control",
+     "near_star": "intermediate+control",
+     "depth_margin": "<0.5",
+     "crowding": "<20k",
+     "filters": "mixed",
+     "speed": "0.25-0.5",
+     "mask_state": "unmasked",
+     "population": "C",
+     "star_class": "8-10"
+    }
+   },
+   {
+    "field_id": "C28-2020-01-04-657-c4-q3",
+    "designation": "108211",
+    "q": 0.0075,
+    "comparator_q": 0.7914,
+    "strata": {
+     "role": "marginal",
+     "proximity_group": "control",
+     "near_star": "intermediate+control",
+     "depth_margin": "<0.5",
+     "crowding": "<20k",
+     "filters": "mixed",
+     "speed": "0.25-0.5",
+     "mask_state": "unmasked",
+     "population": "C",
+     "star_class": "8-10"
+    }
+   },
+   {
+    "field_id": "C29-2020-01-28-617-c2-q2",
+    "designation": "136991",
+    "q": 0.0,
+    "comparator_q": 0.1408,
+    "strata": {
+     "role": "marginal",
+     "proximity_group": "intermediate",
+     "near_star": "intermediate+control",
+     "depth_margin": "<0.5",
+     "crowding": "<20k",
+     "filters": "mixed",
+     "speed": "0.5-1.0",
+     "mask_state": "unmasked",
+     "population": "C",
+     "star_class": "8-10"
+    }
+   },
+   {
+    "field_id": "C29-2020-01-28-617-c2-q2",
+    "designation": "155616",
+    "q": 0.0,
+    "comparator_q": 0.0563,
+    "strata": {
+     "role": "primary",
+     "proximity_group": "control",
+     "near_star": "intermediate+control",
+     "depth_margin": "0.5-1.5",
+     "crowding": "<20k",
+     "filters": "mixed",
+     "speed": "0.5-1.0",
+     "mask_state": "unmasked",
+     "population": "C",
+     "star_class": "8-10"
+    }
+   },
+   {
+    "field_id": "C29-2020-01-28-617-c2-q2",
+    "designation": "182632",
+    "q": 0.0141,
+    "comparator_q": 0.1127,
+    "strata": {
+     "role": "marginal",
+     "proximity_group": "intermediate",
+     "near_star": "intermediate+control",
+     "depth_margin": "<0.5",
+     "crowding": "<20k",
+     "filters": "mixed",
+     "speed": "0.5-1.0",
+     "mask_state": "unmasked",
+     "population": "C",
+     "star_class": "8-10"
+    }
+   },
+   {
+    "field_id": "C29-2020-01-28-617-c2-q2",
+    "designation": "194559",
+    "q": 0.0,
+    "comparator_q": 0.1127,
+    "strata": {
+     "role": "primary",
+     "proximity_group": "control",
+     "near_star": "intermediate+control",
+     "depth_margin": "0.5-1.5",
+     "crowding": "<20k",
+     "filters": "mixed",
+     "speed": "0.5-1.0",
+     "mask_state": "unmasked",
+     "population": "C",
+     "star_class": "8-10"
+    }
+   },
+   {
+    "field_id": "C29-2020-01-28-617-c2-q2",
+    "designation": "288997",
+    "q": 0.0,
+    "comparator_q": 0.3944,
+    "strata": {
+     "role": "primary",
+     "proximity_group": "intermediate",
+     "near_star": "intermediate+control",
+     "depth_margin": "<0.5",
+     "crowding": "<20k",
+     "filters": "mixed",
+     "speed": "0.5-1.0",
+     "mask_state": "unmasked",
+     "population": "C",
+     "star_class": "8-10"
+    }
+   },
+   {
+    "field_id": "C29-2020-01-28-617-c2-q2",
+    "designation": "379482",
+    "q": 0.0,
+    "comparator_q": 0.4789,
+    "strata": {
+     "role": "marginal",
+     "proximity_group": "outer",
+     "near_star": "zone+outer",
+     "depth_margin": "<0.5",
+     "crowding": "<20k",
+     "filters": "mixed",
+     "speed": "0.5-1.0",
+     "mask_state": "unmasked",
+     "population": "C",
+     "star_class": "6-8"
+    }
+   },
+   {
+    "field_id": "C29-2020-01-28-617-c2-q2",
+    "designation": "630552",
+    "q": 0.0141,
+    "comparator_q": 0.2817,
+    "strata": {
+     "role": "marginal",
+     "proximity_group": "control",
+     "near_star": "intermediate+control",
+     "depth_margin": "<0.5",
+     "crowding": "<20k",
+     "filters": "mixed",
+     "speed": "0.5-1.0",
+     "mask_state": "unmasked",
+     "population": "C",
+     "star_class": "8-10"
+    }
+   },
+   {
+    "field_id": "C29-2020-01-28-617-c2-q2",
+    "designation": "632936",
+    "q": 0.0141,
+    "comparator_q": 0.4507,
+    "strata": {
+     "role": "marginal",
+     "proximity_group": "control",
+     "near_star": "intermediate+control",
+     "depth_margin": "<0.5",
+     "crowding": "<20k",
+     "filters": "mixed",
+     "speed": "0.5-1.0",
+     "mask_state": "unmasked",
+     "population": "C",
+     "star_class": "8-10"
+    }
+   },
+   {
+    "field_id": "C29-2020-01-28-617-c2-q2",
+    "designation": "99P",
+    "q": 0.0,
+    "comparator_q": 0.4366,
+    "strata": {
+     "role": "primary",
+     "proximity_group": "control",
+     "near_star": "intermediate+control",
+     "depth_margin": ">=1.5",
+     "crowding": "<20k",
+     "filters": "mixed",
+     "speed": "0.25-0.5",
+     "mask_state": "unmasked",
+     "population": "C",
+     "star_class": "8-10"
+    }
+   }
+  ]
+ },
+ "strips": [
+  {
+   "reason": "missed_positive",
+   "field_id": "C22-2020-02-24-517-c15-q3",
+   "designation": "682258",
+   "tracklet_id": "trk-0220",
+   "weight": 1.0,
+   "q": 0.078,
+   "rank": 12.0,
+   "comparator_q": 0.4184,
+   "score": 0.6204,
+   "features": {
+    "min_snr": 3.16,
+    "median_snr": 4.84,
+    "fit_rms_residual_arcsec": 0.157279,
+    "magnitude_range_mag": 0.850337,
+    "flagged_detection_count": 0.0,
+    "masked_detection_count": 0.0,
+    "sharp_abs_max": 0.369,
+    "shared_detection_tracklets": 0.0
+   },
+   "percentiles": {
+    "min_snr": 0.1467,
+    "median_snr": 0.3033,
+    "fit_rms_residual_arcsec": 0.7767,
+    "magnitude_range_mag": 0.63,
+    "flagged_detection_count": 0.86,
+    "masked_detection_count": 0.8567,
+    "sharp_abs_max": 0.5567,
+    "shared_detection_tracklets": 0.8333
+   },
+   "strata": {
+    "role": "marginal",
+    "proximity_group": "control",
+    "near_star": "intermediate+control",
+    "depth_margin": "<0.5",
+    "crowding": "<20k",
+    "filters": "mixed",
+    "speed": "0.25-0.5",
+    "mask_state": "unmasked",
+    "population": "C",
+    "star_class": "8-10"
+   }
+  },
+  {
+   "reason": "missed_positive",
+   "field_id": "C30-2020-01-28-1613-c9-q2",
+   "designation": "2016 JU15",
+   "tracklet_id": "trk-16458",
+   "weight": 1.0,
+   "q": 0.1522,
+   "rank": 540.5,
+   "comparator_q": 0.0073,
+   "score": 0.5974,
+   "features": {
+    "min_snr": 3.91,
+    "median_snr": 4.17,
+    "fit_rms_residual_arcsec": 0.076163,
+    "magnitude_range_mag": 0.249052,
+    "flagged_detection_count": 0.0,
+    "masked_detection_count": 0.0,
+    "sharp_abs_max": 0.317,
+    "shared_detection_tracklets": 0.0
+   },
+   "percentiles": {
+    "min_snr": 0.0099,
+    "median_snr": 0.0052,
+    "fit_rms_residual_arcsec": 0.9923,
+    "magnitude_range_mag": 0.2551,
+    "flagged_detection_count": 0.9911,
+    "masked_detection_count": 0.5574,
+    "sharp_abs_max": 0.982,
+    "shared_detection_tracklets": 0.9859
+   },
+   "strata": {
+    "role": "marginal",
+    "proximity_group": "intermediate",
+    "near_star": "intermediate+control",
+    "depth_margin": "<0.5",
+    "crowding": "<20k",
+    "filters": "single",
+    "speed": "0.5-1.0",
+    "mask_state": "unmasked",
+    "population": "C",
+    "star_class": "8-10"
+   }
+  },
+  {
+   "reason": "missed_positive",
+   "field_id": "C1-2020-06-17-333-c11-q1",
+   "designation": "31302",
+   "tracklet_id": "trk-1628",
+   "weight": 1.0,
+   "q": 0.2228,
+   "rank": 83.0,
+   "comparator_q": 0.4198,
+   "score": 0.5837,
+   "features": {
+    "min_snr": 7.86,
+    "median_snr": 8.67,
+    "fit_rms_residual_arcsec": 0.082063,
+    "magnitude_range_mag": 0.679064,
+    "flagged_detection_count": 1.0,
+    "masked_detection_count": 1.0,
+    "sharp_abs_max": 0.303,
+    "shared_detection_tracklets": 1.0
+   },
+   "percentiles": {
+    "min_snr": 0.8763,
+    "median_snr": 0.7245,
+    "fit_rms_residual_arcsec": 0.9315,
+    "magnitude_range_mag": 0.8669,
+    "flagged_detection_count": 0.2285,
+    "masked_detection_count": 0.207,
+    "sharp_abs_max": 0.5753,
+    "shared_detection_tracklets": 0.2594
+   },
+   "strata": {
+    "role": "primary",
+    "proximity_group": "zone",
+    "near_star": "zone+outer",
+    "depth_margin": "0.5-1.5",
+    "crowding": ">=80k",
+    "filters": "mixed",
+    "speed": "0.5-1.0",
+    "mask_state": "partial",
+    "population": "C",
+    "star_class": "6-8"
+   }
+  },
+  {
+   "reason": "missed_positive",
+   "field_id": "C30-2020-01-28-1613-c9-q2",
+   "designation": "533784",
+   "tracklet_id": "trk-0128",
+   "weight": 1.0,
+   "q": 0.2076,
+   "rank": 737.0,
+   "comparator_q": 0.0016,
+   "score": 0.5776,
+   "features": {
+    "min_snr": 3.33,
+    "median_snr": 3.76,
+    "fit_rms_residual_arcsec": 0.142951,
+    "magnitude_range_mag": 0.439664,
+    "flagged_detection_count": 0.0,
+    "masked_detection_count": 0.0,
+    "sharp_abs_max": 0.077,
+    "shared_detection_tracklets": 0.0
+   },
+   "percentiles": {
+    "min_snr": 0.0057,
+    "median_snr": 0.0031,
+    "fit_rms_residual_arcsec": 0.972,
+    "magnitude_range_mag": 0.1089,
+    "flagged_detection_count": 0.9911,
+    "masked_detection_count": 0.5574,
+    "sharp_abs_max": 0.9964,
+    "shared_detection_tracklets": 0.9859
+   },
+   "strata": {
+    "role": "marginal",
+    "proximity_group": "control",
+    "near_star": "intermediate+control",
+    "depth_margin": "<0.5",
+    "crowding": "<20k",
+    "filters": "single",
+    "speed": "0.5-1.0",
+    "mask_state": "unmasked",
+    "population": "C",
+    "star_class": "6-8"
+   }
+  },
+  {
+   "reason": "missed_positive",
+   "field_id": "C27-2020-11-15-392-c7-q4",
+   "designation": "148050",
+   "tracklet_id": "trk-0083",
+   "weight": 1.0,
+   "q": 0.1667,
+   "rank": 7.0,
+   "comparator_q": 0.3611,
+   "score": 0.5597,
+   "features": {
+    "min_snr": 3.39,
+    "median_snr": 6.01,
+    "fit_rms_residual_arcsec": 0.236482,
+    "magnitude_range_mag": 0.666114,
+    "flagged_detection_count": 0.0,
+    "masked_detection_count": 0.0,
+    "sharp_abs_max": 0.349,
+    "shared_detection_tracklets": 0.0
+   },
+   "percentiles": {
+    "min_snr": 0.1932,
+    "median_snr": 0.375,
+    "fit_rms_residual_arcsec": 0.4205,
+    "magnitude_range_mag": 0.625,
+    "flagged_detection_count": 0.7727,
+    "masked_detection_count": 0.7727,
+    "sharp_abs_max": 0.5568,
+    "shared_detection_tracklets": 0.7614
+   },
+   "strata": {
+    "role": "marginal",
+    "proximity_group": "control",
+    "near_star": "intermediate+control",
+    "depth_margin": "<0.5",
+    "crowding": "<20k",
+    "filters": "mixed",
+    "speed": "0.5-1.0",
+    "mask_state": "unmasked",
+    "population": "C",
+    "star_class": "8-10"
+   }
+  },
+  {
+   "reason": "missed_positive",
+   "field_id": "C29-2020-01-28-617-c2-q2",
+   "designation": "520875",
+   "tracklet_id": "trk-1448",
+   "weight": 0.5,
+   "q": 0.0845,
+   "rank": 7.0,
+   "comparator_q": 0.493,
+   "score": 0.55,
+   "features": {
+    "min_snr": 3.71,
+    "median_snr": 6.69,
+    "fit_rms_residual_arcsec": 0.259844,
+    "magnitude_range_mag": 0.589356,
+    "flagged_detection_count": 0.0,
+    "masked_detection_count": 0.0,
+    "sharp_abs_max": 0.359,
+    "shared_detection_tracklets": 0.0
+   },
+   "percentiles": {
+    "min_snr": 0.36,
+    "median_snr": 0.625,
+    "fit_rms_residual_arcsec": 0.395,
+    "magnitude_range_mag": 0.655,
+    "flagged_detection_count": 0.725,
+    "masked_detection_count": 0.605,
+    "sharp_abs_max": 0.365,
+    "shared_detection_tracklets": 0.67
+   },
+   "strata": {
+    "role": "marginal",
+    "proximity_group": "control",
+    "near_star": "intermediate+control",
+    "depth_margin": "<0.5",
+    "crowding": "<20k",
+    "filters": "mixed",
+    "speed": "0.5-1.0",
+    "mask_state": "unmasked",
+    "population": "C",
+    "star_class": "8-10"
+   }
+  },
+  {
+   "reason": "missed_positive",
+   "field_id": "C17-2020-09-22-561-c15-q2",
+   "designation": "176965",
+   "tracklet_id": "trk-0029",
+   "weight": 1.0,
+   "q": 0.1034,
+   "rank": 13.0,
+   "comparator_q": 0.1034,
+   "score": 0.571,
+   "features": {
+    "min_snr": 3.18,
+    "median_snr": 6.55,
+    "fit_rms_residual_arcsec": 0.21398,
+    "magnitude_range_mag": 0.776996,
+    "flagged_detection_count": 3.0,
+    "masked_detection_count": 3.0,
+    "sharp_abs_max": 0.251,
+    "shared_detection_tracklets": 0.0
+   },
+   "percentiles": {
+    "min_snr": 0.0644,
+    "median_snr": 0.5871,
+    "fit_rms_residual_arcsec": 0.625,
+    "magnitude_range_mag": 0.7689,
+    "flagged_detection_count": 0.428,
+    "masked_detection_count": 0.428,
+    "sharp_abs_max": 0.7992,
+    "shared_detection_tracklets": 0.8674
+   },
+   "strata": {
+    "role": "marginal",
+    "proximity_group": "intermediate",
+    "near_star": "intermediate+control",
+    "depth_margin": "<0.5",
+    "crowding": "<20k",
+    "filters": "mixed",
+    "speed": "0.25-0.5",
+    "mask_state": "all",
+    "population": "C",
+    "star_class": "V<6"
+   }
+  },
+  {
+   "reason": "missed_positive",
+   "field_id": "C27-2020-11-15-392-c7-q4",
+   "designation": "267663",
+   "tracklet_id": "trk-0053",
+   "weight": 1.0,
+   "q": 0.4861,
+   "rank": 18.5,
+   "comparator_q": 0.5556,
+   "score": 0.4616,
+   "features": {
+    "min_snr": 3.05,
+    "median_snr": 3.19,
+    "fit_rms_residual_arcsec": 0.250415,
+    "magnitude_range_mag": 1.040113,
+    "flagged_detection_count": 0.0,
+    "masked_detection_count": 0.0,
+    "sharp_abs_max": 0.505,
+    "shared_detection_tracklets": 0.0
+   },
+   "percentiles": {
+    "min_snr": 0.0341,
+    "median_snr": 0.0227,
+    "fit_rms_residual_arcsec": 0.3977,
+    "magnitude_range_mag": 0.5568,
+    "flagged_detection_count": 0.7727,
+    "masked_detection_count": 0.7727,
+    "sharp_abs_max": 0.375,
+    "shared_detection_tracklets": 0.7614
+   },
+   "strata": {
+    "role": "marginal",
+    "proximity_group": "control",
+    "near_star": "intermediate+control",
+    "depth_margin": "<0.5",
+    "crowding": "<20k",
+    "filters": "mixed",
+    "speed": "0.5-1.0",
+    "mask_state": "unmasked",
+    "population": "C",
+    "star_class": "8-10"
+   }
+  },
+  {
+   "reason": "missed_positive",
+   "field_id": "C29-2020-01-28-617-c2-q2",
+   "designation": "470924",
+   "tracklet_id": "trk-1470",
+   "weight": 1.0,
+   "q": 0.0986,
+   "rank": 8.0,
+   "comparator_q": 0.1549,
+   "score": 0.5419,
+   "features": {
+    "min_snr": 4.0,
+    "median_snr": 6.11,
+    "fit_rms_residual_arcsec": 0.281488,
+    "magnitude_range_mag": 0.979356,
+    "flagged_detection_count": 0.0,
+    "masked_detection_count": 0.0,
+    "sharp_abs_max": 0.196,
+    "shared_detection_tracklets": 0.0
+   },
+   "percentiles": {
+    "min_snr": 0.445,
+    "median_snr": 0.525,
+    "fit_rms_residual_arcsec": 0.295,
+    "magnitude_range_mag": 0.365,
+    "flagged_detection_count": 0.725,
+    "masked_detection_count": 0.605,
+    "sharp_abs_max": 0.705,
+    "shared_detection_tracklets": 0.67
+   },
+   "strata": {
+    "role": "marginal",
+    "proximity_group": "control",
+    "near_star": "intermediate+control",
+    "depth_margin": "<0.5",
+    "crowding": "<20k",
+    "filters": "mixed",
+    "speed": "0.5-1.0",
+    "mask_state": "unmasked",
+    "population": "C",
+    "star_class": "8-10"
+   }
+  },
+  {
+   "reason": "missed_positive",
+   "field_id": "C29-2020-01-28-617-c2-q2",
+   "designation": "450990",
+   "tracklet_id": "trk-1319",
+   "weight": 1.0,
+   "q": 0.1338,
+   "rank": 10.5,
+   "comparator_q": 0.1549,
+   "score": 0.5156,
+   "features": {
+    "min_snr": 3.12,
+    "median_snr": 5.09,
+    "fit_rms_residual_arcsec": 0.182083,
+    "magnitude_range_mag": 0.928774,
+    "flagged_detection_count": 0.0,
+    "masked_detection_count": 0.0,
+    "sharp_abs_max": 0.203,
+    "shared_detection_tracklets": 0.0
+   },
+   "percentiles": {
+    "min_snr": 0.105,
+    "median_snr": 0.385,
+    "fit_rms_residual_arcsec": 0.565,
+    "magnitude_range_mag": 0.375,
+    "flagged_detection_count": 0.725,
+    "masked_detection_count": 0.605,
+    "sharp_abs_max": 0.695,
+    "shared_detection_tracklets": 0.67
+   },
+   "strata": {
+    "role": "marginal",
+    "proximity_group": "intermediate",
+    "near_star": "intermediate+control",
+    "depth_margin": "<0.5",
+    "crowding": "<20k",
+    "filters": "mixed",
+    "speed": "0.5-1.0",
+    "mask_state": "unmasked",
+    "population": "C",
+    "star_class": "8-10"
+   }
+  },
+  {
+   "reason": "missed_positive",
+   "field_id": "C24-2019-06-29-279-c5-q2",
+   "designation": "146081",
+   "tracklet_id": "trk-0479",
+   "weight": 1.0,
+   "q": 0.0725,
+   "rank": 6.0,
+   "comparator_q": 0.1884,
+   "score": 0.6061,
+   "features": {
+    "min_snr": 5.94,
+    "median_snr": 11.07,
+    "fit_rms_residual_arcsec": 0.136939,
+    "magnitude_range_mag": 0.81836,
+    "flagged_detection_count": 0.0,
+    "masked_detection_count": 0.0,
+    "sharp_abs_max": 0.189,
+    "shared_detection_tracklets": 1.0
+   },
+   "percentiles": {
+    "min_snr": 0.8355,
+    "median_snr": 0.9276,
+    "fit_rms_residual_arcsec": 0.7961,
+    "magnitude_range_mag": 0.375,
+    "flagged_detection_count": 0.5658,
+    "masked_detection_count": 0.5526,
+    "sharp_abs_max": 0.7434,
+    "shared_detection_tracklets": 0.0526
+   },
+   "strata": {
+    "role": "primary",
+    "proximity_group": "zone",
+    "near_star": "zone+outer",
+    "depth_margin": "0.5-1.5",
+    "crowding": ">=80k",
+    "filters": "single",
+    "speed": "0.5-1.0",
+    "mask_state": "unmasked",
+    "population": "C",
+    "star_class": "6-8"
+   }
+  },
+  {
+   "reason": "missed_positive",
+   "field_id": "C6-2018-07-12-283-c15-q1",
+   "designation": "197971",
+   "tracklet_id": "trk-1059",
+   "weight": 1.0,
+   "q": 0.1753,
+   "rank": 62.0,
+   "comparator_q": 0.8362,
+   "score": 0.5981,
+   "features": {
+    "min_snr": 4.58,
+    "median_snr": 4.85,
+    "fit_rms_residual_arcsec": 0.059278,
+    "magnitude_range_mag": 0.465958,
+    "flagged_detection_count": 0.0,
+    "masked_detection_count": 0.0,
+    "sharp_abs_max": 0.483,
+    "shared_detection_tracklets": 0.0
+   },
+   "percentiles": {
+    "min_snr": 0.7951,
+    "median_snr": 0.4298,
+    "fit_rms_residual_arcsec": 0.9785,
+    "magnitude_range_mag": 0.735,
+    "flagged_detection_count": 0.5602,
+    "masked_detection_count": 0.5487,
+    "sharp_abs_max": 0.1648,
+    "shared_detection_tracklets": 0.5731
+   },
+   "strata": {
+    "role": "primary",
+    "proximity_group": "intermediate",
+    "near_star": "intermediate+control",
+    "depth_margin": "0.5-1.5",
+    "crowding": ">=80k",
+    "filters": "single",
+    "speed": "0.5-1.0",
+    "mask_state": "unmasked",
+    "population": "C",
+    "star_class": "8-10"
+   }
+  },
+  {
+   "reason": "shortlist_background",
+   "field_id": "C2-2019-08-01-553-c11-q3",
+   "tracklet_id": "trk-1074",
+   "q": 0.0272,
+   "score": 0.7242,
+   "proximity_group": "control"
+  },
+  {
+   "reason": "shortlist_background",
+   "field_id": "C25-2018-07-05-331-c9-q4",
+   "tracklet_id": "trk-4879",
+   "q": 0.003,
+   "score": 0.7683,
+   "proximity_group": "control"
+  },
+  {
+   "reason": "shortlist_background",
+   "field_id": "C2-2019-08-01-553-c11-q3",
+   "tracklet_id": "trk-3604",
+   "q": 0.0123,
+   "score": 0.7607,
+   "proximity_group": "control"
+  },
+  {
+   "reason": "shortlist_background",
+   "field_id": "C28-2020-01-04-657-c4-q3",
+   "tracklet_id": "trk-2651",
+   "q": 0.0042,
+   "score": 0.7476,
+   "proximity_group": "control"
+  },
+  {
+   "reason": "shortlist_background",
+   "field_id": "C30-2020-01-28-1613-c9-q2",
+   "tracklet_id": "trk-13519",
+   "q": 0.043,
+   "score": 0.6503,
+   "proximity_group": "control"
+  },
+  {
+   "reason": "shortlist_background",
+   "field_id": "C21-2020-08-23-452-c15-q3",
+   "tracklet_id": "trk-1742",
+   "q": 0.0447,
+   "score": 0.6678,
+   "proximity_group": "zone"
+  },
+  {
+   "reason": "shortlist_background",
+   "field_id": "C16-2020-01-29-511-c13-q3",
+   "tracklet_id": "trk-0490",
+   "q": 0.0071,
+   "score": 0.7136,
+   "proximity_group": "outer"
+  },
+  {
+   "reason": "shortlist_background",
+   "field_id": "C2-2019-08-01-553-c11-q3",
+   "tracklet_id": "trk-0558",
+   "q": 0.0157,
+   "score": 0.7486,
+   "proximity_group": "control"
+  },
+  {
+   "reason": "shortlist_background",
+   "field_id": "C26-2020-11-26-612-c3-q1",
+   "tracklet_id": "trk-0365",
+   "q": 0.0472,
+   "score": 0.626,
+   "proximity_group": "zone"
+  },
+  {
+   "reason": "shortlist_background",
+   "field_id": "C25-2018-07-05-331-c9-q4",
+   "tracklet_id": "trk-2331",
+   "q": 0.0401,
+   "score": 0.6786,
+   "proximity_group": "intermediate"
+  },
+  {
+   "reason": "shortlist_background",
+   "field_id": "C16-2020-01-29-511-c13-q3",
+   "tracklet_id": "trk-0853",
+   "q": 0.05,
+   "score": 0.6538,
+   "proximity_group": "zone"
+  },
+  {
+   "reason": "shortlist_background",
+   "field_id": "C30-2020-01-28-1613-c9-q2",
+   "tracklet_id": "trk-1223",
+   "q": 0.0379,
+   "score": 0.6542,
+   "proximity_group": "intermediate"
+  },
+  {
+   "reason": "shortlist_background",
+   "field_id": "C28-2020-01-04-657-c4-q3",
+   "tracklet_id": "trk-2503",
+   "q": 0.0108,
+   "score": 0.7223,
+   "proximity_group": "control"
+  },
+  {
+   "reason": "shortlist_background",
+   "field_id": "C10-2020-08-14-447-c2-q1",
+   "tracklet_id": "trk-0418",
+   "q": 0.043,
+   "score": 0.6372,
+   "proximity_group": "zone"
+  },
+  {
+   "reason": "shortlist_background",
+   "field_id": "C30-2020-01-28-1613-c9-q2",
+   "tracklet_id": "trk-14025",
+   "q": 0.0255,
+   "score": 0.6705,
+   "proximity_group": "outer"
+  },
+  {
+   "reason": "shortlist_background",
+   "field_id": "C2-2019-08-01-553-c11-q3",
+   "tracklet_id": "trk-1178",
+   "q": 0.0078,
+   "score": 0.7723,
+   "proximity_group": "outer"
+  },
+  {
+   "reason": "shortlist_background",
+   "field_id": "C24-2019-06-29-279-c5-q2",
+   "tracklet_id": "trk-0554",
+   "q": 0.0362,
+   "score": 0.6308,
+   "proximity_group": "zone"
+  },
+  {
+   "reason": "shortlist_background",
+   "field_id": "C26-2020-11-26-612-c3-q1",
+   "tracklet_id": "trk-0169",
+   "q": 0.0094,
+   "score": 0.6653,
+   "proximity_group": "zone"
+  },
+  {
+   "reason": "shortlist_background",
+   "field_id": "C15-2019-01-04-500-c15-q4",
+   "tracklet_id": "trk-0478",
+   "q": 0.0192,
+   "score": 0.5819,
+   "proximity_group": "control"
+  },
+  {
+   "reason": "shortlist_background",
+   "field_id": "C6-2018-07-12-283-c15-q1",
+   "tracklet_id": "trk-0195",
+   "q": 0.0043,
+   "score": 0.7584,
+   "proximity_group": "intermediate"
+  }
+ ],
+ "development": {
+  "development_fields": 56,
+  "development_positive_objects": 402.0,
+  "rankers": {
+   "M1": {
+    "recall@5%": {
+     "development": 0.9552238805970149,
+     "validation": 0.9386617100371747,
+     "validation_minus_development": -0.016562170559840217
+    },
+    "recall@1%": {
+     "development": 0.8781094527363185,
+     "validation": 0.8810408921933085,
+     "validation_minus_development": 0.002931439456990037
+    },
+    "recall@2%": {
+     "development": 0.9154228855721394,
+     "validation": 0.912639405204461,
+     "validation_minus_development": -0.0027834803676783926
+    },
+    "recall@10%": {
+     "development": 0.9776119402985075,
+     "validation": 0.966542750929368,
+     "validation_minus_development": -0.011069189369139476
+    },
+    "recall@20%": {
+     "development": 0.9900497512437811,
+     "validation": 0.9888475836431226,
+     "validation_minus_development": -0.0012021676006584991
+    },
+    "recall@K10": {
+     "development": 0.9502487562189055,
+     "validation": 0.9516728624535316,
+     "validation_minus_development": 0.0014241062346260769
+    },
+    "recall@K25": {
+     "development": 0.9800995024875622,
+     "validation": 0.9814126394052045,
+     "validation_minus_development": 0.0013131369176423435
+    },
+    "recall@K50": {
+     "development": 0.9900497512437811,
+     "validation": 0.9814126394052045,
+     "validation_minus_development": -0.008637111838576628
+    },
+    "AUC": {
+     "development": 0.9898809821237633,
+     "validation": 0.9897524009165861,
+     "validation_minus_development": -0.0001285812071771808
+    },
+    "faint guard difference": {
+     "development": -0.12080536912751683,
+     "validation": -0.10708694605009639,
+     "validation_minus_development": 0.013718423077420439
+    },
+    "MARGINAL recall@5%": {
+     "development": 0.8791946308724832,
+     "validation": 0.8697916666666666,
+     "validation_minus_development": -0.009402964205816544
+    },
+    "PRIMARY recall@5%": {
+     "development": 1.0,
+     "validation": 0.976878612716763,
+     "validation_minus_development": -0.023121387283236983
+    },
+    "zone+outer vs control difference": {
+     "development": -0.0011625975751536899,
+     "validation": -0.004423428920073302,
+     "validation_minus_development": -0.0032608313449196125
+    },
+    "development_recall_5_ci": [
+     0.9406307977736549,
+     0.973568281938326
+    ],
+    "validation_recall_5_ci": [
+     0.9038461538461539,
+     0.9744680851063829
+    ]
+   },
+   "B1:sharp_abs_max": {
+    "recall@5%": {
+     "development": 0.7089552238805971,
+     "validation": 0.6951672862453532,
+     "validation_minus_development": -0.013787937635243885
+    },
+    "recall@1%": {
+     "development": 0.4651741293532338,
+     "validation": 0.35315985130111527,
+     "validation_minus_development": -0.11201427805211855
+    },
+    "recall@2%": {
+     "development": 0.527363184079602,
+     "validation": 0.5148698884758365,
+     "validation_minus_development": -0.012493295603765553
+    },
+    "recall@10%": {
+     "development": 0.8034825870646766,
+     "validation": 0.8605947955390335,
+     "validation_minus_development": 0.05711220847435694
+    },
+    "recall@20%": {
+     "development": 0.900497512437811,
+     "validation": 0.929368029739777,
+     "validation_minus_development": 0.028870517301965992
+    },
+    "recall@K10": {
+     "development": 0.7089552238805971,
+     "validation": 0.6877323420074349,
+     "validation_minus_development": -0.021222881873162125
+    },
+    "recall@K25": {
+     "development": 0.8407960199004975,
+     "validation": 0.8810408921933085,
+     "validation_minus_development": 0.04024487229281104
+    },
+    "recall@K50": {
+     "development": 0.9054726368159204,
+     "validation": 0.9628252788104089,
+     "validation_minus_development": 0.05735264199448853
+    },
+    "AUC": {
+     "development": 0.9299318187964472,
+     "validation": 0.9390765176880065,
+     "validation_minus_development": 0.009144698891559333
+    },
+    "faint guard difference": {
+     "development": -0.42265962808711566,
+     "validation": -0.4492413294797688,
+     "validation_minus_development": -0.026581701392653145
+    },
+    "MARGINAL recall@5%": {
+     "development": 0.4429530201342282,
+     "validation": 0.40625,
+     "validation_minus_development": -0.036703020134228215
+    },
+    "PRIMARY recall@5%": {
+     "development": 0.8656126482213439,
+     "validation": 0.8554913294797688,
+     "validation_minus_development": -0.01012131874157507
+    },
+    "zone+outer vs control difference": {
+     "development": -0.07772795216741413,
+     "validation": -0.02623550945698605,
+     "validation_minus_development": 0.05149244271042808
+    },
+    "development_recall_5_ci": [
+     0.6279863481228669,
+     0.7732558139534884
+    ],
+    "validation_recall_5_ci": [
+     0.605,
+     0.7655367231638418
+    ]
+   },
+   "B0": {
+    "recall@5%": {
+     "development": 0.05472636815920398,
+     "validation": 0.031598513011152414,
+     "validation_minus_development": -0.023127855148051567
+    },
+    "recall@1%": {
+     "development": 0.017412935323383085,
+     "validation": 0.0037174721189591076,
+     "validation_minus_development": -0.013695463204423977
+    },
+    "recall@2%": {
+     "development": 0.024875621890547265,
+     "validation": 0.00929368029739777,
+     "validation_minus_development": -0.015581941593149495
+    },
+    "recall@10%": {
+     "development": 0.0945273631840796,
+     "validation": 0.0762081784386617,
+     "validation_minus_development": -0.018319184745417896
+    },
+    "recall@20%": {
+     "development": 0.20149253731343283,
+     "validation": 0.17472118959107807,
+     "validation_minus_development": -0.02677134772235476
+    },
+    "recall@K10": {
+     "development": 0.14676616915422885,
+     "validation": 0.04460966542750929,
+     "validation_minus_development": -0.10215650372671956
+    },
+    "recall@K25": {
+     "development": 0.32338308457711445,
+     "validation": 0.19516728624535315,
+     "validation_minus_development": -0.1282157983317613
+    },
+    "recall@K50": {
+     "development": 0.47512437810945274,
+     "validation": 0.3996282527881041,
+     "validation_minus_development": -0.07549612532134864
+    },
+    "AUC": {
+     "development": 0.5097588570003792,
+     "validation": 0.46697606836480354,
+     "validation_minus_development": -0.04278278863557561
+    },
+    "faint guard difference": {
+     "development": -0.01230867177759503,
+     "validation": -0.016738921001926785,
+     "validation_minus_development": -0.004430249224331755
+    },
+    "MARGINAL recall@5%": {
+     "development": 0.04697986577181208,
+     "validation": 0.020833333333333332,
+     "validation_minus_development": -0.02614653243847875
+    },
+    "PRIMARY recall@5%": {
+     "development": 0.05928853754940711,
+     "validation": 0.03757225433526012,
+     "validation_minus_development": -0.021716283214146995
+    },
+    "zone+outer vs control difference": {
+     "development": -0.04874605547251287,
+     "validation": 0.01525320317266626,
+     "validation_minus_development": 0.06399925864517914
+    },
+    "development_recall_5_ci": [
+     0.03333333333333333,
+     0.0859106529209622
+    ],
+    "validation_recall_5_ci": [
+     0.013636363636363636,
+     0.0502092050209205
+    ]
+   }
+  }
+ }
+}
