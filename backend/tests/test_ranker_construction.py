@@ -231,3 +231,25 @@ def test_development_level_is_descriptive_mapping_of_the_as037_thresholds() -> N
     assert rc.development_level(rc.Interval(point=0.6, lower=0.4, upper=0.7)).startswith("useful")
     assert rc.development_level(rc.Interval(point=0.3, lower=0.2, upper=0.45)).startswith("below")
     assert rc.development_level(rc.Interval(point=0.55, lower=0.25, upper=0.7)) == "indeterminate"
+
+
+def test_logistic_fit_converges_on_the_development_training_set() -> None:
+    # Regression: commit 9c358ab stopped in M2(C=1) because backtracking
+    # rejected steps below float rounding. Convergence only, no coefficient.
+    from collections import defaultdict
+
+    _, rows, _ = rc.load_development(ROOT)
+    features = rc.load_frozen_features(ROOT)
+    by_field = defaultdict(list)
+    for r in rows:
+        by_field[r["field_id"]].append(r)
+    percentiles = rc.percentile_matrix(by_field, features)
+    folds = rc.fold_of_groups(sorted({r["group"] for r in rows}))
+    for k in (None, *range(rd.CV_FOLDS)):
+        train = [f for f, rs in by_field.items() if folds[rs[0]["group"]] != k]
+        x, y, s = rc.training_set(by_field, percentiles, train)
+        assert s.sum() == pytest.approx(len(train))
+        for c in rd.LOGISTIC_C_GRID:
+            w, b = rc.logistic_fit(x, y, s, c)
+            p = 1 / (1 + np.exp(-(x @ w + b)))
+            assert np.max(np.abs(w + c * x.T @ (s * (p - y)))) < 1e-8

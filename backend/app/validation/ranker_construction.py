@@ -99,7 +99,12 @@ MISSING_PERCENTILE = 0.0
 # percentiles with an unpenalised intercept (the scikit-learn definition
 # of C), solved by damped Newton steps to max |gradient| < 1e-9 (the
 # problem is strictly convex, so the optimum is unique and
-# solver-independent). Training rows: positive (y = 1) and background
+# solver-independent). Note: the first run of commit 9c358ab stopped
+# with "did not converge" in M2(C=1) before any output was written or
+# read: backtracking rejected steps whose objective change was below
+# float rounding. Full Newton steps are now taken once the Newton
+# decrement is < 1e-12; the optimum, tolerance and recipe are unchanged.
+# Training rows: positive (y = 1) and background
 # (y = 0) tracklets of the training folds; auxiliary tracklets are not
 # training rows (they are still ranked). Quadrant-nights weighted
 # equally: s_i = 1 / (#positive + #background of its quadrant-night), so
@@ -158,6 +163,7 @@ MISSING_PERCENTILE = 0.0
 CV_SEED_PREFIX = rd.SALT
 NEWTON_TOLERANCE = 1e-9
 NEWTON_MAX_ITER = 200
+NEWTON_FULL_STEP_DECREMENT = 1e-12
 STRATUM_GAP_REPORT = 0.20
 
 RESULTS_FILE = "as039_construction.json"
@@ -260,12 +266,17 @@ def logistic_fit(x: np.ndarray, y: np.ndarray, s: np.ndarray, c: float) -> tuple
         hessian = np.diag(penalty) + c * (design.T * (s * p * (1 - p))) @ design
         step = np.linalg.solve(hessian, gradient)
         size = 1.0
-        while True:
+        # Near the optimum the objective change is below float rounding:
+        # take the full Newton step instead of backtracking (E5 note).
+        while float(gradient @ step) > NEWTON_FULL_STEP_DECREMENT:
             candidate = theta - size * step
             value = objective(candidate)
             if value <= current or size < 1e-12:
                 break
             size /= 2
+        else:
+            candidate = theta - step
+            value = objective(candidate)
         theta, current = candidate, value
     else:
         raise RuntimeError("logistic regression did not converge")
