@@ -223,3 +223,26 @@ construction, AS-040 one-shot validation), and the decision rule with
 near-star and faint-object guards. Bright-star proximity is context only.
 The manifest is offline and deterministic (inputs hashed); a test rebuilds
 and compares it.
+
+## AS-038 candidate feature evaluation (stage 1, development only)
+
+```
+python -m app.validation.feature_evaluation table --out-dir validation/results/as038     # IRSA + VizieR, resumable (.cache/as038)
+python -m app.validation.feature_evaluation evaluate --out-dir validation/results/as038  # offline, from the committed table
+```
+
+Executes AS-037 stage 1 unchanged on the 56 development quadrant-nights
+only: every quadrant-night passes `ranking_design.require_split(...,
+"feature_evaluation")` before it is loaded, and validation rows of shared
+inputs (AS-036 traces, SkyBoT snapshot) are dropped by field id. SkyBoT is
+replayed only, never queried live. `table` writes one row per built
+tracklet (`as038_feature_table.csv.gz`: 12 candidate features, label,
+evaluation-only identity columns, context-only proximity/speed/PA) and
+the quadrant-night conditions (`as038_fields.json`); `evaluate` writes
+per-feature within-field AUC, recall@5 % (group bootstrap), secondary
+metrics, strata, missingness, Spearman redundancy on background, the
+mechanical stage-1 gate and the frozen AS-039 feature list
+(`as038_evaluation.json` / `.md`, `as038_frozen_features.json`).
+Implementation decisions D1–D9 (block in the module) were committed
+before any outcome. No ranker, combined score, weight, threshold or
+filter. Interpretation: `results/as038/as038_findings.md`.

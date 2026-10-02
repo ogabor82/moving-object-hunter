@@ -1056,7 +1056,7 @@ def render_markdown(e: Evaluation, fields: Sequence[Mapping]) -> str:
     ]
     for r in e.features:
         lines.append(
-            f"| `{r.feature}` | {r.missing_ranked}/{r.ranked} ({100 * r.missing_rate:.2f} %) "
+            f"| `{r.feature}` | {r.missing_ranked}/{r.ranked} ({100 * r.missing_rate:.2f} %) | "
             + " | ".join(f"{100 * r.missing_by_label[k]:.2f} %" for k in (rd.POSITIVE, rd.AUXILIARY, rd.BACKGROUND))
             + " |"
         )

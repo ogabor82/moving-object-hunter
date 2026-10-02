@@ -1,0 +1,109 @@
+{
+ "ticket": "AS-038",
+ "stage": "feature_evaluation",
+ "for": "AS-039 ranking construction (development only); AS-037 sections 6-7 unchanged",
+ "manifest_sha256": "63e12b9feb8bc3761a0b43ecebd1a68b6bbe00ef83de3e627cf7baaa4b9f423c",
+ "table_sha256": "da670e38357503fe6d6d5239097523d08e939d8c8c28c133a0d873d7d6dd5fd9",
+ "features": [
+  {
+   "feature": "min_snr",
+   "direction": 1,
+   "input": "within-quadrant-night mid-rank percentile, oriented higher = earlier",
+   "auc": 0.8265144146602431,
+   "auc_ci_95": [
+    0.791388872331859,
+    0.8731549911487141
+   ]
+  },
+  {
+   "feature": "median_snr",
+   "direction": 1,
+   "input": "within-quadrant-night mid-rank percentile, oriented higher = earlier",
+   "auc": 0.8200816302289694,
+   "auc_ci_95": [
+    0.7779855724552067,
+    0.8743116987073046
+   ]
+  },
+  {
+   "feature": "fit_rms_residual_arcsec",
+   "direction": -1,
+   "input": "within-quadrant-night mid-rank percentile, oriented higher = earlier",
+   "auc": 0.897209027641642,
+   "auc_ci_95": [
+    0.8724152432710914,
+    0.9183854909324062
+   ]
+  },
+  {
+   "feature": "magnitude_range_mag",
+   "direction": -1,
+   "input": "within-quadrant-night mid-rank percentile, oriented higher = earlier",
+   "auc": 0.8002307185249697,
+   "auc_ci_95": [
+    0.7522978591369629,
+    0.8542527220322368
+   ]
+  },
+  {
+   "feature": "flagged_detection_count",
+   "direction": -1,
+   "input": "within-quadrant-night mid-rank percentile, oriented higher = earlier",
+   "auc": 0.8167429941259198,
+   "auc_ci_95": [
+    0.7553881896013961,
+    0.8620307355187055
+   ]
+  },
+  {
+   "feature": "masked_detection_count",
+   "direction": -1,
+   "input": "within-quadrant-night mid-rank percentile, oriented higher = earlier",
+   "auc": 0.780016108834232,
+   "auc_ci_95": [
+    0.7207165282949207,
+    0.8259740996789404
+   ]
+  },
+  {
+   "feature": "sharp_abs_max",
+   "direction": -1,
+   "input": "within-quadrant-night mid-rank percentile, oriented higher = earlier",
+   "auc": 0.9299318187964472,
+   "auc_ci_95": [
+    0.8976954241846548,
+    0.9515823662920186
+   ]
+  },
+  {
+   "feature": "shared_detection_tracklets",
+   "direction": -1,
+   "input": "within-quadrant-night mid-rank percentile, oriented higher = earlier",
+   "auc": 0.804814148625245,
+   "auc_ci_95": [
+    0.7460687416026737,
+    0.85103569990041
+   ]
+  }
+ ],
+ "not_allowed": [
+  "any feature not listed here",
+  "bright-star proximity / proximity group / star separations (context only)",
+  "speed and position angle (context only)",
+  "identification status, designation, SkyBoT prediction or residual"
+ ],
+ "gate_failed_or_dropped": {
+  "fit_max_residual_arcsec": [
+   "redundant with fit_rms_residual_arcsec"
+  ],
+  "magnitude_range_sigma": [
+   "AUC lower bound 0.530 <= 0.55"
+  ],
+  "magnitude_chi2": [
+   "AUC lower bound 0.528 <= 0.55"
+  ],
+  "edge_detection_count": [
+   "AUC lower bound 0.513 <= 0.55"
+  ]
+ }
+}
