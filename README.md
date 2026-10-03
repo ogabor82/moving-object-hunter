@@ -87,6 +87,20 @@ carries its 8 feature values and percentiles, its tracklet and a cutout
 production-vs-research equivalence evidence is in
 `backend/validation/results/as041/`.
 
+Ranked candidate review UI (AS-042, read-only): after **Build tracklets**,
+**Review all candidates in M1 order →** opens the build's review queue
+(`#review=<build_id>`; any build id kept by the backend can also be typed
+under *Review a build*). Left: every ranked candidate in M1 order (rank,
+tracklet, review priority, speed / fit) and, separately, the unranked
+(rejected) tracklets with their reason. Centre: `Candidate 12 / 437` with
+◀ Previous / Next ▶ (`n` / `↓`, `p` / `↑`; `← / →`, space and `o` still
+drive the frames) and the same blink comparator and overlay as the
+sequences, opened from the candidate's `view`. Right: rank and priority
+(labelled review order, not probability or confidence), the 8-input M1
+evidence collapsed, the tracklet and detections, and SkyBoT identification
+on request. Nothing is filtered or hidden by score; no review labels are
+stored.
+
 ## Tests
 
 ```
@@ -94,5 +108,5 @@ cd backend
 .venv/bin/python -m pytest -q                       # unit tests
 RUN_ZTF_INTEGRATION=1 RUN_SKYBOT_INTEGRATION=1 \
   .venv/bin/python -m pytest -q -m integration       # live IRSA/SkyBoT
-cd ../frontend && npm run build && npm run lint      # type-check, build, lint
+cd ../frontend && npm test && npm run build && npm run lint  # vitest, type-check, build, lint
 ```

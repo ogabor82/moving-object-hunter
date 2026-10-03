@@ -233,3 +233,82 @@ export interface ProjectResponse {
   center_y: number
   points: (DisplayPoint | null)[]
 }
+
+// Ranked candidate review (AS-041,
+// GET /api/tracklets/builds/{build_id}/review-ranking). The rank orders
+// human review only: M1 is not a classifier and its score is not a
+// probability or confidence. Nothing is filtered: every built tracklet is a
+// candidate, every rejected one is unranked.
+
+export type ReviewDirection = 'higher_reviewed_first' | 'lower_reviewed_first'
+
+export interface M1FeatureEvidence {
+  feature: string
+  direction: ReviewDirection
+  /** null = missing (counted as percentile 0) */
+  value: number | null
+  percentile: number | null
+  weight: number
+  contribution: number
+}
+
+export type SharpAvailability = 'unavailable' | 'partial' | 'complete'
+
+/** Frame sequence and cutout window that open a tracklet in the blink view. */
+export interface ReviewView {
+  product_ids: number[]
+  center_ra: number
+  center_dec: number
+  size_arcsec: number
+}
+
+export interface RankedCandidate {
+  /** 1 = review first; a position in the order, not a grade */
+  review_rank: number
+  tracklet_id: string
+  /** Review priority in [0, 1]; NOT a probability, confidence or cutoff */
+  review_priority_score: number
+  evidence: M1FeatureEvidence[]
+  sharp_availability: SharpAvailability
+  tracklet: Tracklet
+  view: ReviewView
+}
+
+export interface UnrankedTracklet {
+  tracklet_id: string
+  reason: string
+  tracklet: Tracklet
+  view: ReviewView
+}
+
+export interface ReviewSemantics {
+  purpose: 'review_priority_only'
+  is_classifier: false
+  score_is_probability: false
+  candidates_filtered: false
+  complete: true
+  statement: string
+  known_limitations: string[]
+}
+
+export interface ReviewRankingResponse {
+  build_id: string
+  config: PipelineConfig
+  observations: Observation[]
+  tracklet_count: number
+  candidate_count: number
+  unranked_count: number
+  ranker: {
+    ranker: 'M1'
+    source: string
+    inputs: { feature: string; direction: 1 | -1; weight: number }[]
+    intercept: number
+    missing_percentile: number
+    percentile_population: string
+    tie_order: string
+  }
+  semantics: ReviewSemantics
+  domain_notes: string[]
+  candidates: RankedCandidate[]
+  unranked: UnrankedTracklet[]
+}

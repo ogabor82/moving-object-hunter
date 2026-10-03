@@ -6,13 +6,17 @@ frozen validation sequences (`src/components/BlinkComparator.tsx`), plus
 the backend connection status. AS-030: tracklet + identification overlay
 and summary panel (`src/components/trackletOverlay.ts`, `TrackletPanel.tsx`);
 builds, projections, identifications and frames are memoised for the page
-session (`src/api/*Cache.ts`).
+session (`src/api/*Cache.ts`). AS-042: read-only ranked candidate review
+of a build in M1 order (`src/components/ReviewWorkspace.tsx`,
+`CandidatePanel.tsx`, `reviewQueue.ts`), reusing the same blink viewer
+(`BlinkViewer` in `BlinkComparator.tsx`, frame loading in `blinkFrames.ts`).
 
 ```
 npm install
 npm run dev        # http://localhost:5173, proxies /api to the backend
 npm run build      # type-check (tsc -b) and production build
 npm run lint       # oxlint
+npm test           # vitest + Testing Library (jsdom), src/**/*.test.ts(x)
 ```
 
 The dev server forwards `/api/*` to `http://127.0.0.1:8000` (override with

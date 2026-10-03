@@ -6,6 +6,7 @@ import type {
   HealthResponse,
   IdentifyResponse,
   ProjectResponse,
+  ReviewRankingResponse,
   SkyPosition,
   ObservationSearchParams,
   ObservationSearchResponse,
@@ -108,6 +109,13 @@ export function identifyTracklet(
           : { match_radius_arcsec: matchRadiusArcsec },
       ),
     },
+  )
+}
+
+/** Every tracklet of a build, the built ones in M1 review order (AS-041). */
+export function getReviewRanking(buildId: string): Promise<ReviewRankingResponse> {
+  return request<ReviewRankingResponse>(
+    `/tracklets/builds/${encodeURIComponent(buildId)}/review-ranking`,
   )
 }
 

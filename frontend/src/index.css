@@ -367,3 +367,168 @@ button:disabled {
   width: 540px;
   flex-shrink: 0;
 }
+
+/* Ranked candidate review (AS-042) */
+
+.back {
+  margin-left: 1rem;
+  color: var(--text);
+}
+
+.build-form {
+  display: flex;
+  gap: 0.4rem;
+  padding: 0 1rem 1rem;
+}
+
+.build-form input {
+  flex: 1;
+  min-width: 0;
+  font: inherit;
+  color: inherit;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 0.3rem 0.5rem;
+}
+
+.review-open {
+  display: block;
+  width: 100%;
+  margin: 0.2rem 0 0.4rem;
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.review,
+.review-state {
+  display: flex;
+  flex: 1;
+  min-height: 0;
+}
+
+.review-state {
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 1rem 1.5rem;
+}
+
+.review-state p {
+  margin: 0 0 0.6rem;
+}
+
+.queue {
+  width: 20rem;
+}
+
+.queue-head {
+  padding-bottom: 0.4rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.queue-head p,
+.queue-head details {
+  margin: 0;
+  padding: 0 1rem 0.4rem;
+}
+
+.queue-head ul {
+  margin: 0.2rem 0;
+  padding-left: 1rem;
+}
+
+.queue-head summary,
+.unranked summary {
+  cursor: pointer;
+}
+
+.queue-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.queue-row {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 3.2rem 1fr auto;
+  column-gap: 0.4rem;
+  border: 0;
+  border-left: 3px solid transparent;
+  border-radius: 0;
+  background: transparent;
+  padding: 0.3rem 0.8rem 0.3rem 0.7rem;
+  text-align: left;
+  font-size: 12px;
+}
+
+.queue-row.active {
+  border-left-color: var(--accent);
+  background: var(--accent-dim);
+}
+
+.queue-rank {
+  color: var(--muted);
+}
+
+.queue-row.active .queue-rank {
+  color: var(--accent);
+}
+
+.queue-meta {
+  grid-column: 2 / 4;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.queue-empty {
+  padding: 0.6rem 1rem;
+}
+
+.unranked {
+  margin-top: 0.5rem;
+  border-top: 1px solid var(--border);
+}
+
+.unranked summary {
+  padding: 0.6rem 1rem 0.4rem;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.unranked > p {
+  margin: 0;
+  padding: 0 1rem 0.4rem;
+}
+
+.unranked-row .queue-rank {
+  font-style: italic;
+}
+
+.review-nav {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+
+.review-position {
+  min-width: 11rem;
+  text-align: center;
+  color: var(--accent);
+}
+
+.evidence {
+  margin: 0.3rem 0;
+}
+
+.evidence summary {
+  cursor: pointer;
+}
+
+.evidence .label {
+  text-align: left;
+}

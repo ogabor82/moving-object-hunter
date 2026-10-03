@@ -1,11 +1,13 @@
 import { useEffect, useMemo, useState } from 'react'
 import { ApiError } from '../api/client'
+import { frameKey } from '../api/frameCache'
 import {
   cachedBuild,
   cachedIdentification,
   loadBuild,
   loadIdentification,
   loadProjection,
+  loadTrackletProjection,
 } from '../api/trackletCache'
 import type {
   BlinkPreset,
@@ -46,7 +48,7 @@ type FrameGeometry = Pick<FrameCutoutResponse, 'width' | 'height' | 'center_x' |
  * (`points` is flattened in tracklet then detection order).
  */
 export function tracksOnFrame(
-  build: TrackletBuildResponse,
+  build: Pick<TrackletBuildResponse, 'tracklets'>,
   points: (DisplayPoint | null)[],
   productIds: number[],
 ): OverlayTrack[] {
@@ -221,6 +223,57 @@ export function useTrackletOverlay(
     identification,
     retryIdentification,
   }
+}
+
+/**
+ * Overlay of one review candidate: its detections projected onto each
+ * loaded frame of its view (one small POST /api/frames/project per frame,
+ * memoised for the session). `tracks[i]` is undefined until frame i and its
+ * projection have loaded.
+ */
+export function useCandidateTrack(
+  tracklet: Tracklet,
+  productIds: number[],
+  params: FrameCutoutParams[],
+  frames: (FrameGeometry | null)[],
+): { tracks: (OverlayTrack | undefined)[]; errors: { epoch: number; message: string }[] } {
+  // Settled projections by frame key + tracklet id (in flight = absent).
+  const [settled, setSettled] = useState<Record<string, Async<(DisplayPoint | null)[]>>>({})
+  const loadedMask = frames.map((frame) => (frame === null ? '0' : '1')).join('')
+
+  useEffect(() => {
+    let active = true
+    params.forEach((frameParams, i) => {
+      if (loadedMask[i] !== '1') return
+      const key = `${frameKey(frameParams)}#${tracklet.tracklet_id}`
+      const settle = (state: Async<(DisplayPoint | null)[]>) =>
+        active && setSettled((current) => ({ ...current, [key]: state }))
+      loadTrackletProjection(frameParams, tracklet)
+        .then((value) => settle({ status: 'ready', value }))
+        .catch((error: unknown) => settle({ status: 'error', message: describeError(error) }))
+    })
+    return () => {
+      active = false
+    }
+  }, [tracklet, params, loadedMask])
+
+  const states = useMemo(
+    () => params.map((p) => settled[`${frameKey(p)}#${tracklet.tracklet_id}`]),
+    [settled, params, tracklet],
+  )
+  const tracks = useMemo(
+    () =>
+      states.map((state) =>
+        state?.status === 'ready'
+          ? tracksOnFrame({ tracklets: [tracklet] }, state.value, productIds)[0]
+          : undefined,
+      ),
+    [states, tracklet, productIds],
+  )
+  const errors = states.flatMap((state, epoch) =>
+    state?.status === 'error' ? [{ epoch, message: state.message }] : [],
+  )
+  return { tracks, errors }
 }
 
 const TRACK_COLOR = '#ffb547'

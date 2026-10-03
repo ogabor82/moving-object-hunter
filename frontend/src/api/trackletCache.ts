@@ -1,4 +1,4 @@
-import { buildTracklets, identifyTracklet, projectPositions } from './client'
+import { buildTracklets, getReviewRanking, identifyTracklet, projectPositions } from './client'
 import { frameKey } from './frameCache'
 import { SessionCache } from './sessionCache'
 import type {
@@ -6,6 +6,8 @@ import type {
   DisplayPoint,
   FrameCutoutParams,
   IdentifyResponse,
+  ReviewRankingResponse,
+  Tracklet,
   TrackletBuildResponse,
 } from './types'
 
@@ -14,6 +16,7 @@ import type {
 const builds = new SessionCache<TrackletBuildResponse>()
 const projections = new SessionCache<(DisplayPoint | null)[]>()
 const identifications = new SessionCache<IdentifyResponse>()
+const rankings = new SessionCache<ReviewRankingResponse>()
 
 function buildKey(preset: BlinkPreset): string {
   return preset.product_ids.join(',')
@@ -47,6 +50,20 @@ export function loadProjection(
   )
 }
 
+/** Display pixels of one tracklet's detections on one frame (review view). */
+export function loadTrackletProjection(
+  params: FrameCutoutParams,
+  tracklet: Tracklet,
+): Promise<(DisplayPoint | null)[]> {
+  const positions = tracklet.detections.map(({ detection }) => ({
+    ra: detection.ra,
+    dec: detection.dec,
+  }))
+  return projections.load(`${frameKey(params)}#${tracklet.tracklet_id}`, () =>
+    projectPositions(params, positions).then((response) => response.points),
+  )
+}
+
 export function cachedIdentification(trackletId: string): IdentifyResponse | undefined {
   return identifications.get(trackletId)
 }
@@ -54,4 +71,13 @@ export function cachedIdentification(trackletId: string): IdentifyResponse | und
 /** POST /api/tracklets/{id}/identify (live SkyBoT; errors are never 'unknown'). */
 export function loadIdentification(trackletId: string): Promise<IdentifyResponse> {
   return identifications.load(trackletId, () => identifyTracklet(trackletId))
+}
+
+export function cachedReviewRanking(buildId: string): ReviewRankingResponse | undefined {
+  return rankings.get(buildId)
+}
+
+/** GET /api/tracklets/builds/{build_id}/review-ranking (deterministic, offline). */
+export function loadReviewRanking(buildId: string): Promise<ReviewRankingResponse> {
+  return rankings.load(buildId, () => getReviewRanking(buildId))
 }
